@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('autenticacao.login');
 });
+
+Route::get('/cadastro',function(){
+    return view('autenticacao.cadastro');
+});
+
