@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('autenticacao.login');
 });
+
+Route::get('/cadastro',function(){
+    return view('autenticacao.cadastro');
+});

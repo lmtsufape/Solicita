@@ -4,7 +4,10 @@
 @section('conteudo')
     <div class="info">
         <div class="info-texto" >
+                <img src="" alt="">
             <div class="texto">
+
+            
                 <h1>O que é o <strong> escolar.io? </strong></h1>
                 <p>
                     É uma ferramenta voltada para o atendimento das demandas<br>
