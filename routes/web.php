@@ -13,8 +13,14 @@
 
 Route::get('/', function () {
     return view('autenticacao.login');
-});
+})->name('login');
 
 Route::get('/cadastro',function(){
     return view('autenticacao.cadastro');
-});
+})->name('cadastro');
+
+/*
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+*/
