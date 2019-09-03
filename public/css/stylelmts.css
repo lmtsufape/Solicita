@@ -1,0 +1,63 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    
+}
+
+.info{
+    width: 100%;
+    height: 685px;
+}
+.info-texto{
+    width: 75%;
+    height: 685px;
+    background-color: #1B2E4F;
+    float: left;
+}
+.info-login{
+    width: 25%;
+    height: 685px;
+    background-color: white;
+    float: right;
+}
+.info-texto .texto{
+    padding: 50px;
+    color: white;
+}
+
+.texto p{
+    padding-left: 20px;
+    padding-left: 20px;
+    font-size: 20px;
+}
+.texto ul{
+    padding-left: 20px;
+    font-size: 16px;
+    font-size: 20px;
+}
+
+.info-login{
+    
+    
+}
+
+.text-center{
+    margin-top: 40px;
+    padding-top: 50px;
+    
+}
+
+.botoes{
+    width: 300px;
+    margin: 0 auto;
+    height: 40px;
+
+}
+
+.info-login .btn{
+    float: right;
+    
+}
+.formulario-centro{
+    text-align: right;
+}
