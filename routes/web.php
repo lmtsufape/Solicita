@@ -18,3 +18,4 @@ Route::get('/', function () {
 Route::get('/cadastro',function(){
     return view('autenticacao.cadastro');
 });
+
