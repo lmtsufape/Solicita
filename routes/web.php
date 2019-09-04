@@ -19,6 +19,10 @@ Route::get('/cadastro',function(){
     return view('autenticacao.cadastro');
 })->name('cadastro');
 
+Route::get('/home-servidor',function(){
+    return view('/telas_servidor.home_servidor');
+})->name('home_servidor');
+
 /*
 Auth::routes();
 
