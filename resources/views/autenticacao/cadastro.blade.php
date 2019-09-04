@@ -56,7 +56,23 @@
                         @enderror
                     </div>
                     </div>
+                    <!-- Vínculo -->
+                    <select class="browser-default custom-select custom-select-lg mb-3" style="width: 14.5rem; margin-left:125px">
+                        <option value="" disabled selected>Tipo de vínculo</option>
+                        <option value="1">Aluno Matriculado</option>
+                        <option value="2">Aluno Egresso</option>
+                        
+                    </select>
 
+                    <select class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
+                        <<option value="" disabled selected>Curso</option>
+                        <option value="1">Agronomia</option>
+                        <option value="2">BCC</option>
+                        
+                    </select>
+                    
+
+                    
 
                     <!-- Form E-mail -->
                     <div class="form-group row formulario-centro">
@@ -119,14 +135,7 @@
                         </div>
                     </div>
                     
-                    
-                    <!-- Example single danger button -->
-                    <select class="browser-default custom-select custom-select-lg mb-3" style="width: 14.5rem; margin-left:125px">
-                        <option selected>Aluno Matriculado</option>
-                        <option value="1">Aluno Egresso</option>
-                        
-                    </select>
-    
+                    <!-- Botões -->
                     <div class="form-group row mb-0 justify-content-center ">
                         <div class="row " style="margin-top:20px; margin-left:-30px"> 
                                 <div class="col-md-6 " style="">
@@ -141,6 +150,9 @@
                         </div>
                             
                     </div>
+
+
+                    
                         
                     </form>
         </div>
