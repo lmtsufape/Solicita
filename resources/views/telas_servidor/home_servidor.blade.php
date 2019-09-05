@@ -11,12 +11,10 @@
                     <div class="conteudo-central d-flex justify-content-center">
                             
                         <!-- Declaração de Vínculo-->
-
-                        
-
                         <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
+                                <form id="formulario" action="{{ route('requisicoes_servidor') }}" method="GET" style="display: none;">
                                         @csrf
+                                        <input type="hidden" name="titulo" value="Declaração de Vínculo">
                                 </form>
                                 <div class="card-body d-flex justify-content-center">
                                 
@@ -28,9 +26,10 @@
                                                                     
                         
                         <!--rovante de Matrícula -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
+                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario1').submit();">
+                                <form id="formulario1" action="{{ route('requisicoes_servidor') }}" method="GET" style="display: none;">
                                         @csrf
+                                        <input type="hidden" name="titulo" value="Comprovante de Matrícula">
                                 </form>
                         
                                 <div class="card-body d-flex justify-content-cente r">
@@ -40,9 +39,10 @@
                         </div>
 
                         <!--Histórico -->
-                       <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
+                       <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario2').submit();">
+                                <form id="formulario2" action="{{ route('requisicoes_servidor') }}" method="GET" style="display: none;">
                                         @csrf
+                                        <input type="hidden" name="titulo" value="Histórico">
                                 </form>
                         
                             <div class="card-body d-flex justify-content-center">
@@ -57,9 +57,10 @@
                     <div class="conteudo-central d-flex justify-content-center">
                         
                         <!-- -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
+                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario3').submit();">
+                                <form id="formulario3" action="{{ route('requisicoes_servidor') }}" method="GET" style="display: none;">
                                         @csrf
+                                        <input type="hidden" name="titulo" value="Programa de Disciplina">
                                 </form>
                             
                                 <div class="card-body d-flex justify-content-center">
@@ -68,9 +69,10 @@
                             </div>
                         </div>
                         <!-- -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
+                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario4').submit();">
+                                <form id="formulario4" action="{{ route('requisicoes_servidor') }}" method="GET" style="display: none;">
                                         @csrf
+                                        <input type="hidden" name="titulo" value="Outros">
                                 </form>
                         
                                 <div class="card-body d-flex justify-content-center">
@@ -79,9 +81,10 @@
                             </div>
                         </div>
                         <!-- -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
+                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario5').submit();">
+                                <form id="formulario5" action="{{ route('requisicoes_servidor') }}" method="GET" style="display: none;">
                                         @csrf
+                                        <input type="hidden" name="titulo" value="Listar Todos">
                                 </form>
                         
                             <div class="card-body d-flex justify-content-center">
