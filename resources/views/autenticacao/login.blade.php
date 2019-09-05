@@ -109,7 +109,7 @@
                         <div class="form-group row mb-0 justify-content-center ">
                             <div class="row " style="margin-top:20px"> 
                                     <div class="col-md-6 " style="">
-                                        <a class="menu-principal" href="#" style="color: #1B2E4F; margin-left: 10px">Cadastrar</a>
+                                        <a class="menu-principal" href="{{  route('cadastro')  }}" style="color: #1B2E4F; margin-left: 10px">Cadastrar</a>
                                     </div>
 
                                     <div class="col-md-6 " style="margin-left: -14px; margin-top: -4px">
