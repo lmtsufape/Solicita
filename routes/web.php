@@ -28,6 +28,12 @@ Route::get('/requisicoes-servidor',function(Request $request){
     return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
 })->name('requisicoes_servidor');
 
+
+Route::get('/requisicoes-aluno',function(){
+    return view('telas_aluno.requisicoes_aluno');
+})->name('requisicoes_aluno');
+
+
 /*
 Auth::routes();
 
