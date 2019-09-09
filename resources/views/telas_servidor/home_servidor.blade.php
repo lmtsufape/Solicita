@@ -11,96 +11,66 @@
                     <div class="conteudo-central d-flex justify-content-center">
                             
                         <!-- Declaração de Vínculo-->
-
                         
-
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                                <div class="card-body d-flex justify-content-center">
-                                
-                                <h2 style="padding-top:20px">Declaração de Vínculo</h2>
+                        <a href="{{ route("login", ["titulo" => "Historico"]) }}" style="text-decoration:none; color: inherit;">
+                            <div class="card cartao text-center " style="border-radius: 20px">
+                                    
+                                    <div class="card-body d-flex justify-content-center">
+                                    
+                                    <h2 style="padding-top:20px">Declaração de Vínculo</h2>
+                                </div>
                             </div>
-                        </div>
+                        </a>
+                        <a href="{{ route("login", ["titulo" => "Historico"]) }}" style="text-decoration:none; color: inherit;">
+                            <div class="card cartao text-center " style="border-radius: 20px">
+                                    
+                                    <div class="card-body d-flex justify-content-center">
+                                    
+                                    <h2 style="padding-top:20px">Comprovante de Matrícula</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{{ route("login", ["titulo" => "Historico"]) }}" style="text-decoration:none; color: inherit;">
+                            <div class="card cartao text-center " style="border-radius: 20px" >
+                                    
+                                    <div class="card-body d-flex justify-content-center">
+                                    
+                                    <h2 style="padding-top:20px">Histórico</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{{ route("login", ["titulo" => "Historico"]) }}" style="text-decoration:none; color: inherit;">
+                            <div class="card cartao text-center " style="border-radius: 20px" >
+                                    
+                                    <div class="card-body d-flex justify-content-center">
+                                    
+                                    <h2 style="padding-top:0">Programa de Disciplina</h2>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{{ route("login", ["titulo" => "Historico"]) }}" style="text-decoration:none; color: inherit;">
+                            <div class="card cartao text-center " style="border-radius: 20px">
+                                    
+                                    <div class="card-body d-flex justify-content-center">
+                                    
+                                    <h2 style="padding-top:20px">Outros</h2>
+                                </div>
+                            </div>
+                        </a>
                         
+                        <a href="{{ route("login", ["titulo" => "Historico"]) }}" style="text-decoration:none; color: inherit;">
+                            <div class="card cartao text-center " style="border-radius: 20px">
+                                    
+                                    <div class="card-body d-flex justify-content-center">
+                                    
+                                    <h2 style="padding-top:20px">Todos</h2>
+                                </div>
+                            </div>
+                        </a>
 
-                                                                    
-                        
-                        <!--rovante de Matrícula -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                        
-                                <div class="card-body d-flex justify-content-cente r">
-                                
-                                <h2 style="padding-top:20px">Comprovante de Matrícula</h2>
-                            </div>
-                        </div>
+              
 
-                        <!--Histórico -->
-                       <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                        
-                            <div class="card-body d-flex justify-content-center">
-                                
-                                <h2 style="padding-top:35px">Histórico</h2>
-                            </div>
-                        </div> 
-                    </div>
-            
-            
-            
-                    <div class="conteudo-central d-flex justify-content-center">
-                        
-                        <!-- -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                            
-                                <div class="card-body d-flex justify-content-center">
-                                
-                                <h2 style="padding-top:20px">Programa de Disciplina</h2>
-                            </div>
-                        </div>
-                        <!-- -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                        
-                                <div class="card-body d-flex justify-content-center">
-                                
-                                <h2 style="padding-top:35px">Outros</h2>
-                            </div>
-                        </div>
-                        <!-- -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                        
-                            <div class="card-body d-flex justify-content-center">
-                                
-                                <h2 style="padding-top:35px">Listar Todos</h2>
-                            </div>
-                        </div>
-            
-                            
-                    </div>
-        </div>
 
-        
-         
-    </div>
-            
-    
-<!--
-    
 
--->
+
 @endsection
