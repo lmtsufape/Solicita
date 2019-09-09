@@ -22,6 +22,9 @@ class CreatePerfilsTable extends Migration
             $table->unsignedBigInteger('unidade_id');
             $table->foreign('unidade_id')->references('id')->on('unidades');
 
+            $table->unsignedBigInteger('curso_id');
+            $table->foreign('curso_id')->references('id')->on('cursos');
+
             $table->string('default');
             $table->string('situacao');
             
