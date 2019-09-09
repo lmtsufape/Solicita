@@ -27,10 +27,6 @@ Route::get('/requisicoes', function(){
     return view('autenticacao.requisicoes');
 });
 
-Route::get('/formulario-requisicao', function(){
-    return view('autenticacao.formulario-requisicao');
-})->name('formulario_requisicao');
-
 Route::get('/nome-documento', function(){
     return view('autenticacao.nome-documento');
 })->name('nome_documento');
@@ -38,10 +34,6 @@ Route::get('/nome-documento', function(){
 Route::get('/fulano', function(){
     return view('autenticacao.fulano');
 });
-
-Route::get('/confirmacao-requisicao', function(){
-    return view('autenticacao.confirmacao-requisicao');
-})->name('confirmacao_requisicao');
 
 Route::get('/servidores', function(){
     return view('autenticacao.servidores');
@@ -51,8 +43,23 @@ Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
 
-/*
-Auth::routes();
+Route::get('/home-aluno',function(){
+    return view('autenticacao.home-aluno');
+})->name('home-aluno');
 
-Route::get('/home', 'HomeController@index')->name('home');
-*/
+Route::get('/formulario-requisicao',function(){
+    return view('autenticacao.formulario-requisicao');
+})->name('formulario-requisicao');
+
+Route::get('/confirmacao-requisicao',function(){
+    return view('autenticacao.confirmacao-requisicao');
+})->name('confirmacao-requisicao');
+
+//
+// Route::get('/home-aluno', function(){
+//     return view('autenticacao.formulario-requisicao');
+// })->name('formulario-requisicao');
+
+// Auth::routes();
+//
+// Route::get('/home', 'HomeController@index')->name('home');
