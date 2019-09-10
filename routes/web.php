@@ -55,11 +55,14 @@ Route::get('/confirmacao-requisicao',function(){
     return view('autenticacao.confirmacao-requisicao');
 })->name('confirmacao-requisicao');
 
-//
-// Route::get('/home-aluno', function(){
-//     return view('autenticacao.formulario-requisicao');
-// })->name('formulario-requisicao');
+Route::get('/confirmacao-requisicao',function(){
+    return view('autenticacao.home-aluno');
+})->name('confirmacao-requisicao');
 
-// Auth::routes();
-//
-// Route::get('/home', 'HomeController@index')->name('home');
+ Route::get('/home-aluno', function(){
+     return view('autenticacao.formulario-requisicao');
+ })->name('formulario-requisicao');
+
+ Auth::routes();
+
+ Route::get('/home', 'HomeController@index')->name('home');
