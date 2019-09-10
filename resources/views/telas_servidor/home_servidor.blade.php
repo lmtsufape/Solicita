@@ -3,104 +3,68 @@
     
 @section('conteudo')
 
-    <div class="tela-servidor ">
+<div class="tela-servidor ">
 
-        <div class="centro-cartao">
-                <div class="card-deck d-flex justify-content-center">
+    <div class="centro-cartao">
+            <div class="card-deck d-flex justify-content-center">
 
-                    <div class="conteudo-central d-flex justify-content-center">
-                            
-                        <!-- Declaração de Vínculo-->
-
+                <div class="conteudo-central d-flex justify-content-center">
                         
-
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
+                    <!-- Declaração de Vínculo-->
+                    
+                    <a href="{{ route("requisicoes_servidor", ["titulo" => "Declaração de Vínculo"]) }}" style="text-decoration:none; color: inherit;">
+                        <div class="card cartao text-center " style="border-radius: 20px">
+                                
                                 <div class="card-body d-flex justify-content-center">
                                 
                                 <h2 style="padding-top:20px">Declaração de Vínculo</h2>
                             </div>
                         </div>
-                        
-
-                                                                    
-                        
-                        <!--rovante de Matrícula -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                        
-                                <div class="card-body d-flex justify-content-cente r">
+                    </a>
+                    <a href="{{ route("requisicoes_servidor", ["titulo" => "Comprovante de Matrícula"]) }}" style="text-decoration:none; color: inherit;">
+                        <div class="card cartao text-center " style="border-radius: 20px">
+                                
+                                <div class="card-body d-flex justify-content-center">
                                 
                                 <h2 style="padding-top:20px">Comprovante de Matrícula</h2>
                             </div>
                         </div>
-
-                        <!--Histórico -->
-                       <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                        
-                            <div class="card-body d-flex justify-content-center">
+                    </a>
+                    <a href="{{ route("requisicoes_servidor", ["titulo" => "Historico"]) }}" style="text-decoration:none; color: inherit;">
+                        <div class="card cartao text-center " style="border-radius: 20px" >
                                 
-                                <h2 style="padding-top:35px">Histórico</h2>
-                            </div>
-                        </div> 
-                    </div>
-            
-            
-            
-                    <div class="conteudo-central d-flex justify-content-center">
-                        
-                        <!-- -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                            
                                 <div class="card-body d-flex justify-content-center">
                                 
-                                <h2 style="padding-top:20px">Programa de Disciplina</h2>
+                                <h2 style="padding-top:20px">Histórico</h2>
                             </div>
                         </div>
-                        <!-- -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                        
+                    </a>
+                    <a href="{{ route("requisicoes_servidor", ["titulo" => "Programa de Disciplina"]) }}" style="text-decoration:none; color: inherit;">
+                        <div class="card cartao text-center " style="border-radius: 20px" >
+                                
                                 <div class="card-body d-flex justify-content-center">
                                 
-                                <h2 style="padding-top:35px">Outros</h2>
+                                <h2 style="padding-top:0">Programa de Disciplina</h2>
                             </div>
                         </div>
-                        <!-- -->
-                        <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                                <form id="formulario" action="{{ route('login') }}" method="GET" style="display: none;">
-                                        @csrf
-                                </form>
-                        
-                            <div class="card-body d-flex justify-content-center">
+                    </a>
+                    <a href="{{ route("requisicoes_servidor", ["titulo" => "Outros"]) }}" style="text-decoration:none; color: inherit;">
+                        <div class="card cartao text-center " style="border-radius: 20px">
                                 
-                                <h2 style="padding-top:35px">Listar Todos</h2>
+                                <div class="card-body d-flex justify-content-center">
+                                
+                                <h2 style="padding-top:20px">Outros</h2>
                             </div>
                         </div>
-            
-                            
-                    </div>
-        </div>
-
-        
-         
-    </div>
-            
-    
-<!--
-    
-
--->
+                    </a>
+                    
+                    <a href="{{ route("requisicoes_servidor", ["titulo" => "Todos"]) }}" style="text-decoration:none; color: inherit;">
+                        <div class="card cartao text-center " style="border-radius: 20px">
+                                
+                                <div class="card-body d-flex justify-content-center">
+                                
+                                <h2 style="padding-top:20px">Todos</h2>
+                            </div>
+                        </div>
+                    </a>
 @endsection

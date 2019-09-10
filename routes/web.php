@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('autenticacao.login');
@@ -47,19 +48,15 @@ Route::get('/home-aluno',function(){
     return view('autenticacao.home-aluno');
 })->name('home-aluno');
 
-Route::get('/formulario-requisicao',function(){
-    return view('autenticacao.formulario-requisicao');
-})->name('formulario-requisicao');
+Route::get('/requisicoes-servidor',function(Request $request){
+    return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
+})->name('requisicoes_servidor');
 
-Route::get('/confirmacao-requisicao',function(){
-    return view('autenticacao.confirmacao-requisicao');
-})->name('confirmacao-requisicao');
 
-//
-// Route::get('/home-aluno', function(){
-//     return view('autenticacao.formulario-requisicao');
-// })->name('formulario-requisicao');
+Route::get('/requisicoes-aluno',function(){
+    return view('telas_aluno.requisicoes_aluno');
+})->name('requisicoes_aluno');
 
-// Auth::routes();
-//
-// Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
