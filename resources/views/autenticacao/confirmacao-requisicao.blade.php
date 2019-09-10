@@ -7,9 +7,7 @@
             <div class="card" style="width: 70rem;">
                 <h2><div class="card-header" align="center">{{ __('Confirmação de Requisição de Documentos') }}</div></h2>
                   <div class="card-body">
-                      <!-- <form method="GET" action={{ route('home-aluno') }} enctype="multipart/form-data" id="formRequisicao">
-                                @csrf -->
-                            <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
+                        <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
 
                                   <p><div class = "label" id = nomeAlunoConfirmacao></div>Nome do Aluno: </p>
                                   <p><div class = "label" id = cpfAlunoConfirmacao></div>CPF: </p>
