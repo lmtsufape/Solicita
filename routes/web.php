@@ -34,8 +34,8 @@ Route::get('/requisicoes-aluno',function(){
 })->name('requisicoes_aluno');
 
 
-/*
+
+/*Rotas Auth */ 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-*/
