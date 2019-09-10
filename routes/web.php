@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Illuminate\Http\Request;
 
 Route::get('/', function () {
     return view('autenticacao.login');
@@ -28,10 +27,6 @@ Route::get('/requisicoes', function(){
     return view('autenticacao.requisicoes');
 });
 
-Route::get('/formulario-requisicao', function(){
-    return view('autenticacao.formulario-requisicao');
-})->name('formulario_requisicao');
-
 Route::get('/nome-documento', function(){
     return view('autenticacao.nome-documento');
 })->name('nome_documento');
@@ -39,10 +34,6 @@ Route::get('/nome-documento', function(){
 Route::get('/fulano', function(){
     return view('autenticacao.fulano');
 });
-
-Route::get('/confirmacao-requisicao', function(){
-    return view('autenticacao.confirmacao-requisicao');
-})->name('confirmacao_requisicao');
 
 Route::get('/servidores', function(){
     return view('autenticacao.servidores');
@@ -52,18 +43,26 @@ Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
 
-Route::get('/requisicoes-servidor',function(Request $request){
-    return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
-})->name('requisicoes_servidor');
+Route::get('/home-aluno',function(){
+    return view('autenticacao.home-aluno');
+})->name('home-aluno');
 
+Route::get('/formulario-requisicao',function(){
+    return view('autenticacao.formulario-requisicao');
+})->name('formulario-requisicao');
 
-Route::get('/requisicoes-aluno',function(){
-    return view('telas_aluno.requisicoes_aluno');
-})->name('requisicoes_aluno');
+Route::get('/confirmacao-requisicao',function(){
+    return view('autenticacao.confirmacao-requisicao');
+})->name('confirmacao-requisicao');
 
+Route::get('/confirmacao-requisicao',function(){
+    return view('autenticacao.home-aluno');
+})->name('confirmacao-requisicao');
 
-/*
-Auth::routes();
+ Route::get('/home-aluno', function(){
+     return view('autenticacao.formulario-requisicao');
+ })->name('formulario-requisicao');
 
-Route::get('/home', 'HomeController@index')->name('home');
-*/
+ Auth::routes();
+
+ Route::get('/home', 'HomeController@index')->name('home');
