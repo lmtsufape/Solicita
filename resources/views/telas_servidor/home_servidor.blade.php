@@ -3,8 +3,7 @@
     
 @section('conteudo')
 
-    <div class="tela-servidor ">
-
+<div class="tela-servidor ">
         <div class="centro-cartao">
                 <div class="card-deck d-flex justify-content-center">
 
@@ -67,10 +66,5 @@
                                 </div>
                             </div>
                         </a>
-
-              
-
-
-
 
 @endsection
