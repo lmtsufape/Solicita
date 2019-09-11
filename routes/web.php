@@ -39,3 +39,5 @@ Route::get('/requisicoes-aluno',function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
