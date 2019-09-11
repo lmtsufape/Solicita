@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
-    
 @section('conteudo')
     <div class="info">
         <div class="info-texto" >
                 <img src="" alt="">
             <div class="texto">
 
-            
+
                 <h1>O que é o <strong> escolar.io? </strong></h1>
                 <p>
                     É uma ferramenta voltada para o atendimento das demandas<br>
@@ -30,8 +29,8 @@
                     <li>Outros.</li>
                 </ul>
             </div>
-            
-                
+
+
         </div>
 
 
@@ -39,7 +38,7 @@
         <div class="info-login" >
 
                 <h2 class="text-center">Entrar</h2>
-                
+
                 <form >
                     <div class="form-group">
                         <!--
@@ -52,7 +51,7 @@
 
                             <div class="col-md-9">
                                 <label for="email" class="field a-field a-field_a3 page__field ">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror field__input a-field__input" 
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror field__input a-field__input"
                                 name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-Mail">
 
                                 <span class="a-field__label-wrap">
@@ -67,7 +66,7 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
 
                     <!-- Form Senha -->
@@ -75,7 +74,7 @@
 
                         <div class="col-md-9">
                             <label for="password" class="field a-field a-field_a3 page__field" >
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input" 
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
                             name="password" required autocomplete="current-password" placeholder="Senha">
 
                             <span class="a-field__label-wrap">
@@ -107,9 +106,9 @@
                         </div>
 
                         <div class="form-group row mb-0 justify-content-center ">
-                            <div class="row " style="margin-top:20px"> 
+                            <div class="row " style="margin-top:20px">
                                     <div class="col-md-6 " style="">
-                                        <a class="menu-principal" href="{{  route('cadastro')  }}" style="color: #1B2E4F; margin-left: 10px">Cadastrar</a>
+                                    <a class="menu-principal" href="{{  route('cadastro')  }}" style="color: #1B2E4F; margin-left: 10px">Cadastrar</a>
                                     </div>
 
                                     <div class="col-md-6 " style="margin-left: -14px; margin-top: -4px">
@@ -118,9 +117,9 @@
                                         </button>
                                     </div>
                             </div>
-                            
+
                     </div>
-                    
+
                 </form>
         </div>
     </div>
