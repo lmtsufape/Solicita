@@ -51,6 +51,10 @@ Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
 
+Route::get('/listar-instituicao', function(){
+    return view('autenticacao.listar-instituicao');
+})->name('listar_instituicao');
+
 /*
 Auth::routes();
 

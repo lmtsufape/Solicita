@@ -66,8 +66,7 @@ body{
     background-color: #1B2E4F;
 }
 .centro{
-    width: 25%; 
-    
+    width: 25%;
     margin: 0 auto;
     height: 730px;
     background-color: white;
@@ -117,4 +116,22 @@ body{
     
     height: 730px;
     background-color: #ddd;
+}
+
+.btn-primary-lmts{
+    background-color: #1B2E4F;
+    border-color: #d3e0e9;
+    color: white;
+}
+
+.btn-primary-lmts:disabled{
+    background-color: #1B2E4F;
+    border-color: #d3e0e9;
+    color: white;
+  }
+
+.btn-primary-lmts:hover{
+    background-color: #2c4e8a;
+    border-color: #d3e0e9;
+    color: white;
 }

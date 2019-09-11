@@ -16,9 +16,9 @@
                 </p>
                 <h1>Benefícios de utilizar o <strong> escolar.io? </strong></h1>
                 <ul>
-                    <li>Solicite seus documentos online;</li>
-                    <li>Acompanhe o status do seu requerimento;</li>
-                    <li>Retire os documentos apresentando o número de protocolo.</li>
+                    <li>Solicitação de documentos 100% online;</li>
+                    <li>Status do seu requerimento;</li>
+                    <li>Recebimento dos documentos com o número de protocolo.</li>
                 </ul>
 
                 <h1>Quais documentos eu posso solicitar?</h1>
@@ -26,7 +26,7 @@
                     <li>Declaração de vínculo;</li>
                     <li>Comprovante de matrícula;</li>
                     <li>Histórico Escolar;</li>
-                    <li>Programa de Disciplinas e</li>
+                    <li>Programa de Disciplinas;</li>
                     <li>Outros.</li>
                 </ul>
             </div>
