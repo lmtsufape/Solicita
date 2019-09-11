@@ -9,8 +9,13 @@ class Administrador extends Model
     //
     protected $fillable = ['matricula'];
 
+
     public function instituicao(){
         
         return $this->hasOne('App\Instituicao');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }

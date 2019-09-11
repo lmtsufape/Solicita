@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         ]);
         */  
 
+        /*
+
         // Seeders Documentos
         DB::table('documentos')->insert([
             'tipo'=>'Declaração de Vínculo'
@@ -61,6 +63,7 @@ class DatabaseSeeder extends Seeder
         // Seeders Unidade
 
         // Seeders Curso
+        */
         
     }
 }

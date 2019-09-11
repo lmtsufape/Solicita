@@ -16,8 +16,6 @@ class CreateUnidadesTable extends Migration
         Schema::create('unidades', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->unsignedBigInteger('instituicao_id');
-            $table->foreign('instituicao_id')->references('id')->on('instituicaos');
 
             $table->string('nome');
             $table->timestamps();

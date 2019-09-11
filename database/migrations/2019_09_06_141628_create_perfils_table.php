@@ -15,16 +15,7 @@ class CreatePerfilsTable extends Migration
     {
         Schema::create('perfils', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->unsignedBigInteger('aluno_id');
-            $table->foreign('aluno_id')->references('id')->on('alunos');
-
-            $table->unsignedBigInteger('unidade_id');
-            $table->foreign('unidade_id')->references('id')->on('unidades');
-
-            $table->unsignedBigInteger('curso_id');
-            $table->foreign('curso_id')->references('id')->on('cursos');
-
+            
             $table->string('default');
             $table->string('situacao');
             
@@ -41,5 +32,6 @@ class CreatePerfilsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('perfils');
+
     }
 }

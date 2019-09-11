@@ -16,6 +16,7 @@ class CreateServidorsTable extends Migration
         Schema::create('servidors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('matricula')->unique(); 
+
             $table->timestamps();
         });
     }

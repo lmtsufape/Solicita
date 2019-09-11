@@ -15,8 +15,11 @@ class CreateRequisicaosTable extends Migration
     {
         Schema::create('requisicaos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('aluno_id');
-            $table->foreign('aluno_id')->references('id')->on('alunos');
+
+            /*
+            
+            */
+            
             $table->date('data_pedido');
             $table->time('hora_pedido');
             $table->timestamps();

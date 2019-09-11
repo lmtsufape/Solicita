@@ -7,5 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Perfil extends Model
 {
     //
-    protected $fillable = ['aluno_id', 'unidade_id','curso_id', 'default','situacao'];
+    protected $fillable = ['default','situacao'];
+
+ 
+    public function requisicao(){
+        return $this->hasMany('App\Requisicao');
+    }
+
+    public function aluno(){
+        return $this->belongsTo('App\Aluno');
+    }
+
+    public function curso(){
+        return $this->belongsTo('App\Curso');
+    }
+
 }

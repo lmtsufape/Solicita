@@ -16,8 +16,9 @@ class CreateInstituicaosTable extends Migration
         Schema::create('instituicaos', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->unsignedBigInteger('administrador_id');
-            $table->foreign('administrador_id')->references('id')->on('administradors');
+            /*
+            
+            */
 
             $table->string('nome');
             $table->timestamps();

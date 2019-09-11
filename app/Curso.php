@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Curso extends Model
 {
     //
-    protected $fillable = ['unidade_id','nome'];
+    protected $fillable = ['nome'];
+
+
+    public function perfil(){
+        return $this->hasMany('App\Perfil');
+    }
+
+    public function unidade(){
+        return $this->belongsTo('App\Unidade');
+    }
 }
