@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             'password'=>bcrypt('12345678'),
 
         ]);
-        */  
+        */
 
         /*
 
@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder
         DB::table('administradors')->insert([
             'matricula'=>str::random(10)
         ]);
-        
+
 
         // Seeders Instituição
 
