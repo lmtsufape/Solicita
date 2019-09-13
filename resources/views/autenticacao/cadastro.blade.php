@@ -3,6 +3,10 @@
 
 @section('conteudo')
 
+<div class="background">
+    <div class="centro">
+    <div class="centro ">
+            <h2 class="row d-flex justify-content-center" >Cadastro</h2>
 
     <div class="background">
         <div class="centro ">
