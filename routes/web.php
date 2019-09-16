@@ -10,6 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/cadastro-servidor', 'ServidorController@servidores');
+Route::post('/cadastro-servidor', 'ServidorController@storeServidor');
 
 Route::get('/', function () {
     return view('autenticacao.login');
@@ -21,7 +23,7 @@ Route::get('/cadastro',function(){
 
 Route::get('/cadastro-servidor', function(){
     return view('autenticacao.cadastro-servidor');
-})->name('cadastro_servidor');
+})->name('cadastro-servidor');
 
 Route::get('/requisicoes', function(){
     return view('autenticacao.requisicoes');
@@ -38,7 +40,6 @@ Route::get('/fulano', function(){
 Route::get('/servidores', function(){
     return view('autenticacao.servidores');
 });
-
 Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
@@ -64,5 +65,4 @@ Route::get('/confirmacao-requisicao',function(){
  })->name('formulario-requisicao');
 
  Auth::routes();
-
  Route::get('/home', 'HomeController@index')->name('home');

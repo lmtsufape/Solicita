@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         // $this->call(UsersTableSeeder::class);
         /*
         DB::table('users')->insert([
@@ -64,6 +65,12 @@ class DatabaseSeeder extends Seeder
 
         // Seeders Curso
         */
-        
+        $this->call(UsuarioSeeder::class);
+        $this->call(AdministradorSeeder::class);
+        $this->call(InstituicaoSeeder::class);
+        $this->call(UnidadeSeeder::class);
+        $this->call(CursoSeeder::class);
+        $this->call(DocumentoSeeder::class);
+
     }
 }

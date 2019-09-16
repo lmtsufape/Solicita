@@ -17,7 +17,7 @@ class CreateInstituicaosTable extends Migration
             $table->bigIncrements('id');
 
             /*
-            
+
             */
 
             $table->string('nome');
