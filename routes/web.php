@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('autenticacao.login');
-})->name('login');
+Route::get('/', 'Usuario@index')->name('login');
 
-Route::get('/cadastro',function(){
-    return view('autenticacao.cadastro');
-})->name('cadastro');
+Route::get('/cadastro','Usuario@createAluno')->name('cadastro');
+Route::post('/cadastro','Usuario@storeAluno')->name('cadastro');
+
 
 Route::get('/cadastro-servidor', function(){
     return view('autenticacao.cadastro-servidor');
