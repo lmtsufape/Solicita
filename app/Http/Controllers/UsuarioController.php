@@ -110,6 +110,6 @@ class UsuarioController extends Controller
 
 
 
-    return redirect('/');
+    return redirect('/')->with('jsAlert','Usuário Cadastrado com sucesso.');
   }
 }
