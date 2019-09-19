@@ -6,9 +6,9 @@
 <div class="background">
 
 
-    <div class="background">
-        <div class="centro ">
-                <h2 class="row d-flex justify-content-center" >Cadastro</h2>
+    <div class="background" style="height: 840px">
+        <div class="centro" style="height: 840px">
+                <h2 class="row d-flex justify-content-center" >Cadastro Discente</h2>
 
                 <form action="{{  route('cadastro')  }}" method="POST">
 
@@ -26,10 +26,10 @@
                         <div class="col-md-9">
                             <label for="name" class="field a-field a-field_a3 page__field ">
                             <input id="name" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
-                            name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome">
+                            name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
 
                             <span class="a-field__label-wrap">
-                                <span class="a-field__label">Nome</span>
+                                <span class="a-field__label">Nome Completo</span>
                             </span>
                             </label>
                             @error('email')
@@ -44,47 +44,67 @@
 
                     <div class="form-group row formulario-centro">
 
-                    <div class="col-md-9">
-                        <label for="name" class="field a-field a-field_a3 page__field ">
-                        <input id="cpf" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
-                        name="cpf" value="{{ old('cpf') }}" required autocomplete="name" autofocus placeholder="Nome">
+                      <div class="col-md-9">
+                          <label for="name" class="field a-field a-field_a3 page__field ">
+                          <input id="cpf" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
+                          name="cpf" value="{{ old('cpf') }}" required autocomplete="name" autofocus placeholder="Nome">
 
-                        <span class="a-field__label-wrap">
-                            <span class="a-field__label">CPF</span>
-                        </span>
-                        </label>
-                        @error('email')
+                          <span class="a-field__label-wrap">
+                              <span class="a-field__label">CPF</span>
+                          </span>
+                          </label>
+                          @error('cpf')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                          <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </div>
+                    </div>
+                    <!-- Vínculo -->
+                      <label for="vinculo" style="margin-left:125px">Tipo de vinculo</label>
+                      <select name="vinculo" id="vinculo" class="browser-default custom-select custom-select-lg mb-3" style="width: 14.5rem; margin-left:125px">
+
+                          <option value="1" selected>Aluno Matriculado</option>
+                          <option value="2">Aluno Egresso</option>
+
+                          @error('vinculo')
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                          <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                      </select>
+
+                    <!-- Unidade Acadêmica-->
+                    <label for="unidade" style="margin-left:125px">Unidade Acadêmica</label>
+                    <select name="unidade" id="unidade"class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
+
+                      @foreach($unidades as $unidade)
+                      <option value="{{$unidade->id}}">{{$unidade->nome}}</option>
+                      @endforeach
+
+                      @error('unidade')
+                      <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                      <strong>{{ $message }}</strong>
+                      </span>
+                      @enderror
+                    </select>
+
+
+                    <!-- Cursos-->
+                    <label for="cursos" style="margin-left:125px">Curso</label>
+                    <select name="cursos" id="cursos" class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
+                      <options selected>Curso</option>
+
+                        @foreach($cursos as $curso)
+                        <option value="{{$curso->id}}">{{$curso->nome}}</option>
+                        @endforeach
+
+                        @error('cursos')
                         <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                         <strong>{{ $message }}</strong>
                         </span>
                         @enderror
-                    </div>
-                    </div>
-                    <!-- Vínculo -->
-                    <select name="vinculo" class="browser-default custom-select custom-select-lg mb-3" style="width: 14.5rem; margin-left:125px">
-                        <option value="" disabled selected>Tipo de vínculo</option>
-                        <option value="1">Aluno Matriculado</option>
-                        <option value="2">Aluno Egresso</option>
-
                     </select>
-
-                    <!-- Cursos-->
-                    <select name="cursos" class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
-                        <<option value="" disabled selected>Curso</option>
-                        @foreach($cursos as $curso)
-                        <option value="{{$curso->id}}">{{$curso->nome}}</option>
-                        @endforeach
-                    </select>
-
-                    <!-- Unidade Acadêmica-->
-                    <select name="unidade" class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
-                        <option value="" disabled selected>Unidade Acadêmica</option>
-                        @foreach($unidades as $unidade)
-                        <option value="{{$unidade->id}}">{{$unidade->nome}}</option>
-                        @endforeach
-                    </select>
-
-
 
                     <!-- Form E-mail -->
                     <div class="form-group row formulario-centro">

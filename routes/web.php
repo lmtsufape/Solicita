@@ -11,31 +11,19 @@
 |
 */
 
-Route::get('/', 'Usuario@index')->name('login');
+Route::get('/', 'UsuarioController@index')->name('login');
 
-Route::get('/cadastro','Usuario@createAluno')->name('cadastro');
-Route::post('/cadastro','Usuario@storeAluno')->name('cadastro');
+Route::get('/cadastro','UsuarioController@createAluno')->name('cadastro');
+Route::post('/cadastro','UsuarioController@storeAluno')->name('cadastro');
 
 
 Route::get('/cadastro-servidor', function(){
     return view('autenticacao.cadastro-servidor');
 })->name('cadastro_servidor');
 
-Route::get('/requisicoes', function(){
-    return view('autenticacao.requisicoes');
-});
-
 Route::get('/nome-documento', function(){
     return view('autenticacao.nome-documento');
 })->name('nome_documento');
-
-Route::get('/fulano', function(){
-    return view('autenticacao.fulano');
-});
-
-Route::get('/servidores', function(){
-    return view('autenticacao.servidores');
-});
 
 Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
@@ -45,9 +33,9 @@ Route::get('/home-aluno',function(){
     return view('autenticacao.home-aluno');
 })->name('home-aluno');
 
-Route::get('/formulario-requisicao',function(){
-    return view('autenticacao.formulario-requisicao');
-})->name('formulario-requisicao');
+//Formulário de requisicao
+Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
+Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
 
 Route::get('/confirmacao-requisicao',function(){
     return view('autenticacao.confirmacao-requisicao');
