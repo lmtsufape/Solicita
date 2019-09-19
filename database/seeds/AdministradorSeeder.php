@@ -14,7 +14,6 @@ class AdministradorSeeder extends Seeder
 
       $user_id = DB::table('users')->where('name','admin')->pluck('id');
 
-
       DB::table('administradors')->insert([
         'matricula'=>'123456789',
         'user_id' => $user_id[0],

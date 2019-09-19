@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Document</title>
-
-
+    <title>LMTS - escolar.IO</title>
     <link rel="stylesheet" href="css/stylelmts.css">
     <link rel="stylesheet" href="css/app.css">
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
-
-
 
     <style type="text/css">
         .panel-default > .panel-heading {
@@ -235,10 +231,11 @@
       <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
         <ul id="logos" style="list-style:none;">
             <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
-                <a href="{{ route('login') }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
+                <a href="{{ route('login') }}">
+                  <img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
+                </a>
 
                 <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70"  align = "right" ></a>
-
                 <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
                 <a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 30px" height="70" width="50" align = "right" ></a>
 
@@ -258,8 +255,6 @@
           </a>
             <div class="collapse navbar-collapse" >
               <ul class="navbar-nav mr-auto">
-
-
                 <li class="nav-item active">
                   <a class="nav-link" href="{{route('login')}}"
                     onclick="event.preventDefault();
@@ -267,7 +262,6 @@
                                   {{ __('Inicio') }}
                   </a>
                 </li>
-
 
                 <li class="nav-item active">
                   <a class="nav-link" href="{{route('login')}}"
@@ -289,17 +283,15 @@
 
                 <li class="nav-item active">
 
-                  <a class="nav-link" href="{{route('login')}}"
+                  <a class="nav-link" href="{{ route('cadastro-servidor') }}"
                     onclick="event.preventDefault();
-                                  document.getElementById('login').submit();">
-                                  {{ __('Sair') }}
+                                  document.getElementById('servidoresCadastro-form').submit();">
+                                  {{ __('Cadastrar Servidor') }}
                   </a>
+                  <form id="servidoresCadastro-form" action="{{ route('cadastro-servidor') }}" method="GET" style="display: none;">
+                  </form>
                 </li>
-
-
-
               </ul>
-
             </div>
 
             <div class="nav navbar-nav navbar-right" >

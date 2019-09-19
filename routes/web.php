@@ -10,9 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/cadastro-servidor', 'ServidorController@servidores');
-Route::post('/cadastro-servidor', 'ServidorController@storeServidor');
-
 Route::get('/', function () {
     return view('autenticacao.login');
 })->name('login');
@@ -21,25 +18,17 @@ Route::get('/cadastro',function(){
     return view('autenticacao.cadastro');
 })->name('cadastro');
 
-Route::get('/cadastro-servidor', function(){
-    return view('autenticacao.cadastro-servidor');
-})->name('cadastro-servidor');
-
-Route::get('/requisicoes', function(){
-    return view('autenticacao.requisicoes');
-});
+Route::get('/', 'Usuario@index')->name('login');
+//ROTAS PARA VARIAÇÕES DOS SERVIDORES
+Route::get('/cadastro-servidor','ServidorController@index')->name('cadastro-servidor');
+Route::post('/cadastro-servidor','ServidorController@storeServidor')->name('cadastro-servidor');
+Route::get('/home-administrador','ServidorController@listaServidores')->name('lista-servidores');
+Route::get('/home-administrador','ServidorController@cancel')->name('cancela-cadastro');
 
 Route::get('/nome-documento', function(){
     return view('autenticacao.nome-documento');
 })->name('nome_documento');
 
-Route::get('/fulano', function(){
-    return view('autenticacao.fulano');
-});
-
-Route::get('/servidores', function(){
-    return view('autenticacao.servidores');
-});
 Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');

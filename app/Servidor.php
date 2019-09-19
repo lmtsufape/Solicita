@@ -9,7 +9,6 @@ class Servidor extends Model
    //
    protected $fillable = ['matricula'];
 
-
    public function requisicao(){
       return $this->hasMany('App\Requisicao');
    }

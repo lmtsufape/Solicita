@@ -1,38 +1,44 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Request;
+//use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
 use App\User;
 use App\Servidor;
 use App\Unidade;
-
-
 class ServidorController extends Controller
 {
-            public function servidores(Request $request){
 
-                $unidades = Unidade::All();
-                $usuarios = User::All();
+  public function index(){
+    $unidades = Unidade::All();
+    $usuarios = User::All();
+    return view('autenticacao.cadastro-servidor',compact('users','unidades'));
+    //return view ('autenticacao.cadastro-servidor');
+  }
+  public function storeServidor(Request $request) {
+  //INSTANCIA DO USUARIO
+    $usuario = new User();
+    $usuario->name = $request->input('name');
+    $usuario->email = $request->input('email');
+    $usuario->password = $request->input('password');
+    $usuario->save();
+  //INSTANCIA DO SERVIDOR
+    $servidor = new Servidor();
+    $servidor->matricula = $request->input('matricula');
+    $servidor->unidade_id = 1;
+    $servidor->user_id = $usuario->id;
+    $servidor->save();
+    return view('/autenticacao.login')->with('message', 'Servidor cadastrado com sucesso!!');
+  }
 
-            }
+  public function listaServidores(){
+        return view('autenticacao.home-administrador'); //redireciona para view
+  }
 
-            public function storeServidor(Request $request) {
-
-            $servidor = new Servidor();
-            $usuario = new User();
-            $unidade_id = $unidades->;
-
-            $usuario = $request-> name;
-            $usuario = $request-> email;
-            $usuario = $request-> password;
-            $usuario->save();
-            $usuarioUltimo = User::where($request->email)->first();
-
-            $servidor->servidor_id = $usuarioUltimo->id;
-            $servidor->matricula = $request-> matricula;
-            $servidor->save();
-            return redirect()->route(cadastro-servidor)->with('message', 'Servidor castrado com sucesso!!');
-          }
+  public function cancel(){
+        return view('autenticacao.home-administrador'); //redireciona para view
+  }
 }

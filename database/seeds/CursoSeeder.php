@@ -11,10 +11,10 @@ class CursoSeeder extends Seeder
      */
     public function run()
     {
-      $cursos = ['Agronomia','Bacharelado em Ciência da Computação','Engenharia de Alimentos','Licenciatura em Letras',
+      $cursos = ['BACHAAgronomia','Bacharelado em Ciência da Computação','Engenharia de Alimentos','Licenciatura em Letras',
                   'Licenciatura em Pedagogia', 'Medicina Veterinária', 'Zootecnia'];
 
-      $unidade_id = DB::table('unidades')->where('nome','Unidade Acadêmica de Garanhuns')->pluck('id');
+      $unidade_id = DB::table('unidades')->where('nome','UAG - Unidade Acadêmica de Garanhuns')->pluck('id');
       for ($i=0; $i < sizeof($cursos); $i++) {
         DB::table('cursos')->insert([
           'nome' => $cursos[$i],

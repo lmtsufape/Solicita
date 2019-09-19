@@ -15,13 +15,10 @@ class CreateUnidadesTable extends Migration
     {
         Schema::create('unidades', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-
             $table->string('nome');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

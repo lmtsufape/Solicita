@@ -2,18 +2,27 @@
 
 @section('conteudo')
 
-    <div class="background" method="post">
+    <div class="background" >
 
         <div class="centro">
-          <form>
-            <h1 class="text-center">Cadastrar Servidor</h1>
-
+          <form method="POST" action="{{route('cadastro-servidor')}}">
+            @csrf
+            <h3 class="text-center">Cadastrar Servidor</h3>
             <!--Nome-->
+            <div>
+              <label for='unidade' style="width: 14.5rem; margin-left:125px">Selecione uma Unidade Acadêmica</label>
+              <select name="unidade" class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
+                <option value="" disabled selected>Unidade Acadêmica</option>
+                @foreach($unidades as $unidade)
+                <option value="{{$unidade->id}}">{{$unidade->nome}}</option>
+                @endforeach
+              </select>
+            </div>
             <div class="form-group row formulario-centro">
 
                 <div class="col-md-9">
                     <label for="name" class="field a-field a-field_a3 page__field ">
-                    <input id="name" type="text" class="form-control @error('email') is-invalid @enderror field__input a-field__input"
+                    <input type="text" class="form-control @error('email') is-invalid @enderror field__input a-field__input"
                     name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome">
 
                     <span class="a-field__label-wrap">
@@ -34,7 +43,7 @@
                 <div class="col-md-9">
 
                     <label for="matricula" class="field a-field a-field_a3 page__field" >
-                    <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror field__input a-field__input"
+                    <input type="text" class="form-control @error('matricula') is-invalid @enderror field__input a-field__input"
                     name="matricula" placeholder="Matricula">
 
                     <span class="a-field__label-wrap">
@@ -55,7 +64,7 @@
 
                 <div class="col-md-9">
                     <label for="email" class="field a-field a-field_a3 page__field ">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror field__input a-field__input"
+                    <input type="email" class="form-control @error('email') is-invalid @enderror field__input a-field__input"
                     name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-Mail">
 
                     <span class="a-field__label-wrap">
@@ -67,13 +76,11 @@
                     <strong>{{ $message }}</strong>
                     </span>
                     @enderror
-
                 </div>
-
             </div>
 
-                        <!--Senha-->
-            <!-- <div class="form-group row formulario-centro">
+            <!--Senha-->
+            <div class="form-group row formulario-centro">
 
                 <div class="col-md-9">
 
@@ -91,18 +98,16 @@
                     </span>
                     @enderror
                 </div>
-
-            </div> -->
+            </div>
 
             <div class="col-md-6 " style="margin-left: 10px; margin-top: 50px">
-                <button type="submit" class="btn btn-primary" name="submitServidor" style="margin-left: 100px;background-color: #1B2E4F; border-color: #d3e0e9">
+                <button type="submit" class="btn btn-primary" action={{route('login')}} style="margin-left: 100px;background-color: #1B2E4F; border-color: #d3e0e9">
                     {{ ('Cadastrar') }}
                 </button>
-
             </div>
 
             <div class="col-md-6 " style="margin-left: 150px; margin-top: -37px">
-                <button type="submit" class="btn btn-primary" name="cancelServidor" style="margin-left: 100px; background-color: #FF0000; border-color: #d3e0e9">
+                <button type="submit" class="btn btn-primary" action={{route('cancela-cadastro')}} style="margin-left: 100px; background-color: #FF0000; border-color: #d3e0e9">
                     {{ ('Cancelar') }}
                 </button>
             </div>
