@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', 'UsuarioController@index')->name('login');
+Route::get('/', 'AlunoController@index')->name('login');
 
-Route::get('/cadastro','UsuarioController@createAluno')->name('cadastro');
-Route::post('/cadastro','UsuarioController@storeAluno')->name('cadastro');
+Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
+Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 
 
 Route::get('/cadastro-servidor', function(){
@@ -29,6 +29,10 @@ Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
 
+//Route::get('/listar-requisicoes','listarRequisicoesController@index')->name('listar-requisicoes');
+Route::get('/listar-requisicoes',function(Request $request){
+    return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
+})->name('listar-requisicoes');
 Route::get('/home-aluno',function(){
     return view('autenticacao.home-aluno');
 })->name('home-aluno');
