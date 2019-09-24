@@ -117,10 +117,13 @@
                                         </button>
                                     </div>
                             </div>
-
-                    </div>
-
+                          </div>
                 </form>
         </div>
     </div>
+    @if(session()->has('jsAlert'))
+        <script>
+          alert('{{  session()->get('jsAlert')  }}')
+        </script>
+    @endif
 @endsection

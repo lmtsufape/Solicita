@@ -11,7 +11,6 @@ use App\Servidor;
 use App\Unidade;
 class ServidorController extends Controller
 {
-
   public function index(){
     $unidades = Unidade::All();
     $usuarios = User::All();
@@ -31,14 +30,12 @@ class ServidorController extends Controller
     $servidor->unidade_id = 1;
     $servidor->user_id = $usuario->id;
     $servidor->save();
-    return view('/autenticacao.login')->with('message', 'Servidor cadastrado com sucesso!!');
+    return view('/autenticacao.home-administrador')->with('jsAlert', 'Servidor cadastrado com sucesso!!');;
   }
-
   public function listaServidores(){
-        return view('autenticacao.home-administrador'); //redireciona para view
+        return view('/autenticacao.home-administrador'); //redireciona para view
   }
-
   public function cancel(){
-        return view('autenticacao.home-administrador'); //redireciona para view
+        return view('/autenticacao.home-administrador'); //redireciona para view
   }
 }

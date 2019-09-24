@@ -11,14 +11,14 @@
                     <option value="2">Curso</option>
                     <option value="3">A-Z</option>
                     <option value="4">Validade</option>
-                    
+
             </select>
             <div class="nome-documento lmts-primary mx-auto ">
                 <h2 class="" style="padding-top:0px">Fulano de Tal</h2>
             </div>
             </div>
-           
-            
+
+
             <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
             <tr >
                 <th scope="col">#</th>
@@ -29,9 +29,6 @@
                 <th scope="col">PRAZO</th>
                 <th scope="col">STATUS</th>
                 <th scope="col">DOCUMENTOS SOLICITADOS</th>
-                
-
-                
 
             </tr>
             </thead>
@@ -53,19 +50,19 @@
                                 <li>Documento 3</li>
                             </ul>
                         </td>
-                        
 
-                        
+
+
 
                     </tr>
                 @endfor
-            
-            
+
+
             </tbody>
         </table>
-        
-        
-        
+
+
+
     </div>
 
 @endsection
