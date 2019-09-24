@@ -13,18 +13,26 @@ class RequisicaoSeeder extends Seeder
     public function run()
     {
 
+      
+
       $aluno_id = DB::table('alunos')->where('cpf','12345678900')->pluck('id');
       $perfil_id = DB::table('perfils')->where('aluno_id',$aluno_id[0])->pluck('id');
       $servidor_id = DB::table('servidors')->where('matricula','123456789')->pluck('id');
 
       $dt = Carbon::now();
 
-        DB::table('requisicaos')->insert([
-          'data_pedido'=>$dt->toDateString(),
-          'hora_pedido'=>$dt->toTimeString(),
-          'aluno_id'=>$aluno_id[0],
-          'perfil_id'=>$perfil_id[0],
-          'servidor_id'=>$servidor_id[0],
-        ]);
+
+  
+      DB::table('requisicaos')->insert([
+        'data_pedido'=>$dt->toDateString(),
+        'hora_pedido'=>$dt->toTimeString(),
+        'aluno_id'=>$aluno_id[0],
+        'perfil_id'=>$perfil_id[0],
+        'servidor_id'=>$servidor_id[0],
+      ]);
+
+
+
+
     }
 }
