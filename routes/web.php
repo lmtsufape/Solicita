@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,45 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    return view('autenticacao.login');
-})->name('login');
+Route::get('/', 'AlunoController@index')->name('login');
 
-Route::get('/cadastro',function(){
-    return view('autenticacao.cadastro');
-})->name('cadastro');
+Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
+Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
+
 
 Route::get('/cadastro-servidor', function(){
     return view('autenticacao.cadastro-servidor');
 })->name('cadastro_servidor');
 
-Route::get('/requisicoes', function(){
-    return view('autenticacao.requisicoes');
-});
-
 Route::get('/nome-documento', function(){
     return view('autenticacao.nome-documento');
 })->name('nome_documento');
-
-Route::get('/fulano', function(){
-    return view('autenticacao.fulano');
-});
-
-Route::get('/servidores', function(){
-    return view('autenticacao.servidores');
-});
 
 Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
 
+//Route::get('/listar-requisicoes','listarRequisicoesController@index')->name('listar-requisicoes');
+Route::get('/listar-requisicoes',function(Request $request){
+    return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
+})->name('listar-requisicoes');
 Route::get('/home-aluno',function(){
     return view('autenticacao.home-aluno');
 })->name('home-aluno');
 
-Route::get('/formulario-requisicao',function(){
-    return view('autenticacao.formulario-requisicao');
-})->name('formulario-requisicao');
+//Formulário de requisicao
+Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
+Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
 
 Route::get('/confirmacao-requisicao',function(){
     return view('autenticacao.confirmacao-requisicao');
