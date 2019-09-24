@@ -101,7 +101,7 @@
             </div>
 
             <div class="col-md-6 " style="margin-left: 10px; margin-top: 50px">
-                <button type="submit" class="btn btn-primary" action={{route('login')}} style="margin-left: 100px;background-color: #1B2E4F; border-color: #d3e0e9">
+                <button type="submit" class="btn btn-primary" onclick="confirmacaoCadastro()" action={{route('login')}} style="margin-left: 100px;background-color: #1B2E4F; border-color: #d3e0e9">
                     {{ ('Cadastrar') }}
                 </button>
             </div>
@@ -114,5 +114,10 @@
           </form>
         </div>
     </div>
+    <script type="text/javascript">
 
+    function confirmacaoCadastro() {
+        alert('Servidor cadastrado com sucesso!!.');
+      }
+    </script>
 @endsection

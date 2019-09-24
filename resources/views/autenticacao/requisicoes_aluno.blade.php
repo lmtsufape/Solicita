@@ -11,14 +11,14 @@
                     <option value="2">Curso</option>
                     <option value="3">A-Z</option>
                     <option value="4">Validade</option>
-                    
+
             </select>
             <div class="nome-documento lmts-primary mx-auto ">
-                <h2 class="" style="padding-top:0px">{{$titulo}}</h2>
+                <h2 class="" style="padding-top:0px">Fulano de Tal</h2>
             </div>
             </div>
-           
-            
+
+
             <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
             <tr >
                 <th scope="col">#</th>
@@ -28,11 +28,7 @@
                 <th scope="col">DATA DE REQUISIÇÃO</th>
                 <th scope="col">PRAZO</th>
                 <th scope="col">STATUS</th>
-                @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
-                    <th scope="col">INFORMAÇÕES</th>
-                @endif
-
-                
+                <th scope="col">DOCUMENTOS SOLICITADOS</th>
 
             </tr>
             </thead>
@@ -47,21 +43,26 @@
                         <td>dd/mm/aaaa</td>
                         <td>dd/mm/aaaa</td>
                         <td>Em Andamento</td>
-                        @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
-                            <td class="text-wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ligula dolor. Suspendisse suscipit ipsum quis magna hendrerit rhoncus.</td>
-                        @endif
+                        <td>
+                            <ul>
+                                <li>Documento 1</li>
+                                <li>Documento 2</li>
+                                <li>Documento 3</li>
+                            </ul>
+                        </td>
 
-                        
+
+
 
                     </tr>
                 @endfor
-            
-            
+
+
             </tbody>
         </table>
-        
-        
-        
+
+
+
     </div>
 
 @endsection

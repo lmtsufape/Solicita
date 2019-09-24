@@ -11,14 +11,14 @@
                     <option value="2">Curso</option>
                     <option value="3">A-Z</option>
                     <option value="4">Validade</option>
-                    
+
             </select>
             <div class="nome-documento lmts-primary mx-auto ">
                 <h2 class="" style="padding-top:0px">{{$titulo}}</h2>
             </div>
             </div>
-           
-            
+
+
             <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
             <tr >
                 <th scope="col">#</th>
@@ -32,7 +32,7 @@
                     <th scope="col">INFORMAÇÕES</th>
                 @endif
 
-                
+
 
             </tr>
             </thead>
@@ -51,17 +51,17 @@
                             <td class="text-wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ligula dolor. Suspendisse suscipit ipsum quis magna hendrerit rhoncus.</td>
                         @endif
 
-                        
+
 
                     </tr>
                 @endfor
-            
-            
+
+
             </tbody>
         </table>
-        
-        
-        
+
+
+
     </div>
 
 @endsection

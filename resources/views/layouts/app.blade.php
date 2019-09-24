@@ -116,7 +116,8 @@
         		top: 6px;
         		left: 6px;
         		width: 45%;
-        		padding-right: 10px;
+        		padding-right: 10px;io-requisicao", ["titulo" => "Solicitar Documentos"]) }}" style="text-decoration:none; color: inherit;">
+                    <div class="card cartao
         		white-space: nowrap;
         		text-align:left;
         		font-weight: bold;
@@ -264,11 +265,13 @@
                 </li>
 
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{route('login')}}"
+                  <a class="nav-link" href="{{route('home-aluno')}}"
                     onclick="event.preventDefault();
-                                  document.getElementById('login').submit();">
+                                  document.getElementById('homeAluno').submit();">
                                   {{ __('Aluno') }}
                   </a>
+                  <form id="homeAluno" action="{{ route('home-aluno') }}" method="GET" style="display: none;">
+                  </form>
                 </li>
 
                 <li class="nav-item active">
