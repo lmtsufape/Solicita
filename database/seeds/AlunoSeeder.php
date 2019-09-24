@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class UsuarioSeeder extends Seeder
+class AlunoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class UsuarioSeeder extends Seeder
 
        DB::table('alunos')->insert([
          'cpf'=>'987654321',
-         'user_id' => $user_id[2],
+         'user_id' => $user_id[0],
          ]);
     }
 }

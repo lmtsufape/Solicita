@@ -320,7 +320,6 @@
           </nav>
       @endif
       @php($url = str_replace(URL::to('/'),'',URL::current()))
-
       @if(Auth::check())
 
         @if(!($url == '/login'))

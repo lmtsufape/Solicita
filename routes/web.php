@@ -20,6 +20,7 @@ Route::get('/cadastro',function(){
 
 Route::get('/', 'Usuario@index')->name('login');
 //ROTAS PARA VARIAÇÕES DOS SERVIDORES
+
 Route::get('/cadastro-servidor','ServidorController@index')->name('cadastro-servidor');
 Route::post('/cadastro-servidor','ServidorController@storeServidor')->name('cadastro-servidor');
 Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
@@ -27,11 +28,11 @@ Route::get('/cancela-cadastro','AdministradorController@cancel')->name('cancela-
 
 //percurso da tela inicial do sistema para a home do aluno
 Route::get('/home-aluno', 'AlunoController@index')->name('home-aluno');
-//preparacao para a requisicao com a chamada da view de formulario de requisicao
+Route::get('/prepara-requisicao', 'AlunoController@preparaNovaRequisicao')->name('prepara-requisicao');
 Route::get('/formulario-requisicao', 'AlunoController@preparaNovaRequisicao')->name('formulario-requisicao');
-Route::post('/formulario-requisicao', 'AlunoController@novaRequisicao')->name('formulario-requisicao');
-//confirmacao da requisicao
-Route::get('/confirmacao-requisicao', 'AlunoController@confirmacaoRequisicao')->name('confirmacao-requisicao');
+
+Route::post('/confirmacao-requisicao', 'AlunoController@novaRequisicao')->name('confirmacao-requisicao'); //----------------------
+
 Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
 
 Route::get('/home-servidor',function(){

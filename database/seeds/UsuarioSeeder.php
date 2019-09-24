@@ -14,19 +14,22 @@ class UsuarioSeeder extends Seeder
     {
         DB::table('users')->insert([
 
-          ['name'=>'admin',
+          [
+          'name'=>'admin',
           'email'=>'admin@gmail',
-          'password'=>'123456',
-        ],
+          'password'=>'12345678',
+          ],
 
-        ['name'=>'jorge',
-        'email'=>'admin@123',
-        'password'=>'123456444',
-      ],
-      ['name'=>'veloso',
-      'email'=>'admin@321',
-      'password'=>'123',
-      ],
+          [
+          'name'=>'server',
+          'email'=>'admin@123',
+          'password'=>'12345678',
+          ],
+          [
+          'name'=>'veloso',
+          'email'=>'admin@321',
+          'password'=>'12345678',
+        ],
       ]
       );
     }

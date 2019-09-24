@@ -4,7 +4,7 @@
 
 <div class="container" style="width: 100rem;margin-left: 200px;">
         <div class="col-md-8">
-          <form method="GET" action={{ route('formulario-requisicao') }}>
+          <form method="GET" action="{{ route('formulario-requisicao') }}">
             <div class="card" style="width: 70rem;">
                 <h2><div class="card-header" align="center">{{ __('Confirmação de Requisição de Documentos') }}</div></h2>
                   <div class="card-body">
@@ -26,7 +26,7 @@
 
                               <!-- </label> -->
                                   </div>
-                                  <a href="{{ route("home-aluno", ["titulo" => "Voltar para a home"]) }}" style="text-decoration:none; color: inherit;">
+                                  <a href="{{ route('home-aluno', ['titulo' => 'Voltar para a home']) }}" style="text-decoration:none; color: inherit;">
                                     <div class="form-group row mb-0">
                                       <div class="col-md-8 offset-md-4">
                                         <button type="submit"class="btn btn-primary btn-primary-lmts" align="center">

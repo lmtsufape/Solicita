@@ -7,26 +7,17 @@
 @endsection
 
           <div class="card-deck d-flex justify-content-center">
-
               <div class="conteudo-central d-flex justify-content-center">
 
-                  <!-- Solicitar Documento-->
-                  <!-- <div class="card cartao text-center " style="border-radius: 20px" href="#" onclick="event.preventDefault(); document.getElementById('formulario').submit();">
-                      <form id="formulario" action="{{ route('formulario-requisicao') }}" method="GET" style="display: none;">
-                           @csrf<
-                               </form>
-                                 <div class="card-body d-flex justify-content-center">
-                                     <h2 style="padding-top:20px">Solicitar Documentos</h2>
-                                 </div>
-                 </div> -->
 
-                 <a href="{{ route("formulario-requisicao", ["titulo" => "Solicitar novo documento"]) }}" style="text-decoration:none; color: inherit;">
+                 <a href="{{ route("prepara-requisicao", ["titulo" => "Solicitar novo documento"]) }}" style="text-decoration:none; color: inherit;">
                     <div class="card cartao text-center " style="border-radius: 30px">
                           <div class="card-body d-flex justify-content-center">
                               <h2 style="padding-top:15px">Solicitar Documentos</h2>
                           </div>
                     </div>
                  </a>
+
                  <a href="{{ route("home-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
                     <div class="card cartao text-center " style="border-radius: 30px">
                      <div class="card-body d-flex justify-content-center">
