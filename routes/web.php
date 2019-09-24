@@ -38,6 +38,5 @@ Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
 
-
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

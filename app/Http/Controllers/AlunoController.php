@@ -11,41 +11,41 @@ use App\Requisicao;
 use App\Curso;
 use App\Documento;
 use App\Requisicao_documento;
+use App\Perfil;
 
 class AlunoController extends Controller
 {
     //
     public function index(){
       return view('autenticacao.home-aluno');
-
     }
     public function preparaNovaRequisicao(){
       $unidades = Unidade::All();
       $usuarios = User::All();
       $cursos = Curso::All();
       $alunos = Aluno::All();
-      return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'cursos', 'alunos'));
+      $perfil = Perfil::All();
+      return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'cursos', 'alunos', 'perfil'));
     }
     public function novaRequisicao(Request $request){
 
+        $requisicao = new Requisicao();
+        $documento_req = new Requisicao_documento();
+        $documentos = new Documento();
+        $id_aluno = Auth()->User()->id;
+        $id_perfil =
+        $id_servidor =
 
-        // $requisicao = new Requisicao();
-        // $documento_req = new Requisicao_documento();
-        // $documentos = new Documento();
-        // dd($requisicao);
 
-
-      //   dd($documento_req);
+        //$requisicao->aluno_id = Auth()->User()->id;
+        //dd($id_aluno);
       //
-      //   dd($documentos);
-      //
-
-
-      //   $usuario->name = $request->input('name');
       //   $usuario->email = $request->input('email');
+      //
       //   $usuario->password = $request->input('password');
+      //
       //   $usuario->save();
-      // //INSTANCIA DO SERVIDOR
+      // // //INSTANCIA DO SERVIDOR
       //   $servidor = new Servidor();
       //   $servidor->matricula = $request->input('matricula');
       //   $servidor->unidade_id = 1;
@@ -57,11 +57,13 @@ class AlunoController extends Controller
         return view('autenticacao.confirmacao-requisicao');
       }
       public function confirmacaoRequisicao(Request $request){
+
+
         return view('autenticacao.confirmacao-requisicao');
 
       }
       public function cancelaRequisicao(){
-        return view('autenticacao.home-aluno');
+        redirect('autenticacao.home-aluno');
 
       }
       public function listarRequisicoesAluno(){

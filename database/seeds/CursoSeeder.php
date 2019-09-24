@@ -11,7 +11,7 @@ class CursoSeeder extends Seeder
      */
     public function run()
     {
-      $cursos = ['BACHAAgronomia','Bacharelado em Ciência da Computação','Engenharia de Alimentos','Licenciatura em Letras',
+      $cursos = ['Agronomia','Bacharelado em Ciência da Computação','Engenharia de Alimentos','Licenciatura em Letras',
                   'Licenciatura em Pedagogia', 'Medicina Veterinária', 'Zootecnia'];
 
       $unidade_id = DB::table('unidades')->where('nome','UAG - Unidade Acadêmica de Garanhuns')->pluck('id');
