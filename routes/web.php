@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,17 +10,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+<<<<<<< HEAD
 Route::get('/', function () {
     return view('autenticacao.login');
 })->name('login');
+=======
 
-Route::get('/cadastro',function(){
-    return view('autenticacao.cadastro');
-})->name('cadastro');
+Route::get('/', 'AlunoController@index')->name('login');
+
+Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
+Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf
+
 
 Route::get('/', 'Usuario@index')->name('login');
 //ROTAS PARA VARIAÇÕES DOS SERVIDORES
 
+<<<<<<< HEAD
 Route::get('/cadastro-servidor','ServidorController@index')->name('cadastro-servidor');
 Route::post('/cadastro-servidor','ServidorController@storeServidor')->name('cadastro-servidor');
 Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
@@ -35,9 +41,45 @@ Route::post('/confirmacao-requisicao', 'AlunoController@novaRequisicao')->name('
 
 Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
 
+=======
+Route::get('/nome-documento', function(){
+    return view('autenticacao.nome-documento');
+})->name('nome_documento');
+
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf
 Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
 
+<<<<<<< HEAD
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+=======
+//Route::get('/listar-requisicoes','listarRequisicoesController@index')->name('listar-requisicoes');
+Route::get('/listar-requisicoes',function(Request $request){
+    return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
+})->name('listar-requisicoes');
+Route::get('/home-aluno',function(){
+    return view('autenticacao.home-aluno');
+})->name('home-aluno');
+
+//Formulário de requisicao
+Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
+Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
+
+Route::get('/confirmacao-requisicao',function(){
+    return view('autenticacao.confirmacao-requisicao');
+})->name('confirmacao-requisicao');
+
+Route::get('/confirmacao-requisicao',function(){
+    return view('autenticacao.home-aluno');
+})->name('confirmacao-requisicao');
+
+ Route::get('/home-aluno', function(){
+     return view('autenticacao.formulario-requisicao');
+ })->name('formulario-requisicao');
+
+ Auth::routes();
+
+ Route::get('/home', 'HomeController@index')->name('home');
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf

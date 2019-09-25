@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Curso;
+use App\Aluno;
+use App\User;
+use App\Perfil;
+use App\Unidade;
 
 class Usuario extends Controller
 {
@@ -11,10 +16,9 @@ class Usuario extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
+
+  
+
 
     /**
      * Show the form for creating a new resource.

@@ -121,9 +121,19 @@
                 </form>
         </div>
     </div>
+<<<<<<< HEAD
     @if(session()->has('jsAlert'))
         <script>
           alert('{{  session()->get('jsAlert')  }}')
         </script>
     @endif
+=======
+
+
+@if(session()->has('jsAlert'))
+  <script>
+    alert('{{  session()->get('jsAlert')  }}')
+  </script>
+@endif
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf
 @endsection

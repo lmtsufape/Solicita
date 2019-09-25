@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "40108d89c2e7a6e798ffb68e0d48fa91",
+    "content-hash": "36a69e476e8f3b670e00da2f88845dcc",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -379,6 +379,46 @@
                 "trusted proxy"
             ],
             "time": "2019-09-03T16:45:42+00:00"
+        },
+        {
+            "name": "geekcom/validator-docs",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/geekcom/validator-docs.git",
+                "reference": "df0a4c79149eca40b84abcecb1db62412ad86ffd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/geekcom/validator-docs/zipball/df0a4c79149eca40b84abcecb1db62412ad86ffd",
+                "reference": "df0a4c79149eca40b84abcecb1db62412ad86ffd",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0"
+            },
+            "require-dev": {
+                "laravel/laravel": "^6.0",
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "geekcom\\ValidatorDocs\\": "src/validator-docs"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Rodrigues Lima",
+                    "email": "danielrodrigues-ti@hotmail.com"
+                }
+            ],
+            "description": "Biblioteca para validação de Título de Eleitor, CPF, CNPJ, NIS e CNH",
+            "time": "2019-09-09T14:19:55+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -2826,8 +2866,8 @@
             "authors": [
                 {
                     "name": "Tijs Verkoyen",
-                    "email": "css_to_inline_styles@verkoyen.eu",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "email": "css_to_inline_styles@verkoyen.eu"
                 }
             ],
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",

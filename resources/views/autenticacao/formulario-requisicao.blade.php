@@ -9,6 +9,7 @@
             <div class="card" style="width: 70rem;">
                 <div class="card-header" align="center">{{ __('Solicitar Documentos') }}</div>
                   <div class="card-body">
+<<<<<<< HEAD
                       <form method="POST" enctype="multipart/form-data" id="formRequisicao" action="{{ route('confirmacao-requisicao') }}">
                           @csrf
                           <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
@@ -26,6 +27,26 @@
                                       <textarea form ="formRequisicao" style="display:none" required="" name="requisicaoPrograma"cols="115" id="textareaProgramaDisciplina"></textarea>
                                   <input type="checkbox" name="Outros" value="Outros" id="outros" onclick="checaSelecaoOutros()"> Outros<br>
                                       <textarea form ="formRequisicao" style="display:none" required="" name="requisicaoOutros" id="textareaOutrosDocumentos" cols="115" ></textarea>
+=======
+                      <form method="POST" action="{{ route('formulario-requisicao-post') }}" enctype="multipart/form-data" id="formRequisicao">
+                        @csrf
+                              <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
+
+                                  <input type="checkbox" name="declaracaoVinculo" value="Declaração de Vínculo" id="declaracaoVinculo"> Declaração de Vínculo</br>
+
+                                  <input type="checkbox" name="comprovanteMatricula" value="Comprovante de Matrícula" id="comprovanteMatricula">Comprovante de matricula</br>
+
+                                  <input type="checkbox" name="historico" value="Histórico" id="historico"> Histórico</br>
+
+                                  <input type="checkbox" name="programaDisciplina" value="Programa de Disciplina" id="programaDisciplina" onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina</br>
+
+                                          <textarea form ="formRequisicao" style="display:none" name="requisicaoPrograma" cols="100" id="textareaProgramaDisciplina"></textarea>
+
+                                  <input type="checkbox" name="outros" value="Outros" id="outros" onclick="checaSelecaoOutros()"> Outros<br>
+
+                                          <textarea form ="formRequisicao" style="display:none" name="requisicaoOutros" id="textareaOutrosDocumentos" cols="100" ></textarea>
+
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf
                               <!-- </label> -->
                               <div class="form-group row mb-0">
                                       <div class="col-md-8 offset-md-4">
