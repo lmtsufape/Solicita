@@ -12,6 +12,10 @@ class AlunoSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< HEAD
+=======
+
+>>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
       $user_id = DB::table('users')->where('name','admin')->pluck('id');
         DB::table('alunos')->insert([
           'cpf'=>'12345678900',

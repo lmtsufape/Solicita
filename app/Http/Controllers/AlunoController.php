@@ -19,6 +19,7 @@ class AlunoController extends Controller
     return view('autenticacao.login');
   }
 
+<<<<<<< HEAD
   //cadastro de aluno
   public function createAluno(){
 
@@ -62,6 +63,110 @@ class AlunoController extends Controller
       'cursos' => ['required'],
     ]);
 
+=======
+  public function preparaNovaRequisicao(Request $request){
+    // $unidades = Unidade::where('nome', $request->$nome)->first();
+    $unidades = Unidade::All();
+    //where('nome',$request->nome)->first();
+    $usuarios = User::All();
+    //dd($usuarios);
+    $cursos = Curso::All();
+    $alunos = Aluno::All();
+    $perfis = Perfil::All();
+    //dd($perfil);
+    return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'cursos', 'alunos', 'perfis', 'nome_aluno'));
+  }
+  public function novaRequisicao(Request $request){
+      $requisicao = new Requisicao();
+      $documento_req = new Requisicao_documento();
+      $documentos = new Documento();
+      // $nome_aluno = $request->input('nomeAluno');
+      //dd($nome_aluno);
+
+      $documentos->tipo = 'Declaracao de Vínculo';
+      $documentos->save();
+
+      $requisicao->data_pedido = '20/09/2019';
+      $requisicao->hora_pedido = '00:00:00';
+      $requisicao->aluno_id = 1;
+      $requisicao->perfil_id = 1;
+      $requisicao->servidor_id = 1;
+      $requisicao->save();
+
+      $documento_req->documento_id = $documentos->id;
+      $documento_req->requisicao_id = $requisicao->id;
+      $documento_req->aluno_id = 1;
+      $documento_req->servidor_id = 1;
+      $documento_req->anotacoes = 'Teste da Requisicao';
+      $documento_req->status = 'Em andamento';
+      $documento_req->status_data = '20/09/2019';
+      $documento_req->detalhes = 'Anotacoes para o servidor';
+      $documento_req->save();
+
+      return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'documento_req'));
+    }
+    public function confirmacaoRequisicao(Request $request){
+      return redirect('/confirmacao-requisicao');
+    }
+    public function cancelaRequisicao(){
+      return redirect('/home-aluno');
+    }
+    public function listarRequisicoesAluno(){
+          $requisicao = Requisicao::paginate(10);
+          return view('/home-aluno')->with($requisicao);
+    }
+    public function home(){
+      return redirect('home-aluno');
+    }
+
+
+
+
+
+  //cadastro de aluno
+  public function createAluno(){
+
+    $cursos = Curso::all();
+    $unidades = Unidade::all();
+
+    return view('autenticacao.cadastro',compact('cursos','unidades')); //redireciona para view de cadastro do aluno
+  }
+
+  public function storeAluno(Request $request){
+
+    $regras = [
+      'name' => 'required|string|max:255',
+      //'cpf' => ['required','integer','size:11','unique:alunos'],
+      'email' => 'required|string|email|max:255|unique:users',
+      'password' => 'required|string|min:8|confirmed',
+      'vinculo' => ['required'],
+      'unidade' => ['required'],
+      'cursos' => ['required'],
+    ];
+    $mensagens = [
+      'name.required' => 'Por favor, preencha este campo',
+      'email.required' => 'Por favor, preencha este campo',
+      'email.email' => 'Por favor, preencha um email válido',
+      'vinculo.required' => 'Por favor, selecione o tipo de vínculo',
+      'unidade.required' => 'Por favor, selecione a unidade acadêmica',
+      'cursos.required' => 'Por favor, selecione o seu curso',
+      'password.required' => 'Por favor, digite uma senha',
+      'passowd.min' => 'Por favor, digite uma senha com, no mínimo, 8 dígitos',
+
+    ];
+
+    //$request->validate([$regras,$mensagens]);
+    $request->validate([
+      'name' => 'required|string|max:255',
+      'cpf' => 'required|cpf|unique:alunos',
+      'email' => 'required|string|email|max:255|unique:users',
+      'password' => 'required|string|min:8|confirmed',
+      'vinculo' => ['required'],
+      'unidade' => ['required'],
+      'cursos' => ['required'],
+    ]);
+
+>>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
     $usuario = new User();
     $aluno = new Aluno();
     $perfil = new Perfil();
@@ -108,9 +213,12 @@ class AlunoController extends Controller
 
     $perfil->save();
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
     return redirect('/')->with('jsAlert','Usuário Cadastrado com sucesso.');
   }
 }

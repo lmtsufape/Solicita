@@ -38,5 +38,30 @@ Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/listar-requisicoes','listarRequisicoesController@index')->name('listar-requisicoes');
+Route::get('/listar-requisicoes',function(Request $request){
+    return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
+})->name('listar-requisicoes');
+Route::get('/home-aluno',function(){
+    return view('autenticacao.home-aluno');
+})->name('home-aluno');
+
+//Formulário de requisicao
+Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
+Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
+
+Route::get('/confirmacao-requisicao',function(){
+    return view('autenticacao.confirmacao-requisicao');
+})->name('confirmacao-requisicao');
+
+Route::get('/confirmacao-requisicao',function(){
+    return view('autenticacao.home-aluno');
+})->name('confirmacao-requisicao');
+
+ Route::get('/home-aluno', function(){
+     return view('autenticacao.formulario-requisicao');
+ })->name('formulario-requisicao');
+
+ Auth::routes();
+
+ Route::get('/home', 'HomeController@index')->name('home');

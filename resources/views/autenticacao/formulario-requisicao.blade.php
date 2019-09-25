@@ -13,18 +13,28 @@
                           @csrf
                           <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
                               <!-- <label for='curso' style="width: 14.5rem; margin-left:125px">Selecione uma Unidade Acadêmica</label> -->
-
-                              <select name="curso" class="browser-default custom-select custom-select-lg mb-1" style="width: 13.5rem; margin-left:10px">
-                                @foreach($cursos as $curso)
-                                  <option value="{{$curso->id}}">{{$curso->nome}}</option>
-                                @endforeach
+                              @foreach($perfis as $perfil)
+                              <label for='nomeAluno' style="width: 14.5rem; margin-left:25px"><b>Nome</b></label>
+                              <h5 name="nomeAluno">{{$perfil->aluno->user->name}}</h5>
+                              <!-- <label for='nomeAluno' style="width: 14.5rem; margin-left:25px"><b>Nome</b></label>
+                              <h5 name="cpfAluno">{{$perfil->aluno->cpf}}</h5> -->
+                              <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label>
+                              <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 13.5rem; margin-left:10px">
+                              <option value="{{$perfil->id}}">{{$perfil->default}}</option></br>
                               </select></br>
-                                  <input type="checkbox" name="Declaracao de Vinculo" value="Declaracao de Vinculo" id="declaracaoVinculo"> Declaração de Vínculo</br>
-                                  <input type="checkbox" name="Comprovante de Matricula" value="Comprovante de Matricula" id="comprovanteMatricula">Comprovante de matricula</br>
-                                  <input type="checkbox" name="Histórico" value="Histórico" id="historico"> Histórico</br>
-                                  <input type="checkbox" name="Programa de Disciplina" value="Programa de Disciplina" id="programaDisciplina" onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina</br>
+
+                              <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Situaçao Acadêmica</b></label>
+                              <select name="situacaoAcademica" class="browser-default custom-select custom-select-lg mb-1" style="width: 13.5rem; margin-left:10px">
+                              <option value="{{$perfil->id}}">{{$perfil->situacao}}</option></br>
+                              </select></br>
+
+                              @endforeach
+                                  <input type="checkbox" name="declaracaoVinculo" value="Declaracao de Vinculo" id="declaracaoVinculo"> Declaração de Vínculo</br>
+                                  <input type="checkbox" name="comprovanteMatricula" value="Comprovante de Matricula" id="comprovanteMatricula">Comprovante de matricula</br>
+                                  <input type="checkbox" name="histórico" value="Histórico" id="historico"> Histórico</br>
+                                  <input type="checkbox" name="programaDisciplina" value="Programa de Disciplina" id="programaDisciplina" onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina</br>
                                       <textarea form ="formRequisicao" style="display:none" required="" name="requisicaoPrograma"cols="115" id="textareaProgramaDisciplina"></textarea>
-                                  <input type="checkbox" name="Outros" value="Outros" id="outros" onclick="checaSelecaoOutros()"> Outros<br>
+                                  <input type="checkbox" name="outros" value="Outros" id="outros" onclick="checaSelecaoOutros()"> Outros<br>
                                       <textarea form ="formRequisicao" style="display:none" required="" name="requisicaoOutros" id="textareaOutrosDocumentos" cols="115" ></textarea>
                               <!-- </label> -->
                               <div class="form-group row mb-0">
