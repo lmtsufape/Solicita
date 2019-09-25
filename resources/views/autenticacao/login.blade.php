@@ -123,14 +123,20 @@
     </div>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
     @if(session()->has('jsAlert'))
         <script>
           alert('{{  session()->get('jsAlert')  }}')
         </script>
     @endif
 =======
+<<<<<<< HEAD
 =======
 >>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
+=======
+>>>>>>> master
 
 
 @if(session()->has('jsAlert'))
@@ -139,7 +145,11 @@
   </script>
 @endif
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf
 =======
 >>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
+=======
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf
+>>>>>>> master
 @endsection

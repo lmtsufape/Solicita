@@ -10,16 +10,16 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('autenticacao.login');
+})->name('login');
 
 Route::get('/', 'AlunoController@index')->name('login');
-
 Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 
-
 Route::get('/', 'Usuario@index')->name('login');
 //ROTAS PARA VARIAÇÕES DOS SERVIDORES
-
 Route::get('/cadastro-servidor','ServidorController@index')->name('cadastro-servidor');
 Route::post('/cadastro-servidor','ServidorController@storeServidor')->name('cadastro-servidor');
 Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
@@ -34,6 +34,10 @@ Route::post('/confirmacao-requisicao', 'AlunoController@novaRequisicao')->name('
 
 Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
 
+Route::get('/nome-documento', function(){
+    return view('autenticacao.nome-documento');
+})->name('nome_documento');
+
 Route::get('/home-servidor',function(){
     return view('telas_servidor.home_servidor');
 })->name('home_servidor');
@@ -42,6 +46,7 @@ Route::get('/home-servidor',function(){
 Route::get('/listar-requisicoes',function(Request $request){
     return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
 })->name('listar-requisicoes');
+
 Route::get('/home-aluno',function(){
     return view('autenticacao.home-aluno');
 })->name('home-aluno');
@@ -63,5 +68,4 @@ Route::get('/confirmacao-requisicao',function(){
  })->name('formulario-requisicao');
 
  Auth::routes();
-
  Route::get('/home', 'HomeController@index')->name('home');

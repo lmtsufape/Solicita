@@ -73,8 +73,18 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentoSeeder::class);
         $this->call(ServidorSeeder::class);
         $this->call(AlunoSeeder::class);
+<<<<<<< HEAD
         $this->call(PerfilSeeder::class);
         $this->call(RequisicaoSeeder::class);
         $this->call(Requisicao_documentoSeeder::class);
+=======
+<<<<<<< HEAD
+        $this->call(PerfilSeeder::class);  
+=======
+        $this->call(PerfilSeeder::class);
+        $this->call(RequisicaoSeeder::class);
+        $this->call(Requisicao_documentoSeeder::class);
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf
+>>>>>>> master
     }
 }
