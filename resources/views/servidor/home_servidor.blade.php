@@ -11,7 +11,7 @@
 
                         <!-- Declaração de Vínculo-->
 
-                        <a href="{{ route("login", ["titulo" => "Declaracao de Vinculo"]) }}" style="text-decoration:none; color: inherit;">
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Declaração de Vínculo']) }}" style="text-decoration:none; color: inherit;">
                             <div class="card cartao text-center " style="border-radius: 20px">
 
                                     <div class="card-body d-flex justify-content-center">
@@ -20,7 +20,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="{{ route("login", ["titulo" => "Comprovante de Matricula"]) }}" style="text-decoration:none; color: inherit;">
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Comprovante de Matrícula']) }}" style="text-decoration:none; color: inherit;">
                             <div class="card cartao text-center " style="border-radius: 20px">
 
                                     <div class="card-body d-flex justify-content-center">
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="{{ route("login", ["titulo" => "Historico"]) }}" style="text-decoration:none; color: inherit;">
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Histórico']) }}" style="text-decoration:none; color: inherit;">
                             <div class="card cartao text-center " style="border-radius: 20px" >
 
                                     <div class="card-body d-flex justify-content-center">
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="{{ route("login", ["titulo" => "Programa de Disciplina"]) }}" style="text-decoration:none; color: inherit;">
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Programa de Disciplina']) }}" style="text-decoration:none; color: inherit;">
                             <div class="card cartao text-center " style="border-radius: 20px" >
 
                                     <div class="card-body d-flex justify-content-center">
@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                         </a>
-                        <a href="{{ route("login", ["titulo" => "Outros"]) }}" style="text-decoration:none; color: inherit;">
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Outros']) }}" style="text-decoration:none; color: inherit;">
                             <div class="card cartao text-center " style="border-radius: 20px">
 
                                     <div class="card-body d-flex justify-content-center">
@@ -57,7 +57,7 @@
                             </div>
                         </a>
 
-                        <a href="{{ route("login", ["titulo" => "Todos"]) }}" style="text-decoration:none; color: inherit;">
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Todos']) }}" style="text-decoration:none; color: inherit;">
                             <div class="card cartao text-center " style="border-radius: 20px">
 
                                     <div class="card-body d-flex justify-content-center">

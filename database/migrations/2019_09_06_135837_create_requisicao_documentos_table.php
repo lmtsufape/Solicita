@@ -15,13 +15,13 @@ class CreateRequisicaoDocumentosTable extends Migration
     {
         Schema::create('requisicao_documentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-   
 
-            $table->string('anotacoes');
+
+            $table->string('anotacoes')->nullable();
             $table->string('status');
 
             $table->date('status_data');
-            $table->string('detalhes');
+            $table->string('detalhes')->nullable();
             $table->timestamps();
         });
     }

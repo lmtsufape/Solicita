@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ServidorSeeder extends Seeder
 {
@@ -11,13 +12,13 @@ class ServidorSeeder extends Seeder
      */
     public function run()
     {
-      $user_id = DB::table('users')->where('name','server')->pluck('id');
+      $user_id = DB::table('users')->where('name','admin')->pluck('id');
       $unidade_id = DB::table('unidades')->where('nome','UAG - Unidade Acadêmica de Garanhuns')->pluck('id');
 
       DB::table('servidors')->insert([
-        'matricula'=>'99999999',
-        'user_id' => $user_id[0],
+        'matricula'=>'123456789',
         'unidade_id'=>$unidade_id[0],
+        'user_id'=>$user_id[0],
       ]);
     }
 }
