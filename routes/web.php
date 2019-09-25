@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,13 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('autenticacao.login');
-})->name('login');
 
-Route::get('/cadastro',function(){
-    return view('autenticacao.cadastro');
-})->name('cadastro');
+Route::get('/', 'AlunoController@index')->name('login');
+
+Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
+Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
+
 
 Route::get('/', 'Usuario@index')->name('login');
 //ROTAS PARA VARIAÇÕES DOS SERVIDORES

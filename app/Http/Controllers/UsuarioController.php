@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 use App\Curso;
 use App\Aluno;
@@ -11,9 +10,9 @@ use App\User;
 use App\Perfil;
 use App\Unidade;
 
-class AlunoController extends Controller
+class UsuarioController extends Controller
 {
-  // Redireciona para tela de login ao entrar no sistema
+    // Redireciona para tela de login ao entrar no sistema
   public function index()
   {
     return view('autenticacao.login');
@@ -70,7 +69,7 @@ class AlunoController extends Controller
     //USER
     $usuario->name = $request->input('name');
     $usuario->email = $request->input('email');
-    $usuario->password = Hash::make($request->input('password'));
+    $usuario->password = $request->input('password');
     $usuario->save();
 
 

@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //validação do cpf
+        geekcom\ValidatorDocs\ValidatorProvider::class
+
     ],
 
     /*
