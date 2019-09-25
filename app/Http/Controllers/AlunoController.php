@@ -1,9 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+
 use App\User;
 use App\Servidor;
 use App\Aluno;
@@ -14,98 +12,78 @@ use App\Documento;
 use App\Requisicao_documento;
 use App\Perfil;
 
-class AlunoController extends Controller
-{
     //
-    public function index(){
-      return view('autenticacao.home-aluno');
-    }
-    public function preparaNovaRequisicao(Request $request){
+    // public function preparaNovaRequisicao(Request $request){
+    //
+    //   $unidade = Unidade::where('nome',$request->nome)->first();
+    //   $usuarios = User::All();
+    //   $cursos = Curso::All();
+    //   $alunos = Aluno::All();
+    //   $perfil = Perfil::All();
+    //   return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'cursos', 'alunos', 'perfil'));
+    //
+    // }
+    // public function novaRequisicao(Request $request){
+    //
+    //     $requisicao = new Requisicao();
+    //     $documento_req = new Requisicao_documento();
+    //     $documentos = new Documento();
+    //     return view('autenticacao.confirmacao-requisicao');
+    //   }
 
-      $unidade = Unidade::where('nome',$request->nome)->first();
-      $usuarios = User::All();
-      $cursos = Curso::All();
-      $alunos = Aluno::All();
-      $perfil = Perfil::All();
-      return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'cursos', 'alunos', 'perfil'));
-
-    }
-    public function novaRequisicao(Request $request){
-
-        $requisicao = new Requisicao();
-        $documento_req = new Requisicao_documento();
-        $documentos = new Documento();
-        // $id_aluno = Auth()->Aluno()->id;
-        // $cpf_aluno = Auth()->Aluno()->cpf;
-        // $nome_aluno = Auth()->User()->nome;
-        // $email_aluno = Auth()->User()->email;
-
-      //
-      //   $usuario->email = $request->input('email');
-      //
-      //   $usuario->password = $request->input('password');
-      //
-      //   $usuario->save();
-      // // //INSTANCIA DO SERVIDOR
-      //   $servidor = new Servidor();
-      //   $servidor->matricula = $request->input('matricula');
-      //   $servidor->unidade_id = 1;
-      //   $servidor->user_id = $usuario->id;
-      //   $servidor->save();
-      //   return view('/autenticacao.home-administrador')->with('jsAlert', 'Servidor cadastrado com sucesso!!');;
-      //
-        //dd($requisicao);
-        return view('autenticacao.confirmacao-requisicao');
-      }
-      public function confirmacaoRequisicao(Request $request){
-        return redirect('/confirmacao-requisicao');
-      }
-      public function cancelaRequisicao(){
-        return redirect('/home-aluno');
-      }
-      public function listarRequisicoesAluno(){
-            $requisicao = Requisicao::paginate(10);
-            return view('/home-aluno')->with($requisicao);
-      }
-      public function home(){
-        return redirect('home-aluno');
-      }
-=======
->>>>>>> master
-use Illuminate\Support\Facades\Hash;
-use App\Curso;
-use App\Aluno;
-use App\User;
-use App\Perfil;
-use App\Unidade;
 class AlunoController extends Controller
 {
   // Redireciona para tela de login ao entrar no sistema
   public function index()
   {
-    return view('autenticacao.login');
+    return view('autenticacao.home-aluno');
   }
   public function preparaNovaRequisicao(Request $request){
     // $unidades = Unidade::where('nome', $request->$nome)->first();
     $unidades = Unidade::All();
-    //where('nome',$request->nome)->first();
     $usuarios = User::All();
-    //dd($usuarios);
-    $cursos = Curso::All();
-    $alunos = Aluno::All();
+    //$cursos = Curso::All();
+    //$alunos = Aluno::All();
     $perfis = Perfil::All();
     //dd($perfil);
-    return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'cursos', 'alunos', 'perfis', 'nome_aluno'));
+    return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'perfis'));
   }
   public function novaRequisicao(Request $request){
       $requisicao = new Requisicao();
       $documento_req = new Requisicao_documento();
       $documentos = new Documento();
-      // $nome_aluno = $request->input('nomeAluno');
-      //dd($nome_aluno);
-      $documentos->tipo = 'Declaracao de Vínculo';
-      $documentos->save();
-      $requisicao->data_pedido = '20/09/2019';
+
+      //Variaveis auxiliares para a checagem dos checkboxes
+      $checkBoxDeclaracaoVinculo = $request->declaracaoVinculo;
+      $checkBoxComprovanteMatricula = $request->comprovanteMatricula;
+      $checkBoxHistorico = $request->historico;
+      $checkBoxProgramaDisciplina = $request->programaDisciplina;
+      $checkBoxOutros = $request->outros;
+
+      if($checkBoxDeclaracaoVinculo!='null'){
+        $documentos->tipo = 'Declaracao de Vínculo';
+        }
+
+      if($checkBoxComprovanteMatricula!='null'){
+          $documentos->tipo = 'Comprovante de Matrícula';
+        }
+      if($checkBoxHistorico!='null'){
+          $documentos->tipo = 'Historico';
+          //dd($documentos->tipo);
+        }
+      if($checkBoxProgramaDisciplina!='null'){
+          $documentos->tipo = 'Programa de Disciplina';
+          $documento_req->anotacoes = $request->requisicaoPrograma;
+          //dd($documentos_req->anotacoes);
+          }
+      if($checkBoxOutros!='null'){
+          $documentos->tipo = 'Outros Documentos';
+          $documento_req->anotacoes = $request->requisicaoOutros;
+          //dd($documentos_req->anotacoes);
+          }
+          $documentos->save();
+
+          $requisicao->data_pedido = '20/09/2019';
       $requisicao->hora_pedido = '00:00:00';
       $requisicao->aluno_id = 1;
       $requisicao->perfil_id = 1;
@@ -115,7 +93,7 @@ class AlunoController extends Controller
       $documento_req->requisicao_id = $requisicao->id;
       $documento_req->aluno_id = 1;
       $documento_req->servidor_id = 1;
-      $documento_req->anotacoes = 'Teste da Requisicao';
+      $documento_req->anotacoes = 'Espaço de Anotações do aluno';
       $documento_req->status = 'Em andamento';
       $documento_req->status_data = '20/09/2019';
       $documento_req->detalhes = 'Anotacoes para o servidor';
@@ -133,7 +111,7 @@ class AlunoController extends Controller
           return view('/home-aluno')->with($requisicao);
     }
     public function home(){
-      return redirect('home-aluno');
+      return view ('autenticacao.home-aluno');
     }
   //cadastro de aluno
   public function createAluno(){
@@ -141,6 +119,7 @@ class AlunoController extends Controller
     $unidades = Unidade::all();
     return view('autenticacao.cadastro',compact('cursos','unidades')); //redireciona para view de cadastro do aluno
   }
+
   public function storeAluno(Request $request){
     $regras = [
       'name' => 'required|string|max:255',
@@ -192,11 +171,12 @@ class AlunoController extends Controller
     $perfil->default = $curso->nome; //Nome do Curso
     //Situacao
     $vinculo = $request->vinculo;
-    if($vinculo==="1")
+    if($vinculo==="1"){
       $perfil->situacao = "Matriculado";
-    }else {
+      }else
+      {
       $perfil->situacao = "Egresso";
-    }
+      }
     $unidade = Unidade::where('id',$request->unidade)->first();
     //aluno_id
     $perfil->aluno_id = $aluno->id;
@@ -208,8 +188,4 @@ class AlunoController extends Controller
     $perfil->save();
     return redirect('/')->with('jsAlert','Usuário Cadastrado com sucesso.');
   }
-<<<<<<< HEAD
-=======
->>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf
->>>>>>> master
 }

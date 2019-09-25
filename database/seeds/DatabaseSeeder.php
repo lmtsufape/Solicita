@@ -25,41 +25,31 @@ class DatabaseSeeder extends Seeder
         */
 
         /*
-
         // Seeders Documentos
         DB::table('documentos')->insert([
             'tipo'=>'Declaração de Vínculo'
         ]);
-
         DB::table('documentos')->insert([
             'tipo'=>'Comprovante de Matrícula'
         ]);
-
         DB::table('documentos')->insert([
             'tipo'=>'Histórico'
         ]);
-
         DB::table('documentos')->insert([
             'tipo'=>'Programa de Disciplina'
         ]);
-
         DB::table('documentos')->insert([
             'tipo'=>'Outros'
         ]);
-
-
         // Seeders Administrador
         DB::table('administradors')->insert([
             'matricula'=>str::random(10)
         ]);
-
-
         // Seeders Instituição
 
         DB::table('instituicaos')->insert([
             'administrador_id'=>'1',
             'nome'=>'UFAPE',
-
         ]);
         // Seeders Unidade
 
@@ -73,18 +63,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DocumentoSeeder::class);
         $this->call(ServidorSeeder::class);
         $this->call(AlunoSeeder::class);
-<<<<<<< HEAD
         $this->call(PerfilSeeder::class);
         $this->call(RequisicaoSeeder::class);
         $this->call(Requisicao_documentoSeeder::class);
-=======
-<<<<<<< HEAD
-        $this->call(PerfilSeeder::class);  
-=======
-        $this->call(PerfilSeeder::class);
-        $this->call(RequisicaoSeeder::class);
-        $this->call(Requisicao_documentoSeeder::class);
->>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf
->>>>>>> master
     }
 }

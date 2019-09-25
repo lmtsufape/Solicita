@@ -29,6 +29,5 @@ class Requisicao_documentoSeeder extends Seeder
           'requisicao_id'=>$requisicao_id[0],
 
         ]);
-
     }
 }
