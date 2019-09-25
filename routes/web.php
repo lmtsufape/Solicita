@@ -30,12 +30,19 @@ Route::get('/home-servidor',function(){
 })->name('home_servidor');
 
 //Route::get('/listar-requisicoes','listarRequisicoesController@index')->name('listar-requisicoes');
+/*
 Route::get('/listar-requisicoes',function(Request $request){
     return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
 })->name('listar-requisicoes');
+*/
+
+Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('listar-requisicoes');
+
 Route::get('/home-aluno',function(){
     return view('autenticacao.home-aluno');
 })->name('home-aluno');
+
+
 
 //Formulário de requisicao
 Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
