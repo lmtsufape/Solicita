@@ -21,6 +21,7 @@
 
             <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
             <tr >
+                <th scope="col">Id</th>
                 <th scope="col">Concluído</th>
                 <th scope="col">CPF</th>
                 <th scope="col">NOME</th>
@@ -40,6 +41,7 @@
             </thead>
             <tbody>
 
+              {{--
                 @for ($i = 0; $i < 30; $i++)
                     <tr>
                         <th scope="row">
@@ -48,6 +50,7 @@
                           </div>
 
                         </th>
+
                         <td>000.000.000-00</td>
                         <td>Fulano de Tal</td>
                         <td>Ciências da Computação</td>
@@ -71,10 +74,38 @@
                     </tr>
                 @endfor
 
+              --}}
+
+
+              @foreach($listaRequisicao_documentos as $requisicao_documento)
+
+                  <tr>
+                    <td>{{$requisicao_documento->id}}</td>
+                    <th scope="row">
+                      <div class="form-check">
+                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="opcao1" aria-label="...">
+                      </div>
+
+                    </th>
+                    <td>{{$requisicao_documento->aluno->cpf}}</td>
+                    <td>{{$requisicao_documento->aluno->user->name}}</td>
+                    <td>{{$requisicao_documento->requisicao->perfil->default}}</td>
+                    <td>{{$requisicao_documento->status_data}}</td>
+                    <td>dd/mm/aaaa</td>
+                    <td>{{$requisicao_documento->status}}</td>
+
+                    @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
+                        <td class="text-wrap">{{$requisicao_documento->detalhes}}</td>
+                        
+                    @endif
+                </tr>
+              @endforeach
+
 
             </tbody>
         </table>
 
+      
 
 
     </div>
