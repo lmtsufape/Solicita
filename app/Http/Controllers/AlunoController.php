@@ -20,41 +20,45 @@ class AlunoController extends Controller
       return view('autenticacao.home-aluno');
     }
     public function preparaNovaRequisicao(Request $request){
-
-      $unidade = Unidade::where('nome',$request->nome)->first();
+      // $unidades = Unidade::where('nome', $request->$nome)->first();
+      $unidades = Unidade::All();
+      //where('nome',$request->nome)->first();
       $usuarios = User::All();
+      //dd($usuarios);
       $cursos = Curso::All();
       $alunos = Aluno::All();
-      $perfil = Perfil::All();
-      return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'cursos', 'alunos', 'perfil'));
-
+      $perfis = Perfil::All();
+      //dd($perfil);
+      return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'cursos', 'alunos', 'perfis', 'nome_aluno'));
     }
     public function novaRequisicao(Request $request){
-
         $requisicao = new Requisicao();
         $documento_req = new Requisicao_documento();
         $documentos = new Documento();
-        // $id_aluno = Auth()->Aluno()->id;
-        // $cpf_aluno = Auth()->Aluno()->cpf;
-        // $nome_aluno = Auth()->User()->nome;
-        // $email_aluno = Auth()->User()->email;
+        // $nome_aluno = $request->input('nomeAluno');
+        //dd($nome_aluno);
 
-      //
-      //   $usuario->email = $request->input('email');
-      //
-      //   $usuario->password = $request->input('password');
-      //
-      //   $usuario->save();
-      // // //INSTANCIA DO SERVIDOR
-      //   $servidor = new Servidor();
-      //   $servidor->matricula = $request->input('matricula');
-      //   $servidor->unidade_id = 1;
-      //   $servidor->user_id = $usuario->id;
-      //   $servidor->save();
-      //   return view('/autenticacao.home-administrador')->with('jsAlert', 'Servidor cadastrado com sucesso!!');;
-      //
-        //dd($requisicao);
-        return view('autenticacao.confirmacao-requisicao');
+        $documentos->tipo = 'Declaracao de Vínculo';
+        $documentos->save();
+
+        $requisicao->data_pedido = '20/09/2019';
+        $requisicao->hora_pedido = '00:00:00';
+        $requisicao->aluno_id = 1;
+        $requisicao->perfil_id = 1;
+        $requisicao->servidor_id = 1;
+        $requisicao->save();
+
+        $documento_req->documento_id = $documentos->id;
+        $documento_req->requisicao_id = $requisicao->id;
+        $documento_req->aluno_id = 1;
+        $documento_req->servidor_id = 1;
+        $documento_req->anotacoes = 'Teste da Requisicao';
+        $documento_req->status = 'Em andamento';
+        $documento_req->status_data = '20/09/2019';
+        $documento_req->detalhes = 'Anotacoes para o servidor';
+        $documento_req->save();
+
+        return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'documento_req'));
       }
       public function confirmacaoRequisicao(Request $request){
         return redirect('/confirmacao-requisicao');
