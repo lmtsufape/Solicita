@@ -25,9 +25,7 @@ Route::get('/nome-documento', function(){
     return view('autenticacao.nome-documento');
 })->name('nome_documento');
 
-Route::get('/home-servidor',function(){
-    return view('telas_servidor.home_servidor');
-})->name('home_servidor');
+Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
 
 //Route::get('/listar-requisicoes','listarRequisicoesController@index')->name('listar-requisicoes');
 /*

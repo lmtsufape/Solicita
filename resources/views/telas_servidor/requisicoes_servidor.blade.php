@@ -5,16 +5,9 @@
     <div class="tabela-centro mx-auto">
         <table class="table">
             <div class="lmts-primary">
-                <select class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:1280px; margin-top:10px ">
-                    <option value="" disabled selected>Ordenar por</option>
-                    <option value="1">Data de Requisição</option>
-                    <option value="2">Curso</option>
-                    <option value="3">A-Z</option>
-                    <option value="4">Validade</option>
 
-            </select>
-            <div class="nome-documento lmts-primary mx-auto ">
-                <h2 class="" style="padding-top:0px"> {{$titulo}} </h2>
+            <div class="nome-documento lmts-primary mx-auto " style="height:100px">
+                <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
             </div>
             </div>
 
@@ -89,7 +82,7 @@
 
                     @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                         <td class="text-wrap">{{$requisicao_documento->detalhes}}</td>
-                        
+
                     @endif
                 </tr>
               @endforeach
@@ -98,7 +91,7 @@
             </tbody>
         </table>
 
-      
+
 
 
     </div>
