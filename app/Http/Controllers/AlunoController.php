@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use DateTime;
 
 use App\User;
 use App\Servidor;
@@ -43,10 +45,10 @@ class AlunoController extends Controller
     $unidades = Unidade::All();
     $usuarios = User::All();
     //$cursos = Curso::All();
-    //$alunos = Aluno::All();
+    $alunos = Aluno::All();
     $perfis = Perfil::All();
     //dd($perfil);
-    return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'perfis'));
+    return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'perfis', 'alunos'));
   }
   public function novaRequisicao(Request $request){
       $requisicao = new Requisicao();
@@ -54,51 +56,58 @@ class AlunoController extends Controller
       $documentos = new Documento();
 
       //Variaveis auxiliares para a checagem dos checkboxes
+
       $checkBoxDeclaracaoVinculo = $request->declaracaoVinculo;
       $checkBoxComprovanteMatricula = $request->comprovanteMatricula;
       $checkBoxHistorico = $request->historico;
       $checkBoxProgramaDisciplina = $request->programaDisciplina;
       $checkBoxOutros = $request->outros;
-
-      if($checkBoxDeclaracaoVinculo!='null'){
-        $documentos->tipo = 'Declaracao de Vínculo';
+        if($checkBoxDeclaracaoVinculo){
+          $documentos->tipo = $request->get('declaracaoVinculo');
         }
-
-      if($checkBoxComprovanteMatricula!='null'){
-          $documentos->tipo = 'Comprovante de Matrícula';
+        else if($checkBoxComprovanteMatricula){
+            $documentos->tipo = $request->get('comprovanteMatricula');
         }
-      if($checkBoxHistorico!='null'){
-          $documentos->tipo = 'Historico';
-          //dd($documentos->tipo);
+        else if($checkBoxHistorico){
+            $documentos->tipo = $request->get('historico');
         }
-      if($checkBoxProgramaDisciplina!='null'){
-          $documentos->tipo = 'Programa de Disciplina';
-          $documento_req->anotacoes = $request->requisicaoPrograma;
-          //dd($documentos_req->anotacoes);
-          }
-      if($checkBoxOutros!='null'){
-          $documentos->tipo = 'Outros Documentos';
-          $documento_req->anotacoes = $request->requisicaoOutros;
-          //dd($documentos_req->anotacoes);
-          }
-          $documentos->save();
+        else if($checkBoxProgramaDisciplina){
+            $documentos->tipo = $request->get('programaDisciplina');
+        }
+        else if($checkBoxOutros){
+            $documentos->tipo = $request->get('outros');
+        }
+        $documentos->save();
+        // $date = Carbon::now()->toDateTimeString();
+        // $hour = Carbon::now()->toDateTimeString();
+        // $requisicao->data_pedido = '$date';
+        // $requisicao->hora_pedido = '$hour';
+        date_default_timezone_set('America/Sao_Paulo');
+        $date = date('d/m/Y');
+        $hour =  date('H:i');
 
-          $requisicao->data_pedido = '20/09/2019';
-      $requisicao->hora_pedido = '00:00:00';
-      $requisicao->aluno_id = 1;
+      // $requisicao->aluno_id = $idPerfil->aluno->id;
+      dd($requisicao->aluno_id);
+        // $requisicao->aluno_id = 1;
+      $requisicao->data_pedido = $date;
+      $requisicao->hora_pedido = $hour;
       $requisicao->perfil_id = 1;
       $requisicao->servidor_id = 1;
       $requisicao->save();
+
       $documento_req->documento_id = $documentos->id;
       $documento_req->requisicao_id = $requisicao->id;
       $documento_req->aluno_id = 1;
       $documento_req->servidor_id = 1;
       $documento_req->anotacoes = 'Espaço de Anotações do aluno';
+
       $documento_req->status = 'Em andamento';
-      $documento_req->status_data = '20/09/2019';
+
+      $documento_req->status_data = $date;
       $documento_req->detalhes = 'Anotacoes para o servidor';
       $documento_req->save();
-      return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'documento_req'));
+
+      return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'documento_req', 'perfilId'));
     }
     public function confirmacaoRequisicao(Request $request){
       return redirect('/confirmacao-requisicao');

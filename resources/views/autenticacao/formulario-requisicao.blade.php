@@ -15,17 +15,14 @@
                               <!-- <label for='curso' style="width: 14.5rem; margin-left:125px">Selecione uma Unidade Acadêmica</label> -->
                               @foreach($perfis as $perfil)
                               <h5 name="nomeAluno"><b>{{$perfil->aluno->user->name}}</b></h5>
-
                               <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label>
                               <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 13.5rem; margin-left:10px">
                               <option value="{{$perfil->id}}">{{$perfil->default}}</option></br>
                               </select></br>
-
                               <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Situaçao Acadêmica</b></label>
                               <select name="situacaoAcademica" class="browser-default custom-select custom-select-lg mb-1" style="width: 13.5rem; margin-left:10px">
                               <option value="{{$perfil->id}}">{{$perfil->situacao}}</option></br>
                               </select></br>
-
                               @endforeach
                                   <input type="checkbox" name="declaracaoVinculo" value="Declaracao de Vinculo" id="declaracaoVinculo"> Declaração de Vínculo</br>
                                   <input type="checkbox" name="comprovanteMatricula" value="Comprovante de Matricula" id="comprovanteMatricula">Comprovante de matricula</br>

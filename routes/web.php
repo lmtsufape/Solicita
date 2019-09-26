@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 |
 */
 Route::get('/','AlunoController@index')->name('login');
-
 //Route::get('/', 'AlunoController@index')->name('login');
 Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
