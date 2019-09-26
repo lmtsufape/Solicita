@@ -1,7 +1,14 @@
 body{
     margin: 0px;
     padding: 0px;
-    
+
+}
+
+
+.lmts-primary{
+    background-color: #1B2E4F;
+    color:white;
+
 }
 
 .info{
@@ -37,10 +44,11 @@ body{
 }
 
 
+
 .text-center{
     margin-top: 40px;
     padding-top: 50px;
-    
+
 }
 
 .botoes{
@@ -52,7 +60,7 @@ body{
 
 .info-login .btn{
     float: right;
-    
+
 }
 .formulario-centro{
     text-align: right;
@@ -73,7 +81,7 @@ body{
 
 }
 .centro h2{
-    
+
     padding-top: 40px;
 }
 
@@ -82,7 +90,7 @@ body{
 .tela-servidor{
     width: 100%;
     height: 730px;
-   
+
 }
 
 
@@ -91,13 +99,13 @@ body{
     height: 300px;
     margin: 0;
     padding: 0;
-    
-    
+
+
 }
 
 .cartao{
     margin: 30px;
-    width: 200px; 
+    width: 200px;
     height: 250px;
     float: left;
     border-radius: 20px;
@@ -113,11 +121,12 @@ body{
 
 .centro-cartao{
     padding-top: 50px;
-    
+
     height: 730px;
     background-color: #ddd;
 }
 
+<<<<<<< HEAD
 .btn-primary-lmts{
     background-color: #1B2E4F;
     border-color: #d3e0e9;
@@ -135,3 +144,21 @@ body{
     border-color: #d3e0e9;
     color: white;
 }
+=======
+/*Tabelas*/
+
+.tabela-centro{
+    width: 80%;
+
+
+}
+
+.nome-documento{
+
+    height: 50px;
+    margin-bottom: 0;
+    border: 0px;
+
+    text-align: center;
+}
+>>>>>>> 05279856825ad8e716cdd2a9cab2e58fc342a5e0
