@@ -3,7 +3,7 @@
 @section('conteudo')
 
     <div class="tabela-centro mx-auto">
-        <table class="table">
+        <table class="table" >
             <div class="lmts-primary">
 
             <div class="nome-documento lmts-primary mx-auto " style="height:100px">
@@ -12,7 +12,8 @@
             </div>
 
 
-            <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
+
+            <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;" >
             <tr >
                 <th scope="col">Id</th>
                 <th scope="col">Concluído</th>
@@ -34,59 +35,33 @@
             </thead>
             <tbody>
 
-              {{--
-                @for ($i = 0; $i < 30; $i++)
+
+
+
+                @foreach($listaRequisicao_documentos as $requisicao_documento)
+
                     <tr>
-                        <th scope="row">
-                          <div class="form-check">
-                            <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="opcao1" aria-label="...">
-                          </div>
+                      <td>{{$requisicao_documento->id}}</td>
+                      <th scope="row">
+                        <div class="form-check">
+                          <input class="form-check-input position-static" type="checkbox" id="checkboxLinha" value="opcao1" aria-label="...">
+                        </div>
 
-                        </th>
+                      </th>
+                      <td>{{$requisicao_documento->aluno->cpf}}</td>
+                      <td>{{$requisicao_documento->aluno->user->name}}</td>
+                      <td>{{$requisicao_documento->requisicao->perfil->default}}</td>
+                      <td>{{$requisicao_documento->status_data}}</td>
+                      <td>dd/mm/aaaa</td>
+                      <td>{{$requisicao_documento->status}}</td>
 
-                        <td>000.000.000-00</td>
-                        <td>Fulano de Tal</td>
-                        <td>Ciências da Computação</td>
-                        <td>dd/mm/aaaa</td>
-                        <td>dd/mm/aaaa</td>
-                        <td>Em Andamento</td>
+                      @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
+                          <td class="text-wrap">{{$requisicao_documento->detalhes}}</td>
 
-
-                        @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
-                            <td class="text-wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ligula dolor. Suspendisse suscipit ipsum quis magna hendrerit rhoncus.</td>
-                        @endif
-
-
-                    </tr>
-                @endfor
-
-              --}}
-
-
-              @foreach($listaRequisicao_documentos as $requisicao_documento)
-
-                  <tr>
-                    <td>{{$requisicao_documento->id}}</td>
-                    <th scope="row">
-                      <div class="form-check">
-                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="opcao1" aria-label="...">
-                      </div>
-
-                    </th>
-                    <td>{{$requisicao_documento->aluno->cpf}}</td>
-                    <td>{{$requisicao_documento->aluno->user->name}}</td>
-                    <td>{{$requisicao_documento->requisicao->perfil->default}}</td>
-                    <td>{{$requisicao_documento->status_data}}</td>
-                    <td>dd/mm/aaaa</td>
-                    <td>{{$requisicao_documento->status}}</td>
-
-                    @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
-                        <td class="text-wrap">{{$requisicao_documento->detalhes}}</td>
-
-                    @endif
-                </tr>
-              @endforeach
-
+                      @endif
+                  </tr>
+                @endforeach
+              </div>
 
             </tbody>
         </table>
@@ -94,6 +69,5 @@
 
 
 
-    </div>
 
 @endsection

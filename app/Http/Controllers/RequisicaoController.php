@@ -34,11 +34,11 @@ class RequisicaoController extends Controller
                   ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                   ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                   ->select ('requisicao_documentos.id')
-                  ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id]])
+                  ->where([['curso_id', $request->curso_id]])
 
                   ->get();
 
-          $id = []; //array auxiliar que pega cada item do $id_documentos
+
           // foreach ($id_documentos as $id_documento) {
           //   array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
           // }
@@ -50,15 +50,18 @@ class RequisicaoController extends Controller
       }
       else {
         $titulo = $documento->tipo;
-        //$id_documentos retorna um collection. É necessário transformar para array
-        //pega todas as requisições com base no id do documento e no id do curso
+
         $id_documentos = DB::table('requisicao_documentos')
                 ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                 ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                 ->select ('requisicao_documentos.id')
-                ->where([['curso_id', $request->curso_id]])
+                ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id]])
 
                 ->get();
+
+        //$id_documentos retorna um collection. É necessário transformar para array
+        //pega todas as requisições com base no id do documento e no id do curso
+
 
 
 
