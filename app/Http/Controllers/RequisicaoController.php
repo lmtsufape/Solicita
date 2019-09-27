@@ -38,15 +38,6 @@ class RequisicaoController extends Controller
 
                   ->get();
 
-
-          // foreach ($id_documentos as $id_documento) {
-          //   array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
-          // }
-
-          // $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
-          //
-          // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
-
       }
       else {
         $titulo = $documento->tipo;
@@ -58,13 +49,6 @@ class RequisicaoController extends Controller
                 ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id]])
 
                 ->get();
-
-        //$id_documentos retorna um collection. É necessário transformar para array
-        //pega todas as requisições com base no id do documento e no id do curso
-
-
-
-
       }
 
       $id = []; //array auxiliar que pega cada item do $id_documentos
@@ -74,8 +58,18 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
 
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
-  }
+    }
 
+
+    //recebe um array json da view requisicoes_servidor contendo as requisicoes concluidas
+    public function concluirRequisicao(Request $request){
+        //$arrayDocumentos = json_decode($request->getContent());
+        //$arrayDocumentos = json_decode(Input::get('data'));
+        $arrayDocumentos = $request->all();
+        dd($arrayDocumentos);
+
+
+    }
 
     public function storeRequisicao(Request $request){
 
