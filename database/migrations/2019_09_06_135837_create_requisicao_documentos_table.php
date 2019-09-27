@@ -16,7 +16,6 @@ class CreateRequisicaoDocumentosTable extends Migration
         Schema::create('requisicao_documentos', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-
             $table->string('anotacoes')->nullable();
             $table->string('status');
 
