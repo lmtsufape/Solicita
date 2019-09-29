@@ -17,7 +17,7 @@ Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 
 
-Route::get('/', 'Usuario@index')->name('login');
+Route::get('/', 'UsuarioController@index')->name('login');
 //ROTAS PARA VARIAÇÕES DOS SERVIDORES
 
 Route::get('/cadastro-servidor','ServidorController@index')->name('cadastro-servidor');
