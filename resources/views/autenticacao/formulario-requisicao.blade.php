@@ -24,12 +24,14 @@
                               <option value="{{$perfil->id}}">{{$perfil->situacao}}</option></br>
                               </select></br>
                               @endforeach
-                                  <input type="checkbox" name="declaracaoVinculo" value="Declaracao de Vinculo" id="declaracaoVinculo"> Declaração de Vínculo</br>
-                                  <input type="checkbox" name="comprovanteMatricula" value="Comprovante de Matricula" id="comprovanteMatricula">Comprovante de matricula</br>
-                                  <input type="checkbox" name="historico" value="Historico" id="historico"> Histórico</br>
-                                  <input type="checkbox" name="programaDisciplina" value="Programa de Disciplina" id="programaDisciplina" onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina</br>
-                                      <textarea form ="formRequisicao" style="display:none" required="" name="requisicaoPrograma"cols="115" id="textareaProgramaDisciplina"></textarea>
-                                  <input type="checkbox" name="outros" value="Outros" id="outros" onclick="checaSelecaoOutros()"> Outros<br>
+                                  <input type="checkbox" name="declaracaoVinculo" value="Declaracao de Vinculo" id="declaracaoVinculo"> Declaração de Vínculo</br></input>
+                                  <input type="checkbox" name="comprovanteMatricula" value="Comprovante de Matricula" id="comprovanteMatricula">Comprovante de matricula</br></input>
+                                  <input type="checkbox" name="historico" value="Historico" id="historico"> Histórico</br></input>
+                                  <input type="checkbox" name="programaDisciplina" value="Programa de Disciplina" id="programaDisciplina"
+                                        onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina</br></input>
+                                      <textarea form ="formRequisicao" style="display:none" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"></textarea>
+                                  <input type="checkbox" name="outros" value="Outros" id="outros"
+                                        onclick="checaSelecaoOutros()"> Outros<br></input>
                                       <textarea form ="formRequisicao" style="display:none" required="" name="requisicaoOutros" id="textareaOutrosDocumentos" cols="115" ></textarea>
                               <!-- </label> -->
                               <div class="form-group row mb-0">
@@ -75,7 +77,6 @@ function validaCampos() {
   var checkBoxOutros = document.getElementById('outros');
   var textareaProgramaDisciplina = document.getElementById("textareaProgramaDisciplina");
   var textareaOutrosDocumentos = document.getElementById("textareaOutrosDocumentos");
-
   if (checkBoxDeclaracao.checked == false
       && checkBoxComprovante.checked == false
       && checkBoxHistorico.checked == false
@@ -88,6 +89,6 @@ function validaCampos() {
     document.getElementById('formRequisicao').submit();
   }
   return true;
-}
+  }
 </script>
 @endsection
