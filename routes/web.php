@@ -29,9 +29,7 @@ Route::get('/formulario-requisicao', 'AlunoController@preparaNovaRequisicao')->n
 Route::post('/confirmacao-requisicao', 'AlunoController@novaRequisicao')->name('confirmacao-requisicao'); //----------------------
 Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
 
-Route::get('/home-servidor',function(){
-    return view('telas_servidor.home_servidor');
-})->name('home_servidor');
+Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
 
 //Route::get('/listar-requisicoes','listarRequisicoesController@index')->name('listar-requisicoes');
 /*

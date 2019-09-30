@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 //use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
+use App\Curso;
 use App\User;
 use App\Servidor;
 use App\Unidade;
@@ -38,4 +40,9 @@ class ServidorController extends Controller
   public function cancel(){
         return view('/autenticacao.home-administrador'); //redireciona para view
   }
-}
+
+  public function homeServidor(){
+    $cursos = Curso::all();
+    $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
+    return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento]);
+  }
