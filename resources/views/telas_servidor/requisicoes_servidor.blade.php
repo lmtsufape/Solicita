@@ -21,9 +21,10 @@
 
                   <!-- botão de finalizar -->
                   <form action="{{  route('listar-requisicoes-post')  }}" method="POST">
+                    <!-- <input type="hidden" name="titulo" value="$titulo"> -->
+@csrf
+                    <button type="submit" id="btnFinalizar" class="btn btn-secondary btn-sm" style="margin-bottom: 10px" >Finalizar</button>
 
-                    <button type="button" id="btnFinalizar" class="btn btn-secondary btn-sm" style="margin-bottom: 10px" onclick="getLinhas()">Finalizar</button>
-                  </form>
 
 
                   <div class="form-check">
@@ -52,12 +53,14 @@
             </thead>
             <tbody>
 
+
                 @foreach($listaRequisicao_documentos as $requisicao_documento)
 
                     <tr>
                       <th scope="row">
                         <div class="form-check">
-                          <input class="checkboxLinha" type="checkbox" id="checkboxLinha" name="checkboxLinha" value="{{$requisicao_documento->id}}" onclick="">
+                          <!-- checkboxLinha[] pega o valor de todos os checkboxLinha e envia como post para a rota -->
+                          <input class="checkboxLinha" type="checkbox" id="checkboxLinha" name="checkboxLinha[]" value="{{$requisicao_documento->id}}" onclick="">
                         </div>
 
                       </th>
@@ -76,7 +79,7 @@
                   </tr>
                 @endforeach
               </div>
-
+            </form>
 
 
             </tbody>
@@ -120,52 +123,9 @@ function getIds(dados){
   }
 
   enviarArray(newArray);
-if (newArray != null) {
-
-  //console.log(newArray);
-}
 
 }
 
-
-
-
-
-function enviarArray(newArray){
-
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-    });
-
-    console.log(JSON.stringify(newArray));
-
-    $.ajax({
-      url:'/listar-requisicoes-post',
-      type: 'POST',
-      dataType:'json',
-      contentType: 'json',
-      newArray: JSON.stringify(newArray),
-      contentType: 'application/json; charset=utf-8',
-    });
-
-    // $.ajax({
-    //     url:'{{ route('listar-requisicoes-post') }}', // Is this what you meant, is this the route you set up?
-    //     type: 'POST',
-    //     data: {'data': newArray, '_token' : '<?=csrf_token()?>'},
-    //     success : function(newArray){
-    //       // Do what you want with your data on success
-    //     },
-    //     error : function(e){
-    //        console.log(e);
-    //     }
-    // });
-
-
-
-    console.log(newArray);
-}
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

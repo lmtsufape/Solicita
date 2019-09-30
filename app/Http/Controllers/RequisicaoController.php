@@ -46,11 +46,11 @@ class RequisicaoController extends Controller
                 ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                 ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                 ->select ('requisicao_documentos.id')
-                ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id]])
+                ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id],['status','Em andamento']])
 
                 ->get();
       }
-
+      // dd($id_documentos);
       $id = []; //array auxiliar que pega cada item do $id_documentos
       foreach ($id_documentos as $id_documento) {
         array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
@@ -61,13 +61,21 @@ class RequisicaoController extends Controller
     }
 
 
-    //recebe um array json da view requisicoes_servidor contendo as requisicoes concluidas
+    //marca os documentos como "Processando"
     public function concluirRequisicao(Request $request){
-        //$arrayDocumentos = json_decode($request->getContent());
-        //$arrayDocumentos = json_decode(Input::get('data'));
-        $arrayDocumentos = $request->all();
-        dd($arrayDocumentos);
 
+        //dd($request);
+
+        $arrayDocumentos = $request->checkboxLinha;
+        // dd($request->checkboxLinha);
+
+        $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
+        foreach ($id_documentos as $id_documento) {
+          $id_documento->status = "Processando";
+          $id_documento->save();
+        }
+
+        return back(); //volta pra mesma url
 
     }
 
