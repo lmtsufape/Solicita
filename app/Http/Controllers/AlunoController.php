@@ -97,6 +97,7 @@ class AlunoController extends Controller
       }
       //#Documentos
           $size = count($arrayDocumentos);
+          // dd($size);
           //#Requisicao
           date_default_timezone_set('America/Sao_Paulo');
           $date = date('d/m/Y');
@@ -111,14 +112,14 @@ class AlunoController extends Controller
           for ($i=0; $i < $size; $i++) {
             $documento_req->documento_id = $arrayDocumentos[$i];
           }
-          dd($documento_req);
+
           $documento_req->requisicao_id = $requisicao->id;
           $documento_req->aluno_id = $alunoLogado->id;
           $documento_req->servidor_id = 1;
           $documento_req->status = 'Em andamento';
           $documento_req->status_data = $date;
           $documento_req->detalhes = 'Anotacoes para o servidor';
-      $documento_req->save();
+          $documento_req->save();
       return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'documento_req', 'perfilId'));
     }
 
