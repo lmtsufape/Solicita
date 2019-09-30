@@ -18,7 +18,7 @@ class Requisicao extends Model
         return $this->belongsTo('App\Servidor');
     }
 
-    public function requisicao_documento(){
+    public function requisicao_documentos(){
         return $this->hasMany('App\Requisicao_documento');
     }
 

@@ -17,7 +17,7 @@ class CreateRequisicaoDocumentosTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('anotacoes')->nullable();
-            $table->string('status');
+            $table->string('status')->default(false);
 
             $table->date('status_data');
             $table->string('detalhes')->nullable();

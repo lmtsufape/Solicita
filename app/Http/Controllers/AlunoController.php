@@ -47,11 +47,10 @@ class AlunoController extends Controller
     $alunos = Aluno::All();
     $perfis = Perfil::All();
     return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'perfis', 'alunos'));
-
   }
   public function novaRequisicao(Request $request){
-    $requisicao = new Requisicao();
     $documento_req = new Requisicao_documento();
+    $requisicao = new Requisicao();
     $alunoLogado = Auth::user();
     $arrayDocumentos = [];//Array Temporário
     //variáveis para os checkboxes
@@ -61,71 +60,90 @@ class AlunoController extends Controller
     $checkBoxProgramaDisciplina = $request->programaDisciplina;
     $checkBoxOutros = $request->outros;
 
+    date_default_timezone_set('America/Sao_Paulo');
+    $date = date('d/m/Y');
+    $hour =  date('H:i');
+    $requisicao->data_pedido = $date;
+    $requisicao->hora_pedido = $hour;
+    $requisicao->perfil_id = 1;
+    $requisicao->servidor_id = 1;
+    $requisicao->aluno_id = 1; //necessária adequação com o código de autenticação do usuário do perfil aluno
+    $requisicao->save();
+
       if($checkBoxDeclaracaoVinculo){
-        $documentos = new Documento();
-        $documentos->tipo = $request->get('declaracaoVinculo');
-        $documentos->save();
-        array_push($arrayDocumentos, $documentos->id);
+        $documentosRequisitados = new Requisicao_documento();
+        $documentosRequisitados->status_data = $date;
+        $documentosRequisitados->requisicao_id = $requisicao->id;
+        $documentosRequisitados->aluno_id = 1;
+        $documentosRequisitados->status = 'Em andamento';
+        $documentosRequisitados->detalhes = "";
+        $documentosRequisitados->documento_id = 1;
+        // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
+        array_push($arrayDocumentos, $documentosRequisitados);
       }
       if($checkBoxComprovanteMatricula){
-          $documentos = new Documento();
-          $documentos->tipo = $request->get('comprovanteMatricula');
-          $documentos->save();
-          array_push($arrayDocumentos, $documentos->id);
+        $documentosRequisitados = new Requisicao_documento();
+        $documentosRequisitados->status_data = $date;
+        $documentosRequisitados->requisicao_id = $requisicao->id;
+        $documentosRequisitados->aluno_id = 1;
+        $documentosRequisitados->status = 'Em andamento';
+        $documentosRequisitados->detalhes = "";
+        $documentosRequisitados->documento_id = 2;
+        // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
+        array_push($arrayDocumentos, $documentosRequisitados);
       }
       if($checkBoxHistorico){
-          $documentos = new Documento();
-          $documentos->tipo = $request->get('historico');
-          $documentos->save();
-          array_push($arrayDocumentos, $documentos->id);
+        $documentosRequisitados = new Requisicao_documento();
+        $documentosRequisitados->status_data = $date;
+        $documentosRequisitados->requisicao_id = $requisicao->id;
+        $documentosRequisitados->aluno_id = 1;
+        $documentosRequisitados->status = 'Em andamento';
+        $documentosRequisitados->detalhes = "";
+        $documentosRequisitados->documento_id = 3;
+        // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
+        array_push($arrayDocumentos, $documentosRequisitados);
       }
       if($checkBoxProgramaDisciplina){
-          $documentos = new Documento();
-          $documentos->tipo = $request->get('programaDisciplina');
-          $especificacaoProgramaDisciplina = $request->get('textareaProgramaDisciplina');
-          $documento_req->anotacoes = $request->get('requisicaoPrograma');
-          $documentos->save();
-          array_push($arrayDocumentos, $documentos->id);
+        $documentosRequisitados = new Requisicao_documento();
+        $documentosRequisitados->status_data = $date;
+        $documentosRequisitados->requisicao_id = $requisicao->id;
+        $documentosRequisitados->aluno_id = 1;
+        $documentosRequisitados->status = 'Em andamento';
+        $documentosRequisitados->detalhes = "";
+        $documentosRequisitados->documento_id = 4;
+        // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
+        $documentosRequisitados->anotacoes = $request->get('textareaProgramaDisciplina');
+        array_push($arrayDocumentos, $documentosRequisitados);
       }
       if($checkBoxOutros){
-          $documentos = new Documento();
-          $documentos->tipo = $request->get('outros');
-          $especificacaoOutros = $request->get('textareaOutrosDocumentos');
-          $documento_req->anotacoes = $request->get('requisicaoOutros');
-          $documentos->save();
-          array_push($arrayDocumentos, $documentos->id);
+        $documentosRequisitados = new Requisicao_documento();
+        $documentosRequisitados->status_data = $date;
+        $documentosRequisitados->requisicao_id = $requisicao->id;
+        $documentosRequisitados->aluno_id = 1;
+        $documentosRequisitados->status = 'Em andamento';
+        $documentosRequisitados->detalhes = "";
+        $documentosRequisitados->documento_id = 5;
+        $documentosRequisitados->anotacoes = $request->get('textareaOutrosDocumentos');
+        array_push($arrayDocumentos, $documentosRequisitados);
       }
       //#Documentos
-          $size = count($arrayDocumentos);
-          // dd($size);
-          //#Requisicao
-          date_default_timezone_set('America/Sao_Paulo');
-          $date = date('d/m/Y');
-          $hour =  date('H:i');
-          $requisicao->data_pedido = $date;
-          $requisicao->hora_pedido = $hour;
-          $requisicao->perfil_id = 1;
-          $requisicao->servidor_id = 1;
-          $requisicao->aluno_id = 1; //necessária adequação com o código de autenticação do usuário do perfil aluno
-          $requisicao->save();
-          #Documentos Requisição: hasMany;
-          $documentosRequisitados = Documento::where('id',$documentos->id)->get();
-          for ($i=0; $i < $size; $i++) {
-            // $documento_req->documento_id = ($arrayDocumentos[$i]);
-            $documento_req->documento_id = $arrayDocumentos[$i];
-            }
-          $documento_req->requisicao_id = $requisicao->id;
-          // $documento_req->aluno_id = $alunoLogado->id;
-          $documento_req->aluno_id = 1;
-          $documento_req->servidor_id = 1;
-          $documento_req->status = 'Em andamento';
-          $documento_req->status_data = $date;
-          $documento_req->detalhes = 'Anotacoes para o servidor';
-          $documento_req->save();
-      return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'documento_req', 'perfilId'));
+        $size = count($arrayDocumentos);
+        $requisicao->requisicao_documentos()->saveMany($arrayDocumentos);
+        return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'documento_req', 'perfilId'));
     }
+    public function requisitados(Requisicao_documento $documentosRequisitados, Requisicao $requisicao, $id){
 
-
+      date_default_timezone_set('America/Sao_Paulo');
+      $date = date('d/m/Y');
+      $hour =  date('H:i');
+      $documentosRequisitados->status_data = $date;
+      $documentosRequisitados->requisicao_id = $requisicao->id;
+      $documentosRequisitados->aluno_id = 1;
+      $documentosRequisitados->status = 'Em andamento';
+      $documentosRequisitados->detalhes = "";
+      $documentosRequisitados->documento_id = $id;
+      return $documentosRequisitados;
+    }
     public function confirmacaoRequisicao(Request $request){
       return redirect('/confirmacao-requisicao');
     }
