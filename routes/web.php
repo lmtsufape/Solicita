@@ -16,7 +16,10 @@ Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 Route::get('/', 'UsuarioController@index')->name('login');
 
+<<<<<<< HEAD
 Route::get('/', 'UsuarioController@index')->name('login');
+=======
+>>>>>>> 86e7aa3ee80a1ea0d277f0658adc080d0566bf9f
 //ROTAS PARA VARIAÇÕES DOS SERVIDORES
 Route::get('/cadastro-servidor','ServidorController@index')->name('cadastro-servidor');
 Route::post('/cadastro-servidor','ServidorController@storeServidor')->name('cadastro-servidor');
@@ -50,6 +53,7 @@ Route::get('/home-aluno',function(){
 
 
 //Formulário de requisicao
+<<<<<<< HEAD
 Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
 Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
 
@@ -70,5 +74,22 @@ Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->na
  //     return view('autenticacao.formulario-requisicao');
  // })->name('formulario-requisicao');
 
+=======
+// Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
+// Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
+
+// Route::get('/confirmacao-requisicao',function(){
+//     return view('autenticacao.confirmacao-requisicao');
+// })->name('confirmacao-requisicao');
+//
+// Route::get('/confirmacao-requisicao',function(){
+//     return view('autenticacao.home-aluno');
+// })->name('confirmacao-requisicao');
+
+ // Route::get('/home-aluno', function(){
+ //     return view('autenticacao.formulario-requisicao');
+ // })->name('formulario-requisicao');
+
+>>>>>>> 86e7aa3ee80a1ea0d277f0658adc080d0566bf9f
  Auth::routes();
  Route::get('/home', 'HomeController@index')->name('home');

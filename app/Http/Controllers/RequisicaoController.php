@@ -18,16 +18,13 @@ class RequisicaoController extends Controller
   }
 
   public function getRequisicoes(Request $request){
-
     $documento = Documento::where('tipo',$request->titulo)->first();
-
     //dd($documento->id);
 
     //DB::table() dá erro, mudar para forma abaixo
     //dd($documento->id);
     //$_SESSION["documento_id"]=$documento->id;
     $listaRequisicao_documentos = Requisicao_documento::where('documento_id',$documento->id)->get();
-
 
     //dd($listaRequisicao);
     //dd($listaRequisicao);
