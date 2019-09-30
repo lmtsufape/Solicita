@@ -18,6 +18,20 @@ class RequisicaoController extends Controller
     return view('autenticacao.formulario-requisicao');
   }
   public function getRequisicoes(Request $request){
+    $documento = Documento::where('tipo',$request->titulo)->first();
+    //dd($documento->id);
+
+    //DB::table() dá erro, mudar para forma abaixo
+    //dd($documento->id);
+    //$_SESSION["documento_id"]=$documento->id;
+    $listaRequisicao_documentos = Requisicao_documento::where('documento_id',$documento->id)->get();
+
+    //dd($listaRequisicao);
+    //dd($listaRequisicao);
+    $titulo = $request->titulo;
+
+    return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
+  }
 
     $documento = Documento::where('id',$request->titulo_id)->first();
     $curso = Curso::where('id',$request->curso_id)->first();

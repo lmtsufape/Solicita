@@ -1,0 +1,27 @@
+Nothing to migrate.
+Seeding: UsuarioSeeder
+
+   Illuminate\Database\QueryException  : SQLSTATE[23505]: Unique violation: 7 ERRO:  duplicar valor da chave viola a restrição de unicidade "users_email_unique"
+DETAIL:  Chave (email)=(admin@gmail) já existe. (SQL: insert into "users" ("email", "name", "password") values (admin@gmail, admin, 12345678), (admin@123, server, 12345678), (admin@321, veloso, 12345678))
+
+  at /home/jorge/laravel/Escolaridade/vendor/laravel/framework/src/Illuminate/Database/Connection.php:665
+    661|         // If an exception occurs when attempting to run a query, we'll format the error
+    662|         // message to include the bindings with SQL, which will make this exception a
+    663|         // lot more helpful to the developer instead of just the database's errors.
+    664|         catch (Exception $e) {
+  > 665|             throw new QueryException(
+    666|                 $query, $this->prepareBindings($bindings), $e
+    667|             );
+    668|         }
+    669|
+
+  Exception trace:
+
+  1   PDOException::("SQLSTATE[23505]: Unique violation: 7 ERRO:  duplicar valor da chave viola a restrição de unicidade "users_email_unique"
+DETAIL:  Chave (email)=(admin@gmail) já existe.")
+      /home/jorge/laravel/Escolaridade/vendor/laravel/framework/src/Illuminate/Database/Connection.php:459
+
+  2   PDOStatement::execute()
+      /home/jorge/laravel/Escolaridade/vendor/laravel/framework/src/Illuminate/Database/Connection.php:459
+
+  Please use the argument -v to see more details.

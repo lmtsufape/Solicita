@@ -64,36 +64,36 @@ class AlunoController extends Controller
       if($checkBoxDeclaracaoVinculo){
         $documentos = new Documento();
         $documentos->tipo = $request->get('declaracaoVinculo');
-        array_push($arrayDocumentos, $documentos->id);
         $documentos->save();
+        array_push($arrayDocumentos, $documentos->id);
       }
       if($checkBoxComprovanteMatricula){
           $documentos = new Documento();
           $documentos->tipo = $request->get('comprovanteMatricula');
-          array_push($arrayDocumentos, $documentos->id);
           $documentos->save();
+          array_push($arrayDocumentos, $documentos->id);
       }
       if($checkBoxHistorico){
           $documentos = new Documento();
           $documentos->tipo = $request->get('historico');
-          array_push($arrayDocumentos, $documentos->id);
           $documentos->save();
+          array_push($arrayDocumentos, $documentos->id);
       }
       if($checkBoxProgramaDisciplina){
           $documentos = new Documento();
           $documentos->tipo = $request->get('programaDisciplina');
           $especificacaoProgramaDisciplina = $request->get('textareaProgramaDisciplina');
           $documento_req->anotacoes = $request->get('requisicaoPrograma');
-          array_push($arrayDocumentos, $documentos->id);
           $documentos->save();
+          array_push($arrayDocumentos, $documentos->id);
       }
       if($checkBoxOutros){
           $documentos = new Documento();
           $documentos->tipo = $request->get('outros');
           $especificacaoOutros = $request->get('textareaOutrosDocumentos');
           $documento_req->anotacoes = $request->get('requisicaoOutros');
-          array_push($arrayDocumentos, $documentos->id);
           $documentos->save();
+          array_push($arrayDocumentos, $documentos->id);
       }
       //#Documentos
           $size = count($arrayDocumentos);
@@ -109,12 +109,14 @@ class AlunoController extends Controller
           $requisicao->aluno_id = 1; //necessária adequação com o código de autenticação do usuário do perfil aluno
           $requisicao->save();
           #Documentos Requisição: hasMany;
+          $documentosRequisitados = Documento::where('id',$documentos->id)->get();
           for ($i=0; $i < $size; $i++) {
+            // $documento_req->documento_id = ($arrayDocumentos[$i]);
             $documento_req->documento_id = $arrayDocumentos[$i];
-          }
-
+            }
           $documento_req->requisicao_id = $requisicao->id;
-          $documento_req->aluno_id = $alunoLogado->id;
+          // $documento_req->aluno_id = $alunoLogado->id;
+          $documento_req->aluno_id = 1;
           $documento_req->servidor_id = 1;
           $documento_req->status = 'Em andamento';
           $documento_req->status_data = $date;
