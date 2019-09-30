@@ -62,15 +62,6 @@
                         @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                             <td class="text-wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ut ligula dolor. Suspendisse suscipit ipsum quis magna hendrerit rhoncus.</td>
                         @endif
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:resources/views/servidor/requisicoes_servidor.blade.php
-
-=======
->>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf:resources/views/telas_servidor/requisicoes_servidor.blade.php
->>>>>>> master
-
                     </tr>
                 @endfor
 
@@ -96,7 +87,7 @@
 
                     @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                         <td class="text-wrap">{{$requisicao_documento->detalhes}}</td>
-                        
+
                     @endif
                 </tr>
               @endforeach
@@ -105,7 +96,7 @@
             </tbody>
         </table>
 
-      
+
 
 
     </div>

@@ -50,6 +50,11 @@ Route::get('/home-aluno',function(){
 
 
 //Formulário de requisicao
+Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
+Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
+
+
+//Formulário de requisicao
 // Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
 // Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
 
