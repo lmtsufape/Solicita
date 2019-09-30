@@ -11,7 +11,21 @@
 
                         <!-- Declaração de Vínculo-->
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
+<<<<<<< HEAD:resources/views/servidor/home_servidor.blade.php
+                        <a href="{{ route("login", ["titulo" => "Declaracao de Vinculo"]) }}" style="text-decoration:none; color: inherit;">
+=======
                         <a href="{{ route('listar-requisicoes', ['titulo' => 'Declaração de Vínculo']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf:resources/views/telas_servidor/home_servidor.blade.php
+<<<<<<< HEAD
+=======
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Declaração de Vínculo']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
+=======
+>>>>>>> master
                             <div class="card cartao text-center " style="border-radius: 20px">
 
                                     <div class="card-body d-flex justify-content-center">
@@ -20,7 +34,21 @@
                                 </div>
                             </div>
                         </a>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
+<<<<<<< HEAD:resources/views/servidor/home_servidor.blade.php
+                        <a href="{{ route("login", ["titulo" => "Comprovante de Matricula"]) }}" style="text-decoration:none; color: inherit;">
+=======
                         <a href="{{ route('listar-requisicoes', ['titulo' => 'Comprovante de Matrícula']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf:resources/views/telas_servidor/home_servidor.blade.php
+<<<<<<< HEAD
+=======
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Comprovante de Matrícula']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
+=======
+>>>>>>> master
                             <div class="card cartao text-center " style="border-radius: 20px">
 
                                     <div class="card-body d-flex justify-content-center">
@@ -38,7 +66,21 @@
                                 </div>
                             </div>
                         </a>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
+<<<<<<< HEAD:resources/views/servidor/home_servidor.blade.php
+                        <a href="{{ route("login", ["titulo" => "Programa de Disciplina"]) }}" style="text-decoration:none; color: inherit;">
+=======
                         <a href="{{ route('listar-requisicoes', ['titulo' => 'Programa de Disciplina']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf:resources/views/telas_servidor/home_servidor.blade.php
+<<<<<<< HEAD
+=======
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Programa de Disciplina']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
+=======
+>>>>>>> master
                             <div class="card cartao text-center " style="border-radius: 20px" >
 
                                     <div class="card-body d-flex justify-content-center">
@@ -47,7 +89,21 @@
                                 </div>
                             </div>
                         </a>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
+<<<<<<< HEAD:resources/views/servidor/home_servidor.blade.php
+                        <a href="{{ route("login", ["titulo" => "Outros"]) }}" style="text-decoration:none; color: inherit;">
+=======
                         <a href="{{ route('listar-requisicoes', ['titulo' => 'Outros']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf:resources/views/telas_servidor/home_servidor.blade.php
+<<<<<<< HEAD
+=======
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Outros']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
+=======
+>>>>>>> master
                             <div class="card cartao text-center " style="border-radius: 20px">
 
                                     <div class="card-body d-flex justify-content-center">
@@ -57,7 +113,21 @@
                             </div>
                         </a>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
+<<<<<<< HEAD:resources/views/servidor/home_servidor.blade.php
+                        <a href="{{ route("login", ["titulo" => "Todos"]) }}" style="text-decoration:none; color: inherit;">
+=======
                         <a href="{{ route('listar-requisicoes', ['titulo' => 'Todos']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> 5be38ca3595bb84226e661af7f18c7e6a40ecdbf:resources/views/telas_servidor/home_servidor.blade.php
+<<<<<<< HEAD
+=======
+                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Todos']) }}" style="text-decoration:none; color: inherit;">
+>>>>>>> bcdcc07322ff96aa8c91318d75be4f29e7695e67
+=======
+>>>>>>> master
                             <div class="card cartao text-center " style="border-radius: 20px">
 
                                     <div class="card-body d-flex justify-content-center">

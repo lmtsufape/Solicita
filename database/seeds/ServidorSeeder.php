@@ -17,8 +17,8 @@ class ServidorSeeder extends Seeder
 
       DB::table('servidors')->insert([
         'matricula'=>'123456789',
+        'user_id' => $user_id[0],
         'unidade_id'=>$unidade_id[0],
-        'user_id'=>$user_id[0],
       ]);
     }
 }
