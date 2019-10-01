@@ -76,7 +76,7 @@ class AlunoController extends Controller
         $documentosRequisitados->requisicao_id = $requisicao->id;
         $documentosRequisitados->aluno_id = 1;
         $documentosRequisitados->status = 'Em andamento';
-        $documentosRequisitados->detalhes = "";
+        // $documentosRequisitados->detalhes = "";
         $documentosRequisitados->documento_id = 1;
         // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
         array_push($arrayDocumentos, $documentosRequisitados);
@@ -87,7 +87,7 @@ class AlunoController extends Controller
         $documentosRequisitados->requisicao_id = $requisicao->id;
         $documentosRequisitados->aluno_id = 1;
         $documentosRequisitados->status = 'Em andamento';
-        $documentosRequisitados->detalhes = "";
+        // $documentosRequisitados->detalhes = "";
         $documentosRequisitados->documento_id = 2;
         // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
         array_push($arrayDocumentos, $documentosRequisitados);
@@ -98,7 +98,7 @@ class AlunoController extends Controller
         $documentosRequisitados->requisicao_id = $requisicao->id;
         $documentosRequisitados->aluno_id = 1;
         $documentosRequisitados->status = 'Em andamento';
-        $documentosRequisitados->detalhes = "";
+        // $documentosRequisitados->detalhes = "";
         $documentosRequisitados->documento_id = 3;
         // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
         array_push($arrayDocumentos, $documentosRequisitados);
@@ -109,10 +109,10 @@ class AlunoController extends Controller
         $documentosRequisitados->requisicao_id = $requisicao->id;
         $documentosRequisitados->aluno_id = 1;
         $documentosRequisitados->status = 'Em andamento';
-        $documentosRequisitados->detalhes = "";
+        $documentosRequisitados->detalhes = $request->get('requisicaoPrograma');
         $documentosRequisitados->documento_id = 4;
         // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
-        $documentosRequisitados->anotacoes = $request->get('textareaProgramaDisciplina');
+        // $documentosRequisitados->anotacoes = $request->get('textareaProgramaDisciplina');
         array_push($arrayDocumentos, $documentosRequisitados);
       }
       if($checkBoxOutros){
@@ -121,15 +121,35 @@ class AlunoController extends Controller
         $documentosRequisitados->requisicao_id = $requisicao->id;
         $documentosRequisitados->aluno_id = 1;
         $documentosRequisitados->status = 'Em andamento';
-        $documentosRequisitados->detalhes = "";
+        $documentosRequisitados->detalhes =  $request->get('requisicaoOutros');
         $documentosRequisitados->documento_id = 5;
-        $documentosRequisitados->anotacoes = $request->get('textareaOutrosDocumentos');
+        // $documentosRequisitados->anotacoes = $request->get('textareaOutrosDocumentos');
         array_push($arrayDocumentos, $documentosRequisitados);
       }
       //#Documentos
+        $ano = date('Y');
         $size = count($arrayDocumentos);
         $requisicao->requisicao_documentos()->saveMany($arrayDocumentos);
-        return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'documento_req', 'perfilId'));
+        $documento = Documento::where('id',$request->titulo_id)->first();
+        $curso = Curso::where('id',$request->curso_id)->first();
+
+        // $titulo = $documento->tipo;
+        // $id_documentos = DB::table('requisicao_documentos')
+        //                 ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
+        //                 ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
+        //                 ->select ('requisicao_documentos.id')
+        //                 ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id],['status','Em andamento']])
+        //                 ->get();
+        //
+        //       // dd($id_documentos);
+        //       $id = []; //array auxiliar que pega cada item do $id_documentos
+        //
+        //       foreach ($id_documentos as $id_documento) {
+        //         array_push($id, $id_documento->tipo); //passa o id de $id_documentos para o array auxiliar $id
+        //       }
+        //       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get();
+
+      return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayDocumentos', 'size', 'ano'));
     }
     public function requisitados(Requisicao_documento $documentosRequisitados, Requisicao $requisicao, $id){
 
@@ -140,7 +160,7 @@ class AlunoController extends Controller
       $documentosRequisitados->requisicao_id = $requisicao->id;
       $documentosRequisitados->aluno_id = 1;
       $documentosRequisitados->status = 'Em andamento';
-      $documentosRequisitados->detalhes = "";
+      // $documentosRequisitados->detalhes = "";
       $documentosRequisitados->documento_id = $id;
       return $documentosRequisitados;
     }

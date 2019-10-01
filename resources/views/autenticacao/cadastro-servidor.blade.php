@@ -5,7 +5,7 @@
     <div class="background" >
 
         <div class="centro">
-          <form method="POST" action="{{route('cadastro-servidor')}}">
+          <form method="POST" action="{{route('cadastro-servidor')}}" id=form>
             @csrf
             <h3 class="text-center">Cadastrar Servidor</h3>
             <!--Nome-->
@@ -18,18 +18,17 @@
                 @endforeach
               </select>
             </div>
+              <!--Nome-->
             <div class="form-group row formulario-centro">
-
                 <div class="col-md-9">
                     <label for="name" class="field a-field a-field_a3 page__field ">
-                    <input type="text" class="form-control @error('email') is-invalid @enderror field__input a-field__input"
-                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome">
-
+                    <input type="text" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
+                    name="name" required autocomplete="name" autofocus placeholder="Nome" id = "nomeServidor">
                     <span class="a-field__label-wrap">
                     <span class="a-field__label">Nome</span>
                     </span>
                     </label>
-                    @error('email')
+                    @error('name')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                     <strong>{{ $message }}</strong>
                     </span>
@@ -44,13 +43,13 @@
 
                     <label for="matricula" class="field a-field a-field_a3 page__field" >
                     <input type="text" class="form-control @error('matricula') is-invalid @enderror field__input a-field__input"
-                    name="matricula" placeholder="Matricula">
+                    name="matricula" required autocomplete="matricula" autofocus placeholder="Matricula" id = "matriculaServidor">
 
                     <span class="a-field__label-wrap">
                     <span class="a-field__label">Matrícula</span>
                     </span>
                     </label>
-                    @error('password')
+                    @error('matricula')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
                     <strong>{{ $message }}</strong>
                     </span>
@@ -58,14 +57,13 @@
                 </div>
 
             </div>
-
             <!--E-mail-->
             <div class="form-group row formulario-centro">
 
                 <div class="col-md-9">
                     <label for="email" class="field a-field a-field_a3 page__field ">
                     <input type="email" class="form-control @error('email') is-invalid @enderror field__input a-field__input"
-                    name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="E-Mail">
+                    name="email" required autocomplete="email" autofocus placeholder="E-Mail" id = "emailServidor">
 
                     <span class="a-field__label-wrap">
                     <span class="a-field__label">E-Mail</span>
@@ -81,18 +79,16 @@
 
             <!--Senha-->
             <div class="form-group row formulario-centro">
-
                 <div class="col-md-9">
-
                     <label for="password" class="field a-field a-field_a3 page__field" >
-                    <input id="password" type="text" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
-                    name="password" required autocomplete="current-password" placeholder="Senha provisória">
+                    <input type="password" class="form-control @error('current-password') is-invalid @enderror field__input a-field__input"
+                    name="password" required autocomplete="current-password" placeholder="Senha provisória" id="password">
 
                     <span class="a-field__label-wrap">
                     <span class="a-field__label">Senha</span>
                     </span>
                     </label>
-                    @error('password')
+                    @error('current-password')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
                     <strong>{{ $message }}</strong>
                     </span>
@@ -100,24 +96,37 @@
                 </div>
             </div>
 
-            <div class="col-md-6 " style="margin-left: 10px; margin-top: 50px">
-                <button type="submit" class="btn btn-primary" onclick="confirmacaoCadastro()" action={{route('login')}} style="margin-left: 100px;background-color: #1B2E4F; border-color: #d3e0e9">
-                    {{ ('Cadastrar') }}
-                </button>
-            </div>
-
-            <div class="col-md-6 " style="margin-left: 150px; margin-top: -37px">
-                <button type="submit" class="btn btn-primary" action={{route('cancela-cadastro')}} style="margin-left: 100px; background-color: #FF0000; border-color: #d3e0e9">
-                    {{ ('Cancelar') }}
-                </button>
-            </div>
-          </form>
+            <div class="form-group row mb-0" style="margin-center">
+                    <div class="col-md-8 offset-md-4">
+                      <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); confirmacaoCadastro();" href="{{route('home-administrador')}}">
+                      {{ ('Cadastrar') }}
+                      </a>
+                      <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault()" href="{{ route('cancela-cadastro')}}" >
+                        {{ ('Cancelar') }}
+                      </a>
+                  </div>
+                </div>
+            </form>
         </div>
     </div>
-    <script type="text/javascript">
 
+
+    <script>
     function confirmacaoCadastro() {
-        alert('Servidor cadastrado com sucesso!!.');
+      var inputNome = document.getElementById('nomeServidor');
+      var inputMatricula = document.getElementById('matriculaServidor');
+      var inputEmail = document.getElementById('emailServidor');
+      var inputSenha = document.getElementById('password');
+      if (inputNome.value == ""|| inputMatricula.value== "" ||inputEmail.value=="" || inputSenha.value=="")
+      {
+          alert('Para cadastrar o servidor, preencha todos os campos corretamente.');
+          return false;
       }
+      else{
+        alert('Servidor cadastrado com sucesso!!.');
+        document.getElementById('form').submit();
+      }
+      return true;
+    }
     </script>
 @endsection

@@ -21,6 +21,13 @@ class ServidorController extends Controller
   }
   public function storeServidor(Request $request) {
   //INSTANCIA DO USUARIO
+    $request->validate([
+      'name' => 'required|string|max:255',
+      'matricula' => 'required|matricula|unique:servidors',
+      'email' => 'required|string|email|max:255|unique:users',
+      'password' => 'required|string|min:8|confirmed',
+    ]);
+
     $usuario = new User();
     $usuario->name = $request->input('name');
     $usuario->email = $request->input('email');
@@ -46,3 +53,4 @@ class ServidorController extends Controller
     $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
     return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento]);
   }
+}

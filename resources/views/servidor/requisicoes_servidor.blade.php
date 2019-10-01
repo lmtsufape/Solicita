@@ -58,8 +58,7 @@
                     </tr>
                 @endfor
 
-              --}}
-
+              <!-- --}} -->
 
               @foreach($listaRequisicao_documentos as $requisicao_documento)
 
@@ -77,10 +76,8 @@
                     <td>{{$requisicao_documento->status_data}}</td>
                     <td>dd/mm/aaaa</td>
                     <td>{{$requisicao_documento->status}}</td>
-
                     @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                         <td class="text-wrap">{{$requisicao_documento->detalhes}}</td>
-
                     @endif
                 </tr>
               @endforeach

@@ -24,16 +24,35 @@
                               <option value="{{$perfil->id}}">{{$perfil->situacao}}</option></br>
                               </select></br>
                               @endforeach
-                                  <input type="checkbox" name="declaracaoVinculo" value="Declaracao de Vinculo" id="declaracaoVinculo"> Declaração de Vínculo</br></input>
-                                  <input type="checkbox" name="comprovanteMatricula" value="Comprovante de Matricula" id="comprovanteMatricula">Comprovante de matricula</br></input>
-                                  <input type="checkbox" name="historico" value="Historico" id="historico"> Histórico</br></input>
-                                  <input type="checkbox" name="programaDisciplina" value="Programa de Disciplina" id="programaDisciplina"
-                                        onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina</br></input>
-                                      <textarea form ="formRequisicao" style="display:none" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"></textarea>
-                                  <input type="checkbox" name="outros" value="Outros" id="outros"
-                                        onclick="checaSelecaoOutros()"> Outros<br></input>
-                                      <textarea form ="formRequisicao" style="display:none" required="" name="requisicaoOutros" id="textareaOutrosDocumentos" cols="115" ></textarea>
-                              <!-- </label> -->
+                                  <input type="checkbox" name="declaracaoVinculo"     value="Declaracao de Vinculo"     id="declaracaoVinculo"> Declaração de Vínculo</br>
+                                    </input>
+                                  <input type="checkbox" name="comprovanteMatricula"  value="Comprovante de Matricula"  id="comprovanteMatricula">Comprovante de matricula</br>
+                                    </input>
+                                  <input type="checkbox" name="historico"             value="Historico"                 id="historico">Histórico</br>
+                                    </input>
+                                  <input type="checkbox" name="programaDisciplina"    value="Programa de Disciplina"    id="programaDisciplina"
+                                        onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina</br>
+                                      </input>
+                                      <div>
+                                        <textarea class="form-control @error('programa') is-invalid @enderror "
+                                                  form ="formRequisicao" style="display:none" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"
+                                                  required= "" placeholder="O campo deve ser preenchido">
+                                        </textarea>
+                                        @error('programa')
+                                          <span>
+                                            Deu erro
+                                          </span>
+                                        @enderror
+                                      </div>
+                                      <input type="checkbox" name="outros"               value="Outros"                     id="outros"
+                                        onclick="checaSelecaoOutros()"> Outros<br>
+                                      </input>
+                                      <textarea class="form-control @error('outros') is-invalid @enderror"
+                                                  form ="formRequisicao" style="display:none" name="requisicaoOutros"   cols="115" id="textareaOutrosDocumentos"
+                                                  required= "" placeholder="O campo deve ser preenchido">
+                                                </textarea>
+
+                                      <!-- </label> -->
                               <div class="form-group row mb-0">
                                       <div class="col-md-8 offset-md-4">
                                         <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); validaCampos();" href="{{ route('confirmacao-requisicao') }}">
@@ -56,7 +75,7 @@ function checaSelecaoProgramaDisciplina() {
   var textareaProgramaDisciplina = document.getElementById("textareaProgramaDisciplina");
   if (checkBoxPrograma.checked == true){
     textareaProgramaDisciplina.style.display = "block";
-  } else {
+    } else {
     textareaProgramaDisciplina.style.display = "none";
   }
 }
@@ -84,6 +103,14 @@ function validaCampos() {
       && checkBoxOutros.checked == false) {
       alert('Informe ao menos um dos documento que deseja solicitar.');
       return false;
+  }
+  if(checkBoxPrograma.checked==true&& textareaProgramaDisciplina.isEmpty()){
+    alert('O campo "Programa de Disciplina" deve ser preenchido corretamente, sob pena do não atendimento da requisicao.');
+    return false;
+  }
+  if(checkBoxOutros.checked==true){
+    alert('O campo "Outros" deve ser preenchido corretamente, sob pena do não atendimento da requisicao.');
+    return false;
   }
   else{
     document.getElementById('formRequisicao').submit();
