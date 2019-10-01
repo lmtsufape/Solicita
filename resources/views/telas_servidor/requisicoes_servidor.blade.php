@@ -20,16 +20,19 @@
                 <th scope="row">
 
                   <!-- botão de finalizar -->
-                  <form action="{{  route('listar-requisicoes-post')  }}" method="POST">
-                    <!-- <input type="hidden" name="titulo" value="$titulo"> -->
-@csrf
-                    <button type="submit" id="btnFinalizar" class="btn btn-secondary btn-sm" style="margin-bottom: 10px" >Finalizar</button>
+                  <form id="formularioRequisicao" action="{{  route('listar-requisicoes-post')  }}" method="POST">
+                    @csrf
 
 
+                    <!-- Checkbox que seleciona todos os outros -->
+                    <div class="form-check">
+                      <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
+                      <!-- botão para confirmar seleção -->
+                      <!-- ao clicar no botão de confirmar, é chamado a função confirmarRequisicao(). Se o usuário cancelar o event.preventDefault cancela o envio
+                          do formulario. caso contrário, o formulário é enviado e o documento selecionado é marcado como processando-->
+                      <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()" class="btn btn-secondary btn-sm" style="margin-bottom: 10px" >Finalizar</button>
+                    </div>
 
-                  <div class="form-check">
-                    <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
-                  </div>
 
                 </th>
 
@@ -85,6 +88,12 @@
             </tbody>
         </table>
 
+<!-- @if (session('alert'))
+<div class="alert alert-success">
+  {{ session('alert') }}
+</div>
+@endif -->
+
 <script>
 
 var checkedAll = false;
@@ -103,6 +112,21 @@ document.getElementById("selectAll").addEventListener("click", function(){
 
 console.log(checkBoxs);
 
+// var msg = '{{Session::get('alert')}}';
+//     var exist = '{{Session::has('alert')}}';
+//     if(exist){
+//     alert(msg);
+// }
+
+function confirmarRequisicao(){
+
+
+  if(confirm("Você deseja marcar o(s) documento(s) como solicitado?")== true){
+    document.getElementById("formularioRequisicao").submit();
+
+  }
+
+}
 
 function getLinhas(){
   var ids = document.getElementsByClassName("checkboxLinha");// pega o id de todos os checkboxs marcados
@@ -122,12 +146,12 @@ function getIds(dados){
     }
   }
 
-  enviarArray(newArray);
-
 }
 
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 
 @endsection

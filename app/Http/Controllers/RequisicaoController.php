@@ -75,7 +75,7 @@ class RequisicaoController extends Controller
           $id_documento->save();
         }
 
-        return back(); //volta pra mesma url
+        return redirect()->back()->with('alert', 'Documento(s) Solicitado(s) com Sucesso!'); //volta pra mesma url
 
     }
 
