@@ -112,25 +112,25 @@ document.getElementById("selectAll").addEventListener("click", function(){
 
 console.log(checkBoxs);
 
-// var msg = '{{Session::get('alert')}}';
-//     var exist = '{{Session::has('alert')}}';
-//     if(exist){
-//     alert(msg);
-// }
-
 function confirmarRequisicao(){
 
+  var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
 
-  if(confirm("Você deseja marcar o(s) documento(s) como solicitado?")== true){
-    document.getElementById("formularioRequisicao").submit();
+// verifica se o usuário selecionou pelo menos um checkbox
+if(ids.length != 0){
 
+    if(confirm("Você deseja marcar o(s) documento(s) como solicitado?")== true){
+      document.getElementById("formularioRequisicao").submit();
+    }
+  }else {
+    alert("Selecione pelo menos um documento!");
   }
 
 }
 
 function getLinhas(){
   var ids = document.getElementsByClassName("checkboxLinha");// pega o id de todos os checkboxs marcados
-  getIds(ids);
+  return getIds(ids);
 
 }
 
@@ -145,6 +145,8 @@ function getIds(dados){
       }
     }
   }
+
+  return newArray;
 
 }
 
