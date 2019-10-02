@@ -39,7 +39,8 @@
 
                 <h2 class="text-center">Entrar</h2>
 
-                <form >
+                <form method="POST" action="{{ route('login') }}">
+                  @csrf
                     <div class="form-group">
                         <!--
                         <label for="exampleInputEmail1">E-mail</label>
