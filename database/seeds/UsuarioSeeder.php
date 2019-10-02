@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioSeeder extends Seeder
 {
@@ -17,6 +18,7 @@ class UsuarioSeeder extends Seeder
           [
           'name'=>'admin',
           'email'=>'admin@gmail',
+<<<<<<< HEAD
           'password'=>'12345678',
           ],
 
@@ -32,5 +34,9 @@ class UsuarioSeeder extends Seeder
         ],
       ]
       );
+=======
+          'password'=>Hash::make('123456'),
+        ]);
+>>>>>>> e940639e494ee9d1dabf1fbc304b209f905fa704
     }
 }

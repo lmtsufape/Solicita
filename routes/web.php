@@ -36,6 +36,9 @@ Route::get('/listar-requisicoes',function(Request $request){
 })->name('listar-requisicoes');
 */
 Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('listar-requisicoes');
+
+Route::post('/listar-requisicoes','RequisicaoController@concluirRequisicao')->name('listar-requisicoes-post');
+
 Route::get('/home-aluno',function(){
     return view('autenticacao.home-aluno');
 })->name('home-aluno');

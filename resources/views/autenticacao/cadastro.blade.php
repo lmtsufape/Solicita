@@ -47,7 +47,7 @@
                       <div class="col-md-9">
                           <label for="name" class="field a-field a-field_a3 page__field ">
                           <input id="cpf" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
-                          name="cpf" value="{{ old('cpf') }}" required autocomplete="name" autofocus placeholder="Nome">
+                          name="cpf" value="{{ old('cpf') }}" required autocomplete="name" autofocus placeholder="CPF">
 
                           <span class="a-field__label-wrap">
                               <span class="a-field__label">CPF</span>

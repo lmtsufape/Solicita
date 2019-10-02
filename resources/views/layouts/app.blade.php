@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/app.css">
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <style type="text/css">
         .panel-default > .panel-heading {
             color: #fff;
@@ -120,7 +122,7 @@
                     <div class="card cartao
         		white-space: nowrap;
         		text-align:left;
-        		font-weight: bold;
+        		font-weight: bold;<!
         	}
         	/*
         	Label the data

@@ -27,6 +27,7 @@ class RequisicaoController extends Controller
                   ->select ('requisicao_documentos.id')
                   ->where([['curso_id', $request->curso_id]])
                   ->get();
+
       }
       else {
         $titulo = $documento->tipo;
@@ -35,6 +36,7 @@ class RequisicaoController extends Controller
                 ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                 ->select ('requisicao_documentos.id')
                 ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id],['status','Em andamento']])
+
                 ->get();
       }
       // dd($id_documentos);
@@ -45,18 +47,26 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
     }
+
+
     //marca os documentos como "Processando"
     public function concluirRequisicao(Request $request){
+
         //dd($request);
+
         $arrayDocumentos = $request->checkboxLinha;
         // dd($request->checkboxLinha);
+
         $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
         foreach ($id_documentos as $id_documento) {
           $id_documento->status = "Processando";
           $id_documento->save();
         }
+
         return redirect()->back()->with('alert', 'Documento(s) Solicitado(s) com Sucesso!'); //volta pra mesma url
+
     }
+
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
     }
