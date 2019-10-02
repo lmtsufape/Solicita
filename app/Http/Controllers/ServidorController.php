@@ -17,7 +17,7 @@ class ServidorController extends Controller
   public function index(){
     $unidades = Unidade::All();
     $usuarios = User::All();
-    return view('autenticacao.cadastro-servidor',compact('users','unidades'));
+    return view('autenticacao.home-servidor',compact('users','unidades'));
     //return view ('autenticacao.cadastro-servidor');
   }
   public function storeServidor(Request $request) {

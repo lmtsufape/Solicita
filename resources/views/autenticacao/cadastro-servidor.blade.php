@@ -7,7 +7,7 @@
         <div class="centro">
           <form method="POST" action="{{route('cadastro-servidor')}}" id=form>
             @csrf
-            <h3 class="text-center">Cadastrar Servidor</h3>
+            <h4 class="text-center">Cadastrar Servidor</h4>
             <!--Nome-->
             <div>
               <label for='unidade' style="width: 14.5rem; margin-left:125px">Selecione uma Unidade Acadêmica</label>
@@ -38,9 +38,7 @@
 
             <!--Matricula-->
             <div class="form-group row formulario-centro">
-
                 <div class="col-md-9">
-
                     <label for="matricula" class="field a-field a-field_a3 page__field" >
                     <input id = "matriculaServidor" type="text" class="form-control @error('matricula') is-invalid @enderror field__input a-field__input"
                     name="matricula" required autocomplete="matricula" autofocus placeholder="Matricula" >
@@ -120,6 +118,7 @@
           return false;
       }
       else{
+        alert('Cadastro efetuado');
         document.getElementById('form').submit();
       }
       return true;
