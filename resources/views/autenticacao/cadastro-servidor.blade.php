@@ -118,7 +118,7 @@
           return false;
       }
       else{
-        alert('Cadastro efetuado');
+        // alert('Cadastro efetuado');
         document.getElementById('form').submit();
       }
       return true;
