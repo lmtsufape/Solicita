@@ -42,7 +42,7 @@
                 <div class="col-md-9">
 
                     <label for="matricula" class="field a-field a-field_a3 page__field" >
-                    <input id = "matriculaServidor" type="text" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
+                    <input id = "matriculaServidor" type="text" class="form-control @error('matricula') is-invalid @enderror field__input a-field__input"
                     name="matricula" required autocomplete="matricula" autofocus placeholder="Matricula" >
 
                     <span class="a-field__label-wrap">
@@ -97,7 +97,7 @@
             </div>
             <div class="form-group row mb-0" style="margin-center">
                     <div class="col-md-8 offset-md-4">
-                      <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); confirmacaoCadastro();" href="{{route('home-administrador')}}">
+                      <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); confirmacaoCadastro();" href="{{route('home')}}">
                       {{ ('Cadastrar') }}
                       </a>
                       <a class="btn btn-primary btn-primary-lmts" href="{{ route('cancela-cadastro')}}" >

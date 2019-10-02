@@ -19,19 +19,10 @@ class AdministradorController extends Controller
     $usuarios = User::All();
     $servidores = Servidor::All();
     $requisicoes = Requisicao::All();
-    return view('/autenticacao.home-administrador',compact('unidades','usuarios', 'servidores','requisicoes'))->with('jsAlert', 'Servidor cadastrado com sucesso!!');
+    return view('/autenticacao.home',compact('unidades','usuarios', 'servidores','requisicoes'));
 
   }
   public function cancel(){
-        return view('/autenticacao.home-administrador'); //redireciona para view
+        return view('/autenticacao.home'); //redireciona para view
   }
-
-  // public function listagemServidores(){
-  //
-  //       $listaUsuario = DB::table('users');
-  //       $listaServidores = DB::table('servidors');
-  //       dd(listaServidores);
-  //       dd(listaUsuario);
-  //       return view ('autenticacao.home-administrador', compact('listaUsuario','listaServidores'));
-  // }
 }

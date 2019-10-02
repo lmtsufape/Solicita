@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 use App\Curso;
 use App\User;
@@ -21,23 +22,22 @@ class ServidorController extends Controller
   }
   public function storeServidor(Request $request) {
   //INSTANCIA DO USUARIO
-    $regras = [
-      'name' => 'required|string|max:255',
-      'matricula' => 'required |integer|size:8|unique:servidors',
-      'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required|string|min:8|confirmed',
-      // 'unidade' => 'required',
-    ];
-    $mensagens = [
-      'name.required' => 'Por favor, preencha este campo',
-      'email.required' => 'Por favor, preencha este campo',
-      'email.email' => 'Por favor, preencha um email válido',
-      'email.unique' => 'EMAIL EM USO',
-      'matricula.required' => 'Por favor, digite uma senha',
-      'matricula.min' => 'Por favor, digite a matricula corretamente',
-      'password.required' => 'Por favor, digite uma senha',
-      'passowd.min' => 'Por favor, digite uma senha com, no mínimo, 8 dígitos',
-    ];
+    // $regras = [
+    //   'name' => 'required|string|max:255',
+    //   'matricula' => 'required|integer|size:8|unique:servidors',
+    //   'email' => 'required|string|email|max:255|unique:users',
+    //   'password' => 'required|string|min:8',
+    //   'unidade' => 'required',
+    // ];
+    // $mensagens = [
+    //   'name.required' => 'Por favor, preencha este campo',
+    //   'email.required' => 'Por favor, preencha este campo',
+    //   'email.email' => 'Por favor, preencha um email válido',
+    //   'matricula.required' => 'Por favor, digite a matricula do servidor',
+    //   'matricula.min' => 'Por favor, digite a matricula corretamente',
+    //   'password.required' => 'Por favor, digite uma senha',
+    //   'passowd.min' => 'Por favor, digite uma senha com, no mínimo, 8 dígitos',
+    // ];
     $request->validate([
       'name' => 'required|string|max:255',
       'matricula' => 'required|unique:servidors',
@@ -55,7 +55,7 @@ class ServidorController extends Controller
     $servidor->unidade_id = 1;
     $servidor->user_id = $usuario->id;
     $servidor->save();
-    return redirect('/home-administrador')->with('jsAlert', 'Servidor cadastrado com sucesso!!');
+    return view('/home')->with('jsAlert', 'Servidor cadastrado com sucesso!!');
   }
   public function listaServidores(){
         return view('/autenticacao.home-administrador'); //redireciona para view

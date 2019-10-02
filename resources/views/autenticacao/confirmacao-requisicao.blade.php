@@ -16,7 +16,7 @@
                                   <h3><p> Confirmamos o reecebimento de sua solicitação para os documentos abaixo:</p></h3>
                                   <ul>
                                     @foreach ($arrayDocumentos as $docSolicitado)
-                                    <li value="Documentos solicitados">{{$docSolicitado->documento_id}} - {{$docSolicitado}}</li>
+                                    <li value="Documentos solicitados">{{$docSolicitado->documento_id}}</li>
                                     @if($docSolicitado->documento_id==4)
                                       <h5>Descrição do documento solicitado {{$docSolicitado->detalhes}}</h5>
                                     @endif
