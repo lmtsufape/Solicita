@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DateTime;
 use Auth;
+use Hash;
 
 use App\User;
 use App\Servidor;
@@ -165,10 +166,13 @@ class AlunoController extends Controller
       return $documentosRequisitados;
     }
     public function confirmacaoRequisicao(Request $request){
-      return redirect('/confirmacao-requisicao');
+      return redirect('/autenticacao.confirmacao-requisicao');
+    }
+    public function finalizaRequisicao(Request $request){
+      return redirect('/home-aluno');
     }
     public function cancelaRequisicao(){
-      return redirect('/home-aluno');
+      return view('/autenticacao.home-aluno');
     }
     public function listarRequisicoesAluno(){
           $requisicao = Requisicao::paginate(10);
@@ -183,7 +187,6 @@ class AlunoController extends Controller
     $unidades = Unidade::all();
     return view('autenticacao.cadastro',compact('cursos','unidades')); //redireciona para view de cadastro do aluno
   }
-
   public function storeAluno(Request $request){
     $regras = [
       'name' => 'required|string|max:255',

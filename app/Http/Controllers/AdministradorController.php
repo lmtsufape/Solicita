@@ -22,6 +22,10 @@ class AdministradorController extends Controller
     return view('/autenticacao.home-administrador',compact('unidades','usuarios', 'servidores','requisicoes'))->with('jsAlert', 'Servidor cadastrado com sucesso!!');
 
   }
+  public function cancel(){
+        return view('/autenticacao.home-administrador'); //redireciona para view
+  }
+
   // public function listagemServidores(){
   //
   //       $listaUsuario = DB::table('users');

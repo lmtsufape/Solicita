@@ -21,13 +21,29 @@ class ServidorController extends Controller
   }
   public function storeServidor(Request $request) {
   //INSTANCIA DO USUARIO
-    $request->validate([
+    $regras = [
       'name' => 'required|string|max:255',
-      'matricula' => 'required|matricula|unique:servidors',
+      'matricula' => 'required |integer|size:8|unique:servidors',
       'email' => 'required|string|email|max:255|unique:users',
       'password' => 'required|string|min:8|confirmed',
+      // 'unidade' => 'required',
+    ];
+    $mensagens = [
+      'name.required' => 'Por favor, preencha este campo',
+      'email.required' => 'Por favor, preencha este campo',
+      'email.email' => 'Por favor, preencha um email válido',
+      'email.unique' => 'EMAIL EM USO',
+      'matricula.required' => 'Por favor, digite uma senha',
+      'matricula.min' => 'Por favor, digite a matricula corretamente',
+      'password.required' => 'Por favor, digite uma senha',
+      'passowd.min' => 'Por favor, digite uma senha com, no mínimo, 8 dígitos',
+    ];
+    $request->validate([
+      'name' => 'required|string|max:255',
+      'matricula' => 'required|unique:servidors',
+      'email' => 'required|string|email|max:255|unique:users',
+      'password' => 'required|string|min:8',
     ]);
-
     $usuario = new User();
     $usuario->name = $request->input('name');
     $usuario->email = $request->input('email');
@@ -39,7 +55,7 @@ class ServidorController extends Controller
     $servidor->unidade_id = 1;
     $servidor->user_id = $usuario->id;
     $servidor->save();
-    return redirect('/home-administrador')->with('jsAlert', 'Servidor cadastrado com sucesso!!');;
+    return redirect('/home-administrador')->with('jsAlert', 'Servidor cadastrado com sucesso!!');
   }
   public function listaServidores(){
         return view('/autenticacao.home-administrador'); //redireciona para view

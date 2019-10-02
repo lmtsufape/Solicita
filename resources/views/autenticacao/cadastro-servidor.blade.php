@@ -22,8 +22,8 @@
             <div class="form-group row formulario-centro">
                 <div class="col-md-9">
                     <label for="name" class="field a-field a-field_a3 page__field ">
-                    <input type="text" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
-                    name="name" required autocomplete="name" autofocus placeholder="Nome" id = "nomeServidor">
+                    <input id = "nomeServidor" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
+                    name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
                     <span class="a-field__label-wrap">
                     <span class="a-field__label">Nome</span>
                     </span>
@@ -42,8 +42,8 @@
                 <div class="col-md-9">
 
                     <label for="matricula" class="field a-field a-field_a3 page__field" >
-                    <input type="text" class="form-control @error('matricula') is-invalid @enderror field__input a-field__input"
-                    name="matricula" required autocomplete="matricula" autofocus placeholder="Matricula" id = "matriculaServidor">
+                    <input id = "matriculaServidor" type="text" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
+                    name="matricula" required autocomplete="matricula" autofocus placeholder="Matricula" >
 
                     <span class="a-field__label-wrap">
                     <span class="a-field__label">Matrícula</span>
@@ -81,27 +81,26 @@
             <div class="form-group row formulario-centro">
                 <div class="col-md-9">
                     <label for="password" class="field a-field a-field_a3 page__field" >
-                    <input type="password" class="form-control @error('current-password') is-invalid @enderror field__input a-field__input"
-                    name="password" required autocomplete="current-password" placeholder="Senha provisória" id="password">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
+                    name="password" required autocomplete="password" placeholder="Senha provisória" id="password">
 
                     <span class="a-field__label-wrap">
                     <span class="a-field__label">Senha</span>
                     </span>
                     </label>
-                    @error('current-password')
+                    @error('password')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
                     <strong>{{ $message }}</strong>
                     </span>
                     @enderror
                 </div>
             </div>
-
             <div class="form-group row mb-0" style="margin-center">
                     <div class="col-md-8 offset-md-4">
                       <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); confirmacaoCadastro();" href="{{route('home-administrador')}}">
                       {{ ('Cadastrar') }}
                       </a>
-                      <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault()" href="{{ route('cancela-cadastro')}}" >
+                      <a class="btn btn-primary btn-primary-lmts" href="{{ route('cancela-cadastro')}}" >
                         {{ ('Cancelar') }}
                       </a>
                   </div>
@@ -109,8 +108,6 @@
             </form>
         </div>
     </div>
-
-
     <script>
     function confirmacaoCadastro() {
       var inputNome = document.getElementById('nomeServidor');
@@ -123,7 +120,6 @@
           return false;
       }
       else{
-        alert('Servidor cadastrado com sucesso!!.');
         document.getElementById('form').submit();
       }
       return true;

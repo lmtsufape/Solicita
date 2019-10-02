@@ -12,7 +12,6 @@
                       <form method="POST" enctype="multipart/form-data" id="formRequisicao" action="{{ route('confirmacao-requisicao') }}">
                           @csrf
                           <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
-                              <!-- <label for='curso' style="width: 14.5rem; margin-left:125px">Selecione uma Unidade Acadêmica</label> -->
                               @foreach($perfis as $perfil)
                               <h5 name="nomeAluno"><b>{{$perfil->aluno->user->name}}</b></h5>
                               <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label>
@@ -30,28 +29,38 @@
                                     </input>
                                   <input type="checkbox" name="historico"             value="Historico"                 id="historico">Histórico</br>
                                     </input>
-                                  <input type="checkbox" name="programaDisciplina"    value="Programa de Disciplina"    id="programaDisciplina"
+                                    <div>
+                                      <input type="checkbox" name="programaDisciplina"    value="Programa de Disciplina"    id="programaDisciplina"
                                         onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina</br>
                                       </input>
-                                      <div>
-                                        <textarea class="form-control @error('programa') is-invalid @enderror "
+                                        <textarea class="form-control @error('programaDisciplina') is-invalid @enderror "
                                                   form ="formRequisicao" style="display:none" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"
                                                   required= "" placeholder="O campo deve ser preenchido">
                                         </textarea>
-                                        @error('programa')
+                                        @error('programaDisciplina')
                                           <span>
-                                            Deu erro
+                                            <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                                            <strong>{{ $message }}</strong>
+                                            </span>
                                           </span>
                                         @enderror
                                       </div>
+                                      <div>
                                       <input type="checkbox" name="outros"               value="Outros"                     id="outros"
                                         onclick="checaSelecaoOutros()"> Outros<br>
                                       </input>
-                                      <textarea class="form-control @error('outros') is-invalid @enderror"
+                                      <textarea class="form-control @error('outrosDocumentos') is-invalid @enderror"
                                                   form ="formRequisicao" style="display:none" name="requisicaoOutros"   cols="115" id="textareaOutrosDocumentos"
                                                   required= "" placeholder="O campo deve ser preenchido">
                                                 </textarea>
-
+                                                @error('outrosDocumentos')
+                                                  <span>
+                                                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                                                    <strong>{{ $message }}</strong>
+                                                    </span>
+                                                  </span>
+                                                @enderror
+                                      </div>
                                       <!-- </label> -->
                               <div class="form-group row mb-0">
                                       <div class="col-md-8 offset-md-4">
@@ -59,7 +68,7 @@
                                         {{ ('Finalizar') }}
                                         </a>
 
-                                        <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault()" href="{{ route('cancela-requisicao')}}">
+                                        <a class="btn btn-primary btn-primary-lmts" href="{{ route('cancela-requisicao')}}">
                                           {{ ('Cancelar') }}
                                         </a>
                                     </div>
@@ -104,12 +113,12 @@ function validaCampos() {
       alert('Informe ao menos um dos documento que deseja solicitar.');
       return false;
   }
-  if(checkBoxPrograma.checked==true&& textareaProgramaDisciplina.isEmpty()){
-    alert('O campo "Programa de Disciplina" deve ser preenchido corretamente, sob pena do não atendimento da requisicao.');
+  if(checkBoxPrograma.checked==true && document.getElementById("textareaProgramaDisciplina").value==""){
+    alert('Os campos devem ser preenchidos corretamente.');
     return false;
   }
-  if(checkBoxOutros.checked==true){
-    alert('O campo "Outros" deve ser preenchido corretamente, sob pena do não atendimento da requisicao.');
+  if(checkBoxOutros.checked==true && document.getElementById("textareaOutrosDocumentos").value==""){
+    alert('Os campos devem ser preenchidos corretamente.');
     return false;
   }
   else{

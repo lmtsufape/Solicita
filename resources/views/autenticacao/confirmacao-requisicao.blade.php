@@ -4,12 +4,12 @@
 
 <div class="container" style="width: 100rem;margin-left: 200px;">
         <div class="col-md-8">
-          <form method="GET" action="{{ route('formulario-requisicao') }}">
+          <form method="POST" action="{{ route('finaliza-requisicao') }}">
+            @csrf
             <div class="card" style="width: 70rem;">
                 <h2><div class="card-header" align="center">{{ __('Confirmação de Requisição de Documentos') }}</div></h2>
                   <div class="card-body">
                         <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
-
                                   <p><div class = "label" id = nomeAlunoConfirmacao></div><b>Nome do Aluno: {{$requisicao->perfil->aluno->user->name}}</b></p>
                                   <p><div class = "label" id = cpfAlunoConfirmacao></div><b>CPF: {{$requisicao->perfil->aluno->cpf}}</b></p>
                                   <p><div class = "label" id = cursoAlunoConfirmacao></div><b>Curso: {{$requisicao->perfil->curso->nome}}</b></p>
@@ -18,12 +18,11 @@
                                     @foreach ($arrayDocumentos as $docSolicitado)
                                     <li value="Documentos solicitados">{{$docSolicitado->documento_id}} - {{$docSolicitado}}</li>
                                     @if($docSolicitado->documento_id==4)
-                                      <h1>Programa de Disciplina {{$docSolicitado->detalhes}}</h1>
+                                      <h5>Descrição do documento solicitado {{$docSolicitado->detalhes}}</h5>
                                     @endif
                                     @if($docSolicitado->documento_id==5)
-                                      <h1>Outros documentos</h1>
+                                      <h5>Descrição do documento solicitado {{$docSolicitado->detalhes}}</h5>
                                     @endif
-
                                     @endforeach
                                   </ul>
                                   <!-- <p><value="Comprovante de Matricula" id="comprovanteMatricula">Comprovante de matricula</br></p>
@@ -36,7 +35,7 @@
                                   <h5> Data prevista para entrega: </h5>
                               <!-- </label> -->
                                   </div>
-                                  <a href="{{ route('home-aluno', ['titulo' => 'Voltar para a home']) }}" style="text-decoration:none; color: inherit;">
+                                  <a href="{{ route('finaliza-requisicao') }}" style="text-decoration:none; color: inherit;">
                                     <div class="form-group row mb-0">
                                       <div class="col-md-8 offset-md-4">
                                         <button type="submit"class="btn btn-primary btn-primary-lmts" align="center">
