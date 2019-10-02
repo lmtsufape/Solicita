@@ -10,7 +10,7 @@
             <label for="cursos" style="margin-left:275px; ">Selecionar Curso</label>
             <div class="justify-content-right" style="margin-left: 275px">
               <select name="cursos" id="cursos" onchange="getSelectValue();"
-              class="browser-default custom-select custom-select-lg mb-1" style="width: 300px">
+              class="browser-default custom-select custom-select-lg mb-1" style="width: 400px">
 
                 @foreach($cursos as $curso)
                 <option value="{{$curso->id}}">{{$curso->nome}}</option>

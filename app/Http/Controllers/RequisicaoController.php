@@ -38,15 +38,6 @@ class RequisicaoController extends Controller
 
                   ->get();
 
-
-          // foreach ($id_documentos as $id_documento) {
-          //   array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
-          // }
-
-          // $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
-          //
-          // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
-
       }
       else {
         $titulo = $documento->tipo;
@@ -55,18 +46,11 @@ class RequisicaoController extends Controller
                 ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                 ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                 ->select ('requisicao_documentos.id')
-                ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id]])
+                ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id],['status','Em andamento']])
 
                 ->get();
-
-        //$id_documentos retorna um collection. É necessário transformar para array
-        //pega todas as requisições com base no id do documento e no id do curso
-
-
-
-
       }
-
+      // dd($id_documentos);
       $id = []; //array auxiliar que pega cada item do $id_documentos
       foreach ($id_documentos as $id_documento) {
         array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
@@ -74,8 +58,26 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
 
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
-  }
+    }
 
+
+    //marca os documentos como "Processando"
+    public function concluirRequisicao(Request $request){
+
+        //dd($request);
+
+        $arrayDocumentos = $request->checkboxLinha;
+        // dd($request->checkboxLinha);
+
+        $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
+        foreach ($id_documentos as $id_documento) {
+          $id_documento->status = "Processando";
+          $id_documento->save();
+        }
+
+        return redirect()->back()->with('alert', 'Documento(s) Solicitado(s) com Sucesso!'); //volta pra mesma url
+
+    }
 
     public function storeRequisicao(Request $request){
 
