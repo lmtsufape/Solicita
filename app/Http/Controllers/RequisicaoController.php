@@ -61,7 +61,7 @@ class RequisicaoController extends Controller
     }
 
 
-    //marca os documentos como "Processando"
+    //marca os documentos como "Solicitado"
     public function concluirRequisicao(Request $request){
 
         //dd($request);
@@ -71,7 +71,7 @@ class RequisicaoController extends Controller
 
         $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
         foreach ($id_documentos as $id_documento) {
-          $id_documento->status = "Processando";
+          $id_documento->status = "Solicitado";
           $id_documento->save();
         }
 
