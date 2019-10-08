@@ -271,7 +271,7 @@
                     <a class="nav-link" href="{{route('home-aluno')}}"
                     onclick="event.preventDefault();
                     document.getElementById('homeAluno').submit();">
-                    {{ __('Aluno') }}
+                    {{ __('Requisicoes') }}
                     </a>
                     <form id="homeAluno" action="{{ route('home-aluno') }}" method="GET" style="display: none;">
                     </form>
