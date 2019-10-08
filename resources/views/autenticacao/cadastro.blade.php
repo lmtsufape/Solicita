@@ -89,7 +89,6 @@
                       @enderror
                     </select>
 
-
                     <!-- Cursos-->
                     <label for="cursos" style="margin-left:125px">Curso</label>
                     <select name="cursos" id="cursos" class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
