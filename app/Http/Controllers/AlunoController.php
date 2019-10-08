@@ -19,6 +19,9 @@ class AlunoController extends Controller
     return view('autenticacao.login');
   }
 
+  public function homeAluno(){
+    return view('autenticacao.home-aluno');
+  }
   //cadastro de aluno
   public function createAluno(){
 
@@ -71,6 +74,7 @@ class AlunoController extends Controller
     $usuario->name = $request->input('name');
     $usuario->email = $request->input('email');
     $usuario->password = Hash::make($request->input('password'));
+    $usuario->tipo = 'aluno';
     $usuario->save();
 
 
