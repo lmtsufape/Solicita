@@ -20,7 +20,7 @@
                     </div>
                  </a>
 
-                 <a href="{{ route("login", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
+                 <a href="{{ route("home-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
                     <div class="card cartao text-center " style="border-radius: 30px">
                      <div class="card-body d-flex justify-content-center">
                           <h2 style="padding-top:15px">Listar Documentos Solicitados</h2>
