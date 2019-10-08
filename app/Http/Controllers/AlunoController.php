@@ -74,6 +74,7 @@ class AlunoController extends Controller
     $usuario->name = $request->input('name');
     $usuario->email = $request->input('email');
     $usuario->password = Hash::make($request->input('password'));
+    $usuario->tipo = 'aluno';
     $usuario->save();
 
 
