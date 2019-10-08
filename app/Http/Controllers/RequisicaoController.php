@@ -23,6 +23,7 @@ class RequisicaoController extends Controller
     $documento = Documento::where('id',$request->titulo_id)->first();
     $curso = Curso::where('id',$request->curso_id)->first();
 
+    dd($documento);
       //Verifica se o card clicado foi igual a "TODOS"
       if($request->titulo_id == 6){
 
@@ -40,7 +41,8 @@ class RequisicaoController extends Controller
 
       }
       else {
-        $titulo = $documento->tipo;
+        // $titulo = $documento->tipo;
+        
 
         $id_documentos = DB::table('requisicao_documentos')
                 ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')

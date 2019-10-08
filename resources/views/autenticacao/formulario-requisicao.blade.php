@@ -31,7 +31,7 @@
                                   </div>
                                     <div class="form-group row mb-0">
                                       <div class="col-md-8 offset-md-4">
-                                        <button type="submit"class="btn btn-primary btn-primary-lmts" route=('confirmacao_requisicao')>
+                                        <button type="submit"class="btn btn-primary btn-primary-lmts" route=('confirmacao-requisicao')>
                                         {{ __('Finalizar') }}
                                       </button>
                                       <button type="cancel" class="btn btn-primary btn-primary-lmts" route=('home-aluno')>
