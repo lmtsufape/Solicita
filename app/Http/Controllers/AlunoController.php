@@ -19,6 +19,9 @@ class AlunoController extends Controller
     return view('autenticacao.login');
   }
 
+  public function homeAluno(){
+    return view('autenticacao.home-aluno');
+  }
   //cadastro de aluno
   public function createAluno(){
 

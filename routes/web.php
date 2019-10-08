@@ -38,9 +38,10 @@ Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('l
 
 Route::post('/listar-requisicoes','RequisicaoController@concluirRequisicao')->name('listar-requisicoes-post');
 
-Route::get('/home-aluno',function(){
-    return view('autenticacao.home-aluno');
-})->name('home-aluno');
+Route::get('/home-aluno','AlunoController@homeAluno')->name('home-aluno');
+
+Route::get('/perfil-aluno','PerfilAluno@index')->name('perfil-aluno');
+Route::get('/editar-perfil','PerfilAluno@editarInfo')->name('editar-info');
 
 
 
@@ -56,9 +57,9 @@ Route::get('/confirmacao-requisicao',function(){
     return view('autenticacao.home-aluno');
 })->name('confirmacao-requisicao');
 
- Route::get('/home-aluno', function(){
-     return view('autenticacao.formulario-requisicao');
- })->name('formulario-requisicao');
+ // Route::get('/home-aluno', function(){
+ //     return view('autenticacao.formulario-requisicao');
+ // })->name('formulario-requisicao');
 
  Auth::routes();
 
