@@ -124,9 +124,8 @@
                             @enderror
                         </div>
                     </div>
-
-
                     <!-- Form Senha -->
+
                     <div class="form-group row formulario-centro">
 
                         <div class="col-md-9">
@@ -181,10 +180,6 @@
                         </div>
 
                     </div>
-
-
-
-
               </form>
           </div>
       </div>

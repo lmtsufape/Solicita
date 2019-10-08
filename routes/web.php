@@ -18,11 +18,11 @@ Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
 Route::get('/', 'UsuarioController@index')->name('login');
 //ROTAS PARA VARIAÇÕES DOS SERVIDORES
-Route::get('/cadastro-servidor','ServidorController@index')->name('cadastro-servidor');
+Route::get('/home-servidor','ServidorController@index')->name('cadastro-servidor');
 Route::get('/cadastro-servidor','ServidorController@homeServidor')->name('cadastro-servidor');
-Route::post('/cadastro-servidor','ServidorController@storeServidor')->name('cadastro-servidor');
-Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
-Route::get('/cancela-cadastro','AdministradorController@cancel')->name('cancela-cadastro');
+Route::post('/confirmacao-servidor','ServidorController@storeServidor')->name('confirmacao-servidor');
+// Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
+Route::get('/cancela-cadastro','ServidorController@cancel')->name('cancela-cadastro');
 //percurso da tela inicial do sistema para a home do aluno
 
 Route::get('/home-aluno', 'AlunoController@index')->name('home-aluno');
