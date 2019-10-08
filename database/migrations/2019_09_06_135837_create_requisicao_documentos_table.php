@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateRequisicaoDocumentosTable extends Migration
 {
     /**
@@ -15,17 +13,13 @@ class CreateRequisicaoDocumentosTable extends Migration
     {
         Schema::create('requisicao_documentos', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-
             $table->string('anotacoes')->nullable();
-            $table->string('status');
-
+            $table->string('status')->default(false);
             $table->date('status_data');
             $table->string('detalhes')->nullable();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

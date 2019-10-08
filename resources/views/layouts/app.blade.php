@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Document</title>
+    <title>LMTS - ESCOLARIDADE</title>
 
 
     <link rel="stylesheet" href="css/stylelmts.css">
@@ -13,10 +13,6 @@
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-
     <style type="text/css">
         .panel-default > .panel-heading {
             color: #fff;
@@ -238,13 +234,13 @@
       <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
         <ul id="logos" style="list-style:none;">
             <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
-                <a href="{{ route('login') }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
-
+                <a href="{{ route('login') }}">
+                <!-- <img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a> -->
+                  <h5>Logo aqui</h5></a>
+                </a>
                 <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70"  align = "right" ></a>
-
                 <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
                 <a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 30px" height="70" width="50" align = "right" ></a>
-
                 <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
                 <a target="_blank" href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px; margin-top: 30px " height="70" width="50" align = "right"></a>
             </li>
@@ -271,13 +267,14 @@
                   </a>
                 </li>
 
-
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{route('login')}}"
+                    <a class="nav-link" href="{{route('home-aluno')}}"
                     onclick="event.preventDefault();
-                                  document.getElementById('login').submit();">
-                                  {{ __('Aluno') }}
-                  </a>
+                    document.getElementById('homeAluno').submit();">
+                    {{ __('Aluno') }}
+                    </a>
+                    <form id="homeAluno" action="{{ route('home-aluno') }}" method="GET" style="display: none;">
+                    </form>
                 </li>
 
                 <li class="nav-item active">
@@ -289,18 +286,16 @@
                   </a>
 
                 </li>
-
                 <li class="nav-item active">
 
-                  <a class="nav-link" href="{{route('login')}}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('login').submit();">
-                                  {{ __('Sair') }}
-                  </a>
-                </li>
-
-
-
+                                 <a class="nav-link" href="{{ route('cadastro-servidor') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('servidoresCadastro-form').submit();">
+                                                 {{ __('Cadastrar Servidor') }}
+                                 </a>
+                                 <form id="servidoresCadastro-form" action="{{ route('cadastro-servidor') }}" method="GET" style="display: none;">
+                                 </form>
+               </li>
               </ul>
 
             </div>
