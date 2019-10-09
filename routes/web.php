@@ -43,22 +43,30 @@ Route::get('/listar-requisicoes',function(Request $request){
 Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('listar-requisicoes');
 
 Route::post('/listar-requisicoes','RequisicaoController@concluirRequisicao')->name('listar-requisicoes-post');
-//Formulário de requisicao
-// Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
-// Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
 
-// Route::get('/confirmacao-requisicao',function(){
-//     return view('autenticacao.confirmacao-requisicao');
-// })->name('confirmacao-requisicao');
-//
-// Route::get('/confirmacao-requisicao',function(){
-//     return view('autenticacao.home-aluno');
-// })->name('confirmacao-requisicao');
- //
+Route::get('/home-aluno','AlunoController@homeAluno')->name('home-aluno');
+
+Route::get('/perfil-aluno','PerfilAluno@index')->name('perfil-aluno');
+Route::get('/editar-perfil','PerfilAluno@editarInfo')->name('editar-info');
+
+
+
+//Formulário de requisicao
+Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
+Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
+
+Route::get('/confirmacao-requisicao',function(){
+    return view('autenticacao.confirmacao-requisicao');
+})->name('confirmacao-requisicao');
+
+//Route::get('/confirmacao-requisicao',function(){
+//    return view('autenticacao.home-aluno');
+//})->name('confirmacao-requisicao');
+
  // Route::get('/home-aluno', function(){
  //     return view('autenticacao.formulario-requisicao');
  // })->name('formulario-requisicao');
 
  Auth::routes();
 
- Route::get('/home', 'HomeController@index')->name('home');
+ Route::get('/home', 'HomeController@index')->name('home'); //redireciona para a home de acordo com o tipo

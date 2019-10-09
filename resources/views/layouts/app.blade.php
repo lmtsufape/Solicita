@@ -262,7 +262,7 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="{{route('login')}}"
                     onclick="event.preventDefault();
-                                  document.getElementById('login').submit();">
+                                  document.getElementById('login').submit();" style="color:white">
                                   {{ __('Inicio') }}
                   </a>
                 </li>
@@ -281,7 +281,7 @@
 
                   <a class="nav-link" href="{{route('login')}}"
                     onclick="event.preventDefault();
-                                  document.getElementById('login').submit();">
+                                  document.getElementById('login').submit();"style="color:white">
                                   {{ __('Ajuda') }}
                   </a>
 
@@ -310,7 +310,7 @@
                     <li> <!--  logout   -->
                         <a class="nav-link"  href="{{ route('logout') }}"
                            onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
+                                         document.getElementById('logout-form').submit();"style="color:white">
                            {{ __('Sair') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -324,14 +324,7 @@
       @endif
       @php($url = str_replace(URL::to('/'),'',URL::current()))
 
-      @if(Auth::check())
 
-        @if(!($url == '/login'))
-          @if(!($url == '/register'))
-            <a class="badge badge-primary badge-lmts" style="color:white"> @yield('navbar') </a>
-          @endif
-        @endif
-      @endif
 
       <br>
       @yield('conteudo')
@@ -340,6 +333,10 @@
   </div>
 
 </body>
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
 </html>

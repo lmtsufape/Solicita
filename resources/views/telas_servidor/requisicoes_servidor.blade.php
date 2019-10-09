@@ -6,6 +6,12 @@
         <table class="table" >
             <div class="lmts-primary">
 
+              <!-- botão para confirmar seleção -->
+              <!-- ao clicar no botão de confirmar, é chamado a função confirmarRequisicao(). Se o usuário cancelar o event.preventDefault cancela o envio
+                  do formulario. caso contrário, o formulário é enviado e o documento selecionado é marcado como processando-->
+              <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
+              class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px"  >Concluir Requisição</button>
+
             <div class="nome-documento lmts-primary mx-auto " style="height:100px">
                 <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
             </div>
@@ -27,10 +33,8 @@
                     <!-- Checkbox que seleciona todos os outros -->
                     <div class="form-check">
                       <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
-                      <!-- botão para confirmar seleção -->
-                      <!-- ao clicar no botão de confirmar, é chamado a função confirmarRequisicao(). Se o usuário cancelar o event.preventDefault cancela o envio
-                          do formulario. caso contrário, o formulário é enviado e o documento selecionado é marcado como processando-->
-                      <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()" class="btn btn-secondary btn-sm" style="margin-bottom: 10px" >Finalizar</button>
+
+                      
                     </div>
 
 

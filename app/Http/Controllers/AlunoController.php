@@ -22,11 +22,10 @@ class AlunoController extends Controller
   public function index(){
     return view('autenticacao.home-aluno');
   }
-  // INDEX NO FORK JORGE
-  // public function index(){
-  //   return view('autenticacao.home-aluno');
-  //
-  // }
+
+  public function homeAluno(){
+    return view('autenticacao.home-aluno');
+  }
   //cadastro de aluno
   public function createAluno(){
     $cursos = Curso::all();
@@ -73,6 +72,7 @@ class AlunoController extends Controller
     $usuario->name = $request->input('name');
     $usuario->email = $request->input('email');
     $usuario->password = Hash::make($request->input('password'));
+    $usuario->tipo = 'aluno';
     $usuario->save();
     //ALUNO
     $aluno->cpf = $request->input('cpf');
@@ -218,7 +218,8 @@ public function novaRequisicao(Request $request){
   //#Documentos
   $ano = date('Y');
   $size = count($arrayDocumentos);
-  $requisicao->requisicao_documentos()->saveMany($arrayDocumentos);
+  $requisicao->requisicao_documento()->saveMany($arrayDocumentos);
+  // $requisicao->requisicao_documentos()->saveMany($arrayDocumentos);
   $documento = Documento::where('id',$request->titulo_id)->first();
   $curso = Curso::where('id',$request->curso_id)->first();
   return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayDocumentos', 'size', 'ano'));
