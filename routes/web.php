@@ -18,14 +18,23 @@ Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
 Route::get('/', 'UsuarioController@index')->name('login');
 //ROTAS PARA VARIAÇÕES DOS SERVIDORES
-Route::get('/cadastro-servidor','ServidorController@index')->name('cadastro-servidor');
+// Route::get('/cadastro-servidor','ServidorController@index')->name('cadastro-servidor');
 Route::get('/cadastro-servidor','ServidorController@homeServidor')->name('cadastro-servidor');
-Route::post('/cadastro-servidor','ServidorController@storeServidor')->name('cadastro-servidor');
-Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
-Route::get('/cancela-cadastro','AdministradorController@cancel')->name('cancela-cadastro');
+Route::post('/novo-servidor','ServidorController@storeServidor')->name('novo-servidor');
+// Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
+// Route::get('/cancela-cadastro','AdministradorController@cancel')->name('cancela-cadastro');
 //percurso da tela inicial do sistema para a home do aluno
 
 Route::get('/home-aluno', 'AlunoController@index')->name('home-aluno');
+// Route::get('/prepara-requisicao', 'AlunoController@preparaNovaRequisicao')->name('prepara-requisicao');
+// Route::get('/formulario-requisicao', 'AlunoController@preparaNovaRequisicao')->name('formulario-requisicao');
+// Route::post('/finaliza-requisicao', 'AlunoController@novaRequisicao')->name('finaliza-requisicao'); //----------------------
+// // Route::post('/finaliza-requisicao', 'AlunoController@finalizaRequisicao')->name('finaliza-requisicao');
+// Route::get('/confirmacao-requisicao', 'AlunoController@confirmacaoRequisicao')->name('confirmacao-requisicao');
+// Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
+// Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
+
+
 Route::get('/prepara-requisicao', 'AlunoController@preparaNovaRequisicao')->name('prepara-requisicao');
 Route::get('/formulario-requisicao', 'AlunoController@preparaNovaRequisicao')->name('formulario-requisicao');
 Route::post('/confirmacao-requisicao', 'AlunoController@novaRequisicao')->name('confirmacao-requisicao'); //----------------------
