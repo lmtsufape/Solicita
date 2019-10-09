@@ -190,7 +190,7 @@ public function novaRequisicao(Request $request){
   //#Documentos
   $ano = date('Y');
   $size = count($arrayDocumentos);
-  $requisicao->requisicao_documentos()->saveMany($arrayDocumentos);
+  $requisicao->requisicao_documento()->saveMany($arrayDocumentos);
 
   $documento = Documento::where('id',$request->titulo_id)->first();
   $curso = Curso::where('id',$request->curso_id)->first();
