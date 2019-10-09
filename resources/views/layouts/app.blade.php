@@ -223,6 +223,8 @@
 
   <div id="page-container">
    <div id="content-wrap">
+
+      <!-- Barra Brasil -->
       <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
         <ul id="menu-barra-temp" style="list-style:none;">
             <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
@@ -252,85 +254,22 @@
       </div>
       <!-- barra de menu -->
 
-      @if(Auth::check())
-
-        <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9; box-shadow: 0 0 6px rgba(0,0,0,0.5);" role="navigation">
-          <a class="navbar-brand" href="{{ route('login') }}" style="color: white; font-weight: bold;">
-            <img src="{{asset('images/logoBranco.png')}}" height="30" class="d-inline-block align-top" alt="">
-
-          </a>
-            <div class="collapse navbar-collapse" >
-              <ul class="navbar-nav mr-auto">
-
-
-                <li class="nav-item active">
-                  <a class="nav-link" href="{{route('login')}}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('login').submit();" style="color:white">
-                                  {{ __('Inicio') }}
-                  </a>
-                </li>
-
-
-                <li class="nav-item active">
-                  <a class="nav-link" href="{{route('login')}}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('login').submit();"style="color:white">
-                                  {{ __('Aluno') }}
-                  </a>
-                </li>
-
-                <li class="nav-item active">
-
-                  <a class="nav-link" href="{{route('login')}}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('login').submit();"style="color:white">
-                                  {{ __('Ajuda') }}
-                  </a>
-
-                </li>
-
-                <li class="nav-item active">
-
-                  <a class="nav-link" href="{{route('login')}}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('login').submit();"style="color:white">
-                                  {{ __('Sair') }}
-                  </a>
-                </li>
-
-
-
-              </ul>
-
-            </div>
-
-            <div class="nav navbar-nav navbar-right" >
-              <ul class="nav navbar-nav">
-                  @if(Auth::check())
-                  @endif
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                  @if(Auth::check())
-                    <li> <!--  logout   -->
-                        <a class="nav-link"  href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();"style="color:white">
-                           {{ __('Sair') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                @endif
-              </ul>
-            </div>
-          </nav>
+      <!-- se o usuário estiver logado -->
+      @if(Auth::check()) 
+          <!-- Se o usuário for um aluno -->
+          @if(Auth::user()->tipo == 'aluno')
+              <!-- carrega o componente contendo Navbar do aluno -->
+              @component('componentes.navbarAluno')
+              @endcomponent
+          @endif
+          
+          <!-- Se o usuário for um servidor -->
+          @if(Auth::user()->tipo == 'servidor')
+              <!-- Carrega component contendo navbar do servidor -->
+              @component('componentes.navbarServidor')
+              @endcomponent
+          @endif
       @endif
-      @php($url = str_replace(URL::to('/'),'',URL::current()))
-
-  
-
       <br>
       @yield('conteudo')
 
