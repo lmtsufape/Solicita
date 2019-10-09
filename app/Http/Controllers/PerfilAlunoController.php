@@ -81,6 +81,12 @@ class PerfilAlunoController extends Controller
       return view('telas_aluno.alterar_senha');
     }
     public function storeAlterarSenha(Request $request){
+
+
+      $request->validate([
+        'password' => 'required|string|min:8|confirmed',
+      ]);
+
       $user = Auth::user();
       $user->password = Hash::make($request->password);
       $user->save();
