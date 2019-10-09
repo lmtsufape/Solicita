@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -8,7 +7,6 @@ use App\Unidade;
 use App\Aluno;
 use App\Perfil;
 use App\User;
-
 class PerfilController extends Controller
 {
   public function index(){
@@ -16,13 +14,11 @@ class PerfilController extends Controller
     $unidades = Unidade::all();
     return view('telas_aluno.perfil_aluno',compact('cursos','unidades'));
   }
-
   public function editarInfo(){
     $cursos = Curso::all();
     $unidades = Unidade::all();
     return view('telas_aluno.editar_info_aluno',compact('cursos','unidades'));
   }
-
   public function adicionaPerfil(Request $request){
     $cursos = Curso::all();
     $unidades = Unidade::all();
