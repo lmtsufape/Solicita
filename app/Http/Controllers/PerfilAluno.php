@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Curso;
-use App\Unidade;
+
+
 class PerfilAluno extends Controller
 {
     //
@@ -22,7 +22,7 @@ class PerfilAluno extends Controller
     }
 
     public function adicionarPerfil(){
-      
+
 
     }
 }
