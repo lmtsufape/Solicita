@@ -49,7 +49,8 @@ Route::get('/home-aluno','AlunoController@homeAluno')->name('home-aluno');
 Route::get('/perfil-aluno','PerfilAluno@index')->name('perfil-aluno');
 Route::get('/editar-perfil','PerfilAluno@editarInfo')->name('editar-info');
 
-
+Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');
+Route::post('/salva-novo-perfil-aluno', 'PerfilController@salvaPerfil')->name('salva-novo-perfil-aluno');
 
 //Formulário de requisicao
 Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');

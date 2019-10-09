@@ -20,4 +20,9 @@ class PerfilAluno extends Controller
       $unidades = Unidade::all();
       return view('telas_aluno.editar_info_aluno',compact('cursos','unidades'));
     }
+
+    public function adicionarPerfil(){
+      
+
+    }
 }
