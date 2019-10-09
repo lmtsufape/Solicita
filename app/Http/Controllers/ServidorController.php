@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 use App\Curso;
 use App\User;
 use App\Servidor;
@@ -27,6 +27,7 @@ class ServidorController extends Controller
       $usuario->name = $request->input('name');
       $usuario->email = $request->input('email');
       $usuario->password = Hash::make($request->input('password'));
+      $usuario->tipo = 'servidor';
       $usuario->save();
     //INSTANCIA DO SERVIDOR
       $servidor = new Servidor();
