@@ -9,26 +9,27 @@
     <div class="mx-auto" style="width: 800px;">
           <div class="mx-auto" style="background-color: white;width:400px;height:250px;float:left;padding-left:100px">
             <label for="nome">Nome</label>
-            <h4>Ihago Santos</h4>
+            <h4>{{$user->name}}</h4>
 
             <label for="nome">CPF</label>
-            <h4>12345678912</h4>
+            <h4>{{$aluno->cpf}}</h4>
 
             <label for="nome">Tipo de Vinculo</label>
-            <h4>Matriculado</h4>
+            <h4>{{$perfil->situacao}}</h4>
           </div>
 
           <div class="" style="background-color: white;width:400px;height:250px;float:left;padding-left:100px">
             <label for="nome">Unidade Acadêmica</label>
-            <h4>Unidade Acadêmica de Garanhuns</h4>
+            <h4>{{$unidadeAluno}}</h4>
 
             <label for="nome">Curso</label>
-            <h4>Bacharelado em Ciências da Computação</h4>
+            <h4>{{$cursoAluno->nome}}</h4>
 
             <label for="nome">E-mail</label>
-            <h4>ihago@gmail</h4>
+            <h4>{{$user->email}}</h4>
           </div>
 
+          <a href="{{route('alterar-senha')}}" class="btn btn-secondary" style="margin-top: 50px;margin-left: 10px;float:right;">Editar Senha</a>
           <a href="{{route('editar-info')}}" class="btn btn-primary" style="margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Editar Perfil</a>
     </div>
 

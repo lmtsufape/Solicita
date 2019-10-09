@@ -135,7 +135,7 @@
               </form>
           </div>
       </div>
-      <script>
+      <!-- <script>
       function confirmacaoCadastro() {
         var inputNome = document.getElementById('nomeServidor');
         var inputMatricula = document.getElementById('matriculaServidor');
@@ -152,6 +152,6 @@
         }
         return true;
       }
-      </script>
+      </script> -->
 
 @endsection
