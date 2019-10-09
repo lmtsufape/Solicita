@@ -18,7 +18,7 @@ class AdministradorSeeder extends Seeder
       DB::table('administradors')->insert([
         'matricula'=>'123456789',
         'user_id' => $user_id[0],
-
+        
       ]);
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class PerfilAluno extends Controller
 {
     //
+
     public function index(){
       $cursos = Curso::all();
       $unidades = Unidade::all();
@@ -19,7 +20,5 @@ class PerfilAluno extends Controller
       return view('telas_aluno.editar_info_aluno',compact('cursos','unidades'));
     }
     public function adicionarPerfil(){
-
-
     }
 }

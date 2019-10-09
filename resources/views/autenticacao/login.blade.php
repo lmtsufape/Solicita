@@ -7,13 +7,13 @@
             <div class="texto">
 
 
-                <h1>O que é o <strong> escolar.io? </strong></h1>
+                <h1>O que é o <strong> "Solicita!"? </strong></h1>
                 <p>
                     É uma ferramenta voltada para o atendimento das demandas<br>
                     de requisições de documentos no departamento de escolaridade<br>
                     da Universidade Federal Rural de Pernambuco - UAG.
                 </p>
-                <h1>Benefícios de utilizar o <strong> escolar.io? </strong></h1>
+                <h1>Benefícios de utilizar o <strong> "Solicita!"? </strong></h1>
                 <ul>
                     <li>Solicite seus documentos online;</li>
                     <li>Acompanhe o status do seu requerimento;</li>

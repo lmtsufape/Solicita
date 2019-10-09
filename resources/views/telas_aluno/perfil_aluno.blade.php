@@ -9,7 +9,7 @@
     <div class="mx-auto" style="width: 800px;">
           <div class="mx-auto" style="background-color: white;width:400px;height:250px;float:left;padding-left:100px">
             <label for="nome">Nome</label>
-            <h4>{{$user->name}}</h4>
+            <h4>{{Auth::user()->name}}</h4>
 
             <label for="nome">CPF</label>
             <h4>{{$aluno->cpf}}</h4>

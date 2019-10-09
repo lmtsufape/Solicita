@@ -25,7 +25,7 @@ class PerfilController extends Controller
     $alunoLogado = Auth::user();
     $perfis = Perfil::All();
     $perfil = Perfil::where('id',$alunoLogado->id)->first();
-    // dd($perfil->unidades->nome);
+    // dd($perfil);
     return view ('telas_aluno.adiciona_perfil_aluno', compact('perfil', 'perfis','cursos', 'unidades', 'alunoLogado'));
   }
   public function salvaPerfil(Request $request){
@@ -48,6 +48,7 @@ class PerfilController extends Controller
     // $aluno->perfil()->associate($perfil);
     // dd($perfil);
     $perfil->save();
-    return view ('telas_aluno.perfil_aluno', compact('perfil', 'alunoLogado'));
+    // return "funcionou";
+    return redirect ('/home-aluno');
   }
 }

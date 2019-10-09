@@ -176,16 +176,13 @@
         .dropdown:hover .dropbtn {
           background-color: #3097D1;
         }
-
         .separador-lmts{     /*       Separador de navbar */
           color: white;
           font-weight: bold;
           font-size: 20;
           margin-top: 6px;
         }
-
         /* Botão com cor padrão do lmts */
-
         .btn-primary-lmts{
           background-color: #1B2E4F;
           border-color: #d3e0e9;
@@ -201,9 +198,7 @@
           border-color: #d3e0e9;
           color: white;
         }
-
         /* badge lmts */
-
         .badge-lmts{
           padding: 5px;
           color: white;
@@ -211,7 +206,6 @@
           background-color: #67748B;
           margin-left: 5px;
           margin-top: 5px;
-
         }
     </style>
 </head>
