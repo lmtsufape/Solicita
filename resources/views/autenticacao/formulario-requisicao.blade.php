@@ -56,17 +56,17 @@
                                                 @enderror
                                       </div>
                                       <!-- </label> -->
-                              <div class="form-group row mb-0">
-                                      <div class="col-md-8 offset-md-4">
-                                        <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); validaCampos();" href="{{ route('confirmacao-requisicao') }}">
-                                        {{ ('Finalizar') }}
-                                        </a>
+                                      <div class="form-group row mb-0">
+                                              <div class="col-md-8 offset-md-4">
+                                                <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); validaCampos();" href="{{ route('confirmacao-requisicao') }}">
+                                                {{ ('Finalizar') }}
+                                                </a>
 
-                                        <a class="btn btn-primary btn-primary-lmts" href="{{ route('cancela-requisicao')}}">
-                                          {{ ('Cancelar') }}
-                                        </a>
-                                    </div>
-                              </div>
+                                                <a class="btn btn-primary btn-primary-lmts" href="{{ route('cancela-requisicao')}}">
+                                                  {{ ('Cancelar') }}
+                                                </a>
+                                              </div>
+                                      </div>
                         </form>
                     </div>
             </div>

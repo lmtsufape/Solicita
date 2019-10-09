@@ -111,34 +111,6 @@ class AlunoController extends Controller
         $perfis = Perfil::All();
         return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'perfis', 'alunos'));
       }
-  public function requisitados(Requisicao_documento $documentosRequisitados, Requisicao $requisicao, $id){
-          date_default_timezone_set('America/Sao_Paulo');
-          $date = date('d/m/Y');
-          $hour =  date('H:i');
-          $documentosRequisitados->status_data = $date;
-          $documentosRequisitados->requisicao_id = $requisicao->id;
-          $documentosRequisitados->aluno_id = 1;
-          $documentosRequisitados->status = 'Em andamento';
-          // $documentosRequisitados->detalhes = "";
-          $documentosRequisitados->documento_id = $id;
-          return $documentosRequisitados;
-        }
-        public function confirmacaoRequisicao(Request $request){
-          return redirect('/autenticacao.confirmacao-requisicao');
-        }
-        public function finalizaRequisicao(Request $request){
-          return redirect('/home-aluno');
-        }
-        public function cancelaRequisicao(){
-          return view('/autenticacao.home-aluno');
-        }
-        public function listarRequisicoesAluno(){
-              $requisicao = Requisicao::paginate(10);
-              return view('/home-aluno')->with($requisicao);
-        }
-        public function home(){
-          return view ('autenticacao.home-aluno');
-        }
 
 public function novaRequisicao(Request $request){
   $documento_req = new Requisicao_documento();
@@ -219,10 +191,39 @@ public function novaRequisicao(Request $request){
   $ano = date('Y');
   $size = count($arrayDocumentos);
   $requisicao->requisicao_documento()->saveMany($arrayDocumentos);
-  // $requisicao->requisicao_documentos()->saveMany($arrayDocumentos);
+
   $documento = Documento::where('id',$request->titulo_id)->first();
   $curso = Curso::where('id',$request->curso_id)->first();
   return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayDocumentos', 'size', 'ano'));
 }
 
+
+public function requisitados(Requisicao_documento $documentosRequisitados, Requisicao $requisicao, $id){
+  date_default_timezone_set('America/Sao_Paulo');
+  $date = date('d/m/Y');
+  $hour =  date('H:i');
+  $documentosRequisitados->status_data = $date;
+  $documentosRequisitados->requisicao_id = $requisicao->id;
+  $documentosRequisitados->aluno_id = 1;
+  $documentosRequisitados->status = 'Em andamento';
+  // $documentosRequisitados->detalhes = "";
+  $documentosRequisitados->documento_id = $id;
+  return $documentosRequisitados;
+}
+public function confirmacaoRequisicao(Request $request){
+  return redirect('/autenticacao.confirmacao-requisicao');
+}
+public function finalizaRequisicao(Request $request){
+  return redirect('/home-aluno');
+}
+public function cancelaRequisicao(){
+  return view('/autenticacao.home-aluno');
+}
+public function listarRequisicoesAluno(){
+  $requisicao = Requisicao::paginate(10);
+  return view('/home-aluno')->with($requisicao);
+}
+public function home(){
+  return view ('autenticacao.home-aluno');
+}
 }
