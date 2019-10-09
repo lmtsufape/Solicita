@@ -74,7 +74,7 @@ body{
     background-color: #1B2E4F;
 }
 .centro{
-    width: 25%; 
+    width: 25%;
 
     margin: 0 auto;
     height: 730px;
@@ -110,6 +110,7 @@ body{
     height: 250px;
     float: left;
     border-radius: 20px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
 }
 
 .cartao h2{
