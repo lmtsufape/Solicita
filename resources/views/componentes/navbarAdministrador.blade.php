@@ -16,7 +16,7 @@
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="{{route('formulario-requisicao')}}" style="color:white">
+          <a class="nav-link" href="{{route('cadastro-servidor')}}" style="color:white">
                           {{ __('Cadastrar Servidor') }}
           </a>
         </li>

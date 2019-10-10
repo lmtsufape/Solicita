@@ -17,7 +17,7 @@
 
 
         <li class="nav-item active">
-          <a class="nav-link" href="{{route('formulario-requisicao')}}" style="color:white">
+          <a class="nav-link" href="{{route('prepara-requisicao')}}" style="color:white">
                           {{ __('Solicitar') }}
           </a>
         </li>
@@ -30,7 +30,7 @@
 
         </li>
 
-        
+
 
 
 

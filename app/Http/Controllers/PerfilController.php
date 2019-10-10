@@ -55,6 +55,6 @@ class PerfilController extends Controller
     // dd($perfil);
     $perfil->save();
     // return "funcionou";
-    return redirect ('/home-aluno');
+    return redirect ('/perfil-aluno');
   }
 }

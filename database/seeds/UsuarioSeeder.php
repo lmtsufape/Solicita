@@ -17,8 +17,8 @@ class UsuarioSeeder extends Seeder
 
           'name'=>'admin',
           'email'=>'admin@gmail',
-          'password'=>Hash::make('123456'),
-          'tipo'=>'servidor'
+          'password'=>Hash::make('lmts@ufape'),
+          'tipo'=>'administrador'
         ]);
     }
 }
