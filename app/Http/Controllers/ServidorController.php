@@ -36,7 +36,7 @@ class ServidorController extends Controller
       $servidor->user_id = $usuario->id;
       $servidor->save();
       // dd($servidor);
-      return view('/')->with('jsAlert', 'Servidor cadastrado com sucesso!!');
+      return view('/autenticacao.login')->with('jsAlert', 'Servidor cadastrado com sucesso!!');
     }
     public function listaServidores(){
           return view('/autenticacao.home-administrador'); //redireciona para view

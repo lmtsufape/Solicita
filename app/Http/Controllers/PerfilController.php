@@ -47,7 +47,7 @@ class PerfilController extends Controller
     }
     $temp = Perfil::where('id',$request->cursos)->first();
 
-    dd($temp);
+    // dd($temp);
     // $perfil->default = Perfil::where('id',$request->cursos)->first();
     $perfil->default = $temp->default;
     $perfil->aluno()->associate($aluno);
