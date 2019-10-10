@@ -30,7 +30,7 @@ class AlunoController extends Controller
   public function createAluno(){
     $cursos = Curso::all();
     $unidades = Unidade::all();
-    $usuario = User::find(Auth::user()->id);
+    // $usuario = User::find(Auth::user()->id);
     $perfis = Perfil::all();
     return view('autenticacao.cadastro',compact('cursos','unidades','perfis')); //redireciona para view de cadastro do aluno
   }
