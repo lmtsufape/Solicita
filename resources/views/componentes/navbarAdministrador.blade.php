@@ -15,25 +15,11 @@
           </a>
         </li>
 
-
         <li class="nav-item active">
-          <a class="nav-link" href="{{route('prepara-requisicao')}}" style="color:white">
-                          {{ __('Solicitar') }}
+          <a class="nav-link" href="{{route('cadastro-servidor')}}" style="color:white">
+                          {{ __('Cadastrar Servidor') }}
           </a>
         </li>
-
-        <li class="nav-item active">
-
-          <a class="nav-link" href="{{route('perfil-aluno')}}" style="color:white">
-                          {{ __('Perfil') }}
-          </a>
-
-        </li>
-
-
-
-
-
       </ul>
 
     </div>

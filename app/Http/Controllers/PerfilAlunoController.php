@@ -29,10 +29,6 @@ class PerfilAlunoController extends Controller
 
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
 
-
-
-
-
       return view('telas_aluno.perfil_aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
                                               'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno]);
     }

@@ -32,7 +32,7 @@
                                 <span class="a-field__label">Nome Completo</span>
                             </span>
                             </label>
-                            @error('email')
+                            @error('name')
                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                             <strong>{{ $message }}</strong>
                             </span>
@@ -89,7 +89,6 @@
                       @enderror
                     </select>
 
-
                     <!-- Cursos-->
                     <label for="cursos" style="margin-left:125px">Curso</label>
                     <select name="cursos" id="cursos" class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
@@ -125,9 +124,8 @@
                             @enderror
                         </div>
                     </div>
-
-
                     <!-- Form Senha -->
+
                     <div class="form-group row formulario-centro">
 
                         <div class="col-md-9">
@@ -182,10 +180,6 @@
                         </div>
 
                     </div>
-
-
-
-
               </form>
           </div>
       </div>

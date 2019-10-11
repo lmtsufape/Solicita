@@ -5,18 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Document</title>
-
+    <title>SOLICITA!</title>
 
     <link rel="stylesheet" href="css/stylelmts.css">
     <link rel="stylesheet" href="css/app.css">
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-
     <style type="text/css">
         .panel-default > .panel-heading {
             color: #fff;
@@ -180,16 +175,13 @@
         .dropdown:hover .dropbtn {
           background-color: #3097D1;
         }
-
         .separador-lmts{     /*       Separador de navbar */
           color: white;
           font-weight: bold;
           font-size: 20;
           margin-top: 6px;
         }
-
         /* Botão com cor padrão do lmts */
-
         .btn-primary-lmts{
           background-color: #1B2E4F;
           border-color: #d3e0e9;
@@ -205,9 +197,7 @@
           border-color: #d3e0e9;
           color: white;
         }
-
         /* badge lmts */
-
         .badge-lmts{
           padding: 5px;
           color: white;
@@ -215,7 +205,6 @@
           background-color: #67748B;
           margin-left: 5px;
           margin-top: 5px;
-
         }
     </style>
 </head>
@@ -255,27 +244,31 @@
       <!-- barra de menu -->
 
       <!-- se o usuário estiver logado -->
-      @if(Auth::check()) 
+      @if(Auth::check())
           <!-- Se o usuário for um aluno -->
           @if(Auth::user()->tipo == 'aluno')
               <!-- carrega o componente contendo Navbar do aluno -->
               @component('componentes.navbarAluno')
               @endcomponent
           @endif
-          
+
           <!-- Se o usuário for um servidor -->
           @if(Auth::user()->tipo == 'servidor')
               <!-- Carrega component contendo navbar do servidor -->
               @component('componentes.navbarServidor')
               @endcomponent
           @endif
-      @endif
-      <br>
-      @yield('conteudo')
 
+          @if(Auth::user()->tipo == 'administrador')
+              <!-- Carrega component contendo navbar do administrador -->
+              @component('componentes.navbarAdministrador')
+              @endcomponent
+          @endif
+      <br>
+      @endif
+      @yield('conteudo')
     </div>
   </div>
-
 </body>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -283,4 +276,5 @@
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+
 </html>

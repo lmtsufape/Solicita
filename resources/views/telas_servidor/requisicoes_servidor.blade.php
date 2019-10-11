@@ -34,7 +34,7 @@
                     <div class="form-check">
                       <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
 
-                      
+
                     </div>
 
 
