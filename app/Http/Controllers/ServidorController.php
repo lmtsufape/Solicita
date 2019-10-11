@@ -49,4 +49,31 @@ class ServidorController extends Controller
     $usuarios = User::All();
     return view('autenticacao.cadastro-servidor',compact('users','unidades'));
     }
+
+
+    public function alterarSenhaServidor(){
+      return view('telas_servidor.alterar_senha_server');
+    }
+    public function storeAlterarSenhaServidor(Request $request){
+      $request->validate([
+        'password' => 'required|string|min:8|confirmed',
+      ]);
+
+      $user = Auth::user();
+      $user->password = Hash::make($request->password);
+      $user->save();
+      //dados para ser exibido na view
+      // $cursos = Curso::all();
+      // $unidades = Unidade::all();
+      // $idUser = Auth::user()->id;
+      // $user = User::find($idUser); //Usuário Autenticado
+      // $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
+      // $perfil = Perfil::where('aluno_id',$aluno->id)->first();
+      // $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
+      // $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
+      // return view('telas_servidor.home_servidor',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
+      //                                         'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno]);
+
+      return view('telas_servidor.home_servidor');
+    }
   }
