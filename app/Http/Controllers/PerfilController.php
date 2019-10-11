@@ -42,6 +42,8 @@ class PerfilController extends Controller
       $perfil->situacao = "Egresso";
     }
     $temp = Perfil::where('id',$request->cursos)->first();
+
+    // dd($temp);
     // $perfil->default = Perfil::where('id',$request->cursos)->first();
     $perfil->default = $temp->default;
     $perfil->aluno()->associate($aluno);
@@ -49,6 +51,6 @@ class PerfilController extends Controller
     // dd($perfil);
     $perfil->save();
     // return "funcionou";
-    return redirect ('/home-aluno');
+    return redirect ('/perfil-aluno');
   }
 }

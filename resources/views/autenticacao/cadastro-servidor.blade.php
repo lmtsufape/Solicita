@@ -9,9 +9,7 @@
     <div class="background" style="height: 840px">
         <div class="centro" style="height: 840px">
                 <h2 class="row d-flex justify-content-center" >Cadastro de servidor</h2>
-
-                <form action="{{  route('novo-servidor')  }}" method="POST">
-
+                <form action="{{  route('confirmacao-servidor')  }}" method="POST">
                   @csrf
                         <div class="form-group">
                     <div class="form-group row formulario-centro">
@@ -123,7 +121,7 @@
                                 </div>
 
                                 <div class="col-md-6 " style="margin-left: -30px; margin-top: -4px">
-                                    <button type="submit" class="btn btn-primary"  href="{{  route('novo-servidor')}}"
+                                    <button type="submit" class="btn btn-primary"  href="{{  route('confirmacao-servidor')}}"
                                     onclick="confirmacaoCadastro();"
                                     style="margin-left: 60px;background-color: #1B2E4F; border-color: #d3e0e9">
                                         {{ __('Cadastrar') }}
