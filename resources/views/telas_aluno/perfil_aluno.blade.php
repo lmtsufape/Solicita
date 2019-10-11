@@ -44,8 +44,10 @@
   <div class="card-body">
 
     <div class="mx-auto" style="width: 800px;">
-      <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
+      <a href="{{ route("exibir-perfil-aluno") }}" style="text-decoration:none; color: inherit;">
          <div class="card cartao text-center " style="border-radius: 30px">
+           <!-- <input type="checkbox" name="deletarPerfil"    value="Excluir Perfil"    id="deletarPerfil"
+           onclick="checaSelecaoProgramaDisciplina()"> -->
           <div class="card-body d-flex justify-content-center">
                <h2 style="padding-top:15px">Perfil</h2>
             </div>
@@ -69,9 +71,12 @@
     <form method="GET" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
+          <a href="{{route("excluir-perfil")}}" class="btn btn-primary"
+            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a>
           <a href="#" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Editar Perfil</a>
     </form>
+
     </div>
   </div>
 

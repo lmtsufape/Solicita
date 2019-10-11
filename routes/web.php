@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'AlunoController@index')->name('login');
 Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
@@ -27,15 +26,6 @@ Route::post('/novo-servidor','ServidorController@storeServidor')->name('novo-ser
 //percurso da tela inicial do sistema para a home do aluno
 
 Route::get('/home-aluno', 'AlunoController@index')->name('home-aluno');
-// Route::get('/prepara-requisicao', 'AlunoController@preparaNovaRequisicao')->name('prepara-requisicao');
-// Route::get('/formulario-requisicao', 'AlunoController@preparaNovaRequisicao')->name('formulario-requisicao');
-// Route::post('/finaliza-requisicao', 'AlunoController@novaRequisicao')->name('finaliza-requisicao'); //----------------------
-// // Route::post('/finaliza-requisicao', 'AlunoController@finalizaRequisicao')->name('finaliza-requisicao');
-// Route::get('/confirmacao-requisicao', 'AlunoController@confirmacaoRequisicao')->name('confirmacao-requisicao');
-// Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
-// Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
-
-
 Route::get('/prepara-requisicao', 'AlunoController@preparaNovaRequisicao')->name('prepara-requisicao');
 // Route::get('/formulario-requisicao', 'AlunoController@preparaNovaRequisicao')->name('formulario-requisicao');
 Route::post('/confirmacao-requisicao', 'AlunoController@novaRequisicao')->name('confirmacao-requisicao'); //----------------------
@@ -43,19 +33,15 @@ Route::post('/finaliza-requisicao', 'AlunoController@finalizaRequisicao')->name(
 Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
 Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
 
-//Route::get('/listar-requisicoes','listarRequisicoesController@index')->name('listar-requisicoes');
-/*
-Route::get('/listar-requisicoes',function(Request $request){
-    return view('telas_servidor.requisicoes_servidor', ['titulo' => $request->titulo]);
-})->name('listar-requisicoes');
-*/
 
 Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('listar-requisicoes');
 Route::post('/listar-requisicoes','RequisicaoController@concluirRequisicao')->name('listar-requisicoes-post');
 Route::get('/home-aluno','AlunoController@homeAluno')->name('home-aluno');
 Route::get('/perfil-aluno','PerfilAlunoController@index')->name('perfil-aluno');
 Route::get('/editar-perfil','PerfilAlunoController@editarInfo')->name('editar-info');
+Route::get('/exibir-perfil-aluno','PerfilAlunoController@editarInfo')->name('exibir-perfil-aluno');
 Route::post('/editar-perfil','PerfilAlunoController@storeEditarInfo')->name('editar-info');
+Route::post('/excluir-perfil','PerfilController@excluirPerfil')->name('excluir-perfil');
 
 Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');
 Route::post('/salva-novo-perfil-aluno', 'PerfilController@salvaPerfil')->name('salva-novo-perfil-aluno');
