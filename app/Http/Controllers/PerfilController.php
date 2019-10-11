@@ -50,6 +50,6 @@ class PerfilController extends Controller
     $perfil->default = $curso->nome;
     $perfil->aluno()->associate($aluno);
     $perfil->save();
-    return redirect ('/perfil-aluno', compact('perfil'));
+    return redirect ('/perfil-aluno');
   }
 }
