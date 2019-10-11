@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Curso;
 use App\Aluno;
 use App\User;
 use App\Perfil;
 use App\Unidade;
+use App\Requisicao;
+use App\Requisicao_documento;
+use App\Documento;
+use Auth;
 
 class AlunoController extends Controller
 {
@@ -18,6 +24,21 @@ class AlunoController extends Controller
   {
     return view('autenticacao.login');
   }
+
+  //redireciona para a lista de requisições do aluno
+  //devolve para a view a lista de requisicoes que o aluno fez
+  public function listarRequisicoes(){
+    $idUser=Auth::id();
+    $requisicoes = Requisicao::where('aluno_id',$idUser)->get();
+    $requisicoes_documentos = Requisicao_documento::where('aluno_id',$idUser)->get();
+
+    $aluno= Aluno::where('user_id',$idUser)->first();
+
+    $documentos = Documento::all();
+
+    return view('telas_aluno.requisicoes_aluno',compact('requisicoes','requisicoes_documentos','aluno','documentos'));
+  }
+
 
   public function homeAluno(){
     return view('autenticacao.home-aluno');

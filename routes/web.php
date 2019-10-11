@@ -57,6 +57,8 @@ Route::get('/confirmacao-requisicao',function(){
     return view('autenticacao.confirmacao-requisicao');
 })->name('confirmacao-requisicao');
 
+Route::get('/listar-requisicoes-aluno','AlunoController@listarRequisicoes')->name('listar-requisicoes-aluno'); //rota para a lista de requisicoes que o aluno solicitou
+
 //Route::get('/confirmacao-requisicao',function(){
 //    return view('autenticacao.home-aluno');
 //})->name('confirmacao-requisicao');
