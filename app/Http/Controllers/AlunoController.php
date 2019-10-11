@@ -114,46 +114,45 @@ class AlunoController extends Controller
       }
 
 public function novaRequisicao(Request $request){
-
-
   $checkBoxDeclaracaoVinculo = $request->declaracaoVinculo;
   $checkBoxComprovanteMatricula = $request->comprovanteMatricula;
   $checkBoxHistorico = $request->historico;
   $checkBoxProgramaDisciplina = $request->programaDisciplina;
   $checkBoxOutros = $request->outros;
 
-  if(!$checkBoxProgramaDisciplina){
-  $request->validate([
-    'requisicaoPrograma' => ['required'],
-  ]);
-  }
-
-  if(!$checkBoxOutros){
+    if($checkBoxProgramaDisciplina!=''){
     $request->validate([
-      'requisicaoOutros' => ['required'],
+      'requisicaoPrograma' => ['required'],
     ]);
-  }
-  $documento_req = new Requisicao_documento();
-  $requisicao = new Requisicao();
-  $alunoLogado = Auth::user();
-  $arrayDocumentos = [];//Array Temporário
-  //variáveis para os checkboxes
-  date_default_timezone_set('America/Sao_Paulo');
-  $date = date('d/m/Y');
-  $hour =  date('H:i');
-  $requisicao->data_pedido = $date;
-  $requisicao->hora_pedido = $hour;
-  $requisicao->perfil_id = 1;
-  $requisicao->servidor_id = 1;
-  $requisicao->aluno_id = 1; //necessária adequação com o código de autenticação do usuário do perfil aluno
-  $requisicao->save();
+    }
+    if($checkBoxOutros!=''){
+      $request->validate([
+        'requisicaoOutros' => ['required'],
+      ]);
+    }
+    $requisicao = new Requisicao();
+    $idUser = Auth::user()->id;
+    $user = User::find($idUser); //Usuário Autenticado
+    $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
+    $perfil = Perfil::where('aluno_id',$aluno->id)->first();
+    $arrayDocumentos = [];//Array Temporário
+    //variáveis para os checkboxes
+    date_default_timezone_set('America/Sao_Paulo');
+    $date = date('d/m/Y');
+    $hour =  date('H:i');
+    // dd($requisicao);
+    $requisicao->data_pedido = $date;
+    $requisicao->hora_pedido = $hour;
+    $requisicao->perfil_id = $perfil->id;
+    $requisicao->aluno_id = $aluno->id; //necessária adequação com o código de autenticação do usuário do perfil aluno
+    $requisicao->save();
+
   if($checkBoxDeclaracaoVinculo){
     $documentosRequisitados = new Requisicao_documento();
     $documentosRequisitados->status_data = $date;
     $documentosRequisitados->requisicao_id = $requisicao->id;
-    $documentosRequisitados->aluno_id = 1;
+    $documentosRequisitados->aluno_id = $perfil->aluno_id;
     $documentosRequisitados->status = 'Em andamento';
-    // $documentosRequisitados->detalhes = "";
     $documentosRequisitados->documento_id = 1;
     // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
     array_push($arrayDocumentos, $documentosRequisitados);
@@ -162,7 +161,7 @@ public function novaRequisicao(Request $request){
     $documentosRequisitados = new Requisicao_documento();
     $documentosRequisitados->status_data = $date;
     $documentosRequisitados->requisicao_id = $requisicao->id;
-    $documentosRequisitados->aluno_id = 1;
+    $documentosRequisitados->aluno_id = $perfil->aluno_id;
     $documentosRequisitados->status = 'Em andamento';
     // $documentosRequisitados->detalhes = "";
     $documentosRequisitados->documento_id = 2;
@@ -173,7 +172,7 @@ public function novaRequisicao(Request $request){
     $documentosRequisitados = new Requisicao_documento();
     $documentosRequisitados->status_data = $date;
     $documentosRequisitados->requisicao_id = $requisicao->id;
-    $documentosRequisitados->aluno_id = 1;
+    $documentosRequisitados->aluno_id = $perfil->aluno_id;
     $documentosRequisitados->status = 'Em andamento';
     // $documentosRequisitados->detalhes = "";
     $documentosRequisitados->documento_id = 3;
@@ -184,7 +183,7 @@ public function novaRequisicao(Request $request){
     $documentosRequisitados = new Requisicao_documento();
     $documentosRequisitados->status_data = $date;
     $documentosRequisitados->requisicao_id = $requisicao->id;
-    $documentosRequisitados->aluno_id = 1;
+    $documentosRequisitados->aluno_id = $perfil->aluno_id;
     $documentosRequisitados->status = 'Em andamento';
     $documentosRequisitados->detalhes = $request->get('requisicaoPrograma');
     $documentosRequisitados->documento_id = 4;
@@ -196,7 +195,7 @@ public function novaRequisicao(Request $request){
     $documentosRequisitados = new Requisicao_documento();
     $documentosRequisitados->status_data = $date;
     $documentosRequisitados->requisicao_id = $requisicao->id;
-    $documentosRequisitados->aluno_id = 1;
+    $documentosRequisitados->aluno_id = $perfil->aluno_id;
     $documentosRequisitados->status = 'Em andamento';
     $documentosRequisitados->detalhes =  $request->get('requisicaoOutros');
     $documentosRequisitados->documento_id = 5;
@@ -206,7 +205,6 @@ public function novaRequisicao(Request $request){
   $ano = date('Y');
   $size = count($arrayDocumentos);
   $requisicao->requisicao_documento()->saveMany($arrayDocumentos);
-
   $documento = Documento::where('id',$request->titulo_id)->first();
   $curso = Curso::where('id',$request->curso_id)->first();
   return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayDocumentos', 'size', 'ano'));

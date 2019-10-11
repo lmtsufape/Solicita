@@ -15,15 +15,11 @@
                     <div class="form-group row justify-content-center">
                         <div class="col-md-9">
                             <p><div class = "label" id = informacao></div><b>Dados do seu perfil atual</b></p>
-                            <p><div class = "label" id = nomeAlunoPerfil name= "idAluno" value="{{$alunoLogado->id}}"></div>
-                              <b>Nome do Aluno: {{$perfil->aluno->user->name}}</b></p>
-                            <p><div class = "label" id = cpfAlunoPerfil ></div><b>CPF: {{$perfil->aluno->cpf}}</b></p>
-                            <p><div class = "label" id = vinculoAlunoPerfil ></div><b>Curso: {{$perfil->situacao}}</b></p>
-                            <p><div class = "label" id = cursoAlunoPerfil ></div><b>Curso: {{$perfil->curso->nome}}</b></p>
-                            <p><div class = "label" id = unidadeAlunoPerfil ></div><b>Unidade Acadêmica: {{$perfil->curso->unidade->nome}}</b></p>
+                            <p><div class = "label" id = cpfAlunoPerfil ></div><b>Aluno: {{Auth::user()->name}}</b></p>
+                            <p><div class = "label" id = vinculoAlunoPerfil ></div><b>Situação Acadêmica: {{$perfil->situacao}}</b></p>
+                            <p><div class = "label" id = cursoAlunoPerfil ></div><b>Curso: {{$cursoAluno->nome}}</b></p>
                         </div>
                     </div>
-
                     <!-- Form -->
                     <div class="form-group row formulario-centro">
                       <div class="col-md-9">
@@ -55,11 +51,9 @@
                       <label for="cursos" style="margin-left:125px">Curso</label>
                       <select name="cursos" id="cursos" class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
                         <options selected>Curso</option>
-
                           @foreach($cursos as $curso)
                           <option value="{{$curso->id}}">{{$curso->nome}}</option>
                           @endforeach
-
                           @error('cursos')
                           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                           <strong>{{ $message }}</strong>

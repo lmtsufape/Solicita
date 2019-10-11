@@ -20,19 +20,23 @@ class PerfilController extends Controller
     return view('telas_aluno.editar_info_aluno',compact('cursos','unidades'));
   }
   public function adicionaPerfil(Request $request){
-    $cursos = Curso::all();
-    $unidades = Unidade::all();
-    $alunoLogado = Auth::user();
+    $idUser = Auth::user()->id;
+    $user = User::find($idUser); //Usuário Autenticado
+    $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
+    $perfil = Perfil::where('aluno_id',$aluno->id)->first();
+    $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
+    $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
     $perfis = Perfil::All();
-    $perfil = Perfil::where('id',$alunoLogado->id)->first();
+    $unidades = Unidade::All();
+    $cursos = Curso::All();
     // dd($perfil);
-    return view ('telas_aluno.adiciona_perfil_aluno', compact('perfil', 'perfis','cursos', 'unidades', 'alunoLogado'));
+    return view ('telas_aluno.adiciona_perfil_aluno', compact('perfil', 'perfis','cursoAluno', 'unidadeAluno', 'aluno', 'unidades', 'cursos'));
   }
   public function salvaPerfil(Request $request){
     $usuario = User::find(Auth::user()->id);
     $aluno = $usuario->aluno;
     $perfil = new Perfil();
-    $perfil->aluno_id = $request->idAluno;
+    // $perfil->aluno_id = $request->idAluno;
     $perfil->curso_id = $request->cursos;
     $perfil->unidade_id = $request->unidade;
     if($request->vinculo === "1"){
@@ -41,16 +45,11 @@ class PerfilController extends Controller
     else{
       $perfil->situacao = "Egresso";
     }
-    $temp = Perfil::where('id',$request->cursos)->first();
-
-    // dd($temp);
-    // $perfil->default = Perfil::where('id',$request->cursos)->first();
-    $perfil->default = $temp->default;
+    $temp = $request->cursos;
+    $curso = Curso::where('id',$request->cursos)->first();
+    $perfil->default = $curso->nome;
     $perfil->aluno()->associate($aluno);
-    // $aluno->perfil()->associate($perfil);
-    // dd($perfil);
     $perfil->save();
-    // return "funcionou";
     return redirect ('/perfil-aluno');
   }
 }

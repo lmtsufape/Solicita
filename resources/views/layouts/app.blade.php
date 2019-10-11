@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>LMTS - ESCOLARIDADE</title>
-
+    <title>SOLICITA!</title>
 
     <link rel="stylesheet" href="css/stylelmts.css">
     <link rel="stylesheet" href="css/app.css">
@@ -265,8 +264,8 @@
               @component('componentes.navbarAdministrador')
               @endcomponent
           @endif
-      @endif
       <br>
+      @endif
       @yield('conteudo')
     </div>
   </div>

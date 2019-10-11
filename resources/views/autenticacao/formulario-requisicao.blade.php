@@ -12,13 +12,17 @@
                       <form method="POST" enctype="multipart/form-data" id="formRequisicao" action="{{ route('confirmacao-requisicao') }}">
                           @csrf
                           <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
+                          <h5><b>{{Auth::user()->name}}</b></h5>
+                          <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 30rem; margin-left:10px">
                               @foreach($perfis as $perfil)
-                              <h5 name="nomeAluno"><b>{{$perfil->aluno->user->name}}</b></h5>
                               <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label>
-                              <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 13.5rem; margin-left:10px">
                               <option value="{{$perfil->id}}">{{$perfil->default}}</option></br>
-                              </select></br>
                               @endforeach
+                            </select></br>
+                            <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 30rem; margin-left:10px">
+                              <option value="1"selected>Aluno Matriculado</option>
+                              <option value="2">Aluno Egresso</option>
+                            </select></br>
                                   <input type="checkbox" name="declaracaoVinculo"     value="Declaracao de Vinculo"     id="declaracaoVinculo"> Declaração de Vínculo</br>
                                     </input>
                                   <input type="checkbox" name="comprovanteMatricula"  value="Comprovante de Matricula"  id="comprovanteMatricula">Comprovante de matricula</br>
@@ -31,7 +35,7 @@
                                       </input>
                                         <textarea class="form-control @error('programaDisciplina') is-invalid @enderror "
                                                   form ="formRequisicao" style="display:none" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"
-                                                  required placeholder="O campo deve ser preenchido."></textarea>
+                                                  required="" placeholder="O campo deve ser preenchido."></textarea>
                                         @error('programaDisciplina')
                                           <span>
                                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -46,7 +50,7 @@
                                       </input>
                                       <textarea class="form-control @error('outrosDocumentos') is-invalid @enderror"
                                                   form ="formRequisicao" style="display:none" name="requisicaoOutros"   cols="115" id="textareaOutrosDocumentos"
-                                                  required placeholder="O campo deve ser preenchido"></textarea>
+                                                  required="" placeholder="O campo deve ser preenchido"></textarea>
                                                 @error('outrosDocumentos')
                                                   <span>
                                                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
