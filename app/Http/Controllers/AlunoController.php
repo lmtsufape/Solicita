@@ -113,16 +113,30 @@ class AlunoController extends Controller
       }
 
 public function novaRequisicao(Request $request){
-  $documento_req = new Requisicao_documento();
-  $requisicao = new Requisicao();
-  $alunoLogado = Auth::user();
-  $arrayDocumentos = [];//Array Temporário
-  //variáveis para os checkboxes
+
+
   $checkBoxDeclaracaoVinculo = $request->declaracaoVinculo;
   $checkBoxComprovanteMatricula = $request->comprovanteMatricula;
   $checkBoxHistorico = $request->historico;
   $checkBoxProgramaDisciplina = $request->programaDisciplina;
   $checkBoxOutros = $request->outros;
+
+  if(!$checkBoxProgramaDisciplina){
+  $request->validate([
+    'requisicaoPrograma' => ['required'],
+  ]);
+  }
+
+  if(!$checkBoxOutros){
+    $request->validate([
+      'requisicaoOutros' => ['required'],
+    ]);
+  }
+  $documento_req = new Requisicao_documento();
+  $requisicao = new Requisicao();
+  $alunoLogado = Auth::user();
+  $arrayDocumentos = [];//Array Temporário
+  //variáveis para os checkboxes
   date_default_timezone_set('America/Sao_Paulo');
   $date = date('d/m/Y');
   $hour =  date('H:i');

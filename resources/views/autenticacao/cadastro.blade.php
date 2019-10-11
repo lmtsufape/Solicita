@@ -32,7 +32,7 @@
                                 <span class="a-field__label">Nome Completo</span>
                             </span>
                             </label>
-                            @error('email')
+                            @error('name')
                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                             <strong>{{ $message }}</strong>
                             </span>

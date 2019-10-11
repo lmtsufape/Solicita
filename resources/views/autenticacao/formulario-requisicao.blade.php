@@ -31,7 +31,7 @@
                                       </input>
                                         <textarea class="form-control @error('programaDisciplina') is-invalid @enderror "
                                                   form ="formRequisicao" style="display:none" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"
-                                                  required placeholder="O campo deve ser preenchido." value="" ></textarea>
+                                                  required placeholder="O campo deve ser preenchido."></textarea>
                                         @error('programaDisciplina')
                                           <span>
                                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -46,7 +46,7 @@
                                       </input>
                                       <textarea class="form-control @error('outrosDocumentos') is-invalid @enderror"
                                                   form ="formRequisicao" style="display:none" name="requisicaoOutros"   cols="115" id="textareaOutrosDocumentos"
-                                                  required placeholder="O campo deve ser preenchido" value=""></textarea>
+                                                  required placeholder="O campo deve ser preenchido"></textarea>
                                                 @error('outrosDocumentos')
                                                   <span>
                                                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
