@@ -15,6 +15,8 @@ Route::get('/', 'AlunoController@index')->name('login');
 Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 
+Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
+
 Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
 Route::get('/', 'UsuarioController@index')->name('login');
 //ROTAS PARA VARIAÇÕES DOS SERVIDORES
@@ -25,6 +27,8 @@ Route::post('/confirmacao-servidor','ServidorController@storeServidor')->name('c
 Route::get('/cancela-cadastro','ServidorController@cancel')->name('cancela-cadastro');
 Route::post('/novo-servidor','ServidorController@storeServidor')->name('novo-servidor');
 //percurso da tela inicial do sistema para a home do aluno
+Route::get('/alterar-senha-servidor','ServidorController@alterarSenhaServidor')->name('alterar-senha-servidor');
+Route::post('/alterar-senha-servidor','ServidorController@storeAlterarSenhaServidor')->name('alterar-senha-servidor');
 
 Route::get('/home-aluno', 'AlunoController@index')->name('home-aluno');
 // Route::get('/prepara-requisicao', 'AlunoController@preparaNovaRequisicao')->name('prepara-requisicao');
@@ -56,6 +60,7 @@ Route::get('/home-aluno','AlunoController@homeAluno')->name('home-aluno');
 Route::get('/perfil-aluno','PerfilAlunoController@index')->name('perfil-aluno');
 Route::get('/editar-perfil','PerfilAlunoController@editarInfo')->name('editar-info');
 Route::post('/editar-perfil','PerfilAlunoController@storeEditarInfo')->name('editar-info');
+Route::post('/excluir-perfil','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
 
 Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');
 Route::post('/salva-novo-perfil-aluno', 'PerfilController@salvaPerfil')->name('salva-novo-perfil-aluno');
