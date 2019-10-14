@@ -144,3 +144,13 @@ body{
 
     text-align: center;
 }
+
+@media screen and (max-width: 359px) {
+
+  .cartao{
+    background-color: blue;
+
+  }
+
+
+}
