@@ -25,12 +25,12 @@
       <ul class="nav navbar-nav">
           @if(Auth::check())
           <li>
-          <a class="nav-link"  href="{{ route('home-administrador') }}"
+          <a class="nav-link"  href="{{ route('alterar-senha-servidor') }}"
              onclick="event.preventDefault();
                            document.getElementById('usuario-form').submit();"style="color:white">
              {{Auth::user()->name}}
           </a>
-          <form id="usuario-form" action="{{ route('home-administrador') }}" method="GET" style="display: none;">
+          <form id="usuario-form" action="{{ route('alterar-senha-servidor') }}" method="GET" style="display: none;">
               @csrf
           </form>
         </li>

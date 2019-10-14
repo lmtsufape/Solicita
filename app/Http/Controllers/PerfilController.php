@@ -54,11 +54,7 @@ class PerfilController extends Controller
   }
     public function excluirPerfil(Request $id) {
         $perfil = Perfil::find($id);
-        // return var_dump($produto);
-        $grupoConsumo = $produto->grupoconsumo_id;
-        // return var_dump($produto);
         $perfil->delete();
-
         return redirect()
                 ->action('PerfilAlunoController@index', $perfis)
                 ->withInput();

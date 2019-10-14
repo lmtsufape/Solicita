@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', 'AlunoController@index')->name('login');
 Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
@@ -37,7 +38,6 @@ Route::post('/finaliza-requisicao', 'AlunoController@finalizaRequisicao')->name(
 Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
 Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
 
-
 Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('listar-requisicoes');
 Route::post('/listar-requisicoes','RequisicaoController@concluirRequisicao')->name('listar-requisicoes-post');
 Route::get('/home-aluno','AlunoController@homeAluno')->name('home-aluno');
@@ -45,11 +45,11 @@ Route::get('/perfil-aluno','PerfilAlunoController@index')->name('perfil-aluno');
 Route::get('/editar-perfil','PerfilAlunoController@editarInfo')->name('editar-info');
 Route::get('/exibir-perfil-aluno','PerfilAlunoController@editarInfo')->name('exibir-perfil-aluno');
 Route::post('/editar-perfil','PerfilAlunoController@storeEditarInfo')->name('editar-info');
-Route::post('/excluir-perfil','PerfilController@excluirPerfil')->name('excluir-perfil');
+// Route::post('/excluir-perfil','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
 Route::post('/excluir-perfil','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
 
-Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');
-Route::post('/salva-novo-perfil-aluno', 'PerfilController@salvaPerfil')->name('salva-novo-perfil-aluno');
+Route::get('/adiciona-perfil', 'PerfilAlunoController@adicionaPerfil')->name('adiciona-perfil');
+Route::post('/salva-novo-perfil-aluno', 'PerfilAlunoController@salvaPerfil')->name('salva-novo-perfil-aluno');
 Route::get('/alterar-senha','PerfilAlunoController@alterarSenha')->name('alterar-senha');
 Route::post('/alterar-senha','PerfilAlunoController@storeAlterarSenha')->name('alterar-senha');
 
