@@ -7,6 +7,8 @@ use App\Requisicao_documento;
 use App\Requisicao;
 use App\Documento;
 use App\Curso;
+use App\Aluno;
+use App\User;
 use Carbon\Carbon;
 
 use Illuminate\Support\Facades\DB;
@@ -23,7 +25,7 @@ class RequisicaoController extends Controller
     $documento = Documento::where('id',$request->titulo_id)->first();
     $curso = Curso::where('id',$request->curso_id)->first();
 
-    dd($documento);
+    //dd($documento);
       //Verifica se o card clicado foi igual a "TODOS"
       if($request->titulo_id == 6){
 
@@ -36,20 +38,18 @@ class RequisicaoController extends Controller
                   ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                   ->select ('requisicao_documentos.id')
                   ->where([['curso_id', $request->curso_id]])
-
                   ->get();
 
       }
       else {
-        // $titulo = $documento->tipo;
-        
-
-        $id_documentos = DB::table('requisicao_documentos')
+         $titulo = $documento->tipo;
+         $id_documentos = DB::table('requisicao_documentos')
                 ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                 ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
+                // ->join('alunos', 'alunos.id', '=', 'requisicao_documentos.aluno_id')
                 ->select ('requisicao_documentos.id')
                 ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id],['status','Em andamento']])
-
+                // ->orderBy('alunos.cpf','asc')
                 ->get();
       }
       // dd($id_documentos);
@@ -58,10 +58,9 @@ class RequisicaoController extends Controller
         array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
       }
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
-
+      // dd($listaRequisicao_documentos);
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
     }
-
 
     //marca os documentos como "Solicitado"
     public function concluirRequisicao(Request $request){

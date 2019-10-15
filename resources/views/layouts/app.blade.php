@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>LMTS - ESCOLARIDADE</title>
-
+    <title>SOLICITA!</title>
 
     <link rel="stylesheet" href="css/stylelmts.css">
     <link rel="stylesheet" href="css/app.css">
@@ -176,16 +175,13 @@
         .dropdown:hover .dropbtn {
           background-color: #3097D1;
         }
-
         .separador-lmts{     /*       Separador de navbar */
           color: white;
           font-weight: bold;
           font-size: 20;
           margin-top: 6px;
         }
-
         /* Botão com cor padrão do lmts */
-
         .btn-primary-lmts{
           background-color: #1B2E4F;
           border-color: #d3e0e9;
@@ -201,9 +197,7 @@
           border-color: #d3e0e9;
           color: white;
         }
-
         /* badge lmts */
-
         .badge-lmts{
           padding: 5px;
           color: white;
@@ -211,7 +205,6 @@
           background-color: #67748B;
           margin-left: 5px;
           margin-top: 5px;
-
         }
     </style>
 </head>
@@ -219,6 +212,8 @@
 
   <div id="page-container">
    <div id="content-wrap">
+
+      <!-- Barra Brasil -->
       <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
         <ul id="menu-barra-temp" style="list-style:none;">
             <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
@@ -234,13 +229,13 @@
       <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
         <ul id="logos" style="list-style:none;">
             <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
-                <a href="{{ route('login') }}">
-                <!-- <img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a> -->
-                  <h5>Logo aqui</h5></a>
-                </a>
+                <a href="{{ route('login') }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
+
                 <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70"  align = "right" ></a>
+
                 <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
                 <a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 30px" height="70" width="50" align = "right" ></a>
+
                 <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
                 <a target="_blank" href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px; margin-top: 30px " height="70" width="50" align = "right"></a>
             </li>
@@ -248,90 +243,32 @@
       </div>
       <!-- barra de menu -->
 
+      <!-- se o usuário estiver logado -->
       @if(Auth::check())
+          <!-- Se o usuário for um aluno -->
+          @if(Auth::user()->tipo == 'aluno')
+              <!-- carrega o componente contendo Navbar do aluno -->
+              @component('componentes.navbarAluno')
+              @endcomponent
+          @endif
 
-        <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9; box-shadow: 0 0 6px rgba(0,0,0,0.5);" role="navigation">
-          <a class="navbar-brand" href="{{ route('login') }}" style="color: white; font-weight: bold;">
-            <img src="{{asset('images/logoBranco.png')}}" height="30" class="d-inline-block align-top" alt="">
+          <!-- Se o usuário for um servidor -->
+          @if(Auth::user()->tipo == 'servidor')
+              <!-- Carrega component contendo navbar do servidor -->
+              @component('componentes.navbarServidor')
+              @endcomponent
+          @endif
 
-          </a>
-            <div class="collapse navbar-collapse" >
-              <ul class="navbar-nav mr-auto">
-
-
-                <li class="nav-item active">
-                  <a class="nav-link" href="{{route('login')}}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('login').submit();" style="color:white">
-                                  {{ __('Inicio') }}
-                  </a>
-                </li>
-
-                <li class="nav-item active">
-                    <a class="nav-link" href="{{route('home-aluno')}}"
-                    onclick="event.preventDefault();
-                    document.getElementById('homeAluno').submit();">
-                    {{ __('Requisicoes') }}
-                    </a>
-                    <form id="homeAluno" action="{{ route('home-aluno') }}" method="GET" style="display: none;">
-                    </form>
-                </li>
-
-                <li class="nav-item active">
-
-                  <a class="nav-link" href="{{route('login')}}"
-                    onclick="event.preventDefault();
-                                  document.getElementById('login').submit();"style="color:white">
-                                  {{ __('Ajuda') }}
-                  </a>
-
-                </li>
-                <li class="nav-item active">
-
-                                 <a class="nav-link" href="{{ route('cadastro-servidor') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('servidoresCadastro-form').submit();">
-                                                 {{ __('Cadastrar Servidor') }}
-                                 </a>
-                                 <form id="servidoresCadastro-form" action="{{ route('cadastro-servidor') }}" method="GET" style="display: none;">
-                                 </form>
-               </li>
-              </ul>
-
-            </div>
-
-            <div class="nav navbar-nav navbar-right" >
-              <ul class="nav navbar-nav">
-                  @if(Auth::check())
-                  @endif
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                  @if(Auth::check())
-                    <li> <!--  logout   -->
-                        <a class="nav-link"  href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();"style="color:white">
-                           {{ __('Sair') }}
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                @endif
-              </ul>
-            </div>
-          </nav>
-      @endif
-      @php($url = str_replace(URL::to('/'),'',URL::current()))
-
-
-
+          @if(Auth::user()->tipo == 'administrador')
+              <!-- Carrega component contendo navbar do administrador -->
+              @component('componentes.navbarAdministrador')
+              @endcomponent
+          @endif
       <br>
+      @endif
       @yield('conteudo')
-
     </div>
   </div>
-
 </body>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -339,4 +276,5 @@
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script defer="defer" src="//barra.brasil.gov.br/barra.js" type="text/javascript"></script>
+
 </html>
