@@ -20,5 +20,21 @@ class UsuarioSeeder extends Seeder
           'password'=>Hash::make('123456'),
           'tipo'=>'administrador'
         ]);
+
+        DB::table('users')->insert([
+
+          'name'=>'servidor',
+          'email'=>'servidor@gmail',
+          'password'=>Hash::make('123456'),
+          'tipo'=>'servidor'
+        ]);
+
+        DB::table('users')->insert([
+
+          'name'=>'aluno',
+          'email'=>'aluno@gmail',
+          'password'=>Hash::make('123456'),
+          'tipo'=>'aluno'
+        ]);
     }
 }
