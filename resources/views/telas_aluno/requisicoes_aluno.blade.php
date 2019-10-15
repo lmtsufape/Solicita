@@ -36,26 +36,33 @@
                   <th scope="row">{{$r->id}}</th>
                   <td>{{$aluno->cpf}}</td>
                   <td>{{Auth::user()->name}}</td>
-                  <td>-</td>
+                  <td>
+
+                    @foreach($perfis as $p)
+                      @if($p->id == $r->perfil_id)
+                        {{$p->default}}
+                      @endif
+                    @endforeach
+                  </td>
                   <td>{{$r->data_pedido}}</td>
                   <td>dd/mm/aaaa</td>
                   <td>
+                    <ol>
                     @foreach($requisicoes_documentos as $rd)
-                    <ul>
                       @if($rd->requisicao_id == $r->id)
                           <!-- Documentos Solicitados -->
                           <li>
                             {{$rd->status}}
                           </li>
                       @endif
-                    </ul>
-                  @endforeach
-                </td>
+                    @endforeach
+                    </ol>
+                  </td>
                   <td>
+                    <ol>
                 @foreach($requisicoes_documentos as $rd)
                     @if($rd->requisicao_id == $r->id)
                         <!-- Documentos Solicitados -->
-                        <ul>
                           @foreach($documentos as $d)
                               @if($d->id == $rd->documento_id)
                                 <li>
@@ -63,9 +70,9 @@
                                 </li>
                               @endif
                           @endforeach
-                        </ul>
                     @endif
                 @endforeach
+              </ol>
               </td>
               </tr>
             @endforeach

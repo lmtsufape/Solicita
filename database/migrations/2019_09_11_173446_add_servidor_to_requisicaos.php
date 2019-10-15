@@ -15,7 +15,7 @@ class AddServidorToRequisicaos extends Migration
     {
         Schema::table('requisicaos', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('servidor_id');
+            $table->unsignedBigInteger('servidor_id')->nullable();
             $table->foreign('servidor_id')->references('id')->on('servidors');
         });
     }

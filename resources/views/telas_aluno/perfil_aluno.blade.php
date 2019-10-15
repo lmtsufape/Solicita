@@ -9,7 +9,7 @@
     <div class="mx-auto" style="width: 800px;">
           <div class="mx-auto" style="background-color: white;width:400px;height:250px;float:left;padding-left:100px">
             <label for="nome">Nome</label>
-            <h4>{{$user->name}}</h4>
+            <h4>{{Auth::user()->name}}</h4>
 
             <label for="nome">CPF</label>
             <h4>{{$aluno->cpf}}</h4>
@@ -37,6 +37,8 @@
 </div>
 
 <!-- Perfil aluno -->
+
+    @csrf
 <div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;">
   <h5 class="card-header">Tipo de Perfil</h5>
   <div class="card-body">
@@ -63,10 +65,14 @@
             </div>
          </div>
       </a>
-          <a href="#" class="btn btn-primary" style="margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Editar Perfil</a>
     </div>
-
+    <form method="GET" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
+          <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
+            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
+          <a href="#" class="btn btn-primary"
+            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Editar Perfil</a>
+    </form>
+    </div>
   </div>
-</div>
 
 @endsection

@@ -19,9 +19,6 @@
               </select>
 
             </div>
-
-
-
             <script>
 
                 function getSelectValue(){
