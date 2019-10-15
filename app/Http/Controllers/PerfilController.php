@@ -12,6 +12,7 @@ class PerfilController extends Controller
   public function index(){
     $cursos = Curso::all();
     $unidades = Unidade::all();
+
     return view('telas_aluno.perfil_aluno',compact('cursos','unidades'));
   }
   public function editarInfo(){
@@ -29,6 +30,9 @@ class PerfilController extends Controller
     $perfis = Perfil::All();
     $unidades = Unidade::All();
     $cursos = Curso::All();
+
+
+
     // dd($perfil);
     return view ('telas_aluno.adiciona_perfil_aluno', compact('perfil', 'perfis','cursoAluno', 'unidadeAluno', 'aluno', 'unidades', 'cursos'));
   }
@@ -51,5 +55,14 @@ class PerfilController extends Controller
     $perfil->aluno()->associate($aluno);
     $perfil->save();
     return redirect ('/perfil-aluno');
+  }
+
+  //retorna para view de editar perfil do aluno
+  public function editaPerfil(){
+    $idUser = Auth::user()->id;
+    $aluno = Aluno::where('user_id',$idUser)->first();
+    $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+    //dd($perfis);
+    return view('telas_aluno.edita_perfil',compact('perfis'));
   }
 }

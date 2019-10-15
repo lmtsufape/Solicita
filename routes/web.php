@@ -58,9 +58,12 @@ Route::get('/editar-perfil','PerfilAlunoController@editarInfo')->name('editar-in
 Route::post('/editar-perfil','PerfilAlunoController@storeEditarInfo')->name('editar-info');
 
 Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');
+Route::get('/edita-perfil','PerfilController@editaPerfil')->name('edita-perfil');
 Route::post('/salva-novo-perfil-aluno', 'PerfilController@salvaPerfil')->name('salva-novo-perfil-aluno');
 Route::get('/alterar-senha','PerfilAlunoController@alterarSenha')->name('alterar-senha');
 Route::post('/alterar-senha','PerfilAlunoController@storeAlterarSenha')->name('alterar-senha');
+
+
 
 //Formulário de requisicao
 Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
