@@ -8,6 +8,7 @@ use App\Curso;
 use App\User;
 use App\Servidor;
 use App\Unidade;
+use Auth;
 
 class ServidorController extends Controller
 {
@@ -36,7 +37,7 @@ class ServidorController extends Controller
       $servidor->user_id = $usuario->id;
       $servidor->save();
       // dd($servidor);
-      return view('/autenticacao.login');
+      return view('/autenticacao.home-administrador');
     }
     public function listaServidores(){
           return view('/autenticacao.home-administrador'); //redireciona para view
@@ -48,5 +49,33 @@ class ServidorController extends Controller
     $unidades = Unidade::All();
     $usuarios = User::All();
     return view('autenticacao.cadastro-servidor',compact('users','unidades'));
+    }
+
+    public function alterarSenhaServidor(){
+      $user = Auth::user();
+      return view('telas_servidor.alterar_senha_server', compact('user'));
+    }
+
+    public function storeAlterarSenhaServidor(Request $request){
+      $request->validate([
+        'password' => 'required|string|min:8|confirmed',
+      ]);
+
+      $user = Auth::user();
+      $user->password = Hash::make($request->password);
+      $user->save();
+      //dados para ser exibido na view
+      // $cursos = Curso::all();
+      // $unidades = Unidade::all();
+      // $idUser = Auth::user()->id;
+      // $user = User::find($idUser); //Usuário Autenticado
+      // $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
+      // $perfil = Perfil::where('aluno_id',$aluno->id)->first();
+      // $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
+      // $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
+      // return view('telas_servidor.home_servidor',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
+      //                                         'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno]);
+
+      return view('autenticacao.login');
     }
   }

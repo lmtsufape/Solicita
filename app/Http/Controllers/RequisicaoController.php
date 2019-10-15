@@ -51,6 +51,7 @@ class RequisicaoController extends Controller
                 ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id],['status','Em andamento']])
                 // ->orderBy('alunos.cpf','asc')
                 ->get();
+
       }
       // dd($id_documentos);
       $id = []; //array auxiliar que pega cada item do $id_documentos
@@ -58,7 +59,23 @@ class RequisicaoController extends Controller
         array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
       }
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
+      // $nomes = User::whereIn('id', $id)->select('name')->get();
+      $response = [];
+      foreach ($listaRequisicao_documentos as $key) {
+        // dd($key->requisicao->perfil->curso->nome);
+        array_push($response, ['id' => $key->id,
+                               'cpf' => $key->aluno->cpf,
+                               'nome' => $key->aluno->user->name,
+                               'curso' => $key->requisicao->perfil->curso->nome,
+                               'status_data' => $key->status_data,
+                               'status' => $key->status,
+                              ]);
+      }
+      $listaRequisicao_documentos = $response; 
+      // dd($response);
       // dd($listaRequisicao_documentos);
+      // dd($listaRequisicao_documentos);
+      // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
     }
 

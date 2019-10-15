@@ -52,4 +52,11 @@ class PerfilController extends Controller
     $perfil->save();
     return redirect ('/perfil-aluno');
   }
-}
+    public function excluirPerfil(Request $id) {
+        $perfil = Perfil::find($id);
+        $perfil->delete();
+        return redirect()
+                ->action('PerfilAlunoController@index', $perfis)
+                ->withInput();
+    }
+  }
