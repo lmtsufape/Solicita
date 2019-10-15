@@ -37,7 +37,7 @@ class RequisicaoController extends Controller
                   ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                   ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                   ->select ('requisicao_documentos.id')
-                  ->where([['curso_id', $request->curso_id]])
+                  ->where([['curso_id', $request->curso_id],['status','Em andamento']])
                   ->get();
 
       }
