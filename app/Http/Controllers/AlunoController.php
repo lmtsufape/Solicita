@@ -130,7 +130,7 @@ class AlunoController extends Controller
         $unidades = Unidade::All();
         $usuarios = User::All();
         $alunos = Aluno::All();
-        $perfis = Perfil::All();
+        $perfis = Perfil::where('aluno_id', Auth::user()->aluno->id)->get();
         return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'perfis', 'alunos'));
       }
 
