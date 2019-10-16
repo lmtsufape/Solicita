@@ -54,14 +54,12 @@ class RequisicaoController extends Controller
       $id = []; //array auxiliar que pega cada item do $id_documentos
       foreach ($id_documentos as $id_documento) {
         array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
+        // var_dump($id_documentos->aluno_id);
       }
+      // $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get();
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
-      // $nomes = User::whereIn('id', $id)->select('name')->get();
-
-      //Código adicional para a listagem correta na view
       $response = [];
       foreach ($listaRequisicao_documentos as $key) {
-        // dd($key->requisicao->perfil->curso->nome);
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
                                'nome' => $key->aluno->user->name,
@@ -71,12 +69,9 @@ class RequisicaoController extends Controller
                                'detalhes' => $key->detalhes,
                               ]);
       }
+      // dd($response);
       $listaRequisicao_documentos = $response;
       //FIM - Código adicional
-
-      // dd($response);
-      // dd($listaRequisicao_documentos);
-      // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
   }
     public function concluirRequisicao(Request $request){
