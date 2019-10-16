@@ -37,7 +37,7 @@ class RequisicaoController extends Controller
                   ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                   ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                   ->select ('requisicao_documentos.id')
-                  ->where([['curso_id', $request->curso_id]])
+                  ->where([['curso_id', $request->curso_id],['status','Em andamento']])
                   ->get();
 
       }
@@ -71,9 +71,13 @@ class RequisicaoController extends Controller
         // dd($request->checkboxLinha);
 
         $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
-        foreach ($id_documentos as $id_documento) {
-          $id_documento->status = "Solicitado";
-          $id_documento->save();
+        if(isset($id_documentos)){
+
+        //dd($id_documentos);
+          foreach ($id_documentos as $id_documento) {
+            $id_documento->status = "Solicitado";
+            $id_documento->save();
+          }
         }
 
         return redirect()->back()->with('alert', 'Documento(s) Solicitado(s) com Sucesso!'); //volta pra mesma url
