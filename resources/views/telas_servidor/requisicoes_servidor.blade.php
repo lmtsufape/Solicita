@@ -121,6 +121,7 @@ function confirmarRequisicao(){
   var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
 
 // verifica se o usuário selecionou pelo menos um checkbox
+
 if(ids.length != 0){
 
     if(confirm("Você deseja marcar o(s) documento(s) como solicitado?")== true){
@@ -131,6 +132,7 @@ if(ids.length != 0){
   }
 
 }
+
 
 function getLinhas(){
   var ids = document.getElementsByClassName("checkboxLinha");// pega o id de todos os checkboxs marcados

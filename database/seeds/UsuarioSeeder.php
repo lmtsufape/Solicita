@@ -21,6 +21,7 @@ class UsuarioSeeder extends Seeder
           'tipo'=>'administrador'
         ]);
 
+
         DB::table('users')->insert([
 
           'name'=>'aluno',
