@@ -69,5 +69,16 @@ Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->na
 Route::get('/confirmacao-requisicao',function(){
     return view('autenticacao.confirmacao-requisicao');
 })->name('confirmacao-requisicao');
+
+Route::get('/listar-requisicoes-aluno','AlunoController@listarRequisicoes')->name('listar-requisicoes-aluno'); //rota para a lista de requisicoes que o aluno solicitou
+
+//Route::get('/confirmacao-requisicao',function(){
+//    return view('autenticacao.home-aluno');
+//})->name('confirmacao-requisicao');
+
+ // Route::get('/home-aluno', function(){
+ //     return view('autenticacao.formulario-requisicao');
+ // })->name('formulario-requisicao');
+
  Auth::routes();
  Route::get('/home', 'HomeController@index')->name('home'); //redireciona para a home de acordo com o tipo

@@ -23,6 +23,12 @@
         </li>
 
         <li class="nav-item active">
+          <a class="nav-link" href="{{route('listar-requisicoes-aluno')}}" style="color:white">
+                          {{ __('Documentos Solicitados') }}
+          </a>
+        </li>
+
+        <li class="nav-item active">
 
           <a class="nav-link" href="{{route('perfil-aluno')}}" style="color:white">
                           {{ __('Perfil') }}

@@ -20,17 +20,15 @@
                           </br>
                           <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 70%;">
                               @foreach($perfis as $perfil)
+
                               <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label>
                               <option value="{{$perfil->id}}">{{$perfil->default}}</option></br>
                               @endforeach
-                            </select>
-                          </br>
-
-
+                              
                           </br>
                           <label>Vínculo</label>
                           </br>
-                          <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 70%;">
+                          <select name="vinculo" class="browser-default custom-select custom-select-lg mb-1" style="width: 70%;">
                             <option value="1"selected>Aluno Matriculado</option>
                             <option value="2">Aluno Egresso</option>
                           </select></br>
