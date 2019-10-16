@@ -41,19 +41,54 @@
 <form method="POST" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('excluir-perfil') }}">
     @csrf
   <h5 class="card-header">Tipo de Perfil</h5>
-  @foreach($perfil as $perfisAluno)
+
   <div class="card-body">
+
+
+  <div class="mx-auto" style="width: 800px;">
+     <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
+        <div class="card cartao text-center " style="border-radius: 30px">
+         <div class="card-body d-flex justify-content-center">
+              <h2 style="padding-top:15px">Perfil</h2>
+           </div>
+        </div>
+     </a>
+     <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
+        <div class="card cartao text-center " style="border-radius: 30px">
+         <div class="card-body d-flex justify-content-center">
+              <h2 style="padding-top:15px">Perfil</h2>
+           </div>
+        </div>
+     </a>
+     <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
+        <div class="card cartao text-center " style="border-radius: 30px">
+         <div class="card-body d-flex justify-content-center">
+              <h2 style="padding-top:15px">Perfil</h2>
+           </div>
+        </div>
+     </a>
+</div>
+
+
+
+
+<!--
+
+  @foreach($perfil as $perfisAluno)
+
+
     <div class="mx-auto" style="width: 800px;">
       <a href="{{ route("exibir-perfil-aluno") }}" style="text-decoration:none; color: inherit;">
          <div class="card cartao text-center " style="border-radius: 30px">
-              <a href="{{action('PerfilAlunoController@excluirPerfil', $perfil->id)}}">Deletar Perfil</a>
-              <h5 style="padding-top:15px">{{$perfil->situacao}}</h5>
+              <!-- <a href="{{action('PerfilAlunoController@excluirPerfil', $perfil->id)}}">Deletar Perfil</a> -->
+              <!-- <h5 style="padding-top:15px">{{$perfil->situacao}}</h5>
               <h5 style="padding-top:15px">{{$perfil->default}}</h5>
           </div>
          </div>
       </a>
-    </div>
-  @endforeach
+    </div> -->
+
+  <!-- @endforeach -->
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
 

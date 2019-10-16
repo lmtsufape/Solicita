@@ -55,52 +55,30 @@ class RequisicaoController extends Controller
       foreach ($id_documentos as $id_documento) {
         array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
       }
-      // $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get();
-      // 
-      // $aux = []; //array auxiliar que pega cada item do $id_documentos
-      // $alunos = Aluno::All();
-      //
-      // dd($alunos->user_id);
-      // $aux = User::where($alunos->id,'listaRequisicao_documentos.aluno_id')->first();
-      // dd($aux);
-
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
-
-      foreach ($id_documentos as $id_documento) {
-        // $aux = User::where('listaRequisicao_documentos.aluno_id', $alunos->user_id)->orderBy($alunos->user->name, 'asc')->get();
-      }
-      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
-    }
       // $nomes = User::whereIn('id', $id)->select('name')->get();
-      // $response = [];
-      // foreach ($listaRequisicao_documentos as $key) {
-      //   // dd($key->requisicao->perfil->curso->nome);
-      //   array_push($response, ['id' => $key->id,
-      //                          'cpf' => $key->aluno->cpf,
-      //                          'nome' => $key->aluno->user->name,
-      //                          'curso' => $key->requisicao->perfil->curso->nome,
-      //                          'status_data' => $key->status_data,
-      //                          'status' => $key->status,
-      //                         ]);
-      // }
-      // $arrayOrdenado = sort($response);
-      //
-      // foreach ($arrayOrdenado as $key => ) {
-      //
-      //
-      // }
-      //
-      //
-      // dd($arrayOrdenado);
-      // $listaRequisicao_documentos = $arrayOrdenado;
+
+      //Código adicional para a listagem correta na view
+      $response = [];
+      foreach ($listaRequisicao_documentos as $key) {
+        // dd($key->requisicao->perfil->curso->nome);
+        array_push($response, ['id' => $key->id,
+                               'cpf' => $key->aluno->cpf,
+                               'nome' => $key->aluno->user->name,
+                               'curso' => $key->requisicao->perfil->curso->nome,
+                               'status_data' => $key->status_data,
+                               'status' => $key->status,
+                               'detalhes' => $key->detalhes,
+                              ]);
+      }
+      $listaRequisicao_documentos = $response;
+      //FIM - Código adicional
+
       // dd($response);
       // dd($listaRequisicao_documentos);
-      // dd($listaRequisicao_documentos);
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
-      // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
-    // }
-
-    //marca os documentos como "Solicitado"
+      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
+  }
     public function concluirRequisicao(Request $request){
 
         //dd($request);
