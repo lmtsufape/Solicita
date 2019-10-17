@@ -70,7 +70,7 @@ class RequisicaoController extends Controller
                               ]);
       }
       // dd($response);
-      $listaRequisicao_documentos = $response;
+      // $listaRequisicao_documentos = $response;
       //FIM - Código adicional
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
   }

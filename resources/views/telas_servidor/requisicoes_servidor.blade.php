@@ -57,14 +57,24 @@
                         </div>
 
                       </th>
-                      <td>{{$requisicao_documento['id']}}</td>
-                      <td>{{$requisicao_documento['cpf']}}</td>
-                      <td>{{$requisicao_documento['nome']}}</td>
-                      <td>{{$requisicao_documento['curso']}}</td>
-                      <td>{{$requisicao_documento['status_data']}}</td>
-                      <td>dd/mm/aaaa</td>
-                      <td>{{$requisicao_documento['status']}}</td>
+                        <td>{{$requisicao_documento->id}}</td>
+                        <td>{{$requisicao_documento->aluno->cpf}}</td>
+                        <td>{{$requisicao_documento->aluno->user->name}}</td>
+                        <td>{{$requisicao_documento->requisicao->perfil->default}}</td>
+                        <td>{{$requisicao_documento->status_data}}</td>
+                        <td>dd/mm/aaaa</td>
+                        <td>{{$requisicao_documento->status}}</td>
 
+                    <!--
+                    </th>
+                    <td>{{$requisicao_documento['id']}}</td>
+                    <td>{{$requisicao_documento['cpf']}}</td>
+                    <td>{{$requisicao_documento['nome']}}</td>
+                    <td>{{$requisicao_documento['curso']}}</td>
+                    <td>{{$requisicao_documento['status_data']}}</td>
+                    <td>dd/mm/aaaa</td>
+                    <td>{{$requisicao_documento['status']}}</td>
+                    -->
                         @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                             <td class="text-wrap">{{$requisicao_documento->detalhes}}</td>
 
