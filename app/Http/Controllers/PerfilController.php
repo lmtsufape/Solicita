@@ -27,14 +27,12 @@ class PerfilController extends Controller
     $perfil = Perfil::where('aluno_id',$aluno->id)->first();
     $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
     $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-    $perfis = Perfil::All();
-    // dd($perfil->aluno_id);
-    $temp = Perfil::whereNotIn('aluno_id',[$perfil->aluno_id])->get();
-    dd($temp);
-
+    $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+    // dd($perfis);
     $unidades = Unidade::All();
+    // $cursos = Curso::whereNotIn('id', [$perfis->curso_id])->get();
     $cursos = Curso::All();
-    // dd($perfil);
+    // dd($cursos);
     return view ('telas_aluno.adiciona_perfil_aluno', compact('perfil', 'perfis','cursoAluno', 'unidadeAluno', 'aluno', 'unidades', 'cursos'));
   }
   public function salvaPerfil(Request $request){
