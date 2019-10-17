@@ -60,7 +60,7 @@ class PerfilAlunoController extends Controller
       $perfil = Perfil::where('aluno_id',$aluno->id)->first();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-      return view('telas_aluno.perfil_aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
+      return view('autenticacao.home-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
                                               'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno]);
     }
     public function alterarSenha(){
@@ -82,7 +82,7 @@ class PerfilAlunoController extends Controller
       $perfil = Perfil::where('aluno_id',$aluno->id)->first();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-      return view('telas_aluno.perfil_aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
+      return view('autenticacao.home-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
                                               'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno]);
     }
     // public function excluirPerfil(){
