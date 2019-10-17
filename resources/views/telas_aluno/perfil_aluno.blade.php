@@ -74,8 +74,8 @@
       @endforeach
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
-          <a href="{{route("edita-perfil")}}" class="btn btn-primary"
-            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Editar Perfil</a>
+          <!-- <a href="{{route("excluir-perfil")}}" class="btn btn-primary"
+            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a> -->
 
           <!-- <a href="{{route("excluir-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a> -->
