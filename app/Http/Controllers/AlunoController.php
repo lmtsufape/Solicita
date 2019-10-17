@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Curso;
 use App\Aluno;
 use App\User;
@@ -22,6 +24,25 @@ class AlunoController extends Controller
   public function index(){
     return view('autenticacao.home-aluno');
   }
+
+  //redireciona para a lista de requisições do aluno
+  //devolve para a view a lista de requisicoes que o aluno fez
+  public function listarRequisicoes(){
+    $idUser=Auth::user()->id;
+    $aluno = Aluno::where('user_id',$idUser)->first();
+    // dd($aluno->id);
+    $requisicoes = Requisicao::where('aluno_id',$aluno->id)->get();
+    // dd($idUser);
+    $requisicoes_documentos = Requisicao_documento::where('aluno_id',$aluno->id)->get();
+
+    $aluno= Aluno::where('user_id',$idUser)->first();
+
+    $documentos = Documento::all();
+    $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+
+    return view('telas_aluno.requisicoes_aluno',compact('requisicoes','requisicoes_documentos','aluno','documentos','perfis'));
+  }
+
 
   public function homeAluno(){
     return view('autenticacao.home-aluno');
@@ -109,7 +130,7 @@ class AlunoController extends Controller
         $unidades = Unidade::All();
         $usuarios = User::All();
         $alunos = Aluno::All();
-        $perfis = Perfil::All();
+        $perfis = Perfil::where('aluno_id', Auth::user()->aluno->id)->get();
         return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'perfis', 'alunos'));
       }
 
@@ -119,7 +140,7 @@ public function novaRequisicao(Request $request){
   $checkBoxHistorico = $request->historico;
   $checkBoxProgramaDisciplina = $request->programaDisciplina;
   $checkBoxOutros = $request->outros;
-
+  // dd($request->default);
     if($checkBoxProgramaDisciplina!=''){
     $request->validate([
       'requisicaoPrograma' => ['required'],
@@ -134,13 +155,14 @@ public function novaRequisicao(Request $request){
     $idUser = Auth::user()->id;
     $user = User::find($idUser); //Usuário Autenticado
     $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
-    $perfil = Perfil::where('aluno_id',$aluno->id)->first();
+    //$perfil = Perfil::where('aluno_id',$aluno->id)->first(); //o perfil deve ser consultado com base na select do request e não com o aluno_id, pois um aluno pode ter vários perfis
+    $perfil = Perfil::where('id',$request->default)->first();
+    // dd($request->default);
     $arrayDocumentos = [];//Array Temporário
     //variáveis para os checkboxes
     date_default_timezone_set('America/Sao_Paulo');
     $date = date('d/m/Y');
     $hour =  date('H:i');
-    // dd($requisicao);
     $requisicao->data_pedido = $date;
     $requisicao->hora_pedido = $hour;
     $requisicao->perfil_id = $perfil->id;

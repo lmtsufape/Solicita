@@ -36,7 +36,6 @@
 
 <!-- Perfil aluno -->
 
-
 <div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;">
 <form method="POST" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('excluir-perfil') }}">
     @csrf
@@ -45,40 +44,22 @@
   <div class="card-body">
 
 
-  <div class="mx-auto" style="width: 800px;">
-     <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
-        <div class="card cartao text-center " style="border-radius: 30px">
-         <div class="card-body d-flex justify-content-center">
-              <h2 style="padding-top:15px">Perfil</h2>
-           </div>
-        </div>
-     </a>
-     <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
-        <div class="card cartao text-center " style="border-radius: 30px">
-         <div class="card-body d-flex justify-content-center">
-              <h2 style="padding-top:15px">Perfil</h2>
-           </div>
-        </div>
-     </a>
-     <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
-        <div class="card cartao text-center " style="border-radius: 30px">
-         <div class="card-body d-flex justify-content-center">
-              <h2 style="padding-top:15px">Perfil</h2>
-           </div>
-        </div>
-     </a>
-</div>
-
-
-
-
-<!--
-
-  @foreach($perfil as $perfisAluno)
-
-
-    <div class="mx-auto" style="width: 800px;">
-      <a href="{{ route("exibir-perfil-aluno") }}" style="text-decoration:none; color: inherit;">
+    <!-- <div class="mx-auto" style="width: 800px;">
+      <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
+         <div class="card cartao text-center " style="border-radius: 30px">
+          <div class="card-body d-flex justify-content-center">
+               <h2 style="padding-top:15px">Perfil</h2>
+            </div>
+         </div>
+      </a>
+      <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
+         <div class="card cartao text-center " style="border-radius: 30px">
+          <div class="card-body d-flex justify-content-center">
+               <h2 style="padding-top:15px">Perfil</h2>
+            </div>
+         </div>
+      </a>
+      <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
          <div class="card cartao text-center " style="border-radius: 30px">
               <!-- <a href="{{action('PerfilAlunoController@excluirPerfil', $perfil->id)}}">Deletar Perfil</a> -->
               <!-- <h5 style="padding-top:15px">{{$perfil->situacao}}</h5>
@@ -87,12 +68,13 @@
          </div>
       </a>
     </div> -->
-
-  <!-- @endforeach -->
+    <form method="GET" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
+      @foreach($perfisAluno as $pa)
+      <input type="radio" name="perfil" value="{{$pa->default}}"> {{$pa->default}}<br>
+      @endforeach
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
-
-          <a href="#" class="btn btn-primary"
+          <a href="{{route("edita-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Editar Perfil</a>
 
           <!-- <a href="{{route("excluir-perfil")}}" class="btn btn-primary"

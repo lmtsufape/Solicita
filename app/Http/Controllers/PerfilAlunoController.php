@@ -28,12 +28,15 @@ class PerfilAlunoController extends Controller
       // dd($temp);
       // array_push($arrayPerfis, $temp);
 
+
       $perfil = Perfil::where('aluno_id',$aluno->id)->first();
+      $perfisAluno = Perfil::where('aluno_id',$aluno->id)->get();
+
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
 
       return view('telas_aluno.perfil_aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
-                                              'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno]);
+                                              'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno,'perfisAluno'=>$perfisAluno]);
     }
 
     public function editarInfo(){

@@ -17,5 +17,12 @@ class AlunoSeeder extends Seeder
           'cpf'=>'12345678900',
           'user_id'=> $user_id[0],
         ]);
+
+
+        $user_id = DB::table('users')->where('name','aluno')->pluck('id');
+          DB::table('alunos')->insert([
+            'cpf'=>'98765432100',
+            'user_id'=> $user_id[0],
+          ]);
     }
 }
