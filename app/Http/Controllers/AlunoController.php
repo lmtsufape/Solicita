@@ -123,7 +123,8 @@ class AlunoController extends Controller
     $perfil->curso_id = $curso->id;
     //dd($perfil);
     $perfil->save();
-    return redirect('/')->with('jsAlert','Usuário Cadastrado com sucesso.');
+    return redirect('/');
+    
   }
 
   public function preparaNovaRequisicao(Request $request){
