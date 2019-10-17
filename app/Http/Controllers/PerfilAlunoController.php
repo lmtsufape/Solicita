@@ -129,7 +129,7 @@ class PerfilAlunoController extends Controller
       $perfil->default = $curso->nome;
       $perfil->aluno()->associate($aluno);
       $perfil->save();
-      return redirect ('/perfil-aluno');
+      return redirect ('telas_aluno.perfil_aluno');
     }
       public function excluirPerfil(Request $id) {
           $perfil = Perfil::find($id);
