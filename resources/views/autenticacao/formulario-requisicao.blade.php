@@ -22,17 +22,19 @@
                               @foreach($perfis as $perfil)
 
                               <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label>
-                              <option value="{{$perfil->id}}">{{$perfil->default}}</option></br>
+                              <option value="{{$perfil->id}}">{{$perfil->default}} - {{$perfil->situacao}}</option></br>
                               @endforeach
-                              
+                          </select>
                           </br>
-                          <label>Vínculo</label>
+
+                          <!-- <label>Vínculo</label>
                           </br>
                           <select name="vinculo" class="browser-default custom-select custom-select-lg mb-1" style="width: 70%;">
                             <option value="1"selected>Aluno Matriculado</option>
                             <option value="2">Aluno Egresso</option>
                           </select></br>
-                          </br>
+                          </br> -->
+                        </br>
                           <label>Documentos</label>
                           </br>
                           <input type="checkbox" name="declaracaoVinculo"     value="Declaracao de Vinculo"     id="declaracaoVinculo"> Declaração de Vínculo</br>
