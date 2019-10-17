@@ -13,10 +13,10 @@ use Illuminate\Http\Request;
 
 //----------------------------------------------USUARIO----------------------------------------------------------------
 
-Route::get('/', 'UsuarioController@index')->name('login');
+// Route::get('/', 'UsuarioController@index')->name('login');
+Route::get('/', 'AlunoController@index')->name('login');
 
 // ---------------------------------------------ALUNO-------------------------------------------------------------------
-Route::get('/', 'AlunoController@index')->name('login');
 Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 Route::get('/home-aluno', 'AlunoController@index')->name('home-aluno');
@@ -69,19 +69,5 @@ Route::get('/confirmacao-requisicao',function(){
     return view('autenticacao.confirmacao-requisicao');
 })->name('confirmacao-requisicao');
 
-
-//Route::get('/confirmacao-requisicao',function(){
-//    return view('autenticacao.home-aluno');
-//})->name('confirmacao-requisicao');
-
- // Route::get('/home-aluno', function(){
- //     return view('autenticacao.formulario-requisicao');
- // })->name('formulario-requisicao');
-
- //ROTAS PARA VARIAÇÕES DOS SERVIDORES
- // Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
- //percurso da tela inicial do sistema para a home do aluno
-
- // Route::get('/formulario-requisicao', 'AlunoController@preparaNovaRequisicao')->name('formulario-requisicao');
  Auth::routes();
  Route::get('/home', 'HomeController@index')->name('home'); //redireciona para a home de acordo com o tipo

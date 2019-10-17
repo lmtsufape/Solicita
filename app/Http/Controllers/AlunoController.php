@@ -22,7 +22,8 @@ class AlunoController extends Controller
 {
   // Redireciona para tela de login ao entrar no sistema
   public function index(){
-    return view('autenticacao.home-aluno');
+    // return view('autenticacao.home-aluno');
+    return view('autenticacao.login');
   }
 
   //redireciona para a lista de requisições do aluno
