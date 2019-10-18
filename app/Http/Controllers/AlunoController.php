@@ -31,7 +31,8 @@ class AlunoController extends Controller
     $idUser=Auth::user()->id;
     $aluno = Aluno::where('user_id',$idUser)->first();
     // dd($aluno->id);
-    $requisicoes = Requisicao::where('aluno_id',$aluno->id)->get();
+    //ordena pela data e hora do pedido
+    $requisicoes = Requisicao::where('aluno_id',$aluno->id)->orderBy('data_pedido','desc')->orderBy('hora_pedido','desc')->get();
     // dd($idUser);
     $requisicoes_documentos = Requisicao_documento::where('aluno_id',$aluno->id)->get();
 
@@ -39,6 +40,8 @@ class AlunoController extends Controller
 
     $documentos = Documento::all();
     $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+
+    //dd($requisicoes);
 
     return view('telas_aluno.requisicoes_aluno',compact('requisicoes','requisicoes_documentos','aluno','documentos','perfis'));
   }
