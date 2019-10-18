@@ -39,30 +39,41 @@ class RequisicaoController extends Controller
                   ->select ('requisicao_documentos.id')
                   ->where([['curso_id', $request->curso_id],['status','Em andamento']])
                   ->get();
-
       }
       else {
          $titulo = $documento->tipo;
          $id_documentos = DB::table('requisicao_documentos')
                 ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                 ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
-                // ->join('alunos', 'alunos.id', '=', 'requisicao_documentos.aluno_id')
+                ->join('alunos', 'alunos.id', '=', 'requisicao_documentos.aluno_id')
+                ->join('users', 'users.id', '=', 'alunos.user_id')
                 ->select ('requisicao_documentos.id')
                 ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id],['status','Em andamento']])
-                // ->orderBy('alunos.cpf','asc')
                 ->get();
       }
-      // dd($id_documentos);
       $id = []; //array auxiliar que pega cada item do $id_documentos
       foreach ($id_documentos as $id_documento) {
         array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
+        // var_dump($id_documentos->aluno_id);
       }
+      // $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get();
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
-      // dd($listaRequisicao_documentos);
+      $response = [];
+      foreach ($listaRequisicao_documentos as $key) {
+        array_push($response, ['id' => $key->id,
+                               'cpf' => $key->aluno->cpf,
+                               'nome' => $key->aluno->user->name,
+                               'curso' => $key->requisicao->perfil->curso->nome,
+                               'status_data' => $key->status_data,
+                               'status' => $key->status,
+                               'detalhes' => $key->detalhes,
+                              ]);
+      }
+      // dd($response);
+      // $listaRequisicao_documentos = $response;
+      //FIM - Código adicional
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
-    }
-
-    //marca os documentos como "Solicitado"
+  }
     public function concluirRequisicao(Request $request){
 
         //dd($request);

@@ -7,12 +7,9 @@
     <div class="background" style="height: 840px">
         <div class="centro" style="height: 840px">
                 <h2 class="row d-flex justify-content-center" >Alterar Senha</h2>
-
-                <form action="{{  route('alterar-senha')  }}" method="POST">
-
+                <form action="{{  route('alterar-senha-servidor')  }}" method="POST">
                   @csrf
                   <div class="form-group">
-
 
                     <!-- Form Senha -->
                     <div class="form-group row formulario-centro">
@@ -70,10 +67,6 @@
                         </div>
 
                     </div>
-
-
-
-
               </form>
           </div>
       </div>

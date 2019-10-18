@@ -47,6 +47,16 @@
     <div class="nav navbar-nav navbar-right" >
       <ul class="nav navbar-nav">
           @if(Auth::check())
+          <li>
+          <a class="nav-link"  href="{{ route('home') }}"
+             onclick="event.preventDefault();
+                           document.getElementById('usuario-form').submit();"style="color:white">
+             {{Auth::user()->name}}
+          </a>
+          <form id="usuario-form" action="{{ route('home-administrador') }}" method="GET" style="display: none;">
+              @csrf
+          </form>
+        </li>
           @endif
       </ul>
       <ul class="nav navbar-nav navbar-right">

@@ -9,7 +9,7 @@ class Perfil extends Model
     //
     protected $fillable = ['default','situacao'];
 
- 
+
     public function requisicao(){
         return $this->hasMany('App\Requisicao');
     }

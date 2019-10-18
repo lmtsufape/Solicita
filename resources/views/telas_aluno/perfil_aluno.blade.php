@@ -17,7 +17,6 @@
             <label for="nome">Tipo de Vinculo</label>
             <h4>{{$perfil->situacao}}</h4>
           </div>
-
           <div class="" style="background-color: white;width:400px;height:250px;float:left;padding-left:100px">
             <label for="nome">Unidade Acadêmica</label>
             <h4>{{$unidadeAluno}}</h4>
@@ -32,15 +31,16 @@
           <a href="{{route('alterar-senha')}}" class="btn btn-secondary" style="margin-top: 50px;margin-left: 10px;float:right;">Editar Senha</a>
           <a href="{{route('editar-info')}}" class="btn btn-primary" style="margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Editar Perfil</a>
     </div>
-
   </div>
 </div>
 
 <!-- Perfil aluno -->
 
-    @csrf
 <div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;">
+<form method="POST" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('excluir-perfil') }}">
+    @csrf
   <h5 class="card-header">Tipo de Perfil</h5>
+
   <div class="card-body">
 
 
@@ -61,25 +61,24 @@
       </a>
       <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
          <div class="card cartao text-center " style="border-radius: 30px">
-          <div class="card-body d-flex justify-content-center">
-               <h2 style="padding-top:15px">Perfil</h2>
-            </div>
+              <!-- <a href="{{action('PerfilAlunoController@excluirPerfil', $perfil->id)}}">Deletar Perfil</a> -->
+              <!-- <h5 style="padding-top:15px">{{$perfil->situacao}}</h5>
+              <h5 style="padding-top:15px">{{$perfil->default}}</h5>
+          </div>
          </div>
       </a>
     </div> -->
     <form method="GET" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
       @foreach($perfisAluno as $pa)
-
       <input type="radio" name="perfil" value="{{$pa->default}}"> {{$pa->default}}<br>
-
       @endforeach
-
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
-          <a href="{{route("edita-perfil")}}" class="btn btn-primary"
-            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Editar Perfil</a>
-    </form>
-    </div>
-  </div>
+          <!-- <a href="{{route("excluir-perfil")}}" class="btn btn-primary"
+            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a> -->
 
+          <!-- <a href="{{route("excluir-perfil")}}" class="btn btn-primary"
+            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a> -->
+    </form>
+  </div>
 @endsection
