@@ -8,7 +8,7 @@ class Perfil extends Model
 {
     //
     protected $fillable = ['default','situacao'];
-
+    protected $dates = ['deleted_at'];
 
     public function requisicao(){
         return $this->hasMany('App\Requisicao');

@@ -18,8 +18,7 @@ class CreatePerfilsTable extends Migration
 
             $table->string('default');//curso default
             $table->string('situacao'); // Matriculado ou Egresso
-
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

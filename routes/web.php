@@ -51,7 +51,7 @@ Route::get('/perfil-aluno','PerfilAlunoController@index')->name('perfil-aluno');
 Route::get('/editar-perfil','PerfilAlunoController@editarInfo')->name('editar-info');
 Route::get('/exibir-perfil-aluno','PerfilAlunoController@editarInfo')->name('exibir-perfil-aluno');
 Route::post('/editar-perfil','PerfilAlunoController@storeEditarInfo')->name('editar-info');
-Route::post('/excluir-perfil','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
+Route::post('/excluir-perfil{idPerfil}','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
 Route::get('/adiciona-perfil', 'PerfilAlunoController@adicionaPerfil')->name('adiciona-perfil');
 Route::post('/salva-novo-perfil-aluno', 'PerfilAlunoController@salvaPerfil')->name('salva-novo-perfil-aluno');
 Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');

@@ -134,11 +134,13 @@ class PerfilAlunoController extends Controller
       $perfil->save();
       return redirect ('telas_aluno.perfil_aluno');
     }
-      public function excluirPerfil(Request $id) {
+      public function excluirPerfil(Request $request) {
+          $id = $request->perfil;
+          dd($id);
           $perfil = Perfil::find($id);
           $perfil->delete();
-          return redirect()
-                  ->action('PerfilAlunoController@index', $perfis)
-                  ->withInput();
+          // return redirect()
+          //         ->action('PerfilAlunoController@index', $perfis)
+          //         ->withInput();
       }
 }

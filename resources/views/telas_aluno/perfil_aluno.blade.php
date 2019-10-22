@@ -37,13 +37,11 @@
 <!-- Perfil aluno -->
 
 <div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;">
-<form method="POST" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('excluir-perfil') }}">
-    @csrf
-  <h5 class="card-header">Tipo de Perfil</h5>
+<!-- <form method="POST" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('excluir-perfil') }}">
+    @csrf -->
+  <!-- <h5 class="card-header">Tipo de Perfil</h5> -->
 
   <div class="card-body">
-
-
     <!-- <div class="mx-auto" style="width: 800px;">
       <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
          <div class="card cartao text-center " style="border-radius: 30px">
@@ -68,17 +66,21 @@
          </div>
       </a>
     </div> -->
-    <form method="GET" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
+    <!-- <form method="POST" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
+      @csrf -->
       @foreach($perfisAluno as $pa)
       <input type="radio" name="perfil" value="{{$pa->default}}"> {{$pa->default}}<br>
       @endforeach
-          <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
-            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
-          <!-- <a href="{{route("excluir-perfil")}}" class="btn btn-primary"
-            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a> -->
+        <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil') }}">
+          @csrf
+          <a href="{{route("excluir-perfil")}}" class="btn btn-primary"
+          style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a>
+        </form>
 
-          <!-- <a href="{{route("excluir-perfil")}}" class="btn btn-primary"
-            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a> -->
-    </form>
+          <form method="POST" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
+            @csrf
+            <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
+              style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
+          </form>
   </div>
 @endsection
