@@ -26,10 +26,8 @@ Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('ca
 Route::get('/prepara-requisicao', 'AlunoController@preparaNovaRequisicao')->name('prepara-requisicao');
 Route::get('/home-aluno','AlunoController@homeAluno')->name('home-aluno');
 Route::get('/listar-requisicoes-aluno','AlunoController@listarRequisicoes')->name('listar-requisicoes-aluno'); //rota para a lista de requisicoes que o aluno solicitou
-
 //----------------------------------------------ADMINISTRADOR-----------------------------------------------------------
 Route::get('/home-administrador','AdministradorController@index')->name('home-administrador');
-
 //----------------------------------------------SERVIDOR----------------------------------------------------------------
 Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
 Route::get('/home-servidor','ServidorController@index')->name('cadastro-servidor');
@@ -40,29 +38,25 @@ Route::post('/novo-servidor','ServidorController@storeServidor')->name('novo-ser
 Route::get('/alterar-senha-servidor','ServidorController@alterarSenhaServidor')->name('alterar-senha-servidor');
 Route::post('/alterar-senha-servidor','ServidorController@storeAlterarSenhaServidor')->name('alterar-senha-servidor');
 Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
-
 //--------------------------------------------REQUISICAO---------------------------------------------------------------
 Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('listar-requisicoes');
 Route::post('/listar-requisicoes','RequisicaoController@concluirRequisicao')->name('listar-requisicoes-post');
-
 //--------------------------------------------PERFIL------------------------------------------------------------------
-
 Route::get('/perfil-aluno','PerfilAlunoController@index')->name('perfil-aluno');
 Route::get('/editar-perfil','PerfilAlunoController@editarInfo')->name('editar-info');
 Route::get('/exibir-perfil-aluno','PerfilAlunoController@editarInfo')->name('exibir-perfil-aluno');
 Route::post('/editar-perfil','PerfilAlunoController@storeEditarInfo')->name('editar-info');
+// Route::post('/excluir-perfil','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
 Route::post('/excluir-perfil{idPerfil}','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
 Route::get('/adiciona-perfil', 'PerfilAlunoController@adicionaPerfil')->name('adiciona-perfil');
+// Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');
 Route::post('/salva-novo-perfil-aluno', 'PerfilAlunoController@salvaPerfil')->name('salva-novo-perfil-aluno');
-Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');
 Route::get('/edita-perfil','PerfilController@editaPerfil')->name('edita-perfil');
 Route::post('/salva-novo-perfil-aluno', 'PerfilController@salvaPerfil')->name('salva-novo-perfil-aluno');
 Route::get('/alterar-senha','PerfilAlunoController@alterarSenha')->name('alterar-senha');
 Route::post('/alterar-senha','PerfilAlunoController@storeAlterarSenha')->name('alterar-senha');
-
 // Route::post('/excluir-perfil','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
 // ---------------------------------------REQUISICAO------------------------------------------------------------------
-
 Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao');
 Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post');
 Route::get('/confirmacao-requisicao',function(){

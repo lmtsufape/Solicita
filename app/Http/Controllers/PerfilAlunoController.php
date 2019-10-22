@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Curso;
@@ -135,12 +135,24 @@ class PerfilAlunoController extends Controller
       return redirect ('telas_aluno.perfil_aluno');
     }
       public function excluirPerfil(Request $request) {
-          $id = $request->perfil;
-          dd($id);
-          $perfil = Perfil::find($id);
-          $perfil->delete();
-          // return redirect()
-          //         ->action('PerfilAlunoController@index', $perfis)
-          //         ->withInput();
+          $perfis = Perfil::All();
+          $quant = count($perfis);
+          if($quant<2){
+            return redirect()->back()->with('alert', 'Necessário haver ao menos um perfil vinculado ao aluno!');
+          }
+          $id = $request->idPerfil;
+          $selecao = Perfil::where('default', $id)->first();
+          // 
+          // dd($perfis->id);
+          // $teste = Perfil::whereIn('id', $id);
+          //
+          // dd($selecao);
+          //
+          //
+          //
+          // dd($id);
+          $perfil = Perfil::where('default', $id)->delete();
+          return redirect()->back()->with('alert', 'Deletado com Sucesso!');
+
       }
 }
