@@ -111,7 +111,6 @@ class PerfilAlunoController extends Controller
       $perfis = Perfil::All();
       $unidades = Unidade::All();
       $cursos = Curso::All();
-      // dd($perfil);
       return view ('telas_aluno.adiciona_perfil_aluno', compact('perfil', 'perfis','cursoAluno', 'unidadeAluno', 'aluno', 'unidades', 'cursos'));
     }
     public function salvaPerfil(Request $request){
