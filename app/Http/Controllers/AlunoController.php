@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
 use Illuminate\Support\Facades\DB;
 
 use App\Curso;
@@ -128,7 +127,7 @@ class AlunoController extends Controller
     //dd($perfil);
     $perfil->save();
     return redirect('/');
-    
+
   }
 
   public function preparaNovaRequisicao(Request $request){
