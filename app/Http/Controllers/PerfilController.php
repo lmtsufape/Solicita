@@ -46,28 +46,30 @@ class PerfilController extends Controller
       array_push($id, $key->curso_id);
     }
     // dd($id);
-    if($id==null){
+    if($id!=null){
       // dd('CHEGOU AQUI NO IF');
       Perfil::onlyTrashed()->where('id', $id)->restore();
-      return redirect ('/perfil-aluno');
+      // return redirect ('/perfil-aluno');
     }
+    else{
     // dd('CHEGOU AQUI');
     $perfil = new Perfil();
     $perfil->curso_id = $request->curso;
     $perfil->unidade_id = $request->unidade;
-    if($request->vinculo === "1"){
-      $perfil->situacao = "Matriculado";
-    }
-    else{
-      $perfil->situacao = "Egresso";
-    }
+        if($request->vinculo === "1"){
+          $perfil->situacao = "Matriculado";
+        }
+        else{
+          $perfil->situacao = "Egresso";
+        }
     $temp = $request->cursos;
     $curso = Curso::where('id',$request->curso)->first();
     $perfil->default = $curso->nome;
     $perfil->aluno()->associate($aluno);
     $perfil->save();
+    }
+    dd("SAIU DA CONDICIONAL");
     return redirect ('/perfil-aluno');
-  // }
 }
   //retorna para view de editar perfil do aluno
   public function excluirPerfil(Request $id) {
