@@ -134,26 +134,16 @@ class PerfilAlunoController extends Controller
       return redirect ('telas_aluno.perfil_aluno');
     }
       public function excluirPerfil(Request $request) {
+          // dd($request->idPerfil);
           $perfis = Perfil::All();
           $quant = count($perfis);
-          if($quant<2){
+          // dd($quant);
+          if($quant===1){
             return redirect()->back()->with('alert', 'Necessário haver ao menos um perfil vinculado ao aluno!');
           }
           $id = $request->idPerfil;
           $selecao = Perfil::where('default', $id)->get();
-          //
-          // $id = [];
-          // foreach ($selecao as $key) {
-          //   array_push($id, $key->id);
-          // }
-          // dd($selecao);
-          // dd($selecao);
-          //
-          //
-          //
-          // dd($id);
           $perfil = Perfil::where('default', $id)->delete();
           return redirect()->back()->with('alert', 'Deletado com Sucesso!');
-
       }
 }
