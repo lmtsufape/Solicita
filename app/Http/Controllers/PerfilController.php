@@ -12,6 +12,7 @@ class PerfilController extends Controller
   public function index(){
     $cursos = Curso::all();
     $unidades = Unidade::all();
+
     return view('telas_aluno.perfil_aluno',compact('cursos','unidades'));
   }
   public function editarInfo(){
@@ -26,10 +27,14 @@ class PerfilController extends Controller
     $perfil = Perfil::where('aluno_id',$aluno->id)->first();
     $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
     $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-    $perfis = Perfil::All();
+    $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+
+    $id = [];
+    foreach ($perfis as $perfil) {
+      array_push($id, $perfil->curso_id);
+    }
+    $cursos = Curso::whereNotIn('id', $id)->get();
     $unidades = Unidade::All();
-    $cursos = Curso::All();
-    // dd($perfil);
     return view ('telas_aluno.adiciona_perfil_aluno', compact('perfil', 'perfis','cursoAluno', 'unidadeAluno', 'aluno', 'unidades', 'cursos'));
   }
   public function salvaPerfil(Request $request){
@@ -52,11 +57,21 @@ class PerfilController extends Controller
     $perfil->save();
     return redirect ('/perfil-aluno');
   }
-    public function excluirPerfil(Request $id) {
-        $perfil = Perfil::find($id);
-        $perfil->delete();
-        return redirect()
-                ->action('PerfilAlunoController@index', $perfis)
-                ->withInput();
-    }
+
+  //retorna para view de editar perfil do aluno
+  public function excluirPerfil(Request $id) {
+    $perfil = Perfil::find($id);
+    $perfil->delete();
+    return redirect()
+    ->action('PerfilAlunoController@index', $perfis)
+    ->withInput();
   }
+
+  public function editaPerfil(){
+    $idUser = Auth::user()->id;
+    $aluno = Aluno::where('user_id',$idUser)->first();
+    $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+    //dd($perfis);
+    return view('telas_aluno.edita_perfil',compact('perfis'));
+  }
+}

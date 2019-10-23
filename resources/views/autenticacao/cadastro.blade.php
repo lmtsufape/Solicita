@@ -169,7 +169,7 @@
                     <div class="form-group row mb-0 justify-content-center ">
                         <div class="row " style="margin-top:20px; margin-left:-30px">
                                 <div class="col-md-6 " style="">
-                                    <a class="menu-principal" href="{{  route('login')}}" style="color: #1B2E4F; margin-left: -20px">Voltar</a>
+                                    <a class="menu-principal" href="\" style="color: #1B2E4F; margin-left: -20px">Voltar</a>
                                 </div>
 
                                 <div class="col-md-6 " style="margin-left: -30px; margin-top: -4px">

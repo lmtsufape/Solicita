@@ -28,19 +28,12 @@
                   <!-- botão de finalizar -->
                   <form id="formularioRequisicao" action="{{  route('listar-requisicoes-post')  }}" method="POST">
                     @csrf
-
-
                     <!-- Checkbox que seleciona todos os outros -->
                     <div class="form-check">
                       <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
-
-
                     </div>
 
-
                 </th>
-
-
                 <th scope="col">Id</th>
                 <th scope="col">CPF</th>
                 <th scope="col">NOME</th>
@@ -49,46 +42,36 @@
                 <th scope="col">PRAZO</th>
                 <th scope="col">STATUS</th>
 
-
                 @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                     <th scope="col">INFORMAÇÕES</th>
                 @endif
-
-
-
             </tr>
             </thead>
             <tbody>
-
-
                 @foreach($listaRequisicao_documentos as $requisicao_documento)
-
                     <tr>
                       <th scope="row">
                         <div class="form-check">
                           <!-- checkboxLinha[] pega o valor de todos os checkboxLinha e envia como post para a rota -->
                           <input class="checkboxLinha" type="checkbox" id="checkboxLinha" name="checkboxLinha[]" value="{{$requisicao_documento['id']}}" onclick="">
                         </div>
+                    </th>
+                    <td>{{$requisicao_documento['id']}}</td>
+                    <td>{{$requisicao_documento['cpf']}}</td>
+                    <td>{{$requisicao_documento['nome']}}</td>
+                    <td>{{$requisicao_documento['curso']}}</td>
+                    <td>{{$requisicao_documento['status_data']}}</td>
+                    <td>dd/mm/aaaa</td>
+                    <td>{{$requisicao_documento['status']}}</td>
 
-                      </th>
-                      <td>{{$requisicao_documento['id']}}</td>
-                      <td>{{$requisicao_documento['cpf']}}</td>
-                      <td>{{$requisicao_documento['nome']}}</td>
-                      <td>{{$requisicao_documento['curso']}}</td>
-                      <td>{{$requisicao_documento['status_data']}}</td>
-                      <td>dd/mm/aaaa</td>
-                      <td>{{$requisicao_documento['status']}}</td>
+                        @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
+                            <td class="text-wrap">{{$requisicao_documento['detalhes']}}</td>
 
-                      @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
-                          <td class="text-wrap">{{$requisicao_documento->detalhes}}</td>
-
-                      @endif
+                        @endif
                   </tr>
                 @endforeach
               </div>
             </form>
-
-
             </tbody>
         </table>
 
@@ -99,7 +82,6 @@
 @endif -->
 
 <script>
-
 var checkedAll = false;
 var checkBoxs;
 document.getElementById("selectAll").addEventListener("click", function(){
@@ -115,29 +97,23 @@ document.getElementById("selectAll").addEventListener("click", function(){
 });
 
 console.log(checkBoxs);
-
 function confirmarRequisicao(){
-
   var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
-
 // verifica se o usuário selecionou pelo menos um checkbox
-if(ids.length != 0){
 
+if(ids.length != 0){
     if(confirm("Você deseja marcar o(s) documento(s) como solicitado?")== true){
       document.getElementById("formularioRequisicao").submit();
     }
   }else {
     alert("Selecione pelo menos um documento!");
   }
-
 }
-
 function getLinhas(){
   var ids = document.getElementsByClassName("checkboxLinha");// pega o id de todos os checkboxs marcados
   return getIds(ids);
 
 }
-
 function getIds(dados){
   var arrayDados = dados;
   var newArray = [];//array aux para guardar os ids dos documentos
@@ -149,15 +125,9 @@ function getIds(dados){
       }
     }
   }
-
   return newArray;
-
 }
-
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
 @endsection

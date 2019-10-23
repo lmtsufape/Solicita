@@ -12,14 +12,14 @@
                   <div class="form-group">
 
                     <!-- Form -->
-                    <div class="form-group row justify-content-center">
+                    <!-- <div class="form-group row justify-content-center">
                         <div class="col-md-9">
                             <p><div class = "label" id = informacao></div><b>Dados do seu perfil atual</b></p>
                             <p><div class = "label" id = cpfAlunoPerfil ></div><b>Aluno: {{Auth::user()->name}}</b></p>
                             <p><div class = "label" id = vinculoAlunoPerfil ></div><b>Situação Acadêmica: {{$perfil->situacao}}</b></p>
                             <p><div class = "label" id = cursoAlunoPerfil ></div><b>Curso: {{$cursoAluno->nome}}</b></p>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Form -->
                     <div class="form-group row formulario-centro">
                       <div class="col-md-9">
