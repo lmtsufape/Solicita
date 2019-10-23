@@ -12,17 +12,13 @@
                         <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
                           <label>Nome</label>
                           <b><h4>{{$requisicao->perfil->aluno->user->name}}</h4></b>
-
                           <label>Curso</label>
                           <b><h4>{{$requisicao->perfil->curso->nome}}</h4></b>
-
-
-
                           <br>
                           <h4>Confirmamos o reecebimento de sua solicitação para os documentos abaixo:</h4>
                           <ul>
                             @foreach ($arrayDocumentos as $docSolicitado)
-                            <li value="Documentos solicitados">{{$docSolicitado->documento_id}}</li>
+                            <b><li value="Documentos solicitados">{{$docSolicitado->tipo}}</li></b>
                             @if($docSolicitado->documento_id==4)
                               <h5>Descrição do documento solicitado {{$docSolicitado->detalhes}}</h5>
                             @endif

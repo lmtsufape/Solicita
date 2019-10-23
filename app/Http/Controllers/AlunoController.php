@@ -231,7 +231,16 @@ public function novaRequisicao(Request $request){
   $ano = date('Y');
   $size = count($arrayDocumentos);
   $requisicao->requisicao_documento()->saveMany($arrayDocumentos);
-  $documento = Documento::where('id',$request->titulo_id)->first();
+      $id = [];
+      foreach ($arrayDocumentos as $key) {
+        array_push($id, $key->documento_id);
+      }
+  // dd($arrayDocumentos);
+  $arrayAux = Documento::whereIn('id', $id)->get();
+  // dd($arrayAux);
+  $arrayDocumentos = $arrayAux;
+  // dd($arrayDocumentos);
+  // $documento = Documento::where('id',$request->titulo_id)->first();
   $curso = Curso::where('id',$request->curso_id)->first();
   return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayDocumentos', 'size', 'ano'));
 }
