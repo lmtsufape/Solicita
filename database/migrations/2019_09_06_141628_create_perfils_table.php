@@ -15,11 +15,9 @@ class CreatePerfilsTable extends Migration
     {
         Schema::create('perfils', function (Blueprint $table) {
             $table->bigIncrements('id');
-
             $table->string('default');//curso default
             $table->string('situacao'); // Matriculado ou Egresso
-
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }
