@@ -40,18 +40,18 @@ class PerfilController extends Controller
     $usuario = User::find(Auth::user()->id);
     $aluno = $usuario->aluno;
     // dd($request->curso);
-    $perfisDeletados = Perfil::where('curso_id', $request->curso)->onlyTrashed()->get();
-    $id = []; //Armazena em um array perfis já adicionados ao aluno
-    foreach ($perfisDeletados as $key) {
-      array_push($id, $key->curso_id);
-    }
+    // $perfisDeletados = Perfil::where('curso_id', $request->curso)->onlyTrashed()->get();
+    // $id = []; //Armazena em um array perfis já adicionados ao aluno
+    // foreach ($perfisDeletados as $key) {
+      // array_push($id, $key->curso_id);
+    // }
     // dd($id);
-    if($id!=null){
+    // if($id!=null){
       // dd('CHEGOU AQUI NO IF');
-      Perfil::onlyTrashed()->where('id', $id)->restore();
+      // Perfil::onlyTrashed()->where('id', $id)->restore();
       // return redirect ('/perfil-aluno');
-    }
-    else{
+    // }
+    // else{
     // dd('CHEGOU AQUI');
     $perfil = new Perfil();
     $perfil->curso_id = $request->curso;
@@ -67,8 +67,7 @@ class PerfilController extends Controller
     $perfil->default = $curso->nome;
     $perfil->aluno()->associate($aluno);
     $perfil->save();
-    }
-    dd("SAIU DA CONDICIONAL");
+    // }
     return redirect ('/perfil-aluno');
 }
   //retorna para view de editar perfil do aluno
