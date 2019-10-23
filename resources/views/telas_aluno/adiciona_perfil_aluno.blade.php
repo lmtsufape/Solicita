@@ -49,12 +49,12 @@
 
                       <!-- Cursos-->
                       <label for="cursos" style="margin-left:125px">Curso</label>
-                      <select name="cursos" id="cursos" class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
+                      <select name="curso" id="cursos" class="browser-default custom-select custom-select-lg mb-1" style="width: 14.5rem; margin-left:125px">
                         <options selected>Curso</option>
                           @foreach($cursos as $curso)
                           <option value="{{$curso->id}}">{{$curso->nome}}</option>
                           @endforeach
-                          @error('cursos')
+                          @error('curso')
                           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                           <strong>{{ $message }}</strong>
                           </span>
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="col-md-6 " style="margin-left: -30px; margin-top: -4px">
-                                    <button type="submit" class="btn btn-primary"  href="{{  route('salva-novo-perfil-aluno')}}"
+                                    <button type="submit" class="btn btn-primary"  href="{{  route("salva-novo-perfil-aluno")}}"
                                       style="margin-left: 60px;background-color: #1B2E4F; border-color: #d3e0e9">
                                         {{ __('Salvar') }}
                                     </button>

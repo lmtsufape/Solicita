@@ -49,7 +49,7 @@ Route::post('/editar-perfil','PerfilAlunoController@storeEditarInfo')->name('edi
 // Route::post('/excluir-perfil','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
 Route::post('/excluir-perfil{idPerfil}','PerfilAlunoController@excluirPerfil')->name('excluir-perfil');
 Route::get('/adiciona-perfil', 'PerfilAlunoController@adicionaPerfil')->name('adiciona-perfil');
-// Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');
+Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');
 Route::post('/salva-novo-perfil-aluno', 'PerfilAlunoController@salvaPerfil')->name('salva-novo-perfil-aluno');
 Route::get('/edita-perfil','PerfilController@editaPerfil')->name('edita-perfil');
 Route::post('/salva-novo-perfil-aluno', 'PerfilController@salvaPerfil')->name('salva-novo-perfil-aluno');

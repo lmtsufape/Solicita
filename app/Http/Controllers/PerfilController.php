@@ -28,7 +28,6 @@ class PerfilController extends Controller
     $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
     $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
     $perfis = Perfil::where('aluno_id',$aluno->id)->get();
-
     $id = [];
     foreach ($perfis as $perfil) {
       array_push($id, $perfil->curso_id);
@@ -38,11 +37,25 @@ class PerfilController extends Controller
     return view ('telas_aluno.adiciona_perfil_aluno', compact('perfil', 'perfis','cursoAluno', 'unidadeAluno', 'aluno', 'unidades', 'cursos'));
   }
   public function salvaPerfil(Request $request){
+    // dd($request->curso);
+    // dd($request->unidade);
+    // dd($request->vinculo);
     $usuario = User::find(Auth::user()->id);
     $aluno = $usuario->aluno;
+    // dd($request->cursos);
+    $perfisDeletados = Perfil::where('curso_id', $request->curso)->onlyTrashed()->get();
+    // dd($perfisDeletados);
+    $id = []; //Armazena em um array perfis já adicionados ao aluno
+    foreach ($perfisDeletados as $key) {
+      array_push($id, $key->curso_id);
+    }
+    // dd($id);
+    if($id!=null){
+      Perfil::onlyTrashed()->where('id', $id)->restore();
+      return redirect ('/perfil-aluno');
+    }
     $perfil = new Perfil();
-    // $perfil->aluno_id = $request->idAluno;
-    $perfil->curso_id = $request->cursos;
+    $perfil->curso_id = $request->curso;
     $perfil->unidade_id = $request->unidade;
     if($request->vinculo === "1"){
       $perfil->situacao = "Matriculado";
@@ -51,13 +64,13 @@ class PerfilController extends Controller
       $perfil->situacao = "Egresso";
     }
     $temp = $request->cursos;
-    $curso = Curso::where('id',$request->cursos)->first();
+    $curso = Curso::where('id',$request->curso)->first();
     $perfil->default = $curso->nome;
     $perfil->aluno()->associate($aluno);
     $perfil->save();
     return redirect ('/perfil-aluno');
-  }
-
+  // }
+}
   //retorna para view de editar perfil do aluno
   public function excluirPerfil(Request $id) {
     $perfil = Perfil::find($id);

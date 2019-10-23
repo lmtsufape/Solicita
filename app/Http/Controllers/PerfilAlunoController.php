@@ -140,11 +140,13 @@ class PerfilAlunoController extends Controller
             return redirect()->back()->with('alert', 'Necessário haver ao menos um perfil vinculado ao aluno!');
           }
           $id = $request->idPerfil;
-          $selecao = Perfil::where('default', $id)->first();
-          // 
-          // dd($perfis->id);
-          // $teste = Perfil::whereIn('id', $id);
+          $selecao = Perfil::where('default', $id)->get();
           //
+          // $id = [];
+          // foreach ($selecao as $key) {
+          //   array_push($id, $key->id);
+          // }
+          // dd($selecao);
           // dd($selecao);
           //
           //

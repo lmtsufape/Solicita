@@ -231,7 +231,7 @@ public function novaRequisicao(Request $request){
   $ano = date('Y');
   $size = count($arrayDocumentos);
   $requisicao->requisicao_documento()->saveMany($arrayDocumentos);
-  $documento = Documento::where('id',$request->titulo_id)->first();
+  // $documento = Documento::where('id',$request->titulo_id)->first();
   $curso = Curso::where('id',$request->curso_id)->first();
   return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayDocumentos', 'size', 'ano'));
 }

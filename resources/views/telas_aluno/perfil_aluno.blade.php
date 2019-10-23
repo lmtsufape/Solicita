@@ -32,7 +32,7 @@
 <div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;">
   <div class="card-body">
       @foreach($perfisAluno as $pa)
-      <input type="radio" name="idPerfil" value="{{$pa->default}}"> {{$pa->default}}<br>
+      <input type="radio" name="idPerfil" value="{{$pa->default}}">{{$pa->default}}</br>
         <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil', ["idPerfil"=>$pa->default]) }}">
           @csrf
         @endforeach

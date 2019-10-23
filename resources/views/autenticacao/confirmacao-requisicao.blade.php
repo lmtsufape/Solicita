@@ -12,12 +12,8 @@
                         <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
                           <label>Nome</label>
                           <b><h4>{{$requisicao->perfil->aluno->user->name}}</h4></b>
-
                           <label>Curso</label>
                           <b><h4>{{$requisicao->perfil->curso->nome}}</h4></b>
-
-
-
                           <br>
                           <h4>Confirmamos o reecebimento de sua solicitação para os documentos abaixo:</h4>
                           <ul>
