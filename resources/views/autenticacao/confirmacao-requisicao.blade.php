@@ -35,7 +35,7 @@
                           <p>
                             <h4 align="center" style="color:red">Prazo de Entrega do documento: <b>Até 02(dois) dias úteis</h4>
                             <h3 align="center" style="color:red">Atenção</h3>
-                            <h5 align="center" style="color:red">A entrega dos documentos solicitados está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
+                            <h5 align="center" style="color:red">A entrega dos documento(s) solicitado(s) está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
                           </p>
                       <!-- </label> -->
                           </div>

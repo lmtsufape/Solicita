@@ -20,10 +20,10 @@ Route::get('/', 'AlunoController@index')->name('login');
 Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 Route::get('/home-aluno', 'AlunoController@index')->name('home-aluno');
-Route::post('/confirmacao-requisicao', 'AlunoController@novaRequisicao')->name('confirmacao-requisicao'); //------------
-Route::post('/finaliza-requisicao', 'AlunoController@finalizaRequisicao')->name('finaliza-requisicao');
-Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
-Route::get('/prepara-requisicao', 'AlunoController@preparaNovaRequisicao')->name('prepara-requisicao');
+// Route::post('/confirmacao-requisicao', 'AlunoController@novaRequisicao')->name('confirmacao-requisicao'); //------------
+// Route::post('/finaliza-requisicao', 'AlunoController@finalizaRequisicao')->name('finaliza-requisicao');
+// Route::get('/cancela-requisicao', 'AlunoController@cancelaRequisicao')->name('cancela-requisicao');
+// Route::get('/prepara-requisicao', 'AlunoController@preparaNovaRequisicao')->name('prepara-requisicao');
 Route::get('/home-aluno','AlunoController@homeAluno')->name('home-aluno');
 Route::get('/listar-requisicoes-aluno','AlunoController@listarRequisicoes')->name('listar-requisicoes-aluno'); //rota para a lista de requisicoes que o aluno solicitou
 //----------------------------------------------ADMINISTRADOR-----------------------------------------------------------
@@ -41,6 +41,13 @@ Route::get('/home-servidor','ServidorController@index')->name('home_servidor');
 //--------------------------------------------REQUISICAO---------------------------------------------------------------
 Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('listar-requisicoes');
 Route::post('/listar-requisicoes','RequisicaoController@concluirRequisicao')->name('listar-requisicoes-post');
+
+Route::post('/confirmacao-requisicao', 'RequisicaoController@novaRequisicao')->name('confirmacao-requisicao'); //------------
+Route::post('/finaliza-requisicao', 'RequisicaoController@finalizaRequisicao')->name('finaliza-requisicao');
+Route::get('/cancela-requisicao', 'RequisicaoController@cancelaRequisicao')->name('cancela-requisicao');
+Route::get('/prepara-requisicao', 'RequisicaoController@preparaNovaRequisicao')->name('prepara-requisicao');
+
+
 //--------------------------------------------PERFIL------------------------------------------------------------------
 Route::get('/perfil-aluno','PerfilAlunoController@index')->name('perfil-aluno');
 Route::get('/editar-perfil','PerfilAlunoController@editarInfo')->name('editar-info');

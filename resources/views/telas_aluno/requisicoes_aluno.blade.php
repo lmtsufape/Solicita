@@ -37,7 +37,7 @@
                     @endforeach
                   </td>
                   <td>{{$r->data_pedido}}</td>
-                  <td>dd/mm/aaaa</td>
+                  <td>02 dias úteis</td>
                   <td>
                     <ol>
                     @foreach($requisicoes_documentos as $rd)
