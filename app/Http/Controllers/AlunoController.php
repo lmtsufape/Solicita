@@ -112,11 +112,17 @@ class AlunoController extends Controller
     $perfil->default = $curso->nome; //Nome do Curso
     //Situacao
     $vinculo = $request->vinculo;
-    if($vinculo==="1"){
-      $perfil->situacao = "Matriculado";
-    }else {
-      $perfil->situacao = "Egresso";
-    }
+        if($vinculo==="1"){
+          $perfil->situacao = "Matriculado";
+        }else if ($vinculo==="2"){
+          $perfil->situacao = "Egresso";
+        }
+        else if ($vinculo==="3"){
+          $perfil->situacao = "Especial";
+        }
+        else if ($vinculo==="4"){
+          $perfil->situacao = "REMT - Regime Especial de Movimentação Temporária";
+        }
     $unidade = Unidade::where('id',$request->unidade)->first();
     //aluno_id
     $perfil->aluno_id = $aluno->id;
@@ -235,17 +241,11 @@ public function novaRequisicao(Request $request){
       foreach ($arrayDocumentos as $key) {
         array_push($id, $key->documento_id);
       }
-  // dd($arrayDocumentos);
-  $arrayAux = Documento::whereIn('id', $id)->get();
-  // dd($arrayAux);
-  $arrayDocumentos = $arrayAux;
-  // dd($arrayDocumentos);
-  // $documento = Documento::where('id',$request->titulo_id)->first();
-  $curso = Curso::where('id',$request->curso_id)->first();
-  return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayDocumentos', 'size', 'ano'));
+      $arrayAux = Documento::whereIn('id', $id)->get();
+      // $documento = Documento::where('id',$request->titulo_id)->first();
+      $curso = Curso::where('id',$request->curso_id)->first();
+      return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date'));
 }
-
-
 public function requisitados(Requisicao_documento $documentosRequisitados, Requisicao $requisicao, $id){
   date_default_timezone_set('America/Sao_Paulo');
   $date = date('d/m/Y');

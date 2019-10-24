@@ -87,13 +87,18 @@ class UsuarioController extends Controller
     $curso = Curso::where('id',$request->cursos)->first();
     $perfil->default = $curso->nome; //Nome do Curso
     //Situacao
-    $vinculo = $request->vinculo;
-    if($vinculo==="1"){
-      $perfil->situacao = "Matriculado";
-
-    }else {
-      $perfil->situacao = "Egresso";
-    }
+        $vinculo = $request->vinculo;
+        if($vinculo==="1"){
+          $perfil->situacao = "Matriculado";
+        }else if ($vinculo==="2"){
+          $perfil->situacao = "Egresso";
+        }
+        else if ($vinculo==="3"){
+          $perfil->situacao = "Especial";
+        }
+        else if ($vinculo==="4"){
+          $perfil->situacao = "REMT - Regime Especial de Movimentação Temporária";
+        }
 
     $unidade = Unidade::where('id',$request->unidade)->first();
     //aluno_id

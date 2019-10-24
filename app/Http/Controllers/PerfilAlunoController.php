@@ -120,12 +120,19 @@ class PerfilAlunoController extends Controller
       // $perfil->aluno_id = $request->idAluno;
       $perfil->curso_id = $request->cursos;
       $perfil->unidade_id = $request->unidade;
-      if($request->vinculo === "1"){
-        $perfil->situacao = "Matriculado";
-      }
-      else{
-        $perfil->situacao = "Egresso";
-      }
+          $vinculo = $request->vinculo;
+          if($vinculo==="1"){
+            $perfil->situacao = "Matriculado";
+          }else if ($vinculo==="2"){
+            $perfil->situacao = "Egresso";
+          }
+          else if ($vinculo==="3"){
+            $perfil->situacao = "Especial";
+          }
+          else if ($vinculo==="4"){
+            $perfil->situacao = "REMT - Regime Especial de Movimentação Temporária";
+          }
+
       $temp = $request->cursos;
       $curso = Curso::where('id',$request->cursos)->first();
       $perfil->default = $curso->nome;

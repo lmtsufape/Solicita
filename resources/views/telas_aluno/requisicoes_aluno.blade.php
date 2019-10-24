@@ -11,8 +11,6 @@
               <h2 class="" style="padding-top:50px"> {{Auth::user()->name}} </h2>
           </div>
           </div>
-
-
             <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
             <tr >
                 <th scope="col">#</th>
@@ -23,21 +21,15 @@
                 <th scope="col">PRAZO</th>
                 <th scope="col">STATUS</th>
                 <th scope="col">DOCUMENTOS SOLICITADOS</th>
-
-
-
-
             </tr>
             </thead>
             <tbody>
-
             @foreach($requisicoes as $r)
                 <tr>
                   <th scope="row">{{$r->id}}</th>
                   <td>{{$aluno->cpf}}</td>
                   <td>{{Auth::user()->name}}</td>
                   <td>
-
                     @foreach($perfis as $p)
                       @if($p->id == $r->perfil_id)
                         {{$p->default}}
@@ -76,12 +68,11 @@
               </td>
               </tr>
             @endforeach
-
             </tbody>
         </table>
-
-
-
+        <p>
+          <h3 align="center" style="color:red">Atenção</h3>
+          <h5 align="center" style="color:red">A entrega dos documentos solicitados está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
+        </p>
     </div>
-
 @endsection

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('conteudo')
-
 <div class="container">
         <div class="col-md-8">
           <form method="POST" action="{{ route('finaliza-requisicao') }}">
@@ -10,14 +9,11 @@
                 <div class="card-header" align="center"><h5>Confirmação</h5></div>
                   <div class="card-body">
                         <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
-                          <label>Nome</label>
-                          <b><h4>{{$requisicao->perfil->aluno->user->name}}</h4></b>
-                          <label>Curso</label>
-                          <b><h4>{{$requisicao->perfil->curso->nome}}</h4></b>
-                          <br>
-                          <h4>Confirmamos o reecebimento de sua solicitação para os documentos abaixo:</h4>
+                          <b><h4><label>Nome:</label>&nbsp{{$requisicao->perfil->aluno->user->name}}</h4></b>
+                          <b><h4><label>Curso:</label>&nbsp{{$requisicao->perfil->curso->nome}}</h4></b>
+                          <h4>Confirmamos o recebimento de sua solicitação para o(s) documento(s) abaixo:</h4>
                           <ul>
-                            @foreach ($arrayDocumentos as $docSolicitado)
+                            @foreach ($arrayAux as $docSolicitado)
                             <b><li value="Documentos solicitados">{{$docSolicitado->tipo}}</li></b>
                             @if($docSolicitado->documento_id==4)
                               <h5>Descrição do documento solicitado {{$docSolicitado->detalhes}}</h5>
@@ -27,24 +23,17 @@
                             @endif
                             @endforeach
                           </ul>
-
-
                           <!-- <p><value="Comprovante de Matricula" id="comprovanteMatricula">Comprovante de matricula</br></p>
                           <p><value="Histórico" id="historico"> Histórico</br></p>
                           <p><value="Programa de Disciplina" id="programaDisciplina"> Programa de Disciplina</br></p>
                           <p><value="Outros" id="outrosDocumentos"> Outros</br></p> -->
-                          <p>
+                          <!-- <p>
                             <h4>Número de Protocolo</h4>
-                            <h1><p>{{$ano}}.{{$size}}.{{$requisicao->perfil->aluno->cpf}}.{{$requisicao->id}}</p></h1>
-                          </p>
-
-                          <br>
-
-                          <label>Data prevista para entrega</label>
-                          <h4> dd/mm/aaaa</h4>
-
-                          <br>
+                            <h1><p>{{$size}}.{{$requisicao->perfil->aluno->cpf}}.{{$requisicao->id}}</p></h1>
+                          </p> -->
+                          <b><label>Data da requisição: </label>&nbsp{{$date}}</b>
                           <p>
+                            <h4 align="center" style="color:red">Prazo de Entrega do documento: <b>Até 02(dois) dias úteis</h4>
                             <h3 align="center" style="color:red">Atenção</h3>
                             <h5 align="center" style="color:red">A entrega dos documentos solicitados está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
                           </p>
