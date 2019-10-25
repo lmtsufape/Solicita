@@ -30,7 +30,7 @@
                     document.getElementById('cursoIdDeclaracao3').value = selectedValue;
                     document.getElementById('cursoIdDeclaracao4').value = selectedValue;
                     document.getElementById('cursoIdDeclaracao5').value = selectedValue;
-                    document.getElementById('cursoIdDeclaracao6').value = selectedValue;
+                    // document.getElementById('cursoIdDeclaracao6').value = selectedValue;
 
 
                 }
@@ -42,8 +42,8 @@
 
                     <div class="conteudo-central d-flex justify-content-center">
 
-
-                      @for($i = 1;$i <= 6; $i++)
+                      <!-- Para a retirada do card "TODOS", foi reduzido o offset do laço para 5, em vez de 6 -->
+                      @for($i = 1;$i <= 5; $i++)
 
                           <a   href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault();
                                            document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
