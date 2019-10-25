@@ -52,5 +52,5 @@
       </ul>
     </div>
   </nav>
-
+  @include('componentes.mensagens')
 @php($url = str_replace(URL::to('/'),'',URL::current()))
