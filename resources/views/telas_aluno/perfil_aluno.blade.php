@@ -3,6 +3,7 @@
 @section('conteudo')
 <!-- Informações do aluno -->
 <div class="card mx-auto" style="margin-left: 100px;margin-right: 100px;width:900px;">
+  @include('componentes.mensagens')
   <h5 class="card-header">Informações do Aluno</h5>
   <div class="card-body">
     <div class="mx-auto" style="width: 800px;">
@@ -32,7 +33,7 @@
 <div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;">
   <div class="card-body">
       @foreach($perfisAluno as $pa)
-      <input type="radio" name="idPerfil" value="{{$pa->default}}">{{$pa->default}}</br>
+      <input type="radio" name="idPerfilRequest" value="{{$pa->default}}">{{$pa->default}}</br>
         <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil', ["idPerfil"=>$pa->default]) }}">
           @csrf
         @endforeach
@@ -50,7 +51,7 @@
 <!--
 <script>
 function validaRadio() {
-  var radio = document.getElementById('selecaoRadio');
+  var radio = document.getElementById('formExcluirPerfil');
   if (radio.checked == false){
     alert('Para excluir, selecione o perfil desejado.');
     return false;
@@ -58,7 +59,5 @@ function validaRadio() {
   return true;
 }
 </script> -->
-
-
 
 @endsection

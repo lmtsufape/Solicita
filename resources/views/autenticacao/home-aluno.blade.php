@@ -11,7 +11,7 @@
 
                   <!-- Solicitar Documento-->
 
-                 <a href="{{ route("prepara-requisicao", ["titulo" => "Solicitar novo documento"]) }}" style="text-decoration:none; color: inherit;">
+                 <a href="{{ route("prepara-requisicao")}}" style="text-decoration:none; color: inherit;">
                     <div class="card cartao text-center " style="border-radius: 30px">
                           <div class="card-body d-flex justify-content-center">
                               <h2 style="padding-top:15px">Solicitar Documentos</h2>
@@ -27,7 +27,7 @@
                     </div>
                  </a>
 
-                 <a href="{{ route("perfil-aluno", ["titulo" => "Listar Documentos Solicitados"]) }}" style="text-decoration:none; color: inherit;">
+                 <a href="{{ route("perfil-aluno") }}" style="text-decoration:none; color: inherit;">
                     <div class="card cartao text-center " style="border-radius: 30px">
                      <div class="card-body d-flex justify-content-center">
                           <h2 style="padding-top:15px">Perfil</h2>
