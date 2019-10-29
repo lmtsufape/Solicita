@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('conteudo')
-
+<!-- @include('componentes.mensagens') -->
     <div class="tabela-centro mx-auto">
         <table class="table" >
             <div class="lmts-primary">
@@ -16,10 +16,6 @@
                 <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
             </div>
             </div>
-
-
-
-
             <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;" >
             <tr >
                 <!-- Checkbox para selecionar todos os documentos -->
@@ -102,7 +98,9 @@ function confirmarRequisicao(){
 // verifica se o usuário selecionou pelo menos um checkbox
 
 if(ids.length != 0){
-    if(confirm("Você deseja marcar o(s) documento(s) como Concluído?")== true){
+
+    if(confirm("Você deseja marcar o(s) documento(s) como concluído(s)?")== true){
+
       document.getElementById("formularioRequisicao").submit();
     }
   }else {

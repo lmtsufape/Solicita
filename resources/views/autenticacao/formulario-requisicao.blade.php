@@ -11,22 +11,17 @@
                   <div class="card-body">
                       <form method="POST" enctype="multipart/form-data" id="formRequisicao" action="{{ route('confirmacao-requisicao') }}">
                           @csrf
-                          <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
-                          <label>Aluno</label>
-                          <h5><b>{{Auth::user()->name}}</b></h5>
-
-                          </br>
-                          <label>Perfil</label>
-                          </br>
+                           <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
+                          <div class="form-group row justify-content-center"></div>
+                          <b><label>Aluno:  </label>&nbsp{{Auth::user()->name}}</b></br>
+                          <b><label>Perfil: </label></b>
                           <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 70%;">
                               @foreach($perfis as $perfil)
-
-                              <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label>
+                              <!-- <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label> -->
                               <option value="{{$perfil->id}}">{{$perfil->default}} - {{$perfil->situacao}}</option></br>
                               @endforeach
                           </select>
                           </br>
-
                           <!-- <label>Vínculo</label>
                           </br>
                           <select name="vinculo" class="browser-default custom-select custom-select-lg mb-1" style="width: 70%;">
@@ -49,7 +44,7 @@
                               </input>
                                 <textarea class="form-control @error('programaDisciplina') is-invalid @enderror "
                                           form ="formRequisicao" style="display:none" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"
-                                          required="" placeholder="O campo deve ser preenchido."></textarea>
+                                          required autocomplete="programaDisciplina" placeholder="O campo deve ser preenchido."></textarea>
                                 @error('programaDisciplina')
                                   <span>
                                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -85,8 +80,6 @@
                                         href="{{ route('confirmacao-requisicao') }}" style="margin-right:10px">
                                         {{ ('Finalizar') }}
                                         </a>
-
-
                                       </div>
                               </div>
                         </form>
