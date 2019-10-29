@@ -102,7 +102,7 @@ function confirmarRequisicao(){
 // verifica se o usuário selecionou pelo menos um checkbox
 
 if(ids.length != 0){
-    if(confirm("Você deseja marcar o(s) documento(s) como solicitado?")== true){
+    if(confirm("Você deseja marcar o(s) documento(s) como Concluído?")== true){
       document.getElementById("formularioRequisicao").submit();
     }
   }else {
