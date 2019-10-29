@@ -126,7 +126,7 @@ class AlunoController extends Controller
     $perfil->curso_id = $curso->id;
     //dd($perfil);
     $perfil->save();
-    return redirect('/');
+    return redirect('/')->with('success', 'Cadastrado com sucesso!');
 
   }
 //

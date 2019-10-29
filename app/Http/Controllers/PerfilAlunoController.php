@@ -63,8 +63,9 @@ class PerfilAlunoController extends Controller
       $perfil = Perfil::where('aluno_id',$aluno->id)->first();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-      return view('autenticacao.home-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
-                                              'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno]);
+      return redirect()->route('home-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
+                                              'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno])
+                                              ->with('success', 'Seus dados foram atualizados!');
     }
     public function alterarSenha(){
       return view('telas_aluno.alterar_senha');
@@ -85,8 +86,11 @@ class PerfilAlunoController extends Controller
       $perfil = Perfil::where('aluno_id',$aluno->id)->first();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-      return view('autenticacao.home-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
-                                              'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno]);
+      return redirect()->route('home-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
+                                              'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno])
+                                              ->with('success', 'Senha alterada com sucesso!');
+
+
     }
     // public function excluirPerfil(){
     //   return redirect('telas_aluno.perfil_aluno');
