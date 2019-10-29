@@ -99,7 +99,7 @@
                                     </label>
                                 </div>
                                 @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="#" style="color: #1B2E4F;">
+                                <a class="btn btn-link" href="{{ route('password.request') }}" style="color: #1B2E4F;">
                                   {{ __('Esqueceu sua senha?   ') }}
                                 </a>
                                 @endif

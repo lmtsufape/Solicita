@@ -9,11 +9,12 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "components/jquery": "1.9.*",
         "fideloper/proxy": "^4.0",
         "geekcom/validator-docs": "^2.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "components/jquery": "1.9.*"
+        "twbs/bootstrap": "4.3.1"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
