@@ -80,7 +80,7 @@ class RequisicaoController extends Controller
             $id_documento->save();
           }
         }
-        return redirect()->back()->with('alert', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
+        return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
     }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
@@ -124,66 +124,20 @@ class RequisicaoController extends Controller
         $requisicao->perfil_id = $perfil->id;
         $requisicao->aluno_id = $aluno->id; //necessária adequação com o código de autenticação do usuário do perfil aluno
         $requisicao->save();
-
       if($checkBoxDeclaracaoVinculo){
-        $documentosRequisitados = new Requisicao_documento();
-        $documentosRequisitados->status_data = $date;
-        $documentosRequisitados->requisicao_id = $requisicao->id;
-        $documentosRequisitados->aluno_id = $perfil->aluno_id;
-        $documentosRequisitados->status = 'Em andamento';
-        $documentosRequisitados->documento_id = 1;
-        // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
-        // array_push($arrayDocumentos, requisitados($requisicao, 1, $perfil));
-        array_push($arrayDocumentos, $documentosRequisitados);
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 1, $perfil));
       }
       if($checkBoxComprovanteMatricula){
-
-        $documentosRequisitados = new Requisicao_documento();
-        $documentosRequisitados->status_data = $date;
-        $documentosRequisitados->requisicao_id = $requisicao->id;
-        $documentosRequisitados->aluno_id = $perfil->aluno_id;
-        $documentosRequisitados->status = 'Em andamento';
-
-        $documentosRequisitados->documento_id = 2;
-        array_push($arrayDocumentos, $documentosRequisitados);
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 2, $perfil));
       }
       if($checkBoxHistorico){
-
-        $documentosRequisitados = new Requisicao_documento();
-        $documentosRequisitados->status_data = $date;
-        $documentosRequisitados->requisicao_id = $requisicao->id;
-        $documentosRequisitados->aluno_id = $perfil->aluno_id;
-        $documentosRequisitados->status = 'Em andamento';
-
-        $documentosRequisitados->documento_id = 3;
-        // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
-        array_push($arrayDocumentos, $documentosRequisitados);
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 3, $perfil));
       }
       if($checkBoxProgramaDisciplina){
-
-        $documentosRequisitados = new Requisicao_documento();
-        $documentosRequisitados->status_data = $date;
-        $documentosRequisitados->requisicao_id = $requisicao->id;
-        $documentosRequisitados->aluno_id = $perfil->aluno_id;
-        $documentosRequisitados->status = 'Em andamento';
-
-        $documentosRequisitados->documento_id = 4;
-        $documentosRequisitados->detalhes = $request->get('requisicaoPrograma');
-        // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
-        // $documentosRequisitados->anotacoes = $request->get('textareaProgramaDisciplina');
-        array_push($arrayDocumentos, $documentosRequisitados);
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 4, $perfil));
       }
       if($checkBoxOutros){
-
-        $documentosRequisitados = new Requisicao_documento();
-        $documentosRequisitados->status_data = $date;
-        $documentosRequisitados->requisicao_id = $requisicao->id;
-        $documentosRequisitados->aluno_id = $perfil->aluno_id;
-        $documentosRequisitados->status = 'Em andamento';
-
-        $documentosRequisitados->documento_id = 5;
-        $documentosRequisitados->detalhes =  $request->get('requisicaoOutros');
-        array_push($arrayDocumentos, $documentosRequisitados);
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 5, $perfil));
       }
       //#Documentos
       $ano = date('Y');

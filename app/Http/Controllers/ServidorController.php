@@ -37,7 +37,7 @@ class ServidorController extends Controller
       $servidor->user_id = $usuario->id;
       $servidor->save();
       // dd($servidor);
-      return view('/autenticacao.home-administrador');
+      return redirect()->route('home-administrador')->with('success', 'Servidor cadastrado com sucesso!');
     }
     public function listaServidores(){
           return view('/autenticacao.home-administrador'); //redireciona para view
@@ -63,6 +63,6 @@ class ServidorController extends Controller
       $user = Auth::user();
       $user->password = Hash::make($request->password);
       $user->save();
-      return view('home');
+      return redirect()->route('home')->with('success', 'Senha alterada com sucesso!');
     }
   }

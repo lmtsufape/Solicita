@@ -17,7 +17,7 @@
                 <ul>
                     <li>Solicite seus documentos online;</li>
                     <li>Acompanhe o status do seu requerimento;</li>
-                    <li>Retire os documentos apresentando o número de protocolo.</li>
+                    <li>Deslocamento até a faculdade apenas para o recebimento do documento(necessária a apresentação de documento oficial com foto);</li>
                 </ul>
 
                 <h1>Quais documentos eu posso solicitar?</h1>
@@ -32,13 +32,9 @@
 
 
         </div>
-
-
-
         <div class="info-login" >
-
+        @include('componentes.mensagens')
                 <h2 class="text-center">Entrar</h2>
-
                 <form method="POST" action="{{ route('login') }}">
                   @csrf
                     <div class="form-group">
