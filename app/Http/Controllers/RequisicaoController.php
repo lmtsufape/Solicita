@@ -100,6 +100,9 @@ class RequisicaoController extends Controller
       $checkBoxProgramaDisciplina = $request->programaDisciplina;
       $checkBoxOutros = $request->outros;
       // dd($request->default);
+        $mensagens = [
+        'requisicaoPrograma.required' => 'Preencha este campo com as informações relativas à disciplina e a finalidade do pedido',
+        ];
         if($checkBoxProgramaDisciplina!=''){
         $request->validate([
           'requisicaoPrograma' => ['required'],
