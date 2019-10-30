@@ -39,12 +39,12 @@
                           <input type="checkbox" name="historico"             value="Historico"                 id="historico">Histórico</br>
                             </input>
                             <div>
-                              <input type="checkbox" name="programaDisciplina"    value="Programa de Disciplina"    id="programaDisciplina"
+                              <input type="checkbox" name="programaDisciplina" value="Programa de Disciplina"    id="programaDisciplina"
                                 onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina</br>
                               </input>
-                                <textarea class="form-control @error('programaDisciplina') is-invalid @enderror "
+                                <textarea class="form-control @error('programaDisciplina') is-invalid @enderror"
                                           form ="formRequisicao" style="display:none" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"
-                                          required autocomplete="programaDisciplina" placeholder="O campo deve ser preenchido."></textarea>
+                                          value="{{ old('textareaProgramaDisciplina') }}" required placeholder="O campo deve ser preenchido."></textarea>
                                 @error('programaDisciplina')
                                   <span>
                                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -54,19 +54,19 @@
                                 @enderror
                               </div>
                               <div>
-                              <input type="checkbox" name="outros"               value="Outros"                     id="outros"
+                              <input type="checkbox" name="outros"             value="Outros"                     id="outros"
                                 onclick="checaSelecaoOutros()"> Outros<br>
                               </input>
                               <textarea class="form-control @error('outrosDocumentos') is-invalid @enderror"
                                           form ="formRequisicao" style="display:none" name="requisicaoOutros"   cols="115" id="textareaOutrosDocumentos"
-                                          required="" placeholder="O campo deve ser preenchido"></textarea>
-                                        @error('outrosDocumentos')
-                                          <span>
-                                            <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
-                                            <strong>{{ $message }}</strong>
-                                            </span>
-                                          </span>
-                                        @enderror
+                                          value="{{ old('textareaOutrosDocumentos') }}" required placeholder="O campo deve ser preenchido"></textarea>
+                                @error('outrosDocumentos')
+                                  <span>
+                                    <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                                    <strong>{{ $message }}</strong>
+                                    </span>
+                                  </span>
+                                @enderror
                               </div>
                               <!-- </label> -->
                               <div class="form-group row mb-0">

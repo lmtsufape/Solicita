@@ -3,7 +3,7 @@
 @section('conteudo')
 <!-- Informações do aluno -->
 <div class="card mx-auto" style="margin-left: 100px;margin-right: 100px;width:900px;">
-  @include('componentes.mensagens')
+  <!-- @include('componentes.mensagens') -->
   <h5 class="card-header">Informações do Aluno</h5>
   <div class="card-body">
     <div class="mx-auto" style="width: 800px;">
