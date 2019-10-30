@@ -53,7 +53,6 @@ class RequisicaoController extends Controller
       }
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->orderBy('aluno_id','asc')->get(); //Pega as requisições que possuem o id do curso
       $response = [];
-      dd($listaRequisicao_documentos);
       foreach ($listaRequisicao_documentos as $key) {
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
@@ -77,13 +76,11 @@ class RequisicaoController extends Controller
         if(isset($id_documentos)){
         //dd($id_documentos);
           foreach ($id_documentos as $id_documento) {
-
             $id_documento->status = "Concluído - Disponível para retirada";
             $id_documento->save();
           }
         }
         return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
-
     }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
