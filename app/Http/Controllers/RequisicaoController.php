@@ -128,19 +128,24 @@ class RequisicaoController extends Controller
         $requisicao->aluno_id = $aluno->id; //necessária adequação com o código de autenticação do usuário do perfil aluno
         $requisicao->save();
       if($checkBoxDeclaracaoVinculo){
-        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 1, $perfil));
+        $texto = "";
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 1, $perfil, $texto));
       }
       if($checkBoxComprovanteMatricula){
-        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 2, $perfil));
+        $texto = "";
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 2, $perfil, $texto));
       }
       if($checkBoxHistorico){
-        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 3, $perfil));
+        $texto = "";
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 3, $perfil, $texto));
       }
       if($checkBoxProgramaDisciplina){
-        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 4, $perfil));
+        $texto =  $request->get('requisicaoPrograma');
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 4, $perfil, $texto));
       }
       if($checkBoxOutros){
-        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 5, $perfil));
+        $texto =  $request->get('requisicaoOutros');
+        array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 5, $perfil, $texto));
       }
       //#Documentos
       $ano = date('Y');
@@ -155,7 +160,7 @@ class RequisicaoController extends Controller
           $curso = Curso::where('id',$request->curso_id)->first();
           return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date'));
     }
-    public function requisitados(Requisicao $requisicao, $id, Perfil $perfil){
+    public function requisitados(Requisicao $requisicao, $id, Perfil $perfil, $texto){
       date_default_timezone_set('America/Sao_Paulo');
       $date = date('d/m/Y');
       $hour =  date('H:i');
@@ -165,6 +170,7 @@ class RequisicaoController extends Controller
       $documentosRequisitados->aluno_id = $perfil->aluno_id;
       $documentosRequisitados->status = 'Em andamento';
       $documentosRequisitados->documento_id = $id;
+      $documentosRequisitados->detalhes =  $texto;
       return $documentosRequisitados;
     }
     public function confirmacaoRequisicao(Request $request){
