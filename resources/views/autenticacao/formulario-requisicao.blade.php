@@ -43,7 +43,9 @@
                       onclick="checaSelecaoProgramaDisciplina()">
                       Programa de Disciplina(Detalhamento necessário)
                         <span class="glyphicon glyphicon-question-sign" style="overflow: hidden;"
-                        onclick="informacao()"></span>
+                        data-toggle="tooltip" data-placement="top"
+                        title="Para o atendimento de sua solicitação, favor informar a(s) disciplina(s) e a finalizade da requisição.">
+                        </span>
                     </input>
                   </br>
                       <textarea class="form-control @error('programaDisciplina') is-invalid @enderror "
@@ -141,13 +143,13 @@ function validaCampos() {
   return true;
   }
 </script>
-<script>
+<!-- <script>
 function informacao()
 {
 var myAlert = document.getElementById("info");
 alert('Para o atendimento de sua solicitação, favor informar a(s) disciplina(s) e a finalizade da requisição.');
 }
-</script>
+</script> -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
 >
