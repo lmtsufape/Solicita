@@ -53,6 +53,7 @@ class RequisicaoController extends Controller
       }
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->orderBy('aluno_id','asc')->get(); //Pega as requisições que possuem o id do curso
       $response = [];
+      dd($listaRequisicao_documentos);
       foreach ($listaRequisicao_documentos as $key) {
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
