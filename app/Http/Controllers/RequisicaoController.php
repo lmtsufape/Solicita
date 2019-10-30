@@ -99,10 +99,11 @@ class RequisicaoController extends Controller
       $checkBoxHistorico = $request->historico;
       $checkBoxProgramaDisciplina = $request->programaDisciplina;
       $checkBoxOutros = $request->outros;
-
-      // $texto = $request->get('requisicaoPrograma');
-
-        if($checkBoxProgramaDisciplina!=null){
+      // dd($request->default);
+        $mensagens = [
+        'requisicaoPrograma.required' => 'Preencha este campo com as informações relativas à disciplina e a finalidade do pedido',
+        ];
+        if($checkBoxProgramaDisciplina!=''){
         $request->validate([
           'requisicaoPrograma' => ['required'],
         ]);
@@ -139,7 +140,7 @@ class RequisicaoController extends Controller
         array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 3, $perfil, $texto));
       }
       if($checkBoxProgramaDisciplina){
-        $texto = $request->get('requisicaoPrograma');
+        $texto =  $request->get('requisicaoPrograma');
         array_push($arrayDocumentos, RequisicaoController::requisitados($requisicao, 4, $perfil, $texto));
       }
       if($checkBoxOutros){
@@ -175,6 +176,7 @@ class RequisicaoController extends Controller
           $documentosRequisitados->detalhes =  $texto;
       }
       $documentosRequisitados->documento_id = $id;
+      $documentosRequisitados->detalhes =  $texto;
       return $documentosRequisitados;
     }
     public function confirmacaoRequisicao(Request $request){
