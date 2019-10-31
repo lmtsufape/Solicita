@@ -9,8 +9,11 @@
               <!-- botão para confirmar seleção -->
               <!-- ao clicar no botão de confirmar, é chamado a função confirmarRequisicao(). Se o usuário cancelar o event.preventDefault cancela o envio
                   do formulario. caso contrário, o formulário é enviado e o documento selecionado é marcado como processando-->
+              <button id="btnIndeferir" onclick="event.preventDefault();confirmarIndeferimento()"
+              class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
+
               <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
-              class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px"  >Concluir Requisição</button>
+              class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
 
             <div class="nome-documento lmts-primary mx-auto " style="height:100px">
                 <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
@@ -20,7 +23,6 @@
             <tr >
                 <!-- Checkbox para selecionar todos os documentos -->
                 <th scope="row">
-
                   <!-- botão de finalizar -->
                   <form id="formularioRequisicao" action="{{  route('listar-requisicoes-post')  }}" method="POST">
                     @csrf
@@ -28,7 +30,6 @@
                     <div class="form-check">
                       <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
                     </div>
-
                 </th>
                 <th scope="col">Id</th>
                 <th scope="col">CPF</th>
@@ -96,11 +97,8 @@ console.log(checkBoxs);
 function confirmarRequisicao(){
   var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
 // verifica se o usuário selecionou pelo menos um checkbox
-
 if(ids.length != 0){
-
     if(confirm("Você deseja marcar o(s) documento(s) como concluído(s)?")== true){
-
       document.getElementById("formularioRequisicao").submit();
     }
   }else {
@@ -110,7 +108,6 @@ if(ids.length != 0){
 function getLinhas(){
   var ids = document.getElementsByClassName("checkboxLinha");// pega o id de todos os checkboxs marcados
   return getIds(ids);
-
 }
 function getIds(dados){
   var arrayDados = dados;

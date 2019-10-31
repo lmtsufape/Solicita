@@ -4,24 +4,21 @@
     <div class="info">
         <div class="info-texto" >
                 <img src="" alt="">
-            <div class="texto">
-
-
+            <div class="texto" style="margin-left:30px">
                 <h1>O que é o <strong> "Solicita!"? </strong></h1>
-                <p>
-                    É uma ferramenta voltada para o atendimento das demandas<br>
-                    de requisições de documentos no departamento de escolaridade<br>
-                    da Universidade Federal Rural de Pernambuco - UAG.
+                <p style="margin-left:15px">
+                    É uma ferramenta voltada para o atendimento das demandas de requisições de documentos no departamento de escolaridade da<br>
+                    Universidade Federal Rural de Pernambuco - Unidade Acadêmica de Garanhuns (UFRPE / UAG).
                 </p>
                 <h1>Benefícios de utilizar o <strong> "Solicita!"? </strong></h1>
-                <ul>
+                <ul style="margin-left:15px">
                     <li>Solicite seus documentos online;</li>
                     <li>Acompanhe o status do seu requerimento;</li>
-                    <li>Deslocamento até a faculdade apenas para o recebimento do documento(necessária a apresentação de documento oficial com foto);</li>
+                    <li>Deslocamento até a faculdade apenas para o recebimento do documento(necessária a apresentação de documento oficial com foto).</li>
                 </ul>
 
                 <h1>Quais documentos eu posso solicitar?</h1>
-                <ul>
+                <ul style="margin-left:15px">
                     <li>Declaração de vínculo;</li>
                     <li>Comprovante de matrícula;</li>
                     <li>Histórico Escolar;</li>
@@ -29,8 +26,6 @@
                     <li>Outros.</li>
                 </ul>
             </div>
-
-
         </div>
         <div class="info-login" >
         @include('componentes.mensagens')
@@ -62,10 +57,7 @@
                                 @enderror
                             </div>
                         </div>
-
-
                     </div>
-
                     <!-- Form Senha -->
                     <div class="form-group row formulario-centro">
 
@@ -114,10 +106,8 @@
                                         </button>
                                     </div>
                             </div>
-
                     </div>
-
-                </form>
+              </form>
         </div>
     </div>
 
