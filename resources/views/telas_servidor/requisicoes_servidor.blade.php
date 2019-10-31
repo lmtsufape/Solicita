@@ -99,6 +99,7 @@ function confirmarRequisicao(){
 
 if(ids.length != 0){
     if(confirm("Você deseja marcar o(s) documento(s) como concluído(s)?")== true){
+
       document.getElementById("formularioRequisicao").submit();
     }
   }else {

@@ -123,13 +123,22 @@ function validaCampos() {
       return false;
   }
   if(checkBoxPrograma.checked==true && document.getElementById("textareaProgramaDisciplina").value==""){
+    document.getElementById("textareaProgramaDisciplina").style.border = "2px solid red";
+    if(checkBoxOutros.checked==true && document.getElementById("textareaOutrosDocumentos").value==""){
+      document.getElementById("textareaOutrosDocumentos").style.border = "2px solid red";
+    }
     alert('Os campos devem ser preenchidos corretamente.');
     return false;
   }
   if(checkBoxOutros.checked==true && document.getElementById("textareaOutrosDocumentos").value==""){
+    document.getElementById("textareaOutrosDocumentos").style.border = "2px solid red";
+    if(checkBoxPrograma.checked==true && document.getElementById("textareaProgramaDisciplina").value==""){
+      document.getElementById("textareaProgramaDisciplina").style.border = "2px solid red";
+    }
     alert('Os campos devem ser preenchidos corretamente.');
     return false;
   }
+  
   else{
     document.getElementById('formRequisicao').submit();
   }
