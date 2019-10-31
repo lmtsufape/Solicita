@@ -76,13 +76,11 @@ class RequisicaoController extends Controller
         if(isset($id_documentos)){
         //dd($id_documentos);
           foreach ($id_documentos as $id_documento) {
-
             $id_documento->status = "Concluído - Disponível para retirada";
             $id_documento->save();
           }
         }
         return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
-
     }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
