@@ -7,12 +7,16 @@
 
     <title>SOLICITA!</title>
 
-    <link rel="stylesheet" href="css/stylelmts.css">
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{ asset ('css/stylelmts.css') }}">
+    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style type="text/css">
+
+        .bloco{
+          background-color: #edf0f5;
+        }
         .glyphicon{font-size:16px;color:red}
 
         .panel-default > .panel-heading {
@@ -214,7 +218,6 @@
 
   <div id="page-container">
    <div id="content-wrap">
-
       <!-- Barra Brasil -->
       <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
         <ul id="menu-barra-temp" style="list-style:none;">
