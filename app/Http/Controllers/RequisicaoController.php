@@ -51,9 +51,12 @@ class RequisicaoController extends Controller
       foreach ($id_documentos as $id_documento) {
         array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
       }
-      $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->orderBy('aluno_id','asc')->get(); //Pega as requisições que possuem o id do curso
+      $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
       $response = [];
+      // dd($listaRequisicao_documentos);
+
       foreach ($listaRequisicao_documentos as $key) {
+        // dd($key->requisicao);
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
                                'nome' => $key->aluno->user->name,
@@ -63,6 +66,7 @@ class RequisicaoController extends Controller
                                'detalhes' => $key->detalhes,
                               ]);
       }
+      // dd($response);
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
       // dd($response);
       $listaRequisicao_documentos = $response;
@@ -81,6 +85,22 @@ class RequisicaoController extends Controller
           }
         }
         return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
+    }
+
+    public function indefereRequisicao(Request $request){
+        //dd($request);
+        $arrayDocumentos = $request->checkboxLinha;
+        // dd($request->checkboxLinha);
+        $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
+        if(isset($id_documentos)){
+        //dd($id_documentos);
+          foreach ($id_documentos as $id_documento) {
+            $id_documento->status = "Indeferido";
+            $id_documento->anotacoes = $request->motivo;
+            $id_documento->save();
+          }
+        }
+        return redirect()->back()->with('success', 'Documento(s) indeferido(s)!'); //volta pra mesma url
     }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');

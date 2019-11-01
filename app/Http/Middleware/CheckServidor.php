@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class CheckAluno
+class CheckServidor
 {
     /**
      * Handle an incoming request.
@@ -19,7 +19,7 @@ class CheckAluno
       if(!Auth::check()){
         return redirect('/')->with('error', 'É necessário estar logado para utilizar esta funcionalidade');
       }
-      if(Auth::user()->tipo=='aluno'){
+      if(Auth::user()->tipo=='servidor'){
         return $next($request);
       }
       else{

@@ -9,9 +9,6 @@
               <!-- botão para confirmar seleção -->
               <!-- ao clicar no botão de confirmar, é chamado a função confirmarRequisicao(). Se o usuário cancelar o event.preventDefault cancela o envio
                   do formulario. caso contrário, o formulário é enviado e o documento selecionado é marcado como processando-->
-              <button id="btnIndeferir" onclick="event.preventDefault();confirmarIndeferimento()"
-              class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
-
               <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
               class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
 
