@@ -28,7 +28,7 @@
                 </ul>
             </div>
         </div>
-        <div class="info-login" >
+        <div class="info-login bloco" >
         @include('componentes.mensagens')
                 <h2 class="text-center">Entrar</h2>
                 <form method="POST" action="{{ route('login') }}">
