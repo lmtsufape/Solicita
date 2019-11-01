@@ -62,6 +62,7 @@ class RequisicaoController extends Controller
                                'nome' => $key->aluno->user->name,
                                'curso' => $key->requisicao->perfil->curso->nome,
                                'status_data' => $key->status_data,
+                               'status_hora' => Requisicao::where('id',$key->requisicao_id)->get('hora_pedido')[0]->hora_pedido,
                                'status' => $key->status,
                                'detalhes' => $key->detalhes,
                               ]);
