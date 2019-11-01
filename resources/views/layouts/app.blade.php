@@ -15,9 +15,7 @@
     <style type="text/css">
 
         .bloco{
-          /* width: 200px; */
-          /* height: 200px; */
-          background-color: #f9f8f8;
+          background-color: #edf0f5;
         }
         .glyphicon{font-size:16px;color:red}
 
