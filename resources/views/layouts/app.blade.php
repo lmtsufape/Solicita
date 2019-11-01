@@ -8,16 +8,14 @@
     <title>SOLICITA!</title>
 
     <link rel="stylesheet" href="{{ asset ('css/stylelmts.css') }}">
-    <link rel="stylesheet" href="{{ asset ('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style type="text/css">
 
         .bloco{
-          /* width: 200px; */
-          /* height: 200px; */
-          background-color: #f9f8f8;
+          background-color: #edf0f5;
         }
         .glyphicon{font-size:16px;color:red}
 
