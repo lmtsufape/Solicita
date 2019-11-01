@@ -35,11 +35,12 @@
                   <img src="{{asset('images/sort.png')}}" style="height:15px">
                 </th>
                 <th scope="col" class="titleColumn" >CPF</th>
-                <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">NOME
+                <th scope="col" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">NOME
                 <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
                 <th scope="col" class="titleColumn" >CURSO</th>
-                <th scope="col" class="titleColumn" onclick="sortTable(4)" style="cursor:pointer">DATA DE REQUISIÇÃO
+                <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA DE REQUISIÇÃO
                 <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
+                <th scope="col" class="titleColumn">HORA DE REQUISIÇÃO</th>
                 <th scope="col" class="titleColumn" >PRAZO</th>
                 <th scope="col" class="titleColumn" >STATUS</th>
 
@@ -62,6 +63,7 @@
                     <td>{{$requisicao_documento['nome']}}</td>
                     <td>{{$requisicao_documento['curso']}}</td>
                     <td>{{$requisicao_documento['status_data']}}</td>
+                    <td>{{$requisicao_documento['status_hora']}}</td>
                     <td>dd/mm/aaaa</td>
                     <td>{{$requisicao_documento['status']}}</td>
 
