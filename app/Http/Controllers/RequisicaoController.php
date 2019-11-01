@@ -51,9 +51,12 @@ class RequisicaoController extends Controller
       foreach ($id_documentos as $id_documento) {
         array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
       }
-      $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->orderBy('aluno_id','asc')->get(); //Pega as requisições que possuem o id do curso
+      $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
       $response = [];
+      // dd($listaRequisicao_documentos);
+
       foreach ($listaRequisicao_documentos as $key) {
+        // dd($key->requisicao);
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
                                'nome' => $key->aluno->user->name,
@@ -63,6 +66,7 @@ class RequisicaoController extends Controller
                                'detalhes' => $key->detalhes,
                               ]);
       }
+      // dd($response);
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
       // dd($response);
       $listaRequisicao_documentos = $response;
@@ -169,6 +173,12 @@ class RequisicaoController extends Controller
       $documentosRequisitados->requisicao_id = $requisicao->id;
       $documentosRequisitados->aluno_id = $perfil->aluno_id;
       $documentosRequisitados->status = 'Em andamento';
+      if($id === 4){
+          $documentosRequisitados->detalhes = $texto;
+      }
+      if($id===5){
+          $documentosRequisitados->detalhes =  $texto;
+      }
       $documentosRequisitados->documento_id = $id;
       $documentosRequisitados->detalhes =  $texto;
       return $documentosRequisitados;

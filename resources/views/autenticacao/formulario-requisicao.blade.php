@@ -44,7 +44,7 @@
                       Programa de Disciplina(Detalhamento necessário)
                         <span class="glyphicon glyphicon-question-sign" style="overflow: hidden;"
                         data-toggle="tooltip" data-placement="top"
-                        title="Para o atendimento de sua solicitação, favor informar a(s) disciplina(s) e a finalizade da requisição.">
+                        title="Para o atendimento de sua solicitação, favor informar a(s) disciplina(s) e a finalidade da requisição.">
                         </span>
                     </input>
                   </br>

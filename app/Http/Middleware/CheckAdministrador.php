@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class CheckAluno
+class CheckAdministrador
 {
     /**
      * Handle an incoming request.
@@ -19,11 +19,11 @@ class CheckAluno
       if(!Auth::check()){
         return redirect('/')->with('error', 'É necessário estar logado para utilizar esta funcionalidade');
       }
-      if(Auth::user()->tipo=='aluno'){
+      if(Auth::user()->tipo=='administrador'){
         return $next($request);
       }
       else{
-        return redirect('home')->with('error', 'Você não possui privilégios para acessar esta funcionalidade');
+        return redirect('home')->with('error', 'Você não possui privilégios para acessa esta funcionalidade');
       }
     }
 }
