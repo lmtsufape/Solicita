@@ -86,22 +86,6 @@ class RequisicaoController extends Controller
         }
         return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
     }
-
-    public function indefereRequisicao(Request $request){
-        //dd($request);
-        $arrayDocumentos = $request->checkboxLinha;
-        // dd($request->checkboxLinha);
-        $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
-        if(isset($id_documentos)){
-        //dd($id_documentos);
-          foreach ($id_documentos as $id_documento) {
-            $id_documento->status = "Indeferido";
-            $id_documento->anotacoes = $request->motivo;
-            $id_documento->save();
-          }
-        }
-        return redirect()->back()->with('success', 'Documento(s) indeferido(s)!'); //volta pra mesma url
-    }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
 
