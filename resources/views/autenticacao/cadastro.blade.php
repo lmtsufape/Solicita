@@ -67,6 +67,9 @@
                           <option value="2">Aluno Egresso</option>
                           <option value="3">Aluno Especial</option>
                           <option value="4">Aluno REMT - Regime Especial de Movimentação Temporária</option>
+                          <option value="5">Aluno Desistente</option>
+                          <option value="6">Aluno com matricula Trancada</option>
+                          <option value="7">Aluno em Intercambio</option>
                           @error('vinculo')
                           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                           <strong>{{ $message }}</strong>

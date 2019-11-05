@@ -99,6 +99,15 @@ class UsuarioController extends Controller
         else if ($vinculo==="4"){
           $perfil->situacao = "REMT - Regime Especial de Movimentação Temporária";
         }
+        else if ($vinculo==="5"){
+          $perfil->situacao = "Desistente";
+        }
+        else if ($vinculo==="6"){
+          $perfil->situacao = "Trancado";
+        }
+        else if ($vinculo==="7"){
+          $perfil->situacao = "Intercambio";
+        }
 
     $unidade = Unidade::where('id',$request->unidade)->first();
     //aluno_id

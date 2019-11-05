@@ -61,8 +61,9 @@ Route::group(['middleware'=> 'CheckAluno'], function(){
     Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post')->middleware('CheckAluno');
 });
 // ---------------------------------------REQUISICAO------------------------------------------------------------------
- Auth::routes();
- Route::get('/home', 'HomeController@index')->name('home'); //redireciona para a home de acordo com o tipo
+Auth::routes(['verify' => true]);
+// Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
 
  // Route::get('/edita-perfil','PerfilController@editaPerfil')->name('edita-perfil');
  // Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');//SUPRIMIR
