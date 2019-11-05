@@ -39,13 +39,18 @@
                           </p>
                       <!-- </label> -->
                           </div>
-                          <a href="{{ route('finaliza-requisicao') }}" style="text-decoration:none; color: inherit;">
+
+                          <!-- <div class="col-md-6 " style="text-decoration:none; color: inherit;">
+                              <a class="menu-principal" href="\home-aluno" align="center"
+                                style="color: #1B2E4F; margin-bottom:30px">Voltar</a>
+                          </div> -->
+                          <!-- <a href="{{ route('finaliza-requisicao') }}" style="text-decoration:none; color: inherit;"> -->
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit"class="btn btn-primary btn-primary-lmts" align="center" style="margin-left:15%;margin-bottom:20px">
-                                {{ __('Confirmar') }}
+                                {{ __('Inicio') }}
                               </button>
                             </div>
-                      </a>
+                          <!-- </a> -->
                 <!-- </form> -->
                     </div>
                   </form>
