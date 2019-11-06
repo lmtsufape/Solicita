@@ -189,6 +189,15 @@ class PerfilAlunoController extends Controller
             else if ($vinculo==="4"){
               $perfil->situacao = "REMT - Regime Especial de Movimentação Temporária";
             }
+            else if ($vinculo==="5"){
+              $perfil->situacao = "Desistente";
+            }
+            else if ($vinculo==="6"){
+              $perfil->situacao = "Trancado";
+            }
+            else if ($vinculo==="7"){
+              $perfil->situacao = "Intercambio";
+            }
       $temp = $request->cursos;
       $curso = Curso::where('id',$request->curso)->first();
       $perfil->default = $curso->nome;
@@ -211,5 +220,10 @@ class PerfilAlunoController extends Controller
           $perfil = Perfil::where('default', $id)->delete();
           return redirect()->back()->with('success', 'Deletado com Sucesso!');
           }
+    }
+    public function definirPerfilDefault(Request $request){
+
+
+
     }
 }

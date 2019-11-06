@@ -42,7 +42,7 @@
                     <input type="checkbox" name="programaDisciplina"    value="Programa de Disciplina"    id="programaDisciplina"
                       onclick="checaSelecaoProgramaDisciplina()">
                       Programa de Disciplina(Detalhamento necessário)
-                        <span class="glyphicon glyphicon-question-sign" style="overflow: hidden;"
+                        <span class="glyphicon glyphicon-question-sign" style="overflow: hidden; color:red"
                         data-toggle="tooltip" data-placement="top"
                         title="Para o atendimento de sua solicitação, favor informar a(s) disciplina(s) e a finalidade da requisição.">
                         </span>
@@ -51,7 +51,7 @@
                       <textarea class="form-control @error('programaDisciplina') is-invalid @enderror "
                                 form ="formRequisicao" style="display:none; margin-top:10px;" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"
                                 required autocomplete="programaDisciplina"
-                                placeholder="Preencha este campo com as informações relativas à disciplina e a finalidade do pedido."></textarea>
+                                placeholder="Preencha este campo com o nome da(s) disciplina(s) e a finalidade da requisição."></textarea>
                       @error('programaDisciplina')
                         <span>
                           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
@@ -145,7 +145,7 @@ function validaCampos() {
     alert('Os campos devem ser preenchidos corretamente.');
     return false;
   }
-  
+
   else{
     document.getElementById('formRequisicao').submit();
   }

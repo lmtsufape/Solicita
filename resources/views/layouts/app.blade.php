@@ -17,7 +17,9 @@
         .bloco{
           background-color: #edf0f5;
         }
-        .glyphicon{font-size:16px;color:red}
+        .glyphicon{
+          font-size:16px;
+          }
 
         .panel-default > .panel-heading {
             color: #fff;
