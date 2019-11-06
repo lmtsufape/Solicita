@@ -61,6 +61,7 @@ class RequisicaoController extends Controller
                                'cpf' => $key->aluno->cpf,
                                'nome' => $key->aluno->user->name,
                                'curso' => $key->requisicao->perfil->curso->nome,
+                               'vinculo' => $key->requisicao->perfil->situacao,
                                'status_data' => $key->status_data,
                                'status_hora' => Requisicao::where('id',$key->requisicao_id)->get('hora_pedido')[0]->hora_pedido,
                                'status' => $key->status,
@@ -163,7 +164,7 @@ class RequisicaoController extends Controller
           $arrayAux = Documento::whereIn('id', $id)->get();
           // $documento = Documento::where('id',$request->titulo_id)->first();
           $curso = Curso::where('id',$request->curso_id)->first();
-          return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date'));
+          return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date', 'hour'));
     }
     public function requisitados(Requisicao $requisicao, $id, Perfil $perfil, $texto){
       date_default_timezone_set('America/Sao_Paulo');

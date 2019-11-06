@@ -36,11 +36,12 @@
                 <th scope="col" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">NOME
                 <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
                 <th scope="col" class="titleColumn" >CURSO</th>
+                <th scope="col" class="titleColumn">VÍNCULO</th>
                 <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA DE REQUISIÇÃO
                 <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
                 <th scope="col" class="titleColumn">HORA DE REQUISIÇÃO</th>
-                <th scope="col" class="titleColumn" >PRAZO</th>
-                <th scope="col" class="titleColumn" >STATUS</th>
+                <!-- <th scope="col" class="titleColumn" >PRAZO</th> -->
+                <!-- <th scope="col" class="titleColumn" >STATUS</th> -->
 
                 @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                     <th scope="col">INFORMAÇÕES</th>
@@ -60,15 +61,9 @@
                     <td>{{$requisicao_documento['cpf']}}</td>
                     <td>{{$requisicao_documento['nome']}}</td>
                     <td>{{$requisicao_documento['curso']}}</td>
+                    <td>{{$requisicao_documento['vinculo']}}</td>
                     <td>{{$requisicao_documento['status_data']}}</td>
                     <td>{{$requisicao_documento['status_hora']}}</td>
-                    <td>dd/mm/aaaa</td>
-                    <td>{{$requisicao_documento['status']}}</td>
-
-                        @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
-                            <td class="text-wrap">{{$requisicao_documento['detalhes']}}</td>
-
-                        @endif
                   </tr>
                 @endforeach
               </div>

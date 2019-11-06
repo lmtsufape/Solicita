@@ -11,6 +11,7 @@
                         <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
                           <b><h4><label>Nome:</label>&nbsp{{$requisicao->perfil->aluno->user->name}}</h4></b>
                           <b><h4><label>Curso:</label>&nbsp{{$requisicao->perfil->curso->nome}}</h4></b>
+                          <b><h4><label>Vinculo:</label>&nbsp{{$requisicao->perfil->situacao}}</h4></b>
                           <h4>Confirmamos o recebimento de sua solicitação para o(s) documento(s) abaixo:</h4>
                           <ul>
                             @foreach ($arrayAux as $docSolicitado)
@@ -31,7 +32,9 @@
                             <h4>Número de Protocolo</h4>
                             <h1><p>{{$size}}.{{$requisicao->perfil->aluno->cpf}}.{{$requisicao->id}}</p></h1>
                           </p> -->
-                          <b><label>Data da requisição: </label>&nbsp{{$date}}</b>
+                          <b><label>Data da requisição: </label>&nbsp{{$date}}</b></br>
+                          <b><label>Hora da requisição: </label>&nbsp{{$hour}}</b>
+
                           <p>
                             <h4 align="center" style="color:red">Prazo de Entrega do documento: <b>Até 02(dois) dias úteis</h4>
                             <h3 align="center" style="color:red">Atenção</h3>
@@ -39,13 +42,18 @@
                           </p>
                       <!-- </label> -->
                           </div>
-                          <a href="{{ route('finaliza-requisicao') }}" style="text-decoration:none; color: inherit;">
+
+                          <!-- <div class="col-md-6 " style="text-decoration:none; color: inherit;">
+                              <a class="menu-principal" href="\home-aluno" align="center"
+                                style="color: #1B2E4F; margin-bottom:30px">Voltar</a>
+                          </div> -->
+                          <!-- <a href="{{ route('finaliza-requisicao') }}" style="text-decoration:none; color: inherit;"> -->
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit"class="btn btn-primary btn-primary-lmts" align="center" style="margin-left:15%;margin-bottom:20px">
-                                {{ __('Confirmar') }}
+                                {{ __('Voltar para o Inicio') }}
                               </button>
                             </div>
-                      </a>
+                          <!-- </a> -->
                 <!-- </form> -->
                     </div>
                   </form>

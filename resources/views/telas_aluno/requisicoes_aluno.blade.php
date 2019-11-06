@@ -5,14 +5,12 @@
     <div class="tabela-centro mx-auto">
         <table class="table">
           <div class="lmts-primary">
-
-
           <div class="nome-documento lmts-primary mx-auto " style="height:100px">
               <h2 class="" style="padding-top:50px"> {{Auth::user()->name}} </h2>
           </div>
           </div>
             <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
-            <tr >
+            <tr>
                 <th scope="col">#</th>
                 <th scope="col">CPF</th>
                 <th scope="col">NOME</th>
@@ -20,6 +18,7 @@
                 <th scope="col">DATA DE REQUISIÇÃO</th>
                 <th scope="col">PRAZO</th>
                 <th scope="col">STATUS</th>
+                <th scope="col">ANOTACOES</th>
                 <th scope="col">DOCUMENTOS SOLICITADOS</th>
             </tr>
             </thead>
@@ -38,14 +37,51 @@
                   </td>
                   <td>{{$r->data_pedido}}</td>
                   <td>02 dias úteis</td>
-                  <td>
+                  <td align="cente">
                     <ol>
                     @foreach($requisicoes_documentos as $rd)
                       @if($rd->requisicao_id == $r->id)
                           <!-- Documentos Solicitados -->
-                          <li>
+                          @if($rd->status=="Em andamento")
+                          <li style="color:#c2bd60">
                             {{$rd->status}}
+                            <span class="glyphicon glyphicon-time" style="overflow: hidden; color:#c2bd60"
+                            data-toggle="tooltip" data-placement="top"
+                            title="Sua solicitação está em processamento.">
+                            </span>
                           </li>
+                          @endif
+                          @if($rd->status=="Concluído - Disponível para retirada")
+                          <li style="color:green">
+                            {{$rd->status}}
+                            <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
+                            data-toggle="tooltip" data-placement="top"
+                            title="Seu documento está disponível para a retirada.">
+                            </span>
+                          </li>
+                          @endif
+                          @if($rd->status=="Indeferido")
+                          <li style="color:red">
+                            {{$rd->status}}
+                            <span class="glyphicon glyphicon-exclamation-sign" style="overflow: hidden; color:red"
+                            data-toggle="tooltip" data-placement="top"
+                            title="Requisição indeferida">
+                            </span>
+                          </li>
+                          @endif
+                        @endif
+                    @endforeach
+                    </ol>
+                  </td>
+
+                  <td>
+                    <ol>
+                    @foreach($requisicoes_documentos as $rd)
+                      @if($rd->requisicao_id == $r->id)
+                      @if($rd->status=="Indeferido")
+                      Seu pedido foi Indeferido pelo(s) seguinte(s) motivo:
+                      @endif
+                            {{$rd->anotacoes}}
                       @endif
                     @endforeach
                     </ol>
@@ -75,4 +111,7 @@
           <h5 align="center" style="color:red">A entrega dos documentos solicitados está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
         </p>
     </div>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+    >
 @endsection
