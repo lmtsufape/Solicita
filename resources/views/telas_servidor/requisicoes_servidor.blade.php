@@ -10,20 +10,18 @@
               <!-- botão para confirmar seleção -->
               <!-- ao clicar no botão de confirmar, é chamado a função confirmarRequisicao(). Se o usuário cancelar o event.preventDefault cancela o envio
                   do formulario. caso contrário, o formulário é enviado e o documento selecionado é marcado como processando-->
-              <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
-              class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
+              <!-- <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
+              class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button> -->
 
                <!-- Botão que irá abrir o modal -->
-               <!-- <form id="formModal" role="form" method="POST" action="{{  route('listar-requisicoes-post')  }}">
+               <form id="formModal" role="form" method="POST" action="{{  route('listar-requisicoes-post')  }}">
                <button class="btn btn-outline-light" data-toggle="modal" data-target="#modal-mensagem"
                style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px"
-               onclick="event.preventDefault();indeferirRequisicao()">Indeferir Requisição</button> -->
+               onclick="event.preventDefault();indeferirRequisicao()">Indeferir Requisição</button>
                  <!-- Modal -->
-                 <form id="formModal" role="form" method="POST" action="{{ route('listar-requisicoes-post')}}">
+                 <form id="formModal" role="form" method="POST" action="{{ route('indefere-requisicoes-post')}}">
                  @csrf
-                 <button class="btn btn-outline-light" data-toggle="modal" data-target="#modal-mensagem"
-                 style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Indeferir Requisição</button>
-                 <div class="modal fade" role="dialog" id="modal-mensagem">
+                   <div class="modal fade" role="dialog" id="modal-mensagem">
                    <div class="modal-dialog">
                      <div class="modal-content">
                         <div class="modal-header" title="Justificativa">
@@ -31,7 +29,7 @@
                           <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
                         </div>
                       <div class="modal-body">
-                        <textarea style="margin-top:10px;" name="anotacoes" cols="50" id="textareaAnotacoes"
+                        <textarea style="margin-top:10px;" name="anotacoes" cols="49" id="textareaAnotacoes"
                         required=""></textarea>
                       </div>
                       <!-- Rodapé do modal-->
@@ -77,7 +75,7 @@
                 <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA DE REQUISIÇÃO
                 <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
                 <th scope="col" class="titleColumn">HORA DE REQUISIÇÃO</th>
-                <!-- <th scope="col" class="titleColumn" >PRAZO</th> -->
+                <th scope="col" class="titleColumn" >AÇÃO</th>
                 <!-- <th scope="col" class="titleColumn" >STATUS</th> -->
 
                 @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
@@ -101,18 +99,31 @@
                     <td>{{$requisicao_documento['vinculo']}}</td>
                     <td>{{$requisicao_documento['status_data']}}</td>
                     <td>{{$requisicao_documento['status_hora']}}</td>
+                    <td>
+                      <a href="#" >
+                        <span class="glyphicon glyphicon-remove-circle" style="overflow: hidden; color:red"
+                        data-toggle="tooltip; modal" data-placement="top" data-target="#modal-mensagem"
+                        title="Indeferir pedido.">
+                      </a>
+<!--
+                    <button class="btn btn-outline-light" data-toggle="modal" data-target="#modal-mensagem"
+                    style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Indeferir Requisição</button> -->
+                  </span></td>
                   </tr>
                 @endforeach
               </div>
             </form>
             </tbody>
-        </table>
 
-<!-- @if (session('alert'))
-<div class="alert alert-success">
-  {{ session('alert') }}
-</div>
-@endif -->
+            <tfoot>
+              <tr>
+              <td>
+                <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
+                class="btn btn-primary-lmts" style="margin-bottom: 40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
+              <td>
+              </tr>
+              </tfoot>
+        </table>
 
 <script>
 var checkedAll = false;
@@ -141,10 +152,10 @@ function confirmarRequisicao(){
     alert("Selecione pelo menos um documento!");
   }
 }
-
+console.log(checkBoxs);
 function indeferirRequisicao(){
   var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
-// verifica se o usuário selecionou pelo menos um checkbox
+  //"verifica se o usuário selecionou pelo menos um checkbox"
 if(ids.length != 0){
     if(confirm("Você deseja marcar o(s) documento(s) como indeferido(s)?")== true){
       document.getElementById("formModal").submit();
@@ -227,10 +238,12 @@ function sortTable(n) {
 }
 </script>
 <script>
-$("#btn-mensagem").click(function(){
-  $("#modal-mensagem").modal('show');
-});
+// $("#btn-mensagem").click(function(){
+//   $("#modal-mensagem").modal('show');
+// });
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 @endsection

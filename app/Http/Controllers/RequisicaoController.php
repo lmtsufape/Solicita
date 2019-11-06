@@ -199,15 +199,21 @@ class RequisicaoController extends Controller
       return view('/home-aluno')->with($requisicao);
     }
     public function indeferirRequisicao(Request $request){
-        dd($request);
         $arrayDocumentos = $request->checkboxLinha;
-        // dd($request->checkboxLinha);
+        // dd($arrayDocumentos);
+        // dd($request->anotacoes);
+        $idUser = Auth::user()->id;
+        $user = User::find($idUser); //Usuário Autenticado
+        $server = Servidor::where('user_id',$idUser)->first(); //Aluno autenticado
+        $idServidor = $server->id;
         $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
-        dd($id_documentos);
+        // dd($id_documentos);
         if(isset($id_documentos)){
         //dd($id_documentos);
           foreach ($id_documentos as $id_documento) {
             $id_documento->status = "Indeferido";
+            $id_documento->anotacoes = $request->anotacoes;
+            $id_documento->servidor_id = $idServidor;
             $id_documento->save();
           }
         }
