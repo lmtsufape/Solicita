@@ -75,7 +75,7 @@ class RequisicaoController extends Controller
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
   }
     public function concluirRequisicao(Request $request){
-        //dd($request);
+        // dd($request);
         $arrayDocumentos = $request->checkboxLinha;
         // dd($request->checkboxLinha);
         $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
@@ -198,5 +198,19 @@ class RequisicaoController extends Controller
       $requisicao = Requisicao::paginate(10);
       return view('/home-aluno')->with($requisicao);
     }
-
+    public function indeferirRequisicao(Request $request){
+        dd($request);
+        $arrayDocumentos = $request->checkboxLinha;
+        // dd($request->checkboxLinha);
+        $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
+        dd($id_documentos);
+        if(isset($id_documentos)){
+        //dd($id_documentos);
+          foreach ($id_documentos as $id_documento) {
+            $id_documento->status = "Indeferido";
+            $id_documento->save();
+          }
+        }
+        return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
+      }
 }

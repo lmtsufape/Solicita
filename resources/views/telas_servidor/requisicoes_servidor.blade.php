@@ -13,6 +13,43 @@
               <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
               class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
 
+               <!-- Botão que irá abrir o modal -->
+               <!-- <form id="formModal" role="form" method="POST" action="{{  route('listar-requisicoes-post')  }}">
+               <button class="btn btn-outline-light" data-toggle="modal" data-target="#modal-mensagem"
+               style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px"
+               onclick="event.preventDefault();indeferirRequisicao()">Indeferir Requisição</button> -->
+                 <!-- Modal -->
+                 <form id="formModal" role="form" method="POST" action="{{ route('listar-requisicoes-post')}}">
+                 @csrf
+                 <button class="btn btn-outline-light" data-toggle="modal" data-target="#modal-mensagem"
+                 style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Indeferir Requisição</button>
+                 <div class="modal fade" role="dialog" id="modal-mensagem">
+                   <div class="modal-dialog">
+                     <div class="modal-content">
+                        <div class="modal-header" title="Justificativa">
+                          <h4 class="modal-title" style="color:black">Justificativa</h4>
+                          <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                        </div>
+                      <div class="modal-body">
+                        <textarea style="margin-top:10px;" name="anotacoes" cols="50" id="textareaAnotacoes"
+                        required=""></textarea>
+                      </div>
+                      <!-- Rodapé do modal-->
+                       <div class="modal-footer">
+                         <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                         <button type="button" class="btn btn-primary"onclick="event.preventDefault();indeferirRequisicao()">Salvar Alterações</button>
+                       </div>
+                     </form>
+                     </div>
+                   </div>
+                 </div>
+
+                 <!-- Optional JavaScript -->
+                 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
             <div class="nome-documento lmts-primary mx-auto " style="height:100px">
                 <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
             </div>
@@ -96,9 +133,21 @@ console.log(checkBoxs);
 function confirmarRequisicao(){
   var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
 // verifica se o usuário selecionou pelo menos um checkbox
-if(ids.length != 0){
+  if(ids.length != 0){
     if(confirm("Você deseja marcar o(s) documento(s) como concluído(s)?")== true){
       document.getElementById("formularioRequisicao").submit();
+    }
+  }else {
+    alert("Selecione pelo menos um documento!");
+  }
+}
+
+function indeferirRequisicao(){
+  var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
+// verifica se o usuário selecionou pelo menos um checkbox
+if(ids.length != 0){
+    if(confirm("Você deseja marcar o(s) documento(s) como indeferido(s)?")== true){
+      document.getElementById("formModal").submit();
     }
   }else {
     alert("Selecione pelo menos um documento!");
@@ -176,8 +225,12 @@ function sortTable(n) {
     }
   }
 }
+</script>
+<script>
+$("#btn-mensagem").click(function(){
+  $("#modal-mensagem").modal('show');
+});
 
 </script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 @endsection

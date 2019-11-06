@@ -26,6 +26,8 @@ Route::group(['middleware'=> 'CheckAdministrador'], function(){
 
 //----------------------------------------------SERVIDOR----------------------------------------------------------------
 Route::group(['middleware'=> 'CheckServidor'], function(){
+
+  Route::post('/indefere-requisicoes','RequisicaoController@indeferirRequisicao')->name('indefere-requisicoes-post')->middleware('CheckServidor');
   Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('listar-requisicoes')->middleware('CheckServidor');
   Route::post('/listar-requisicoes','RequisicaoController@concluirRequisicao')->name('listar-requisicoes-post')->middleware('CheckServidor');
   Route::get('/home-servidor','ServidorController@index')->name('home_servidor')->middleware('CheckServidor');
