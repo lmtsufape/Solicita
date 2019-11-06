@@ -93,7 +93,7 @@
                     </div>
 
                     <!-- Form Confirmar Senha -->
-                    <!-- <div class="form-group row formulario-centro">
+                    <div class="form-group row formulario-centro">
 
                         <div class="col-md-9">
                             <label for="password-confirm" class="field a-field a-field_a3 page__field" >
@@ -110,7 +110,7 @@
                             </span>
                             @enderror
                         </div>
-                    </div> -->
+                    </div>
 
                     <!-- Botões -->
                     <div class="form-group row mb-0 justify-content-center ">
