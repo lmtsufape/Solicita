@@ -12,41 +12,8 @@
                   do formulario. caso contrário, o formulário é enviado e o documento selecionado é marcado como processando-->
               <!-- <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
               class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button> -->
-
-               <!-- Botão que irá abrir o modal -->
-               <form id="formModal" role="form" method="POST" action="{{  route('listar-requisicoes-post')  }}">
-               <button class="btn btn-outline-light" data-toggle="modal" data-target="#modal-mensagem"
-               style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px"
-               onclick="event.preventDefault();indeferirRequisicao()">Indeferir Requisição</button>
-                 <!-- Modal -->
-                 <form id="formModal" role="form" method="POST" action="{{ route('indefere-requisicoes-post')}}">
-                 @csrf
-                   <div class="modal fade" role="dialog" id="modal-mensagem">
-                   <div class="modal-dialog">
-                     <div class="modal-content">
-                        <div class="modal-header" title="Justificativa">
-                          <h4 class="modal-title" style="color:black">Justificativa</h4>
-                          <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                        </div>
-                      <div class="modal-body">
-                        <textarea style="margin-top:10px;" name="anotacoes" cols="49" id="textareaAnotacoes"
-                        required=""></textarea>
-                      </div>
-                      <!-- Rodapé do modal-->
-                       <div class="modal-footer">
-                         <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                         <button type="button" class="btn btn-primary"onclick="event.preventDefault();indeferirRequisicao()">Salvar Alterações</button>
-                       </div>
-                     </form>
-                     </div>
-                   </div>
-                 </div>
-
                  <!-- Optional JavaScript -->
                  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-                 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-                 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
             <div class="nome-documento lmts-primary mx-auto " style="height:100px">
                 <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
@@ -77,7 +44,6 @@
                 <th scope="col" class="titleColumn">HORA DE REQUISIÇÃO</th>
                 <th scope="col" class="titleColumn" >AÇÃO</th>
                 <!-- <th scope="col" class="titleColumn" >STATUS</th> -->
-
                 @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                     <th scope="col">INFORMAÇÕES</th>
                 @endif
@@ -86,7 +52,7 @@
             <tbody>
                 @foreach($listaRequisicao_documentos as $requisicao_documento)
                     <tr>
-                      <th scope="row">
+                      <th scope="row" style="width:10px">
                         <div class="form-check">
                           <!-- checkboxLinha[] pega o valor de todos os checkboxLinha e envia como post para a rota -->
                           <input class="checkboxLinha" type="checkbox" id="checkboxLinha" name="checkboxLinha[]" value="{{$requisicao_documento['id']}}" onclick="">
@@ -100,21 +66,45 @@
                     <td>{{$requisicao_documento['status_data']}}</td>
                     <td>{{$requisicao_documento['status_hora']}}</td>
                     <td>
-                      <a href="#" >
+                      <a data-toggle="modal" data-target="#modal-mensagem" view_data>
                         <span class="glyphicon glyphicon-remove-circle" style="overflow: hidden; color:red"
-                        data-toggle="tooltip; modal" data-placement="top" data-target="#modal-mensagem"
-                        title="Indeferir pedido.">
+                        data-toggle="tooltip; modal" data-placement="top"
+                        title="Indeferir pedido." onclick="event.preventDefault()"
+                        id="{{$requisicao_documento['id']}}" name="iconIndeferir">
+                      </span>
                       </a>
-<!--
-                    <button class="btn btn-outline-light" data-toggle="modal" data-target="#modal-mensagem"
-                    style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Indeferir Requisição</button> -->
-                  </span></td>
+                          <form id="formModal" role="form" method="POST"
+                            action="{{route('indefere-requisicoes-post', ['requisicao_id' =>$requisicao_documento['id']])}}"
+                            enctype="multipart/form-data" value="$requisicao_documento['id']">
+                          @csrf
+                          <div class="modal fade" role="dialog" id="modal-mensagem">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                               <div class="modal-header" title="Justificativa">
+                                 <h4 class="modal-title" id="campo" style="color:black">Justificativa: {{$requisicao_documento['nome']}}</h4>
+                                 <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                               </div>
+                             <div class="modal-body">
+                               <textarea style="margin-top:10px;" name="anotacoes" cols="50" required=""></textarea>
+                             </div>
+                             <!-- Rodapé do modal-->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                <button type="button" class="btn btn-primary"
+                                onclick="event.preventDefault();indeferirRequisicao();">Salvar Alterações</button>
+                              </div>
+                            </form>
+                            <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+                            </div>
+                          </div>
+                        </div>
+                </td>
                   </tr>
                 @endforeach
               </div>
-            </form>
-            </tbody>
-
+          </tbody>
             <tfoot>
               <tr>
               <td>
@@ -122,10 +112,26 @@
                 class="btn btn-primary-lmts" style="margin-bottom: 40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
               <td>
               </tr>
-              </tfoot>
+            </tfoot>
+          </form>
         </table>
+        <script>
+        $(document).ready(function(){
+          $(document).on('click', '.view_data', function(){
+            alert(user_id);
+            if(user_id!=='')
+              var dados = {
+                user_id:user_id;
+              };
+              $post()
+          }
 
+        )
+        }
+      )
+        </script>
 <script>
+
 var checkedAll = false;
 var checkBoxs;
 document.getElementById("selectAll").addEventListener("click", function(){
@@ -141,6 +147,7 @@ document.getElementById("selectAll").addEventListener("click", function(){
 });
 
 console.log(checkBoxs);
+
 function confirmarRequisicao(){
   var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
 // verifica se o usuário selecionou pelo menos um checkbox
@@ -152,16 +159,19 @@ function confirmarRequisicao(){
     alert("Selecione pelo menos um documento!");
   }
 }
-console.log(checkBoxs);
 function indeferirRequisicao(){
   var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
   //"verifica se o usuário selecionou pelo menos um checkbox"
-if(ids.length != 0){
+  // var text = document.getElementById(textareaAnotacoes);
+  // if(text=="" | text = null){
+  //   alert("por favor insira uma justificativa!");
+  // }
+  if(ids.length != 0){
     if(confirm("Você deseja marcar o(s) documento(s) como indeferido(s)?")== true){
       document.getElementById("formModal").submit();
     }
   }else {
-    alert("Selecione pelo menos um documento!");
+    alert("Selecione o documento!");
   }
 }
 function getLinhas(){
@@ -181,7 +191,6 @@ function getIds(dados){
   }
   return newArray;
 }
-
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("table");
@@ -236,12 +245,6 @@ function sortTable(n) {
     }
   }
 }
-</script>
-<script>
-// $("#btn-mensagem").click(function(){
-//   $("#modal-mensagem").modal('show');
-// });
-
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"

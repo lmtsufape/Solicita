@@ -74,20 +74,20 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = $response;
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
   }
-    public function concluirRequisicao(Request $request){
-        // dd($request);
-        $arrayDocumentos = $request->checkboxLinha;
-        // dd($request->checkboxLinha);
-        $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
-        if(isset($id_documentos)){
-        //dd($id_documentos);
-          foreach ($id_documentos as $id_documento) {
-            $id_documento->status = "Concluído - Disponível para retirada";
-            $id_documento->save();
-          }
-        }
-        return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
-    }
+    // public function concluirRequisicao(Request $request){
+    //     // dd($request);
+    //     $arrayDocumentos = $request->checkboxLinha;
+    //     dd($request->checkboxLinha);
+    //     $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
+    //     if(isset($id_documentos)){
+    //     //dd($id_documentos);
+    //       foreach ($id_documentos as $id_documento) {
+    //         $id_documento->status = "Concluído - Disponível para retirada";
+    //         $id_documento->save();
+    //       }
+    //     }
+    //     return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
+    // }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
 
@@ -198,9 +198,11 @@ class RequisicaoController extends Controller
       $requisicao = Requisicao::paginate(10);
       return view('/home-aluno')->with($requisicao);
     }
-    public function indeferirRequisicao(Request $request){
+    public function indeferirRequisicao(Request $request, $id){
+        // dd($id);
         $arrayDocumentos = $request->checkboxLinha;
         // dd($arrayDocumentos);
+        // dd($id);
         // dd($request->anotacoes);
         $idUser = Auth::user()->id;
         $user = User::find($idUser); //Usuário Autenticado
@@ -219,4 +221,18 @@ class RequisicaoController extends Controller
         }
         return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
       }
+      public function concluirRequisicao(Request $request){
+          // dd($request);
+          $arrayDocumentos = $request->checkboxLinha;
+          dd($request->checkboxLinha);
+          $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
+          if(isset($id_documentos)){
+          //dd($id_documentos);
+            foreach ($id_documentos as $id_documento) {
+              $id_documento->status = "Concluído - Disponível para retirada";
+              $id_documento->save();
+            }
+          }
+          return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
+        }
 }
