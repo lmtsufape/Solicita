@@ -33,7 +33,17 @@
 <div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;">
   <div class="card-body">
       @foreach($perfisAluno as $pa)
-      <input type="radio" name="idPerfilRequest" value="{{$pa->default}}">{{$pa->default}} - {{$pa->situacao}}</br>
+
+      <input type="radio" name="idPerfilRequest" value="{{$pa->default}}">{{$pa->default}} - {{$pa->situacao}}
+      <!-- @if($pa->valor==true) -->
+      <!-- <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
+            data-toggle="tooltip" data-placement="top"
+            title="Definir como padrao.">
+      </span> -->
+      <!-- @endif -->
+      <form>
+        @csrf
+      </form>
         <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil', ["idPerfil"=>$pa->default]) }}">
           @csrf
         @endforeach
@@ -59,5 +69,8 @@ function validaRadio() {
   return true;
 }
 </script> -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+>
 
 @endsection

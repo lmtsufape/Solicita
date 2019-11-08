@@ -66,44 +66,52 @@
                     <td>{{$requisicao_documento['status_data']}}</td>
                     <td>{{$requisicao_documento['status_hora']}}</td>
                     <td>
-                      <a data-toggle="modal" data-target="#modal-mensagem" view_data>
+                      <a data-toggle="modal" data-target="#myModal" aria-hidden="true"
+                          data-whatever="{{$requisicao_documento['id']}}" >
                         <span class="glyphicon glyphicon-remove-circle" style="overflow: hidden; color:red"
                         data-toggle="tooltip; modal" data-placement="top"
-                        title="Indeferir pedido." onclick="event.preventDefault()"
-                        id="{{$requisicao_documento['id']}}" name="iconIndeferir">
+                        title="Indeferir pedido." onclick="event.preventDefault(); pegarvalor()">
                       </span>
                       </a>
-                          <form id="formModal" role="form" method="POST"
-                            action="{{route('indefere-requisicoes-post', ['requisicao_id' =>$requisicao_documento['id']])}}"
-                            enctype="multipart/form-data" value="$requisicao_documento['id']">
-                          @csrf
-                          <div class="modal fade" role="dialog" id="modal-mensagem">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                               <div class="modal-header" title="Justificativa">
-                                 <h4 class="modal-title" id="campo" style="color:black">Justificativa: {{$requisicao_documento['nome']}}</h4>
-                                 <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
-                               </div>
-                             <div class="modal-body">
-                               <textarea style="margin-top:10px;" name="anotacoes" cols="50" required=""></textarea>
-                             </div>
-                             <!-- Rodapé do modal-->
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
-                                <button type="button" class="btn btn-primary"
-                                onclick="event.preventDefault();indeferirRequisicao();">Salvar Alterações</button>
+                          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                  aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="myModalLabel">Justificativa</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form method="post" id="formModal" href="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']]) }}">
+                                      @csrf
+                                      <div class="form-group">
+                                        <label for="message-text" class="col-form-label">Mensagem:</label>
+                                        <textarea class="form-control" id="message-text" name="anotacoes" required=""></textarea>
+                                      </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <a type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-right:10px">
+                                      {{ ('Fechar') }}
+                                    </a>
+                                    <a type="button" class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault();"
+                                    href="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']])}}" style="margin-right:10px">
+                                    {{ ('Confirmar') }}
+                                    </a>
+
+                                  </div>
+                                </form>
+                                </div>
                               </div>
-                            </form>
-                            <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
                             </div>
-                          </div>
-                        </div>
-                </td>
+                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+                      </td>
                   </tr>
                 @endforeach
-              </div>
+              <!-- </div> -->
           </tbody>
             <tfoot>
               <tr>
@@ -115,21 +123,22 @@
             </tfoot>
           </form>
         </table>
-        <script>
-        $(document).ready(function(){
-          $(document).on('click', '.view_data', function(){
-            alert(user_id);
-            if(user_id!=='')
-              var dados = {
-                user_id:user_id;
-              };
-              $post()
-          }
+      </div>
 
-        )
-        }
-      )
-        </script>
+<script>
+$('#myModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Botão que acionou o modal
+    var recipient = button.data('whatever')
+    var id = button.data('id')
+    // var recipient = .data('whatever')
+    // Extrai informação dos atributos data-*
+    // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
+    // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
+    var modal = $(this)
+    modal.find('.modal-title').text('Nome do Aluno: ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
+</script>
 <script>
 
 var checkedAll = false;
@@ -160,19 +169,9 @@ function confirmarRequisicao(){
   }
 }
 function indeferirRequisicao(){
-  var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
-  //"verifica se o usuário selecionou pelo menos um checkbox"
-  // var text = document.getElementById(textareaAnotacoes);
-  // if(text=="" | text = null){
-  //   alert("por favor insira uma justificativa!");
-  // }
-  if(ids.length != 0){
-    if(confirm("Você deseja marcar o(s) documento(s) como indeferido(s)?")== true){
+    if(confirm("Indeferir documento?")== true){
       document.getElementById("formModal").submit();
     }
-  }else {
-    alert("Selecione o documento!");
-  }
 }
 function getLinhas(){
   var ids = document.getElementsByClassName("checkboxLinha");// pega o id de todos os checkboxs marcados
