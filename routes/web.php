@@ -66,6 +66,7 @@ Route::group(['middleware'=> 'CheckAluno'], function(){
 Auth::routes(['verify' => true]);
 // Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/mail-send', 'MailController@send');
 
  // Route::get('/edita-perfil','PerfilController@editaPerfil')->name('edita-perfil');
  // Route::get('/adiciona-perfil', 'PerfilController@adicionaPerfil')->name('adiciona-perfil');//SUPRIMIR

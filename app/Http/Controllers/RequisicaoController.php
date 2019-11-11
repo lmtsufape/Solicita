@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Mail;
+use App\Mail\StatusMail;
 use App\Requisicao_documento;
 use App\Requisicao;
 use App\Documento;
@@ -74,20 +76,6 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = $response;
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
   }
-    // public function concluirRequisicao(Request $request){
-    //     // dd($request);
-    //     $arrayDocumentos = $request->checkboxLinha;
-    //     dd($request->checkboxLinha);
-    //     $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
-    //     if(isset($id_documentos)){
-    //     //dd($id_documentos);
-    //       foreach ($id_documentos as $id_documento) {
-    //         $id_documento->status = "Concluído - Disponível para retirada";
-    //         $id_documento->save();
-    //       }
-    //     }
-    //     return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
-    // }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
 
@@ -199,11 +187,11 @@ class RequisicaoController extends Controller
       return view('/home-aluno')->with($requisicao);
     }
     public function indeferirRequisicao(Request $request){
-        // dd("CHEGOU NO Controller");
+        dd("CHEGOU NO Controller");
         // $request->validate([
         //   'anotacoes' => ['required'],
         // ]);
-        dd($request->anotacoes);
+        dd($request->all());
         $arrayDocumentos = $request->checkboxLinha;
         $idUser = Auth::user()->id;
         $user = User::find($idUser); //Usuário Autenticado
@@ -223,13 +211,33 @@ class RequisicaoController extends Controller
         return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
       }
       public function concluirRequisicao(Request $request){
-          // dd($request);
+          $servidorLogado = Auth::user();
+          $servidor = Servidor::where('user_id', $servidorLogado->id)->first();
           $arrayDocumentos = $request->checkboxLinha;
           $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
           if(isset($id_documentos)){
-          //dd($id_documentos);
             foreach ($id_documentos as $id_documento) {
               $id_documento->status = "Concluído - Disponível para retirada";
+              $id_documento->servidor_id = $servidor->id;
+              $aluno = Aluno::where('id', $id_documento->aluno_id)->first();
+              $user = User::where('id', $aluno->user_id)->first();
+              $documento = Documento::where('id', $id_documento->documento_id)->first();
+              $to_email = $user->email;
+              $nome_documento = $documento->tipo;
+              $data = array(
+                  'usuario' => $user,
+                  'aluno' => $aluno,
+                  'servidor' => $servidor,
+                  'documento' => $id_documento,
+                  'nome_documento' => $nome_documento,
+                  'anotacoes' => $id_documento->anotacoes,
+              );
+              $subject = 'Solicita - Status da Requisicao: '.$nome_documento;
+              Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
+                  $message->to($to_email)
+                          ->subject($subject);
+                  $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
+              });
               $id_documento->save();
             }
           }
