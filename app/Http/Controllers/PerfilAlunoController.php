@@ -201,6 +201,7 @@ class PerfilAlunoController extends Controller
       $temp = $request->cursos;
       $curso = Curso::where('id',$request->curso)->first();
       $perfil->default = $curso->nome;
+      // $perfil->valor = false;
       $perfil->aluno()->associate($aluno);
       $perfil->save();
       // }
@@ -222,8 +223,11 @@ class PerfilAlunoController extends Controller
           }
     }
     public function definirPerfilDefault(Request $request){
-
-
+        $valor = $request->selectDefault;
+        $id = $request->idPerfil;
+        $selecao = Perfil::where('default', $id)->get();
+        dd($valor);
+        return redirect()->back()->with('success', 'Alterado com sucesso!');
 
     }
 }

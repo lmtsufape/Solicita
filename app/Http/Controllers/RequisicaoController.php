@@ -198,12 +198,13 @@ class RequisicaoController extends Controller
       $requisicao = Requisicao::paginate(10);
       return view('/home-aluno')->with($requisicao);
     }
-    public function indeferirRequisicao(Request $request, $id){
-        // dd($id);
+    public function indeferirRequisicao(Request $request){
+        // dd("CHEGOU NO Controller");
+        // $request->validate([
+        //   'anotacoes' => ['required'],
+        // ]);
+        dd($request->anotacoes);
         $arrayDocumentos = $request->checkboxLinha;
-        // dd($arrayDocumentos);
-        // dd($id);
-        // dd($request->anotacoes);
         $idUser = Auth::user()->id;
         $user = User::find($idUser); //Usuário Autenticado
         $server = Servidor::where('user_id',$idUser)->first(); //Aluno autenticado
@@ -224,7 +225,6 @@ class RequisicaoController extends Controller
       public function concluirRequisicao(Request $request){
           // dd($request);
           $arrayDocumentos = $request->checkboxLinha;
-          dd($request->checkboxLinha);
           $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
           if(isset($id_documentos)){
           //dd($id_documentos);
