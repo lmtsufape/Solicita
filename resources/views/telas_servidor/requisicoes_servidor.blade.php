@@ -58,52 +58,17 @@
               <td>{{$requisicao_documento['status_hora']}}</td>
               <td>
                 <a id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true"
-                      data-whatever="{{$requisicao_documento['nome']}}"
+                      data-whatever="{{$requisicao_documento['nome']}}">
                       <span class="glyphicon glyphicon-remove-circle" style="overflow: hidden; color:red"
                         title="Indeferir pedido." onclick="event.preventDefault()"
                         data-toggle="tooltip; modal" data-placement="top"
                         data-id="{{$requisicao_documento['id']}}"
                         data-nome="{{$requisicao_documento['nome']}}"
-                        data-title="{{$requisicao_documento['id']}}"
+                        data-title="{{$requisicao_documento['id']}}">
                       </span>
                 </a>
-
-                <!-- <form method="post" id="formModal" action="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']]) }}" onclick="indeferirRequisicao()">
-                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                      aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="myModalLabel">Justificativa</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                          @csrf
-                          <div class="form-group">
-                            <label for="message-text" class="col-form-label">Mensagem:</label>
-                            <textarea class="form-control" id="anotacoes" name="anotacoes" required></textarea>
-                          </div>
-                      </div>
-                      <div class="modal-footer">
-                        <a type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-right:10px">
-                          {{ ('Fechar') }}
-                        </a>
-                        <a type="button" class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); indeferirRequisicao()"
-                        href="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']])}}" style="margin-right:10px">
-                        {{ ('Confirmar') }}
-                        </a>
-                      </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-                      </td>
-                  </tr>
+              </td>
+              </tr>
                 @endforeach
               <!-- </div> -->
           </tbody>
@@ -117,7 +82,43 @@
             </tfoot>
           </form>
         </table>
-      </div>
+    </div>
+    @foreach($listaRequisicao_documentos as $requisicao_documento)
+        <form method="post" id="formModal" action="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']]) }}">
+          @csrf
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+              aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Justificativa: {{$requisicao_documento['id']}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Mensagem:</label>
+                    <textarea class="form-control" id="anotacoes" name="anotacoes" required></textarea>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <a type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-right:10px">
+                  {{ ('Fechar') }}
+                </a>
+                <a type="button" class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); indeferirRequisicao()"
+                href="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']])}}" style="margin-right:10px">
+                {{ ('Confirmar') }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </form>
+        @endforeach
 
 <script>
 $('#myModal').on('show.bs.modal', function (event) {

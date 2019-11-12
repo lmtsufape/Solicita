@@ -187,27 +187,37 @@ class RequisicaoController extends Controller
       return view('/home-aluno')->with($requisicao);
     }
     public function indeferirRequisicao(Request $request){
-        dd("CHEGOU NO Controller");
-        // $request->validate([
-        //   'anotacoes' => ['required'],
-        // ]);
-        dd($request->all());
-        $arrayDocumentos = $request->checkboxLinha;
-        $idUser = Auth::user()->id;
-        $user = User::find($idUser); //Usuário Autenticado
-        $server = Servidor::where('user_id',$idUser)->first(); //Aluno autenticado
-        $idServidor = $server->id;
-        $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
-        // dd($id_documentos);
-        if(isset($id_documentos)){
-        //dd($id_documentos);
-          foreach ($id_documentos as $id_documento) {
-            $id_documento->status = "Indeferido";
+        $request->validate([
+          'anotacoes' => ['required'],
+        ]);
+        $id = $request->idDocumento;
+        $servidorLogado = Auth::user();
+        $servidor = Servidor::where('user_id', $servidorLogado->id)->first();
+        $id_documento = Requisicao_documento::where('id', $id)->first();
             $id_documento->anotacoes = $request->anotacoes;
-            $id_documento->servidor_id = $idServidor;
+            $id_documento->status = "Indeferido";
+            $id_documento->servidor_id = $servidor->id;
+            $aluno = Aluno::where('id', $id_documento->aluno_id)->first();
+            $user = User::where('id', $aluno->user_id)->first();
+            $documento = Documento::where('id', $id_documento->documento_id)->first();
+            $to_email = $user->email;
+            $nome_documento = $documento->tipo;
+            $data = array(
+                'usuario' => $user,
+                'aluno' => $aluno,
+                'servidor' => $servidor,
+                'documento' => $id_documento,
+                'nome_documento' => $nome_documento,
+                'anotacoes' => $id_documento->anotacoes,
+            );
+            // dd($id_documento);
             $id_documento->save();
-          }
-        }
+            $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
+            Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
+                $message->to($to_email)
+                        ->subject($subject);
+                $message->from('noreply.solicita.lmts@gmail.com','Solicita - LMTS');
+            });
         return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
       }
       public function concluirRequisicao(Request $request){
@@ -232,11 +242,11 @@ class RequisicaoController extends Controller
                   'nome_documento' => $nome_documento,
                   'anotacoes' => $id_documento->anotacoes,
               );
-              $subject = 'Solicita - Status da Requisicao: '.$nome_documento;
+              $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
               Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
                   $message->to($to_email)
                           ->subject($subject);
-                  $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
+                  $message->from('noreply.solicita.lmts@gmail.com','Solicita - LMTS');
               });
               $id_documento->save();
             }
