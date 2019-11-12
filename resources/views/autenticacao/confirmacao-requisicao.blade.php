@@ -6,7 +6,7 @@
           <form method="POST" action="{{ route('finaliza-requisicao') }}">
             @csrf
             <div class="card" style="width: 70rem;">
-                <div class="card-header" align="center"><h5>Confirmação</h5></div>
+                <div class="card-header" align="center"><h5></h5></div>
                   <div class="card-body">
                         <div class="form-group row justify-content-center"></div>  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
                           <b><h4><label>Nome:</label>&nbsp{{$requisicao->perfil->aluno->user->name}}</h4></b>

@@ -17,6 +17,7 @@ class CreatePerfilsTable extends Migration
             $table->bigIncrements('id');
             $table->string('default');//curso default
             $table->string('situacao'); // Matriculado, Egresso, Especial ou REMT
+            // $table->boolean('valor');
             $table->softDeletes();
             $table->timestamps();
         });
