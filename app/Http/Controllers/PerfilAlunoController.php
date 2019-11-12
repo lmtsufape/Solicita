@@ -209,16 +209,14 @@ class PerfilAlunoController extends Controller
       return redirect()->route('perfil-aluno')->with('success', 'Perfil adicionado com sucesso!');
     }
     public function excluirPerfil(Request $request) {
-          // dd($request->idPerfilRequest);
+          $id = $request->idPerfilRequest;
           $perfis = Perfil::All();
           $quant = count($perfis);
           if($quant===1){
             return redirect()->back()->with('error', 'Necessário haver ao menos um perfil vinculado ao aluno!');
           }
           else{
-          $id = $request->idPerfil;
-          $selecao = Perfil::where('default', $id)->get();
-          $perfil = Perfil::where('default', $id)->delete();
+          $perfil = Perfil::where('id', $id)->delete();
           return redirect()->back()->with('success', 'Deletado com Sucesso!');
           }
     }
