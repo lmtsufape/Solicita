@@ -35,7 +35,23 @@
       @foreach($perfisAluno as $pa)
       <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil', ["idPerfil"=>$pa->id]) }}">
         @csrf
-      <input type="radio" name="idPerfilRequest" value="{{$pa->id}}">{{$pa->default}} - {{$pa->situacao}}</input></br>
+      <input type="radio" name="idPerfilRequest" value="{{$pa->id}}">{{$pa->default}} - {{$pa->situacao}}</input>
+      @if($pa->valor==false)
+          <a>
+          <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:gray"
+                data-toggle="tooltip" data-placement="top"
+                title="Definir como perfil padrão.">
+          </span>
+          </a>
+      @endif
+      @if($pa->valor==true)
+          <a>
+          <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
+                data-toggle="tooltip" data-placement="top"
+                title="Perfil padrão.">
+          </span>
+          </a>
+      @endif
             <!-- @if($pa->valor==true) -->
             <!-- <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
                   data-toggle="tooltip" data-placement="top"
