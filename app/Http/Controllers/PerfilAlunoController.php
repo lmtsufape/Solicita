@@ -224,7 +224,7 @@ class PerfilAlunoController extends Controller
         $valor = $request->selectDefault;
         $id = $request->idPerfil;
         $selecao = Perfil::where('default', $id)->get();
-        dd($valor);
+        // dd($valor);
         return redirect()->back()->with('success', 'Alterado com sucesso!');
 
     }
