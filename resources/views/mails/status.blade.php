@@ -1,3 +1,4 @@
+@extends('layouts.app')
 @section('conteudo')
     <div class="container">
         <div class="info-texto" >
@@ -15,7 +16,7 @@
             </div>
             <p>
               <h3 align="center" style="color:red">Atenção</h3>
-              <h5 align="center" style="color:red">A entrega dos documento(s) solicitado(s) está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
+              <h1 align="center" style="color:red">A entrega dos documento(s) solicitado(s) está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h1>
             </p>
         </div>
     </div>

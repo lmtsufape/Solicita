@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand-lg" style="background-color: #1B2E4F; border-color: #d3e0e9; box-shadow: 0 0 6px rgba(0,0,0,0.5);" role="navigation">
   <a class="navbar-brand" href="{{ route('login') }}" style="color: white; font-weight: bold;">
-    <img src="{{asset('images/logoBranco.png')}}" height="30" class="d-inline-block align-top" alt="">
+    <img src="{{asset('images/home.png')}}" height="20" class="d-inline-block align-top" alt="">
 
   </a>
     <div class="collapse navbar-collapse" >
