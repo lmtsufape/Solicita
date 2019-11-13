@@ -133,7 +133,7 @@ class AlunoController extends Controller
     $perfil->unidade_id = $unidade->id;
     //curso_id
     $perfil->curso_id = $curso->id;
-    // $perfil->valor = true;
+    $perfil->valor = true;
     //dd($perfil);
     $perfil->save();
     return redirect('/')->with('success', 'Cadastrado com sucesso!');

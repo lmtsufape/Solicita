@@ -29,6 +29,7 @@ class RequisicaoController extends Controller
     $curso = Curso::where('id',$request->curso_id)->first();
     // dd($documento);
       //Verifica se o card clicado foi igual a "TODOS"
+                      // ->withTrashed()
       if($request->titulo_id == 6){
           $titulo = 'Todos';
           //$id_documentos retorna um collection. É necessário transformar para array
@@ -242,13 +243,13 @@ class RequisicaoController extends Controller
                   'nome_documento' => $nome_documento,
                   'anotacoes' => $id_documento->anotacoes,
               );
+              $id_documento->save();
               $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
               Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
                   $message->to($to_email)
                           ->subject($subject);
                   $message->from('noreply.solicita.lmts@gmail.com','Solicita - LMTS');
               });
-              $id_documento->save();
             }
           }
           return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
