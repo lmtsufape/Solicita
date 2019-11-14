@@ -56,7 +56,7 @@ class AlunoController extends Controller
 
     $regras = [
       'name' => 'required|string|max:255',
-      //'cpf' => ['required','integer','size:11','unique:alunos'],
+      'cpf' => ['required','integer','size:11','unique:alunos'],
       'email' => 'required|string|email|max:255|unique:users',
       'password' => 'required|string|min:8|confirmed',
       'vinculo' => ['required'],
