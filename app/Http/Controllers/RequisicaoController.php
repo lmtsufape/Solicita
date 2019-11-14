@@ -59,7 +59,9 @@ class RequisicaoController extends Controller
       // dd($listaRequisicao_documentos);
 
       foreach ($listaRequisicao_documentos as $key) {
+
         // dd($key->requisicao);
+        if($key->requisicao->perfil != null) {
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
                                'nome' => $key->aluno->user->name,
@@ -70,6 +72,7 @@ class RequisicaoController extends Controller
                                'status' => $key->status,
                                'detalhes' => $key->detalhes,
                               ]);
+                            }
       }
       // dd($response);
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });

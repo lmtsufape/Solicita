@@ -164,7 +164,7 @@ function confirmarRequisicao(){
   }
 }
 function indeferirRequisicao(){
-     if(confirm("Enviar?")== true){
+     if(confirm("Confirma o indeferimento desta requisição?")== true){
        document.getElementById("formModal").submit();
      }
 }
