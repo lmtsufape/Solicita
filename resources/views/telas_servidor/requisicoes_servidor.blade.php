@@ -3,81 +3,139 @@
 @section('conteudo')
 
 <!-- @include('componentes.mensagens') -->
-    <div class="tabela-centro mx-auto">
-        <table class="table" id="table" >
-            <div class="lmts-primary">
-
-              <!-- botão para confirmar seleção -->
-              <!-- ao clicar no botão de confirmar, é chamado a função confirmarRequisicao(). Se o usuário cancelar o event.preventDefault cancela o envio
-                  do formulario. caso contrário, o formulário é enviado e o documento selecionado é marcado como processando-->
-              <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
-              class="btn btn-outline-light" style="margin-bottom: -40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
-
-            <div class="nome-documento lmts-primary mx-auto " style="height:100px">
-                <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
-            </div>
-            </div>
-            <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;" >
-            <tr >
-                <!-- Checkbox para selecionar todos os documentos -->
-                <th scope="row">
-                  <!-- botão de finalizar -->
-                  <form id="formularioRequisicao" action="{{  route('listar-requisicoes-post')  }}" method="POST">
-                    @csrf
-                    <!-- Checkbox que seleciona todos os outros -->
-                    <div class="form-check">
-                      <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
-                    </div>
-                </th>
-                <th scope="col" class="titleColumn" onclick="sortTable(0)" style="cursor:pointer">N°
-                  <img src="{{asset('images/sort.png')}}" style="height:15px">
-                </th>
-                <th scope="col" class="titleColumn" >CPF</th>
-                <th scope="col" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">NOME
-                <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
-                <th scope="col" class="titleColumn" >CURSO</th>
-                <th scope="col" class="titleColumn">VÍNCULO</th>
-                <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA DE REQUISIÇÃO
-                <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
-                <th scope="col" class="titleColumn">HORA DE REQUISIÇÃO</th>
-                <!-- <th scope="col" class="titleColumn" >PRAZO</th> -->
-                <!-- <th scope="col" class="titleColumn" >STATUS</th> -->
-
-                @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
-                    <th scope="col">INFORMAÇÕES</th>
-                @endif
-            </tr>
-            </thead>
-            <tbody>
-                @foreach($listaRequisicao_documentos as $requisicao_documento)
-                    <tr>
-                      <th scope="row">
-                        <div class="form-check">
-                          <!-- checkboxLinha[] pega o valor de todos os checkboxLinha e envia como post para a rota -->
-                          <input class="checkboxLinha" type="checkbox" id="checkboxLinha" name="checkboxLinha[]" value="{{$requisicao_documento['id']}}" onclick="">
-                        </div>
-                    </th>
-                    <td>{{$loop->iteration}}</td>
-                    <td>{{$requisicao_documento['cpf']}}</td>
-                    <td>{{$requisicao_documento['nome']}}</td>
-                    <td>{{$requisicao_documento['curso']}}</td>
-                    <td>{{$requisicao_documento['vinculo']}}</td>
-                    <td>{{$requisicao_documento['status_data']}}</td>
-                    <td>{{$requisicao_documento['status_hora']}}</td>
-                  </tr>
-                @endforeach
+  <div class="tabela-centro mx-auto">
+    <table class="table" id="table" >
+      <div class="lmts-primary">
+        <div class="nome-documento lmts-primary mx-auto " style="height:100px">
+          <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
+        </div>
+      </div>
+      <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;" >
+        <tr >
+          <!-- Checkbox para selecionar todos os documentos -->
+        <th scope="row">
+          <!-- botão de finalizar -->
+          <form id="formularioRequisicao" action="{{  route('listar-requisicoes-post')  }}" method="POST">
+          @csrf
+          <!-- Checkbox que seleciona todos os outros -->
+          <div class="form-check">
+            <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
+          </div>
+        </th>
+        <th scope="col" class="titleColumn" onclick="sortTable(0)" style="cursor:pointer">N°
+          <img src="{{asset('images/sort.png')}}" style="height:15px">
+        </th>
+        <th scope="col" class="titleColumn" >CPF</th>
+        <th scope="col" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">NOME
+          <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
+        <th scope="col" class="titleColumn" >CURSO</th>
+        <th scope="col" class="titleColumn">VÍNCULO</th>
+        <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA DE REQUISIÇÃO
+          <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
+        <th scope="col" class="titleColumn">HORA DE REQUISIÇÃO</th>
+        <th scope="col" class="titleColumn" >AÇÃO</th>
+        <!-- <th scope="col" class="titleColumn" >STATUS</th> -->
+        @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
+            <th scope="col">INFORMAÇÕES</th>
+        @endif
+        </tr>
+        </thead>
+          <tbody>
+            @foreach($listaRequisicao_documentos as $requisicao_documento)
+            <tr>
+            <th scope="row" style="width:10px">
+              <div class="form-check">
+                <!-- checkboxLinha[] pega o valor de todos os checkboxLinha e envia como post para a rota -->
+                <input class="checkboxLinha" type="checkbox" id="checkboxLinha" name="checkboxLinha[]" value="{{$requisicao_documento['id']}}" onclick="">
               </div>
-            </form>
-            </tbody>
+            </th>
+              <td>{{$loop->iteration}}</td>
+              <td>{{$requisicao_documento['cpf']}}</td>
+              <td>{{$requisicao_documento['nome']}}</td>
+              <td>{{$requisicao_documento['curso']}}</td>
+              <td>{{$requisicao_documento['vinculo']}}</td>
+              <td>{{$requisicao_documento['status_data']}}</td>
+              <td>{{$requisicao_documento['status_hora']}}</td>
+              <td>
+                <a id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true"
+                      data-whatever="{{$requisicao_documento['nome']}}">
+                      <span class="glyphicon glyphicon-remove-circle" style="overflow: hidden; color:red"
+                        title="Indeferir pedido." onclick="event.preventDefault()"
+                        data-toggle="tooltip; modal" data-placement="top"
+                        data-id="{{$requisicao_documento['id']}}"
+                        data-nome="{{$requisicao_documento['nome']}}"
+                        data-title="{{$requisicao_documento['id']}}">
+                      </span>
+                </a>
+              </td>
+              </tr>
+                @endforeach
+              <!-- </div> -->
+          </tbody>
+            <tfoot>
+              <tr>
+              <td>
+                <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
+                class="btn btn-primary-lmts" style="margin-bottom: 40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
+              <td>
+              </tr>
+            </tfoot>
+          </form>
         </table>
-
-<!-- @if (session('alert'))
-<div class="alert alert-success">
-  {{ session('alert') }}
-</div>
-@endif -->
+    </div>
+    @foreach($listaRequisicao_documentos as $requisicao_documento)
+        <form method="post" id="formModal" action="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']]) }}">
+          @csrf
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+              aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Justificativa: {{$requisicao_documento['id']}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                    <label for="message-text" class="col-form-label">Mensagem:</label>
+                    <textarea class="form-control" id="anotacoes" name="anotacoes" required></textarea>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <a type="button" class="btn btn-secondary" data-dismiss="modal" style="margin-right:10px">
+                  {{ ('Fechar') }}
+                </a>
+                <a type="button" class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); indeferirRequisicao()"
+                href="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']])}}" style="margin-right:10px">
+                {{ ('Confirmar') }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        </form>
+        @endforeach
 
 <script>
+$('#myModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Botão que acionou o modal
+    var recipient = button.data('whatever')
+    var id = button.data('id')
+    // var recipient = .data('whatever')
+    // Extrai informação dos atributos data-*
+    // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
+    // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
+    var modal = $(this)
+    modal.find('.modal-title').text('Nome do Aluno: ' + recipient)
+    modal.find('.modal-body input').val(recipient)
+  })
+</script>
+<script>
+
 var checkedAll = false;
 var checkBoxs;
 document.getElementById("selectAll").addEventListener("click", function(){
@@ -93,16 +151,22 @@ document.getElementById("selectAll").addEventListener("click", function(){
 });
 
 console.log(checkBoxs);
+
 function confirmarRequisicao(){
   var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
 // verifica se o usuário selecionou pelo menos um checkbox
-if(ids.length != 0){
+  if(ids.length != 0){
     if(confirm("Você deseja marcar o(s) documento(s) como concluído(s)?")== true){
       document.getElementById("formularioRequisicao").submit();
     }
   }else {
     alert("Selecione pelo menos um documento!");
   }
+}
+function indeferirRequisicao(){
+     if(confirm("Indeferir documento?")== true){
+       document.getElementById("formModal").submit();
+     }
 }
 function getLinhas(){
   var ids = document.getElementsByClassName("checkboxLinha");// pega o id de todos os checkboxs marcados
@@ -121,7 +185,6 @@ function getIds(dados){
   }
   return newArray;
 }
-
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("table");
@@ -176,8 +239,8 @@ function sortTable(n) {
     }
   }
 }
-
 </script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 @endsection

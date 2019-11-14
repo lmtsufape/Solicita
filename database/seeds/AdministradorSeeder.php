@@ -12,7 +12,7 @@ class AdministradorSeeder extends Seeder
     public function run()
     {
 
-      $user_id = DB::table('users')->where('name','admin')->pluck('id');
+      $user_id = DB::table('users')->where('name','Administrador')->pluck('id');
 
 
       DB::table('administradors')->insert([
