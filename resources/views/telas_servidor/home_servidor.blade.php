@@ -14,7 +14,7 @@
                 @endforeach
               </select>
             </div>
-            <!-- <script>
+            <script>
                 function getSelectValue(){
                     var selectedValue = document.getElementById("cursos").value;
                     console.log(selectedValue);
@@ -25,7 +25,7 @@
                     document.getElementById('cursoIdDeclaracao5').value = selectedValue;
                     // document.getElementById('cursoIdDeclaracao6').value = selectedValue;
                 }
-            </script> -->
+            </script>
                 <div class="card-deck d-flex justify-content-center">
                     <div class="conteudo-central d-flex justify-content-center">
                       <!-- Para a retirada do card "TODOS", foi reduzido o offset do laço para 5, em vez de 6 -->
