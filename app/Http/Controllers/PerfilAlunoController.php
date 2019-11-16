@@ -171,61 +171,84 @@ class PerfilAlunoController extends Controller
       return view ('telas_aluno.adiciona_perfil_aluno', compact('perfil', 'perfis','cursoAluno', 'unidadeAluno', 'aluno', 'unidades', 'cursos'));
       }
     }
-    public function salvaPerfil(Request $request){
-      $usuario = User::find(Auth::user()->id);
-      $aluno = $usuario->aluno;
-      $perfil = new Perfil();
-      $perfil->curso_id = $request->curso;
-      $perfil->unidade_id = $request->unidade;
-            $vinculo = $request->vinculo;
-            if($vinculo==="1"){
-              $perfil->situacao = "Matriculado";
-            }else if ($vinculo==="2"){
-              $perfil->situacao = "Egresso";
-            }
-            else if ($vinculo==="3"){
-              $perfil->situacao = "Especial";
-            }
-            else if ($vinculo==="4"){
-              $perfil->situacao = "REMT - Regime Especial de Movimentação Temporária";
-            }
-            else if ($vinculo==="5"){
-              $perfil->situacao = "Desistente";
-            }
-            else if ($vinculo==="6"){
-              $perfil->situacao = "Trancado";
-            }
-            else if ($vinculo==="7"){
-              $perfil->situacao = "Intercambio";
-            }
+  public function salvaPerfil(Request $request){
+  $usuario = User::find(Auth::user()->id);
+  $aluno = $usuario->aluno;
+
+  $perfil = new Perfil();
+  $perfil->curso_id = $request->curso;
+  $perfil->unidade_id = $request->unidade;
+        $vinculo = $request->vinculo;
+        if($vinculo==="1"){
+          $perfil->situacao = "Matriculado";
+        }else if ($vinculo==="2"){
+          $perfil->situacao = "Egresso";
+        }
+        else if ($vinculo==="3"){
+          $perfil->situacao = "Especial";
+        }
+        else if ($vinculo==="4"){
+          $perfil->situacao = "REMT - Regime Especial de Movimentação Temporária";
+        }
+        else if ($vinculo==="5"){
+          $perfil->situacao = "Desistente";
+        }
+        else if ($vinculo==="6"){
+          $perfil->situacao = "Trancado";
+        }
+        else if ($vinculo==="7"){
+          $perfil->situacao = "Intercambio";
+        }
+        $definicaoPadrao = $request->selecaoPadrao;
+        if($definicaoPadrao=='true'){
+          $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+          foreach ($perfis as $p) {
+            $p->valor = false;
+            $p->save();
+          }
+          $perfil->valor=true;
+        }
+        else{
+        $perfil->valor = false;
+      }
       $temp = $request->cursos;
       $curso = Curso::where('id',$request->curso)->first();
+      // dd($request->curso;
       $perfil->default = $curso->nome;
-      // $perfil->valor = false;
       $perfil->aluno()->associate($aluno);
       $perfil->save();
       // }
-      // return redirect ('/perfil-aluno');
-      return redirect()->route('perfil-aluno')->with('success', 'Perfil adicionado com sucesso!');
-    }
-    public function excluirPerfil(Request $request) {
-          $id = $request->idPerfilRequest;
-          $perfis = Perfil::All();
-          $quant = count($perfis);
-          if($quant===1){
-            return redirect()->back()->with('error', 'Necessário haver ao menos um perfil vinculado ao aluno!');
-          }
-          else{
-          $perfil = Perfil::where('id', $id)->delete();
-          return redirect()->back()->with('success', 'Deletado com Sucesso!');
-          }
-    }
-    public function definirPerfilDefault(Request $request){
-        $valor = $request->selectDefault;
-        $id = $request->idPerfil;
-        $selecao = Perfil::where('default', $id)->get();
-        dd($valor);
-        return redirect()->back()->with('success', 'Alterado com sucesso!');
+  // return redirect ('/perfil-aluno');
+  return redirect()->route('perfil-aluno')->with('success', 'Perfil adicionado com sucesso!');
+}
+public function excluirPerfil(Request $request) {
+      // dd($request->idPerfil);
+      $perfis = Perfil::All();
+      $quant = count($perfis);
+      if($quant===1){
+        return redirect()->back()->with('error', 'Necessário haver ao menos um perfil vinculado ao aluno!');
+      }
+      else{
+      $id = $request->idPerfil;
+      $selecao = Perfil::where('id', $id)->get();
+      $perfil = Perfil::where('id', $id)->delete();
+      return redirect()->back()->with('success', 'Deletado com Sucesso!');
+      }
+}
+public function definirPerfilDefault(Request $request){
+    // $valor = $request->selectDefault;
+    $id = $request->idPadrao;
+    $selecao = Perfil::where('id', $id)->first();
+    $definicaoPadrao = $request->selecaoPadrao;
+    if($definicaoPadrao=='true'){
+      $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+      foreach ($perfis as $p) {
+        $p->valor = false;
+        $p->save();
+      }
+      $perfil->valor=true;
+      }
+    return redirect()->back()->with('success', 'Alterado com sucesso!');
+}
 
-    }
 }

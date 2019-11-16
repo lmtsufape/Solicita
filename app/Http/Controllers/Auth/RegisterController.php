@@ -52,7 +52,8 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cpf' => ['required','integer','size:11','unique:alunos'],
+            'cpf' => ['required','unique:alunos'],
+            // 'cpf' => ['required','integer','unique:alunos'],
             'vinculo' => ['required'],
             'unidade' => ['required'],
             'cursos' => ['required'],
@@ -65,16 +66,17 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-     protected function create(array $data)
- {
-     return User::create([
-         'name' => $data['name'],
-         'email' => $data['email'],
-         'password' => Hash::make($data['password']),
-         'cpf' => $data['cpf'],
-         'vinculo' => $data['vinculo'],
-         'unidade' => $data['unidade'],
-         'cursos' => $data['cursos'],
-     ]);
- }
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'cpf' => $data['cpf'],
+            'vinculo' => $data['vinculo'],
+            'unidade' => $data['unidade'],
+            'cursos' => $data['cursos'],
+            'tipo' => 'aluno',
+        ]);
+    }
 }

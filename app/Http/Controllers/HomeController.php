@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth'=>'verified');
+        // $this->middleware(['auth'=>'verified']);
         $this->middleware('auth');
     }
 
@@ -33,7 +33,7 @@ class HomeController extends Controller
             $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
             return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento]);
           }
-          elseif (Auth::user()->tipo == 'aluno') {
+          else if (Auth::user()->tipo == 'aluno') {
           return view('autenticacao.home-aluno');
           }
         }

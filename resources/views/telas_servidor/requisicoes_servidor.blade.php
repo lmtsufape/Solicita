@@ -108,7 +108,7 @@
                 </a>
                 <a type="button" class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); indeferirRequisicao()"
                 href="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']])}}" style="margin-right:10px">
-                {{ ('Confirmar') }}
+                {{ ('Enviar') }}
                 </a>
               </div>
             </div>
@@ -164,7 +164,7 @@ function confirmarRequisicao(){
   }
 }
 function indeferirRequisicao(){
-     if(confirm("Indeferir documento?")== true){
+     if(confirm("Confirma o indeferimento desta requisição?")== true){
        document.getElementById("formModal").submit();
      }
 }

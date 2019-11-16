@@ -56,7 +56,7 @@ class AlunoController extends Controller
 
     $regras = [
       'name' => 'required|string|max:255',
-      //'cpf' => ['required','integer','size:11','unique:alunos'],
+      'cpf' => ['required','integer','size:11','unique:alunos'],
       'email' => 'required|string|email|max:255|unique:users',
       'password' => 'required|string|min:8|confirmed',
       'vinculo' => ['required'],
@@ -133,7 +133,7 @@ class AlunoController extends Controller
     $perfil->unidade_id = $unidade->id;
     //curso_id
     $perfil->curso_id = $curso->id;
-    // $perfil->valor = true;
+    $perfil->valor = true;
     //dd($perfil);
     $perfil->save();
     return redirect('/')->with('success', 'Cadastrado com sucesso!');

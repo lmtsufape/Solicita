@@ -65,7 +65,8 @@
                           </span>
                           @enderror
                       </select>
-
+                      <input type="checkbox" name="selecaoPadrao"  value="true">Definir como padrão</br>
+                      </input>
                       </div>
                     </div>
                     <!-- Botões -->
