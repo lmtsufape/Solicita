@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Aluno extends Model
 {
     //
-    protected $fillable = ['cpf'];
+    protected $fillable = ['cpf', 'user_id'];
 
     public function perfil(){
         return $this->hasMany('App\Perfil');
