@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Perfil;
+use App\Aluno;
+use App\Curso;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -48,16 +51,17 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'cpf' => ['required','unique:alunos'],
-            // 'cpf' => ['required','integer','unique:alunos'],
-            'vinculo' => ['required'],
-            'unidade' => ['required'],
-            'cursos' => ['required'],
-        ]);
+      return Validator::make($data, [
+          'name' => ['required', 'string', 'max:255'],
+          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+          'password' => ['required', 'string', 'min:8', 'confirmed'],
+          'cpf' => ['required','unique:alunos'],
+          // 'cpf' => ['required','integer','unique:alunos'],
+          'vinculo' => ['required'],
+          'unidade' => ['required'],
+          'cursos' => ['required'],
+          'situacao' => ['situacao'],
+      ]);
     }
 
     /**
@@ -68,15 +72,64 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'cpf' => $data['cpf'],
-            'vinculo' => $data['vinculo'],
-            'unidade' => $data['unidade'],
-            'cursos' => $data['cursos'],
-            'tipo' => 'aluno',
-        ]);
+        $user = User::create([ //Criação de usuário, para apenas após a criação ser atribuida a nova variável
+                              'name' => $data['name'],
+                              'email' => $data['email'],
+                              'password' => Hash::make($data['password']),
+                              'tipo' => 'aluno',
+                           ]);
+
+        $aluno = Aluno::create([
+                              'user_id'=>$user->id,
+                              'cpf' => $data['cpf'],
+                              ]);
+        $id = Curso::where('id', $data['cursos'])->first();
+        $curso = $id->nome;
+
+        $vinculo = $data['vinculo'];
+            if($vinculo==="1"){
+
+              $situacao = "Matriculado";
+            }else if ($vinculo==="2"){
+
+              $situacao = "Egresso";
+            }
+            else if ($vinculo==="3"){
+
+              $situacao = "Especial";
+            }
+            else if ($vinculo==="4"){
+              $situacao = "REMT - Regime Especial de Movimentação Temporária";
+            }
+            else if ($vinculo==="5"){
+              $situacao = "Desistente";
+            }
+            else if ($vinculo==="6"){
+              $situacao = "Trancado";
+            }
+            else if ($vinculo==="7"){
+              $situacao = "Intercambio";
+            }
+        $perfil = Perfil::create([
+                            'default' => $curso,
+                            'situacao' => $situacao,
+                            'valor' =>true,
+                            'aluno_id' => $aluno->id,
+                            'curso_id' => $data['cursos'],
+                            'unidade_id' => $data['unidade'],
+                            ]);
+                            // dd($perfil);
+        return $user;
+        // $user =  User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        //     'cpf' => $data['cpf'],
+        //     'vinculo' => $data['vinculo'],
+        //     'unidade' => $data['unidade'],
+        //     'cursos' => $data['cursos'],
+        //     'tipo' => 'aluno',
+        // ]);
+        // dd($user);
     }
 }
