@@ -76,9 +76,9 @@ class AlunoController extends Controller
     //$request->validate([$regras,$mensagens]);
     $request->validate([
       'name' => 'required|string|max:255',
-      'cpf' => 'required|cpf|unique:alunos',
-      'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required|string|min:8|confirmed',
+      'cpf' => 'bail|required|cpf|unique:alunos',
+      'email' => 'bail|required|string|email|max:255|unique:users',
+      'password' => 'bail|required|string|min:8|confirmed',
       'vinculo' => ['required'],
       'unidade' => ['required'],
       'cursos' => ['required'],
