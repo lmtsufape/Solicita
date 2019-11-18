@@ -51,17 +51,16 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-      return Validator::make($data, [
-          'name' => ['required', 'string', 'max:255'],
-          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-          'password' => ['required', 'string', 'min:8', 'confirmed'],
-          'cpf' => ['required','unique:alunos'],
-          // 'cpf' => ['required','integer','unique:alunos'],
-          'vinculo' => ['required'],
-          'unidade' => ['required'],
-          'cursos' => ['required'],
-          'situacao' => ['situacao'],
-      ]);
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['bail','required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'cpf' => ['bail','required','unique:alunos'],
+            // 'cpf' => ['required','integer','unique:alunos'],
+            'vinculo' => ['required'],
+            'unidade' => ['required'],
+            'cursos' => ['required'],
+        ]);
     }
 
     /**
