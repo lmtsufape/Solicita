@@ -65,4 +65,5 @@ class ServidorController extends Controller
       $user->save();
       return redirect()->route('home')->with('success', 'Senha alterada com sucesso!');
     }
+  
   }
