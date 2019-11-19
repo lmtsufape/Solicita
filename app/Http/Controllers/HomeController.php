@@ -38,6 +38,11 @@ class HomeController extends Controller
           else if (Auth::user()->tipo == 'aluno') {
           return view('autenticacao.home-aluno');
           }
+
+          else if (Auth::user()->tipo == 'administrador') {
+          return view('autenticacao.home-administrador');
+          }
+
         }
       //
         return view('home');

@@ -6,9 +6,7 @@
 
   </a>
     <div class="collapse navbar-collapse" >
-      <ul class="navbar-nav mr-auto">
-
-
+      <!-- <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home') }}" style="color:white">
                           {{ __('Inicio') }}
@@ -20,8 +18,7 @@
                           {{ __('Cadastrar Servidor') }}
           </a>
         </li>
-      </ul>
-
+      </ul> -->
     </div>
 
     <div class="nav navbar-nav navbar-right" >
