@@ -7,7 +7,7 @@
         <div class="centro-cartao">
             <label for="cursos" style="margin-left:275px; ">Selecionar Curso</label>
             <div class="justify-content-right" style="margin-left: 275px">
-              <select name="cursos" id="cursos" onchange="getSelectValue();"
+              <select name="cursos" id="cursos" onchange="getSelectValue();"onclick="quantidades()"
               class="browser-default custom-select custom-select-lg mb-1" style="width: 400px">
                 @foreach($cursos as $curso)
                 <option value="{{$curso->id}}">{{$curso->nome}}</option>
@@ -33,69 +33,18 @@
                           <a   href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault();
                                            document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
                              <div class="card cartao text-center " style="border-radius: 20px">
-
-                                     <div class="card-body d-flex justify-content-center">
-
-                                     <h2 style="padding-top:20px">{{$tipoDocumento[$i-1]}}</h2>
-                                 </div>
+                                    <div class="card-body d-flex justify-content-center">
+                                       <h2 style="padding-top:20px">{{$tipoDocumento[$i-1]}}</h2>
+                                    </div>
+                                  <div id="quantidades">
+                                  <span class="text" role="alert" style="overflow: visible; display:block">
+                                  </span>
+                                </div>
                              </div>
                           </a>
-
                           <form id="listar-requisicoes{{$i}}-form" action="{{ route('listar-requisicoes') }}" method="GET" style="display: none;">
                             <input id="cursoIdDeclaracao{{$i}}" type="hidden" name="curso_id" value="1">
                             <input  type="hidden" name="titulo_id" value="{{$i}}">
-
                           </form>
                         @endfor
-
-
-                        <!-- <a href="{{ route('listar-requisicoes', ['titulo_id' => 2]) }}" style="text-decoration:none; color: inherit;">
-                            <div class="card cartao text-center " style="border-radius: 20px">
-
-                                    <div class="card-body d-flex justify-content-center">
-
-                                    <h2 style="padding-top:20px">Comprovante de Matrícula</h2>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{{ route('listar-requisicoes', ['titulo_id' => 3]) }}" style="text-decoration:none; color: inherit;">
-                            <div class="card cartao text-center " style="border-radius: 20px" >
-
-                                    <div class="card-body d-flex justify-content-center">
-
-                                    <h2 style="padding-top:20px">Histórico</h2>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{{ route('listar-requisicoes', ['titulo_id' => 4]) }}" style="text-decoration:none; color: inherit;">
-                            <div class="card cartao text-center " style="border-radius: 20px" >
-
-                                    <div class="card-body d-flex justify-content-center">
-
-                                    <h2 style="padding-top:0">Programa de Disciplina</h2>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="{{ route('listar-requisicoes', ['titulo_id' => 5]) }}" style="text-decoration:none; color: inherit;">
-                            <div class="card cartao text-center " style="border-radius: 20px">
-
-                                    <div class="card-body d-flex justify-content-center">
-
-                                    <h2 style="padding-top:20px">Outros</h2>
-                                </div>
-                            </div>
-                        </a>
-
-                        <a href="{{ route('listar-requisicoes', ['titulo' => 'Todos']) }}" style="text-decoration:none; color: inherit;">
-                            <div class="card cartao text-center " style="border-radius: 20px">
-
-                                    <div class="card-body d-flex justify-content-center">
-
-                                    <h2 style="padding-top:20px">Todos</h2>
-                                </div>
-                            </div>
-                        </a> -->
-
-                        <!-- </form> -->
-
 @endsection
