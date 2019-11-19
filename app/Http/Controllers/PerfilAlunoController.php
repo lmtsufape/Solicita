@@ -51,6 +51,12 @@ class PerfilAlunoController extends Controller
     public function storeEditarInfo(Request $request){
       //atualização dos dados
       $user = Auth::user();
+      // dd($request->email);
+      if($user->email!=$request->email){
+        $request->validate([
+          'email' => ['bail','required', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
+      }
       $user->name = $request->name;
       $user->email = $request->email;
       $user->save();
