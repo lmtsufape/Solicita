@@ -6,9 +6,7 @@
 
   </a>
     <div class="collapse navbar-collapse" >
-      <ul class="navbar-nav mr-auto">
-
-
+      <!-- <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="{{ route('home') }}" style="color:white">
                           {{ __('Inicio') }}
@@ -20,8 +18,7 @@
                           {{ __('Cadastrar Servidor') }}
           </a>
         </li>
-      </ul>
-
+      </ul> -->
     </div>
 
     <div class="nav navbar-nav navbar-right" >
@@ -47,7 +44,7 @@
                                  document.getElementById('logout-form').submit();"style="color:white">
                    {{ __('Sair') }}
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none; margin-right:20px">
                     @csrf
                 </form>
             </li>

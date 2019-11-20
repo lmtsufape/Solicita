@@ -57,9 +57,8 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
       $response = [];
       // dd($listaRequisicao_documentos);
-
+      
       foreach ($listaRequisicao_documentos as $key) {
-
         // dd($key->requisicao);
         if($key->requisicao->perfil != null) {
         array_push($response, ['id' => $key->id,
@@ -78,7 +77,15 @@ class RequisicaoController extends Controller
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
       // dd($response);
       $listaRequisicao_documentos = $response;
-      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
+      // $quantidades = [];
+      // foreach ($response as $key) {
+      //   dd($key['curso']);
+      //
+      //
+      //
+      // }
+
+      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
   }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');

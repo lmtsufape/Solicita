@@ -34,7 +34,7 @@
   <div class="card-body">
         <!-- @csrf -->
         @foreach($perfisAluno as $pa)
-            <input type="radio" name="idPerfilRequest" value="{{$pa->default}}" title="Perfil padrão.">{{$pa->default}} - {{$pa->situacao}}</input>
+            <input type="radio" name="idPerfilRequest" title="Perfil padrão.">{{$pa->default}} - {{$pa->situacao}} </input>
             @if($pa->valor==false)
                   <a href="#">
                   <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:gray"

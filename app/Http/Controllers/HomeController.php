@@ -33,13 +33,18 @@ class HomeController extends Controller
             $cursos = Curso::all();
             $requisicoes = Requisicao_documento::all();
             $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
-            return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, 'requisicoes'=>$requisicoes]);
+            return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, '$requisicoes'=>$requisicoes]);
           }
           else if (Auth::user()->tipo == 'aluno') {
           return view('autenticacao.home-aluno');
           }
+
+          else if (Auth::user()->tipo == 'administrador') {
+          return view('autenticacao.home-administrador');
+          }
+
         }
-      //                                             <----------------
+      //
         return view('home');
     }
 }
