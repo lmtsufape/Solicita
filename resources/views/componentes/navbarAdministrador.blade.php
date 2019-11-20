@@ -44,7 +44,7 @@
                                  document.getElementById('logout-form').submit();"style="color:white">
                    {{ __('Sair') }}
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none; margin-right:20px">
                     @csrf
                 </form>
             </li>
