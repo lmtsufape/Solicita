@@ -43,14 +43,14 @@
                   <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:gray"
                         data-toggle="tooltip" data-placement="top"
                         title="Definir como perfil padrão.">
-                  </span>
+                  </span>&nbsp
               </a>
             @endif
             @if($pa->valor==true)
               <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
                     data-toggle="tooltip" data-placement="top"
                     title="Perfil padrão.">
-              </span>
+              </span>&nbsp
             @endif
           </form>
         <!-- </br> -->
