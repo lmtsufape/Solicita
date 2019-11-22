@@ -56,7 +56,7 @@ Route::group(['middleware'=> 'CheckAluno'], function(){
     Route::get('/exibir-perfil-aluno','PerfilAlunoController@editarInfo')->name('exibir-perfil-aluno')->middleware('CheckAluno');
     Route::post('/editar-perfil','PerfilAlunoController@storeEditarInfo')->name('editar-info')->middleware('CheckAluno');
     Route::post('/excluir-perfil{idPerfil?}','PerfilAlunoController@excluirPerfil')->name('excluir-perfil')->middleware('CheckAluno');
-    Route::post('/perfil-padrao{idPerfil?}','PerfilAlunoController@definirPerfilDefault')->name('perfil-padrao')->middleware('CheckAluno');
+    Route::post('/perfil-padrao{idPerfilPadrao?}','PerfilAlunoController@definirPerfilDefault')->name('perfil-padrao')->middleware('CheckAluno');
     Route::get('/adiciona-perfil', 'PerfilAlunoController@adicionaPerfil')->name('adiciona-perfil')->middleware('CheckAluno');
     Route::post('/salva-novo-perfil-aluno', 'PerfilAlunoController@salvaPerfil')->name('salva-novo-perfil-aluno')->middleware('CheckAluno');
     Route::post('/salva-novo-perfil-aluno', 'PerfilAlunoController@salvaPerfil')->name('salva-novo-perfil-aluno')->middleware('CheckAluno');
