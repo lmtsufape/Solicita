@@ -181,7 +181,9 @@ public function excluirPerfil(Request $request) {
         return redirect()->back()->with('error', 'Necessário haver ao menos um perfil vinculado ao aluno!');
       }
       else{
-        // $id = $request->idPerfil;
+        $id = $request->idPerfil;
+        dd($id);
+        // $perfil = Perfil::where('id', $id)->get();
         $perfil = Perfil::where('id', $id)->delete();
         // $all = Perfil::where('aluno_id',$aluno->id)->first();
         // $all->valor = true;
@@ -191,6 +193,7 @@ public function excluirPerfil(Request $request) {
 }
 public function definirPerfilDefault(Request $request){
     $id = $request->idPerfilPadrao;
+    dd($id);
     $selecao = Perfil::where('id', $id)->first();
       $usuario = User::find(Auth::user()->id);
       $aluno = $usuario->aluno;

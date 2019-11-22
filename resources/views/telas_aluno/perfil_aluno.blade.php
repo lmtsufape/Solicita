@@ -34,25 +34,29 @@
   <div class="card-body">
         <!-- @csrf -->
         @foreach($perfisAluno as $pa)
-            <input type="radio" name="idPerfilRequest" value="{{$pa->default}}">{{$pa->default}} - {{$pa->situacao}}</input>
+            <input type="radio" name="idPerfilRequest" value="{{$pa->id}}">{{$pa->default}} - {{$pa->situacao}}</>
             <form method="POST" enctype="multipart/form-data" id="formPerfilPadrao" action="{{ route('perfil-padrao', ["idPerfilPadrao"=>$pa->id]) }}">
               @csrf
             @if($pa->valor==false)
               <a href="{{route("perfil-padrao", ["idPerfilPadrao" => $pa->id])}}"
-                onclick="event.preventDefault();submeter();">
+                onclick="event.preventDefault();document.getElementById('formPerfilPadrao').submit();">
                   <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:gray"
                         data-toggle="tooltip" data-placement="top"
                         title="Definir como perfil padrão.">
                   </span>
               </a>
             @endif
+
             @if($pa->valor==true)
               <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
                     data-toggle="tooltip" data-placement="top"
                     title="Perfil padrão.">
               </span>
             @endif
+
+            </br>
           </form>
+
         <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil', ["idPerfil"=>$pa->id]) }}">
           @csrf
           @endforeach
@@ -60,6 +64,7 @@
             onclick="event.preventDefault();document.getElementById('formExcluirPerfil').submit();"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a>
         </form>
+
         <form method="POST" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
@@ -70,8 +75,11 @@
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 <script>
-function submeter(){
-       document.getElementById("formPerfilPadrao").submit();
-     }
+// function padrao(){
+//        document.getElementById("formPerfilPadrao").submit();
+//      }
+//      function excluir(){
+//             document.getElementById("formPerfilPadrao").submit();
+//           }
 </script>
 @endsection
