@@ -34,23 +34,25 @@
   <div class="card-body">
         <!-- @csrf -->
         @foreach($perfisAluno as $pa)
-            <input type="radio" name="idPerfilRequest" title="Perfil padrão.">{{$pa->default}} - {{$pa->situacao}} </input>
+            <input type="radio" name="idPerfilRequest" value="{{$pa->default}}">{{$pa->default}} - {{$pa->situacao}}</input>
+            <form method="POST" enctype="multipart/form-data" id="formPerfilPadrao" action="{{ route('perfil-padrao', ["idPerfilPadrao"=>$pa->id]) }}">
+              @csrf
             @if($pa->valor==false)
-                  <a href="#">
+              <a href="{{route("perfil-padrao", ["idPerfilPadrao" => $pa->id])}}"
+                onclick="event.preventDefault();submeter();">
                   <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:gray"
                         data-toggle="tooltip" data-placement="top"
                         title="Definir como perfil padrão.">
                   </span>
-                  </a>
-                </br>
+              </a>
             @endif
             @if($pa->valor==true)
-                  <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
-                        data-toggle="tooltip" data-placement="top"
-                        title="Perfil padrão.">
-                  </span>
-                  <br>
+              <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
+                    data-toggle="tooltip" data-placement="top"
+                    title="Perfil padrão.">
+              </span>
             @endif
+          </form>
         <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil', ["idPerfil"=>$pa->id]) }}">
           @csrf
           @endforeach
@@ -64,18 +66,12 @@
         </form>
   </div>
 </div>
-
-<!-- <script>
-function validaRadio() {
-  var radio = document.getElementById('formExcluirPerfil');
-  if (radio.checked == false){
-    alert('Selecione o perfil desejado.');
-    return false;
-  }
-  return true;
-}
-</script> -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<script>
+function submeter(){
+       document.getElementById("formPerfilPadrao").submit();
+     }
+</script>
 @endsection
