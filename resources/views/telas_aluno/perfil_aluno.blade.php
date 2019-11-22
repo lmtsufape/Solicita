@@ -3,7 +3,7 @@
 @section('conteudo')
 <!-- Informações do aluno -->
 <div class="card mx-auto" style="margin-left: 100px;margin-right: 100px;width:900px;">
-  @include('componentes.mensagens')
+  <div>@include('componentes.mensagens')</div>
   <h5 class="card-header">Informações do Aluno</h5>
   <div class="card-body">
     <div class="mx-auto" style="width: 800px;">
@@ -34,9 +34,7 @@
   <div class="card-body">
         <!-- @csrf -->
         @foreach($perfisAluno as $pa)
-
-            <input type="radio" name="name" value="{{$pa->id}}" class="radioCheck">{{$pa->default}} - {{$pa->situacao}}</input>
-
+            <input type="radio" name="radiobutton" value="{{$pa->id}}">{{$pa->default}} - {{$pa->situacao}}
             <form method="POST" enctype="multipart/form-data" id="formPerfilPadrao" action="{{ route('perfil-padrao', ["idPerfilPadrao"=>$pa->id]) }}">
               @csrf
               @if($pa->valor==false)
@@ -67,7 +65,6 @@
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
         </form>
-
   </div>
 </div>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
@@ -79,5 +76,16 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 //      function excluir(){
 //             document.getElementById("formPerfilPadrao").submit();
 //           } -->
+
+<script>
+function funcao(){
+
+$("input:radio[name=radiobutton]").click(function() {
+   var sku = $(this).val();
+   alert(sku);
+});
+}
+
+</script>
 
 @endsection

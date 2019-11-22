@@ -28,7 +28,9 @@
             </div>
         </div>
         <div class="info-login bloco" >
-        @include('componentes.mensagens')
+          <div>
+            @include('componentes.mensagens')
+          </div>
                 <h2 class="text-center">Entrar</h2>
                 <form method="POST" action="{{ route('login') }}">
                   @csrf
