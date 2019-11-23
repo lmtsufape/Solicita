@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Curso;
+use App\Requisicao_documento;
 
 class HomeController extends Controller
 {
@@ -15,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth'=>'verified');
+        // $this->middleware(['auth'=>'verified']);
         $this->middleware('auth');
     }
 
@@ -30,14 +31,20 @@ class HomeController extends Controller
         if(Auth::check()){
           if(Auth::user()->tipo == 'servidor'){
             $cursos = Curso::all();
+            $requisicoes = Requisicao_documento::all();
             $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
-            return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento]);
+            return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, '$requisicoes'=>$requisicoes]);
           }
-          elseif (Auth::user()->tipo == 'aluno') {
+          else if (Auth::user()->tipo == 'aluno') {
           return view('autenticacao.home-aluno');
           }
+
+          else if (Auth::user()->tipo == 'administrador') {
+          return view('autenticacao.home-administrador');
+          }
+
         }
-      //                                             <----------------
+      //
         return view('home');
     }
 }

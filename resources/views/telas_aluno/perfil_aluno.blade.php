@@ -32,32 +32,46 @@
 <!-- Perfil aluno -->
 <div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;">
   <div class="card-body">
-      @foreach($perfisAluno as $pa)
-      <input type="radio" name="idPerfilRequest" value="{{$pa->default}}">{{$pa->default}} - {{$pa->situacao}}</br>
-        <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil', ["idPerfil"=>$pa->default]) }}">
+        <!-- @csrf -->
+        @foreach($perfisAluno as $pa)
+            <input type="radio" name="idPerfilRequest" value="{{$pa->default}}">{{$pa->default}} - {{$pa->situacao}}</input>
+            <form method="POST" enctype="multipart/form-data" id="formPerfilPadrao" action="{{ route('perfil-padrao', ["idPerfilPadrao"=>$pa->id]) }}">
+              @csrf
+            @if($pa->valor==false)
+              <a href="{{route("perfil-padrao", ["idPerfilPadrao" => $pa->id])}}"
+                onclick="event.preventDefault();submeter();">
+                  <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:gray"
+                        data-toggle="tooltip" data-placement="top"
+                        title="Definir como perfil padrão.">
+                  </span>
+              </a>
+            @endif
+            @if($pa->valor==true)
+              <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
+                    data-toggle="tooltip" data-placement="top"
+                    title="Perfil padrão.">
+              </span>
+            @endif
+          </form>
+        <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil', ["idPerfil"=>$pa->id]) }}">
           @csrf
-        @endforeach
-          <!-- <a href="{{route("excluir-perfil", ["idPerfil" => $pa->id])}}" class="btn btn-primary" -->
-          <a href="{{route("excluir-perfil", ["idPerfil"=>$pa->default])}}" class="btn btn-primary"
+          @endforeach
+          <a href="{{route("excluir-perfil", ["idPerfil" => $pa->id])}}" class="btn btn-primary"
             onclick="event.preventDefault();document.getElementById('formExcluirPerfil').submit();"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil</a>
         </form>
         <form method="POST" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
             style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
-          </form>
+        </form>
   </div>
 </div>
-<!--
-<script>
-function validaRadio() {
-  var radio = document.getElementById('formExcluirPerfil');
-  if (radio.checked == false){
-    alert('Para excluir, selecione o perfil desejado.');
-    return false;
-  }
-  return true;
-}
-</script> -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<script>
+function submeter(){
+       document.getElementById("formPerfilPadrao").submit();
+     }
+</script>
 @endsection

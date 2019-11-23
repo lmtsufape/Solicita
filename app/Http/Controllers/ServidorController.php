@@ -22,7 +22,7 @@ class ServidorController extends Controller
         'name' => 'required|string|max:255',
         'matricula' => 'required|unique:servidors',
         'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8',
+        'password' => 'required|string|min:8|confirmed',
       ]);
       $usuario = new User();
       $usuario->name = $request->input('name');
@@ -65,4 +65,5 @@ class ServidorController extends Controller
       $user->save();
       return redirect()->route('home')->with('success', 'Senha alterada com sucesso!');
     }
+  
   }

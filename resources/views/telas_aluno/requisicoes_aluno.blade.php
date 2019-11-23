@@ -43,9 +43,9 @@
                       @if($rd->requisicao_id == $r->id)
                           <!-- Documentos Solicitados -->
                           @if($rd->status=="Em andamento")
-                          <li style="color:#c2bd60">
+                          <li style="color:#db6700">
                             {{$rd->status}}
-                            <span class="glyphicon glyphicon-time" style="overflow: hidden; color:#c2bd60"
+                            <span class="glyphicon glyphicon-time" style="overflow: hidden; color:#db6700"
                             data-toggle="tooltip" data-placement="top"
                             title="Sua solicitação está em processamento.">
                             </span>

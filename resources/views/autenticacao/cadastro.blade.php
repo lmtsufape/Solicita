@@ -10,7 +10,7 @@
         <div class="centro" style="height: 840px">
                 <h2 class="row d-flex justify-content-center" >Cadastro Discente</h2>
 
-                <form action="{{  route('cadastro')  }}" method="POST">
+                <form action="{{  route('register')  }}" method="POST">
 
                   @csrf
                         <div class="form-group">

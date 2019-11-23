@@ -12,12 +12,8 @@
 
                   @csrf
                   <div class="form-group">
-
-
                     <!-- Form Nome -->
-
                     <div class="form-group row formulario-centro">
-
                         <div class="col-md-9">
                             <label for="name" class="field a-field a-field_a3 page__field ">
                             <input id="name" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
@@ -27,15 +23,13 @@
                                 <span class="a-field__label">Nome Completo</span>
                             </span>
                             </label>
-                            @error('email')
+                            @error('name')
                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                             <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
                     </div>
-
-
                     <!-- Form E-mail -->
                     <div class="form-group row formulario-centro">
 
@@ -56,9 +50,6 @@
                         </div>
                     </div>
 
-
-
-
                     <!-- Botões -->
                     <div class="form-group row mb-0 justify-content-center ">
                         <div class="row " style="margin-top:20px; margin-left:-30px">
@@ -72,12 +63,7 @@
                                     </button>
                                 </div>
                         </div>
-
                     </div>
-
-
-
-
               </form>
           </div>
       </div>
