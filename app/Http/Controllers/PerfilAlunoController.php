@@ -180,12 +180,9 @@ public function excluirPerfil(Request $request) {
       if($quant===1){
         return redirect()->back()->with('error', 'Necessário haver ao menos um perfil vinculado ao aluno!');
       }
-      else{
-        // $id = $request->idPerfil;
+      else if($quant>1){
+        $id = $request->idPerfil;
         $perfil = Perfil::where('id', $id)->delete();
-        // $all = Perfil::where('aluno_id',$aluno->id)->first();
-        // $all->valor = true;
-        // $all->save();
         return redirect()->back()->with('success', 'Deletado com Sucesso!');
       }
 }
