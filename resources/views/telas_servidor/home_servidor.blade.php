@@ -55,10 +55,7 @@
                       var texto = option.textContent;
 
                       console.log(texto); // item 2
-
-
-
-                        document.getElementById('quantizar').addEventListener('change', function () {
+                      document.getElementById('quantizar').addEventListener('change', function () {
                           // alert(teste);
                         if(this.value === 'Agronomia'){
                           document.getElementById('quant').value=cursos;
