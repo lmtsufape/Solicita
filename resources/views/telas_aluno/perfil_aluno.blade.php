@@ -34,9 +34,9 @@
   <div class="card-body">
         <!-- @csrf -->
         @foreach($perfisAluno as $pa)
-            <input type="radio" name="radiobutton" value="{{$pa->id}}">{{$pa->default}} - {{$pa->situacao}}
-            <form method="POST" enctype="multipart/form-data" id="formPerfilPadrao" action="{{ route('perfil-padrao', ["idPerfilPadrao"=>$pa->id]) }}">
-              @csrf
+        <form method="POST" enctype="multipart/form-data" id="formPerfilPadrao" action="{{ route('perfil-padrao', ["idPerfilPadrao"=>$pa->id]) }}">
+          @csrf
+          <input type="radio" name="idPerfilRequest" value="{{$pa->id}}" id="radioButton">{{$pa->default}} - {{$pa->situacao}}</input>
               @if($pa->valor==false)
                 <a href="{{route("perfil-padrao", ["idPerfilPadrao" => $pa->id])}}"
                   onclick="event.preventDefault();document.getElementById('formPerfilPadrao').submit();">
@@ -52,7 +52,7 @@
                       title="Perfil padrão.">
                 </span>
               @endif
-            </form>
+        </form>
         <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil', ["idPerfil"=>$pa->id]) }}">
           @csrf
           @endforeach
@@ -77,15 +77,7 @@ integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh
 //             document.getElementById("formPerfilPadrao").submit();
 //           } -->
 
-<script>
-function funcao(){
 
-$("input:radio[name=radiobutton]").click(function() {
-   var sku = $(this).val();
-   alert(sku);
-});
-}
 
-</script>
 
 @endsection

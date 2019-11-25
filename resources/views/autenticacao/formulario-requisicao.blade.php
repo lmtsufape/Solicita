@@ -35,7 +35,7 @@
                 <input type="checkbox" name="declaracaoVinculo"     value="Declaracao de Vinculo"
                   id="declaracaoVinculo"> Declaração de Vínculo (Também disponível pelo link:
                   </input>
-                    <a href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>)</br>
+                    <a target="_blank" href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>)</br>
                 <input type="checkbox" name="comprovanteMatricula"  value="Comprovante de Matricula"  id="comprovanteMatricula">Comprovante de matricula</br>
                   </input>
                 <input type="checkbox" name="historico"             value="Historico"                 id="historico">Histórico</br>

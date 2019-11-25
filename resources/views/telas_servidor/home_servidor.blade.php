@@ -26,7 +26,7 @@
                                        <h2 style="padding-top:20px">{{$tipoDocumento[$i-1]}}</h2>
                                     </div>
                                   <div>
-                                  <input id="quant" style="overflow: visible; display:block; margin-bottom:2%">
+                                  <input type="hidden" id="quant" style="overflow: visible; display:block; margin-bottom:2%">
                                 </input>
                                 </div>
                              </div>
@@ -57,8 +57,14 @@
                       console.log(texto); // item 2
                       document.getElementById('quantizar').addEventListener('change', function () {
                           // alert(teste);
-                        if(this.value === 'Agronomia'){
+                        if(texto === 'Agronomia'){
+                          var quant = count(requisicoes);
                           document.getElementById('quant').value=cursos;
+                          alert(quant);
+                        }
+
+
+
                           }
                           });
                       }
