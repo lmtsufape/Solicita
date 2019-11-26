@@ -57,7 +57,6 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
       $response = [];
       // dd($listaRequisicao_documentos);
-
       foreach ($listaRequisicao_documentos as $key) {
         // dd($key->requisicao->perfil);
         if($key->requisicao->perfil != null) {
