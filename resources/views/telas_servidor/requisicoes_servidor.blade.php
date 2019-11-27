@@ -4,7 +4,7 @@
 
 <!-- @include('componentes.mensagens') -->
   <div class="tabela-centro mx-auto">
-    <table class="table" id="table" >
+    <table class="table table-striped" id="table" >
       <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
           <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
@@ -72,16 +72,16 @@
                 @endforeach
               <!-- </div> -->
           </tbody>
-            <tfoot>
+            <!-- <tfoot>
               <tr>
               <td>
-                <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
-                class="btn btn-primary-lmts" style="margin-bottom: 40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
-              <td>
-              </tr>
-            </tfoot>
+                <td>
+                </tr>
+              </tfoot> -->
           </form>
         </table>
+        <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
+        class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
     </div>
     @foreach($listaRequisicao_documentos as $requisicao_documento)
         <form method="post" id="formModal" action="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']]) }}">
