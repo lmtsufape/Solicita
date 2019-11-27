@@ -56,7 +56,7 @@ class AlunoController extends Controller
 
     $regras = [
       'name' => 'required|string|max:255',
-      //'cpf' => ['required','integer','size:11','unique:alunos'],
+      'cpf' => ['required','integer','size:11','unique:alunos'],
       'email' => 'required|string|email|max:255|unique:users',
       'password' => 'required|string|min:8|confirmed',
       'vinculo' => ['required'],
@@ -76,9 +76,9 @@ class AlunoController extends Controller
     //$request->validate([$regras,$mensagens]);
     $request->validate([
       'name' => 'required|string|max:255',
-      'cpf' => 'required|cpf|unique:alunos',
-      'email' => 'required|string|email|max:255|unique:users',
-      'password' => 'required|string|min:8|confirmed',
+      'cpf' => 'bail|required|cpf|unique:alunos',
+      'email' => 'bail|required|string|email|max:255|unique:users',
+      'password' => 'bail|required|string|min:8|confirmed',
       'vinculo' => ['required'],
       'unidade' => ['required'],
       'cursos' => ['required'],
@@ -133,151 +133,13 @@ class AlunoController extends Controller
     $perfil->unidade_id = $unidade->id;
     //curso_id
     $perfil->curso_id = $curso->id;
+    $perfil->valor = true;
     //dd($perfil);
     $perfil->save();
     return redirect('/')->with('success', 'Cadastrado com sucesso!');
 
   }
-//
-//   public function preparaNovaRequisicao(Request $request){
-//         $unidades = Unidade::All();
-//         $usuarios = User::All();
-//         $alunos = Aluno::All();
-//         $perfis = Perfil::where('aluno_id', Auth::user()->aluno->id)->get();
-//         return view('autenticacao.formulario-requisicao',compact('usuarios','unidades', 'perfis', 'alunos'));
-//       }
-//
-// public function novaRequisicao(Request $request){
-//   $checkBoxDeclaracaoVinculo = $request->declaracaoVinculo;
-//   $checkBoxComprovanteMatricula = $request->comprovanteMatricula;
-//   $checkBoxHistorico = $request->historico;
-//   $checkBoxProgramaDisciplina = $request->programaDisciplina;
-//   $checkBoxOutros = $request->outros;
-//   // dd($request->default);
-//     if($checkBoxProgramaDisciplina!=''){
-//     $request->validate([
-//       'requisicaoPrograma' => ['required'],
-//     ]);
-//     }
-//     if($checkBoxOutros!=''){
-//       $request->validate([
-//         'requisicaoOutros' => ['required'],
-//       ]);
-//     }
-//     $requisicao = new Requisicao();
-//     $idUser = Auth::user()->id;
-//     $user = User::find($idUser); //Usuário Autenticado
-//     $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
-//     $perfil = Perfil::where('id',$request->default)->first();
-//     $arrayDocumentos = [];//Array Temporário
-//     date_default_timezone_set('America/Sao_Paulo');
-//     $date = date('d/m/Y');
-//     $hour =  date('H:i');
-//     $requisicao->data_pedido = $date;
-//     $requisicao->hora_pedido = $hour;
-//     $requisicao->perfil_id = $perfil->id;
-//     $requisicao->aluno_id = $aluno->id; //necessária adequação com o código de autenticação do usuário do perfil aluno
-//     $requisicao->save();
-//
-//   if($checkBoxDeclaracaoVinculo){
-//     $documentosRequisitados = new Requisicao_documento();
-//     $documentosRequisitados->status_data = $date;
-//     $documentosRequisitados->requisicao_id = $requisicao->id;
-//     $documentosRequisitados->aluno_id = $perfil->aluno_id;
-//     $documentosRequisitados->status = 'Em andamento';
-//     $documentosRequisitados->documento_id = 1;
-//     // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
-//     // array_push($arrayDocumentos, requisitados($requisicao, 1, $perfil));
-//     array_push($arrayDocumentos, $documentosRequisitados);
-//   }
-//   if($checkBoxComprovanteMatricula){
-//
-//     $documentosRequisitados = new Requisicao_documento();
-//     $documentosRequisitados->status_data = $date;
-//     $documentosRequisitados->requisicao_id = $requisicao->id;
-//     $documentosRequisitados->aluno_id = $perfil->aluno_id;
-//     $documentosRequisitados->status = 'Em andamento';
-//
-//     $documentosRequisitados->documento_id = 2;
-//     array_push($arrayDocumentos, $documentosRequisitados);
-//   }
-//   if($checkBoxHistorico){
-//
-//     $documentosRequisitados = new Requisicao_documento();
-//     $documentosRequisitados->status_data = $date;
-//     $documentosRequisitados->requisicao_id = $requisicao->id;
-//     $documentosRequisitados->aluno_id = $perfil->aluno_id;
-//     $documentosRequisitados->status = 'Em andamento';
-//
-//     $documentosRequisitados->documento_id = 3;
-//     // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
-//     array_push($arrayDocumentos, $documentosRequisitados);
-//   }
-//   if($checkBoxProgramaDisciplina){
-//
-//     $documentosRequisitados = new Requisicao_documento();
-//     $documentosRequisitados->status_data = $date;
-//     $documentosRequisitados->requisicao_id = $requisicao->id;
-//     $documentosRequisitados->aluno_id = $perfil->aluno_id;
-//     $documentosRequisitados->status = 'Em andamento';
-//
-//     $documentosRequisitados->documento_id = 4;
-//     $documentosRequisitados->detalhes = $request->get('requisicaoPrograma');
-//     // $documentos = requisitados($documentosRequisitados, $requisicao, 1);
-//     // $documentosRequisitados->anotacoes = $request->get('textareaProgramaDisciplina');
-//     array_push($arrayDocumentos, $documentosRequisitados);
-//   }
-//   if($checkBoxOutros){
-//
-//     $documentosRequisitados = new Requisicao_documento();
-//     $documentosRequisitados->status_data = $date;
-//     $documentosRequisitados->requisicao_id = $requisicao->id;
-//     $documentosRequisitados->aluno_id = $perfil->aluno_id;
-//     $documentosRequisitados->status = 'Em andamento';
-//
-//     $documentosRequisitados->documento_id = 5;
-//     $documentosRequisitados->detalhes =  $request->get('requisicaoOutros');
-//     array_push($arrayDocumentos, $documentosRequisitados);
-//   }
-//   //#Documentos
-//   $ano = date('Y');
-//   $size = count($arrayDocumentos);
-//   $requisicao->requisicao_documento()->saveMany($arrayDocumentos);
-//       $id = [];
-//       foreach ($arrayDocumentos as $key) {
-//         array_push($id, $key->documento_id);
-//       }
-//       $arrayAux = Documento::whereIn('id', $id)->get();
-//       // $documento = Documento::where('id',$request->titulo_id)->first();
-//       $curso = Curso::where('id',$request->curso_id)->first();
-//       return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date'));
-// }
-// public function requisitados(Requisicao $requisicao, $id, Perfil $perfil){
-//   date_default_timezone_set('America/Sao_Paulo');
-//   $date = date('d/m/Y');
-//   $hour =  date('H:i');
-//   $documentosRequisitados = new Requisicao_documento();
-//   $documentosRequisitados->status_data = $date;
-//   $documentosRequisitados->requisicao_id = $requisicao->id;
-//   $documentosRequisitados->aluno_id = $perfil->aluno_id;
-//   $documentosRequisitados->status = 'Em andamento';
-//   $documentosRequisitados->documento_id = $id;
-//   return $documentosRequisitados;
-// }
-// public function confirmacaoRequisicao(Request $request){
-//   return redirect('/autenticacao.confirmacao-requisicao');
-// }
-// public function finalizaRequisicao(Request $request){
-//   return redirect('/home-aluno');
-// }
-// public function cancelaRequisicao(){
-//   return view('/autenticacao.home-aluno');
-// }
-// public function listarRequisicoesAluno(){
-//   $requisicao = Requisicao::paginate(10);
-//   return view('/home-aluno')->with($requisicao);
-// }
-public function home(){
+  public function home(){
   return view ('autenticacao.home-aluno');
-}
+  }
 }

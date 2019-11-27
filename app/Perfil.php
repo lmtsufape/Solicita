@@ -10,7 +10,7 @@ class Perfil extends Model
 {
     use SoftDeletes;
     //
-    protected $fillable = ['default','situacao'];
+    protected $fillable = ['default','situacao', 'valor', 'aluno_id', 'unidade_id', 'curso_id'];
     protected $dates = ['deleted_at'];
 
     public function requisicao(){

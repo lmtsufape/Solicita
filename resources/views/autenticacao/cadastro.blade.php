@@ -10,7 +10,7 @@
         <div class="centro" style="height: 840px">
                 <h2 class="row d-flex justify-content-center" >Cadastro Discente</h2>
 
-                <form action="{{  route('cadastro')  }}" method="POST">
+                <form action="{{  route('register')  }}" method="POST">
 
                   @csrf
                         <div class="form-group">
@@ -172,7 +172,7 @@
                     <div class="form-group row mb-0 justify-content-center ">
                         <div class="row " style="margin-top:20px; margin-left:-30px">
                                 <div class="col-md-6 " style="">
-                                    <a class="menu-principal" href="\" style="color: #1B2E4F; margin-left: -20px">Voltar</a>
+                                    <a class="menu-principal" href="\login" style="color: #1B2E4F; margin-left: -20px">Voltar</a>
                                 </div>
 
                                 <div class="col-md-6 " style="margin-left: -30px; margin-top: -4px">

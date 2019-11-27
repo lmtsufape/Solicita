@@ -5,12 +5,12 @@
         <div class="info-texto" >
                 <img src="" alt="">
             <div class="texto" style="margin-left:30px">
-                <h1>O que é o <strong> "Solicita!"? </strong></h1>
+                <h1>O que é o <strong> "Solicita"? </strong></h1>
                 <p style="margin-left:15px">
-                    É uma ferramenta voltada para o atendimento das demandas de requisições de documentos no departamento de escolaridade da<br>
+                    É uma ferramenta voltada para o atendimento das demandas de requisições de documentos no setor de escolaridade da
                     Universidade Federal Rural de Pernambuco - Unidade Acadêmica de Garanhuns (UFRPE / UAG).
                 </p>
-                <h1>Benefícios de utilizar o <strong> "Solicita!"? </strong></h1>
+                <h1>Benefícios de utilizar o <strong> "Solicita"? </strong></h1>
                 <ul style="margin-left:15px">
                     <li>Solicite seus documentos online;</li>
                     <li>Acompanhe o status do seu requerimento;</li>
@@ -28,7 +28,9 @@
             </div>
         </div>
         <div class="info-login bloco" >
+          <div>
         @include('componentes.mensagens')
+      </div>
                 <h2 class="text-center">Entrar</h2>
                 <form method="POST" action="{{ route('login') }}">
                   @csrf

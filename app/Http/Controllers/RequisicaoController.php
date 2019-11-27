@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Mail;
+use App\Mail\StatusMail;
 use App\Requisicao_documento;
 use App\Requisicao;
 use App\Documento;
@@ -27,6 +29,7 @@ class RequisicaoController extends Controller
     $curso = Curso::where('id',$request->curso_id)->first();
     // dd($documento);
       //Verifica se o card clicado foi igual a "TODOS"
+                      // ->withTrashed()
       if($request->titulo_id == 6){
           $titulo = 'Todos';
           //$id_documentos retorna um collection. É necessário transformar para array
@@ -54,39 +57,25 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
       $response = [];
       // dd($listaRequisicao_documentos);
-
       foreach ($listaRequisicao_documentos as $key) {
-        // dd($key->requisicao);
+        // dd($key->requisicao->perfil);
+        if($key->requisicao->perfil != null) {
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
                                'nome' => $key->aluno->user->name,
                                'curso' => $key->requisicao->perfil->curso->nome,
+                               'vinculo' => $key->requisicao->perfil->situacao,
                                'status_data' => $key->status_data,
                                'status_hora' => Requisicao::where('id',$key->requisicao_id)->get('hora_pedido')[0]->hora_pedido,
                                'status' => $key->status,
                                'detalhes' => $key->detalhes,
                               ]);
+                            }
       }
-      // dd($response);
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
-      // dd($response);
       $listaRequisicao_documentos = $response;
-      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
+      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
   }
-    public function concluirRequisicao(Request $request){
-        //dd($request);
-        $arrayDocumentos = $request->checkboxLinha;
-        // dd($request->checkboxLinha);
-        $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
-        if(isset($id_documentos)){
-        //dd($id_documentos);
-          foreach ($id_documentos as $id_documento) {
-            $id_documento->status = "Concluído - Disponível para retirada";
-            $id_documento->save();
-          }
-        }
-        return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
-    }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
 
@@ -163,7 +152,7 @@ class RequisicaoController extends Controller
           $arrayAux = Documento::whereIn('id', $id)->get();
           // $documento = Documento::where('id',$request->titulo_id)->first();
           $curso = Curso::where('id',$request->curso_id)->first();
-          return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date'));
+          return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date', 'hour'));
     }
     public function requisitados(Requisicao $requisicao, $id, Perfil $perfil, $texto){
       date_default_timezone_set('America/Sao_Paulo');
@@ -197,5 +186,71 @@ class RequisicaoController extends Controller
       $requisicao = Requisicao::paginate(10);
       return view('/home-aluno')->with($requisicao);
     }
-
+    public function indeferirRequisicao(Request $request){
+        $request->validate([
+          'anotacoes' => ['required'],
+        ]);
+        $id = $request->idDocumento;
+        $servidorLogado = Auth::user();
+        $servidor = Servidor::where('user_id', $servidorLogado->id)->first();
+        $id_documento = Requisicao_documento::where('id', $id)->first();
+            $id_documento->anotacoes = $request->anotacoes;
+            $id_documento->status = "Indeferido";
+            $id_documento->servidor_id = $servidor->id;
+            $aluno = Aluno::where('id', $id_documento->aluno_id)->first();
+            $user = User::where('id', $aluno->user_id)->first();
+            $documento = Documento::where('id', $id_documento->documento_id)->first();
+            $to_email = $user->email;
+            $nome_documento = $documento->tipo;
+            $data = array(
+                'usuario' => $user,
+                'aluno' => $aluno,
+                'servidor' => $servidor,
+                'documento' => $id_documento,
+                'nome_documento' => $nome_documento,
+                'anotacoes' => $id_documento->anotacoes,
+            );
+            // dd($id_documento);
+            $id_documento->save();
+            $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
+            Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
+                $message->to($to_email)
+                        ->subject($subject);
+                $message->from('noreply.solicita.lmts@gmail.com','Solicita - LMTS');
+            });
+        return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
+      }
+      public function concluirRequisicao(Request $request){
+          $servidorLogado = Auth::user();
+          $servidor = Servidor::where('user_id', $servidorLogado->id)->first();
+          $arrayDocumentos = $request->checkboxLinha;
+          $id_documentos = Requisicao_documento::find($arrayDocumentos);//whereIn
+          if(isset($id_documentos)){
+            foreach ($id_documentos as $id_documento) {
+              $id_documento->status = "Concluído - Disponível para retirada";
+              $id_documento->servidor_id = $servidor->id;
+              $aluno = Aluno::where('id', $id_documento->aluno_id)->first();
+              $user = User::where('id', $aluno->user_id)->first();
+              $documento = Documento::where('id', $id_documento->documento_id)->first();
+              $to_email = $user->email;
+              $nome_documento = $documento->tipo;
+              $data = array(
+                  'usuario' => $user,
+                  'aluno' => $aluno,
+                  'servidor' => $servidor,
+                  'documento' => $id_documento,
+                  'nome_documento' => $nome_documento,
+                  'anotacoes' => $id_documento->anotacoes,
+              );
+              $id_documento->save();
+              $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
+              Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
+                  $message->to($to_email)
+                          ->subject($subject);
+                  $message->from('noreply.solicita.lmts@gmail.com','Solicita - LMTS');
+              });
+            }
+          }
+          return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
+        }
 }
