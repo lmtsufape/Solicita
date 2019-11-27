@@ -77,8 +77,12 @@ class PerfilAlunoController extends Controller
       return view('telas_aluno.alterar_senha');
     }
     public function storeAlterarSenha(Request $request){
+      if (!Hash::check($request->atual, Auth::user()->password)) {
+        return redirect()->back()->with('error', 'Senha atual está incorreta');
+      }
       $request->validate([
         'password' => 'required|string|min:8|confirmed',
+        // 'atual' => 'required|string|min:8',
       ]);
       $user = Auth::user();
       $user->password = Hash::make($request->password);
@@ -92,10 +96,9 @@ class PerfilAlunoController extends Controller
       $perfil = Perfil::where('aluno_id',$aluno->id)->first();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-      return redirect()->route('home-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
+      return redirect()->route('perfil-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
                                               'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno])
                                               ->with('success', 'Senha alterada com sucesso!');
-
 
     }
     public function adicionaPerfil(Request $request){

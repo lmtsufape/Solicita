@@ -2,16 +2,36 @@
 
 @section('conteudo')
 <div class="background">
-
-
     <div class="background" style="height: 840px">
         <div class="centro" style="height: 840px">
+          @include('componentes.mensagens')
                 <h2 class="row d-flex justify-content-center" >Alterar Senha</h2>
 
                 <form action="{{  route('alterar-senha')  }}" method="POST">
 
                   @csrf
                   <div class="form-group">
+
+
+                    <!-- Form Senha Antiga -->
+                    <div class="form-group row formulario-centro">
+
+                        <div class="col-md-9">
+                            <label for="password" class="field a-field a-field_a3 page__field" >
+                            <input id="password-old" type="password" class="form-control @error('antigo') is-invalid @enderror field__input a-field__input"
+                            name="atual" required autocomplete="current-password" placeholder="Senha Antiga" >
+
+                            <span class="a-field__label-wrap">
+                                <span class="a-field__label">Senha atual</span>
+                            </span>
+                            </label>
+                            @error('antigo')
+                            <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
 
 
                     <!-- Form Senha -->

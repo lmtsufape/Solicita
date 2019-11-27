@@ -15,20 +15,31 @@
           </a>
         </li> -->
 
-
-
       </ul>
-
     </div>
-
     <div class="nav navbar-nav navbar-right" >
-      <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav">
+                @if(Auth::check())
+                <li>
+                <a class="nav-link"
+                   onclick="event.preventDefault();"style="color:white;">
+                   {{Auth::user()->name}}
+                </a>
+                <form id="usuario-form" action="{{ route('home') }}" method="GET" style="display: none;">
+                    @csrf
+                </form>
+              </li>
+                @endif
+            </ul>
+            &nbsp
+      <ul class="nav navbar-nav navbar-right">
           @if(Auth::check())
           <li>
           <a class="nav-link"  href="{{ route('alterar-senha-servidor') }}"
              onclick="event.preventDefault();
-                           document.getElementById('usuario-form').submit();"style="color:white;">
-             {{Auth::user()->name}}
+                           document.getElementById('usuario-form').submit();"style="color:white;" selection__placeholder="Alterar senha">
+          <img src="{{asset('images/senha.png')}}" height="20" class="d-inline-block align-top" alt="" style="color:white">
+          <label for="">Alterar senha</label>
           </a>
           <form id="usuario-form" action="{{ route('alterar-senha-servidor') }}" method="GET" style="display: none;">
               @csrf
@@ -36,6 +47,8 @@
         </li>
           @endif
       </ul>
+
+
       <ul class="nav navbar-nav navbar-right">
           @if(Auth::check())
             <li> <!--  logout   -->

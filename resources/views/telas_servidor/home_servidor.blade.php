@@ -25,7 +25,7 @@
                                     <div class="card-body d-flex justify-content-center">
                                        <h3 style="padding-top:20px">{{$tipoDocumento[$i-1]}}</h3>
                                     </div>
-                                  <input type="text" id="quantidades" name="" value="" disabled>
+                                  <!-- <input type="text" id="quantidades" name="" value="" disabled> -->
                              </div>
                           </a>
                           <form id="listar-requisicoes{{$i}}-form" action="{{ route('listar-requisicoes') }}" method="GET" style="display: none;">
