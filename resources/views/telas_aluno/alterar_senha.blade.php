@@ -18,14 +18,14 @@
 
                         <div class="col-md-9">
                             <label for="password" class="field a-field a-field_a3 page__field" >
-                            <input id="password-old" type="password" class="form-control @error('antigo') is-invalid @enderror field__input a-field__input"
+                            <input id="password-old" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
                             name="atual" required autocomplete="current-password" placeholder="Senha Antiga" >
 
                             <span class="a-field__label-wrap">
                                 <span class="a-field__label">Senha atual</span>
                             </span>
                             </label>
-                            @error('antigo')
+                            @error('password')
                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
                             <strong>{{ $message }}</strong>
                             </span>
