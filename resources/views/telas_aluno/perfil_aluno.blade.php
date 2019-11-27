@@ -3,7 +3,7 @@
 @section('conteudo')
 <!-- Informações do aluno -->
 <div class="card mx-auto" style="margin-left: 100px;margin-right: 100px;width:900px;">
-  @include('componentes.mensagens')
+  <div>@include('componentes.mensagens')</div>
   <h5 class="card-header">Informações do Aluno</h5>
   <div class="card-body">
     <div class="mx-auto" style="width: 800px;">
@@ -41,9 +41,9 @@
               @if($pa->valor==false)
                 <!-- <a href="{{route("perfil-padrao", ["idPerfil" => $pa->id])}}" -->
                   <!-- onclick="event.preventDefault();document.getElementById('formPerfilPadrao').submit();"> -->
-                    <!-- <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:gray" -->
-                          <!-- data-toggle="tooltip" data-placement="top"> -->
-                    <!-- </span> -->
+                    <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:gray"
+                          data-toggle="tooltip" data-placement="top">
+                    </span>
                 <!-- </a> -->
               @endif
               @if($pa->valor==true)
