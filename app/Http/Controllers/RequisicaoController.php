@@ -187,6 +187,7 @@ class RequisicaoController extends Controller
       return view('/home-aluno')->with($requisicao);
     }
     public function indeferirRequisicao(Request $request){
+        // dd($request->idDocumento);
         $request->validate([
           'anotacoes' => ['required'],
         ]);
@@ -221,6 +222,7 @@ class RequisicaoController extends Controller
         return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
       }
       public function concluirRequisicao(Request $request){
+          dd($request->checkboxLinha);
           $servidorLogado = Auth::user();
           $servidor = Servidor::where('user_id', $servidorLogado->id)->first();
           $arrayDocumentos = $request->checkboxLinha;
