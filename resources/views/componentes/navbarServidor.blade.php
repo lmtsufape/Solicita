@@ -25,9 +25,9 @@
                    onclick="event.preventDefault();"style="color:white;">
                    {{Auth::user()->name}}
                 </a>
-                <form id="usuario-form" action="{{ route('home') }}" method="GET" style="display: none;">
+                <!-- <form id="usuario-form" action="{{ route('home') }}" method="GET" style="display: none;">
                     @csrf
-                </form>
+                </form> -->
               </li>
                 @endif
             </ul>
