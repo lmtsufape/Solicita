@@ -55,8 +55,10 @@ class ServidorController extends Controller
       $user = Auth::user();
       return view('telas_servidor.alterar_senha_server', compact('user'));
     }
-
     public function storeAlterarSenhaServidor(Request $request){
+      if (!Hash::check($request->atual, Auth::user()->password)) {
+        return redirect()->back()->with('error', 'Senha atual está incorreta');
+      }
       $request->validate([
         'password' => 'required|string|min:8|confirmed',
       ]);
@@ -65,5 +67,5 @@ class ServidorController extends Controller
       $user->save();
       return redirect()->route('home')->with('success', 'Senha alterada com sucesso!');
     }
-  
+
   }

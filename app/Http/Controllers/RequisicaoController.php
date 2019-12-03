@@ -57,9 +57,8 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
       $response = [];
       // dd($listaRequisicao_documentos);
-      
       foreach ($listaRequisicao_documentos as $key) {
-        // dd($key->requisicao);
+        // dd($key->requisicao->perfil);
         if($key->requisicao->perfil != null) {
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
@@ -73,18 +72,8 @@ class RequisicaoController extends Controller
                               ]);
                             }
       }
-      // dd($response);
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
-      // dd($response);
       $listaRequisicao_documentos = $response;
-      // $quantidades = [];
-      // foreach ($response as $key) {
-      //   dd($key['curso']);
-      //
-      //
-      //
-      // }
-
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
   }
     public function storeRequisicao(Request $request){
@@ -198,6 +187,7 @@ class RequisicaoController extends Controller
       return view('/home-aluno')->with($requisicao);
     }
     public function indeferirRequisicao(Request $request){
+        // dd($request->idDocumento);
         $request->validate([
           'anotacoes' => ['required'],
         ]);
@@ -232,6 +222,7 @@ class RequisicaoController extends Controller
         return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
       }
       public function concluirRequisicao(Request $request){
+          dd($request->checkboxLinha);
           $servidorLogado = Auth::user();
           $servidor = Servidor::where('user_id', $servidorLogado->id)->first();
           $arrayDocumentos = $request->checkboxLinha;

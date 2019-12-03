@@ -77,8 +77,12 @@ class PerfilAlunoController extends Controller
       return view('telas_aluno.alterar_senha');
     }
     public function storeAlterarSenha(Request $request){
+      if (!Hash::check($request->atual, Auth::user()->password)) {
+        return redirect()->back()->with('error', 'Senha atual está incorreta');
+      }
       $request->validate([
         'password' => 'required|string|min:8|confirmed',
+        // 'atual' => 'required|string|min:8',
       ]);
       $user = Auth::user();
       $user->password = Hash::make($request->password);
@@ -92,10 +96,9 @@ class PerfilAlunoController extends Controller
       $perfil = Perfil::where('aluno_id',$aluno->id)->first();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-      return redirect()->route('home-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
+      return redirect()->route('perfil-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
                                               'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno])
                                               ->with('success', 'Senha alterada com sucesso!');
-
 
     }
     public function adicionaPerfil(Request $request){
@@ -173,6 +176,9 @@ class PerfilAlunoController extends Controller
   return redirect()->route('perfil-aluno')->with('success', 'Perfil adicionado com sucesso!');
 }
 public function excluirPerfil(Request $request) {
+      if($request->idPerfil==null){
+        return redirect()->back()->with('error', 'Selecione o perfil que deseja excluir');
+      }
       $usuario = User::find(Auth::user()->id);
       $aluno = $usuario->aluno;
       $perfis = Perfil::where('aluno_id',$aluno->id)->get();
@@ -181,16 +187,24 @@ public function excluirPerfil(Request $request) {
         return redirect()->back()->with('error', 'Necessário haver ao menos um perfil vinculado ao aluno!');
       }
       else{
-        // $id = $request->idPerfil;
-        $perfil = Perfil::where('id', $id)->delete();
-        // $all = Perfil::where('aluno_id',$aluno->id)->first();
-        // $all->valor = true;
-        // $all->save();
+        $id = $request->idPerfil;
+        $isDefault = Perfil::where('id',$id)->first();
+        if ($isDefault->valor==true) {
+          $perfil = Perfil::where('id', $id)->delete();
+          $primeiro = Perfil::where('aluno_id', $aluno->id)->first();
+          $primeiro->valor=true;
+          $primeiro->save();
+          return redirect()->back()->with('success', 'Deletado com Sucesso!');
+        }
+        else{
+          $perfil = Perfil::where('id', $id)->delete();
+        }
         return redirect()->back()->with('success', 'Deletado com Sucesso!');
       }
 }
 public function definirPerfilDefault(Request $request){
-    $id = $request->idPerfilPadrao;
+    // dd($request->idPerfil);
+    $id = $request->idPerfil;
     $selecao = Perfil::where('id', $id)->first();
       $usuario = User::find(Auth::user()->id);
       $aluno = $usuario->aluno;

@@ -32,8 +32,10 @@ class HomeController extends Controller
           if(Auth::user()->tipo == 'servidor'){
             $cursos = Curso::all();
             $requisicoes = Requisicao_documento::all();
+            $cursos_json = json_encode($cursos);
+            $requisicoes_json = json_encode($requisicoes);
             $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
-            return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, '$requisicoes'=>$requisicoes]);
+            return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, 'requisicoes'=>$requisicoes, 'cursos_json'=>$cursos_json, 'requisicoes_json'=>$requisicoes_json]);
           }
           else if (Auth::user()->tipo == 'aluno') {
           return view('autenticacao.home-aluno');

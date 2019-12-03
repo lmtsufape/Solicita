@@ -2,7 +2,11 @@
 
 @section('conteudo')
 
-    <div class="tabela-centro mx-auto">
+    <div class="tabela-centro mx-auto table-striped">
+      <p>
+        <h3 align="center" style="color:red">Atenção</h3>
+        <h5 align="center" style="color:red">A entrega dos documentos solicitados está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
+      </p>
         <table class="table">
           <div class="lmts-primary">
           <div class="nome-documento lmts-primary mx-auto " style="height:100px">
@@ -106,12 +110,8 @@
             @endforeach
             </tbody>
         </table>
-        <p>
-          <h3 align="center" style="color:red">Atenção</h3>
-          <h5 align="center" style="color:red">A entrega dos documentos solicitados está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
-        </p>
+
     </div>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
-    >
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 @endsection

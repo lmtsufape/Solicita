@@ -4,7 +4,7 @@
 
 <!-- @include('componentes.mensagens') -->
   <div class="tabela-centro mx-auto">
-    <table class="table" id="table" >
+    <table class="table table-striped" id="table" >
       <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
           <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
@@ -57,7 +57,7 @@
               <td>{{$requisicao_documento['status_data']}}</td>
               <td>{{$requisicao_documento['status_hora']}}</td>
               <td>
-                <a id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true"
+                <a id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true" onclick="mudarId({{$requisicao_documento['id']}});"
                       data-whatever="{{$requisicao_documento['nome']}}">
                       <span class="glyphicon glyphicon-remove-circle" style="overflow: hidden; color:red"
                         title="Indeferir pedido." onclick="event.preventDefault()"
@@ -72,23 +72,24 @@
                 @endforeach
               <!-- </div> -->
           </tbody>
-            <tfoot>
+            <!-- <tfoot>
               <tr>
               <td>
-                <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
-                class="btn btn-primary-lmts" style="margin-bottom: 40px; float:right; margin-top: 20px; margin-right:20px">Concluir Requisição</button>
-              <td>
-              </tr>
-            </tfoot>
+                <td>
+                </tr>
+              </tfoot> -->
           </form>
         </table>
+        <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
+        class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
     </div>
     @foreach($listaRequisicao_documentos as $requisicao_documento)
-        <form method="post" id="formModal" action="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']]) }}">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+        <form method="post" id="formModal" action="{{ route("indefere-requisicoes-post")}}">
+          <input type="hidden" name="idDocumento" value="" id="id_documento">
           @csrf
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-              aria-hidden="true">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="myModalLabel">Justificativa: {{$requisicao_documento['id']}}</h5>
@@ -107,7 +108,7 @@
                   {{ ('Fechar') }}
                 </a>
                 <a type="button" class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); indeferirRequisicao()"
-                href="{{ route("indefere-requisicoes-post", ["idDocumento"=>$requisicao_documento['id']])}}" style="margin-right:10px">
+                href="{{ route("indefere-requisicoes-post")}}" style="margin-right:10px">
                 {{ ('Enviar') }}
                 </a>
               </div>
@@ -119,6 +120,13 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         </form>
         @endforeach
+        <!-- Modal -->
+
+<script>
+function mudarId(id){
+  document.getElementById('id_documento').value = id;
+}
+</script>
 
 <script>
 $('#myModal').on('show.bs.modal', function (event) {
