@@ -46,14 +46,13 @@ class HomeController extends Controller
              }
              $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
              $response = [];
-
              foreach ($listaRequisicao_documentos as $key) {
                  array_push($response, ['id' => $key->id,
                                         'curso' => $key->requisicao->perfil->curso->nome,
                                         'documento_id' => $key->documento_id,
                                      ]);
                                    }
-            // $resposta = json_decode($response);
+
             $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
             return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, 'requisicoes'=>$response]);
           }
