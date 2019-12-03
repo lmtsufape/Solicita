@@ -30,7 +30,7 @@
           <a class="nav-link"  href="{{ route('alterar-senha-servidor') }}"
              onclick="event.preventDefault();
                            document.getElementById('usuario-form').submit();"style="color:white;" selection__placeholder="Alterar senha">
-          <img src="{{asset('images/senha.png')}}" height="20" class="d-inline-block align-top" alt="" style="color:white">
+          <!-- <img src="{{asset('images/senha.png')}}" height="20" class="d-inline-block align-top" alt="" style="color:white"> -->
           <label for="">Alterar senha</label>
           </a>
           <form id="usuario-form" action="{{ route('alterar-senha-servidor') }}" method="GET" style="display: none; margin-right:20px">

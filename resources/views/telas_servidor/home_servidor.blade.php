@@ -7,14 +7,19 @@
             <label for="cursos" style="margin-left:275px; ">Selecionar Curso</label>
             <div class="justify-content-right" style="margin-left: 275px">
               <form name="form" action="#" method="post">
-              <select name="cursos" size=1 value="2" onchange=" calculaQuantidades('{{$cursos_json}}', '{{$requisicoes_json}}'); mudarValor(this); getSelectValue();"
+              <select name="cursos" size=1 value="2" onchange="getSelectValue({{$cursos}});"
                 class="browser-default custom-select custom-select-lg mb-1" style="width: 400px">
+                 <!-- calculaQuantidades({{$cursos}}) -->
                 @foreach($cursos as $curso)
                 <option value="{{$curso->id}}">{{$curso->nome}}</option>
                 @endforeach
               </select>
             </form>
             </div>
+            @foreach($requisicoes as $req)
+            <input  id="documento_id" type="hidden" name="quant" value="{{$req['documento_id']}}">
+              <!-- <input id="text" type="hidden"> {{$req['id']}}</input> -->
+            @endforeach
                 <div class="card-deck d-flex justify-content-center">
                     <div class="conteudo-central d-flex justify-content-center">
                       <!-- Para a retirada do card "TODOS", foi reduzido o offset do laço para 5, em vez de 6 -->
@@ -38,19 +43,10 @@
       </div>
 </div>
 
-<script>
-    function mudarValor(e) {
-        document.getElementById('quantidades').value = (e.value)
-    }
-    function calculaQuantidades(cursos, requisicoes){
-      // alert(cursos);
-      if(cursos.id==1){
-    }
-    }
-  </script>
 
 <script>
-    function getSelectValue(){
+    function getSelectValue(var cursos){
+      alert(cursos);
         var selectedValue = document.getElementById("cursos").value;
         console.log(selectedValue);
         document.getElementById('cursoIdDeclaracao1').value = selectedValue;
@@ -58,6 +54,15 @@
         document.getElementById('cursoIdDeclaracao3').value = selectedValue;
         document.getElementById('cursoIdDeclaracao4').value = selectedValue;
         document.getElementById('cursoIdDeclaracao5').value = selectedValue;
+
+        alert(selectedValue);
+        if(selectedValue==1){
+          alert("AGRONOMIA");
+
+        }
+
+
+
         // document.getElementById('cursoIdDeclaracao6').value = selectedValue;
     }
 </script>
