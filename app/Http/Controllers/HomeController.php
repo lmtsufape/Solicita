@@ -38,6 +38,8 @@ class HomeController extends Controller
                              ->join('cursos', 'perfils.curso_id', '=' ,'cursos.id')
                              ->select ('requisicao_documentos.id')
                              ->where([['status','Em andamento'], ['deleted_at', null]])
+                             // ->groupBy('curso_id')
+                             // ->select('curso_id', DB::raw('count(*) as total'))
                              ->get();
                              // dd($requisicoes);
              $id = []; //array auxiliar que pega cada item do $id_documentos
@@ -48,7 +50,7 @@ class HomeController extends Controller
              $response = [];
              foreach ($listaRequisicao_documentos as $key) {
                  array_push($response, ['id' => $key->id,
-                                        'curso' => $key->requisicao->perfil->curso->nome,
+                                        'curso' => $key->requisicao->perfil->curso->id,
                                         'documento_id' => $key->documento_id,
                                      ]);
                                    }

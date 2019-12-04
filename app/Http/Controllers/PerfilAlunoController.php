@@ -24,7 +24,7 @@ class PerfilAlunoController extends Controller
       // dd($temp);
       // array_push($arrayPerfis, $temp);
       //PRIMEIRO PERFIL DO ALUNO
-      $perfil = Perfil::where('aluno_id',$aluno->id)->first();
+      $perfil = Perfil::where([['aluno_id',$aluno->id], ['valor', true]])->first();
       // dd($perfil);
       //TODOS OS PERFIS VINCULADOS AO ALUNO
       $perfisAluno = Perfil::where('aluno_id',$aluno->id)->get();
