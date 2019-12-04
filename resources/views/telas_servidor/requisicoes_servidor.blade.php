@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-<!-- @include('componentes.mensagens') -->
+<div>@include('componentes.mensagens')</div>
   <div class="tabela-centro mx-auto">
     <table class="table table-striped" id="table" >
       <div class="lmts-primary">

@@ -47,7 +47,7 @@ return [
     |
     */
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply.solicita.lmts@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'naoresponder.lmts@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Não Responder - LMTS'),
     ],
     /*

@@ -29,15 +29,13 @@ class AlunoController extends Controller
   public function listarRequisicoes(){
     $idUser=Auth::user()->id;
     $aluno = Aluno::where('user_id',$idUser)->first();
-    // dd($aluno->id);
     //ordena pela data e hora do pedido
     // $requisicoes = Requisicao::where('aluno_id',$aluno->id)->orderBy('data_pedido','desc')->orderBy('hora_pedido', 'desc')->get();
     $requisicoes = Requisicao::where('aluno_id',$aluno->id)->orderBy('id','desc')->get();
-    // dd($requisicoes);
+
     $requisicoes_documentos = Requisicao_documento::where('aluno_id',$aluno->id)->get();
     $aluno= Aluno::where('user_id',$idUser)->first();
     $documentos = Documento::all();
-    // dd($documentos);
     $perfis = Perfil::where('aluno_id',$aluno->id)->get();
     return view('telas_aluno.requisicoes_aluno',compact('requisicoes','requisicoes_documentos','aluno','documentos','perfis'));
   }
@@ -98,9 +96,7 @@ class AlunoController extends Controller
     $aluno->user_id = $usuario->id;
     $aluno->save();
     //PERFIL
-    //$ultimo_cpf = Aluno::where('cpf',$request->cpf)->first();
-    //dd($ultimo_cpf->cpf);
-    //dd($curso_id->id);
+
     //Default
     $curso = Curso::where('id',$request->cursos)->first();
     $perfil->default = $curso->nome; //Nome do Curso
@@ -134,7 +130,6 @@ class AlunoController extends Controller
     //curso_id
     $perfil->curso_id = $curso->id;
     $perfil->valor = true;
-    //dd($perfil);
     $perfil->save();
     return redirect('/')->with('success', 'Cadastrado com sucesso!');
 

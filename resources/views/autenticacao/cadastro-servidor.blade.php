@@ -7,6 +7,7 @@
 
 
     <div class="background" style="height: 840px">
+      
         <div class="centro" style="height: 840px">
                 <h2 class="row d-flex justify-content-center" >Cadastro de servidor</h2>
                 <form action="{{  route('confirmacao-servidor')  }}" method="POST">

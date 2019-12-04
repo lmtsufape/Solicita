@@ -36,7 +36,6 @@ class ServidorController extends Controller
       $servidor->unidade_id = 1;
       $servidor->user_id = $usuario->id;
       $servidor->save();
-      // dd($servidor);
       return redirect()->route('home-administrador')->with('success', 'Servidor cadastrado com sucesso!');
     }
     public function listaServidores(){

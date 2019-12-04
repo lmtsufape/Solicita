@@ -24,6 +24,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        
-        }
+      //   VerifyEmail::toMailUsing(function ($notifiable){
+      //           $verifyUrl = URL::temporarySignedRoute(
+      //           'verification.verify',
+      //           Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
+      //           ['id' => $notifiable->getKey()]
+      //       );        return new EmailVerification($verifyUrl, $notifiable);
+      //   });
+      //
+  }
 }

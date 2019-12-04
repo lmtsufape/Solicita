@@ -39,7 +39,7 @@ Route::group(['middleware'=> 'CheckServidor'], function(){
   Route::post('/alterar-senha-servidor','ServidorController@storeAlterarSenhaServidor')->name('alterar-senha-servidor')->middleware('CheckServidor');
   Route::get('/home-servidor','ServidorController@index')->name('home_servidor')->middleware('CheckServidor');
 });
-
+// Route::group(['middleware'=> 'verified'], function(){
 Route::group(['middleware'=> 'CheckAluno'], function(){
     Route::get('/home-aluno', 'AlunoController@index')->name('home-aluno')->middleware('CheckAluno');
     Route::get('/home-aluno','AlunoController@homeAluno')->name('home-aluno')->middleware('CheckAluno');
@@ -64,7 +64,8 @@ Route::group(['middleware'=> 'CheckAluno'], function(){
     Route::post('/alterar-senha','PerfilAlunoController@storeAlterarSenha')->name('alterar-senha')->middleware('CheckAluno');
     Route::get('/formulario-requisicao','RequisicaoController@index')->name('formulario-requisicao')->middleware('CheckAluno');
     Route::post('/formulario-requisicao','RequisicaoController@storeRequisicao')->name('formulario-requisicao-post')->middleware('CheckAluno');
-});
+  });
+// });
 // ---------------------------------------REQUISICAO------------------------------------------------------------------
 Auth::routes(['verify' => true]);
 // Auth::routes();

@@ -117,18 +117,6 @@ class RegisterController extends Controller
                             'curso_id' => $data['cursos'],
                             'unidade_id' => $data['unidade'],
                             ]);
-                            // dd($perfil);
         return $user;
-        // $user =  User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        //     'cpf' => $data['cpf'],
-        //     'vinculo' => $data['vinculo'],
-        //     'unidade' => $data['unidade'],
-        //     'cursos' => $data['cursos'],
-        //     'tipo' => 'aluno',
-        // ]);
-        // dd($user);
     }
 }

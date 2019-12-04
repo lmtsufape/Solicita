@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware(['auth'=>'verified']);
+        // $this->middleware(['auth', 'verified']);
         $this->middleware('auth');
     }
 
@@ -41,7 +41,6 @@ class HomeController extends Controller
                              // ->groupBy('curso_id')
                              // ->select('curso_id', DB::raw('count(*) as total'))
                              ->get();
-                             // dd($requisicoes);
              $id = []; //array auxiliar que pega cada item do $id_documentos
              foreach ($requisicoes as $key) {
                array_push($id, $key->id); //passa o id de $id_documentos para o array auxiliar $id
@@ -65,7 +64,6 @@ class HomeController extends Controller
           else if (Auth::user()->tipo == 'administrador') {
           return view('autenticacao.home-administrador');
           }
-
         }
       //
         return view('home');

@@ -2,25 +2,13 @@
 
 @section('conteudo')
 <div class="background">
-
-
     <div class="background" style="height: 840px">
         <div class="centro" style="height: 840px">
+          <div>@include('componentes.mensagens')</div>
                 <h2 class="row d-flex justify-content-center">Adicionar Perfil</h2>
                 <form action="{{  route('salva-novo-perfil-aluno')  }}" method="POST">
                   @csrf
                   <div class="form-group">
-
-                    <!-- Form -->
-                    <!-- <div class="form-group row justify-content-center">
-                        <div class="col-md-9">
-                            <p><div class = "label" id = informacao></div><b>Dados do seu perfil atual</b></p>
-                            <p><div class = "label" id = cpfAlunoPerfil ></div><b>Aluno: {{Auth::user()->name}}</b></p>
-                            <p><div class = "label" id = vinculoAlunoPerfil ></div><b>Situação Acadêmica: {{$perfil->situacao}}</b></p>
-                            <p><div class = "label" id = cursoAlunoPerfil ></div><b>Curso: {{$cursoAluno->nome}}</b></p>
-                        </div>
-                    </div> -->
-                    <!-- Form -->
                     <div class="form-group row formulario-centro">
                       <div class="col-md-9">
                         <label for="vinculo" style="margin-left:125px">Tipo de vinculo</label>

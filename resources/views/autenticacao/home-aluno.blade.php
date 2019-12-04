@@ -5,7 +5,7 @@
 @section('navbar')
     Home
 @endsection
-
+<div>@include('componentes.mensagens')</div>
           <div class="card-deck d-flex justify-content-center">
               <div class="conteudo-central d-flex justify-content-center">
 

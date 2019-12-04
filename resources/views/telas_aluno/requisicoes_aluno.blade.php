@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('conteudo')
-
+<div>@include('componentes.mensagens')</div>
     <div class="tabela-centro mx-auto table-striped">
       <p>
         <h3 align="center" style="color:red">Atenção</h3>
