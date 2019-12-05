@@ -138,7 +138,7 @@ class PerfilAlunoController extends Controller
           $perfil->situacao = "Trancado";
         }
         else if ($vinculo==="7"){
-          $perfil->situacao = "Intercambio";
+          $perfil->situacao = "Intercâmbio";
         }
         $definicaoPadrao = $request->selecaoPadrao;
         if($definicaoPadrao=='true'){

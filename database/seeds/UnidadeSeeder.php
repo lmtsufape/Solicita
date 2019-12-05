@@ -13,7 +13,7 @@ class UnidadeSeeder extends Seeder
     {
       $instituicao_id = DB::table('instituicaos')->where('nome','Universidade Federal Rural de Pernambuco')->pluck('id');
         DB::table('unidades')->insert([
-          'nome'=> 'UAG - Unidade Acadêmica de Garanhuns',
+          'nome'=> 'Unidade Acadêmica de Garanhuns',
           'instituicao_id'=> $instituicao_id[0],
         ]);
     }

@@ -4,14 +4,10 @@
 @section('conteudo')
 
 <div class="background">
-
-
     <div class="background" style="height: 840px">
         <div class="centro" style="height: 840px">
-                <h2 class="row d-flex justify-content-center" >Cadastro Discente</h2>
-
+                <h2 class="row d-flex justify-content-center">Cadastro Discente</h2>
                 <form action="{{  route('register')  }}" method="POST">
-
                   @csrf
                         <div class="form-group">
                             <!--
@@ -20,7 +16,6 @@
                             -->
 
                     <!-- Form Nome -->
-
                     <div class="form-group row formulario-centro">
 
                         <div class="col-md-9">
@@ -39,11 +34,8 @@
                             @enderror
                         </div>
                     </div>
-
                     <!-- Form CPF -->
-
                     <div class="form-group row formulario-centro">
-
                       <div class="col-md-9">
                           <label for="name" class="field a-field a-field_a3 page__field ">
                           <input id="cpf" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
@@ -61,15 +53,15 @@
                       </div>
                     </div>
                     <!-- Vínculo -->
-                      <label for="vinculo" style="margin-left:125px">Tipo de vinculo</label>
+                      <label for="vinculo" style="margin-left:125px">Tipo de vínculo</label>
                       <select name="vinculo" id="vinculo" class="browser-default custom-select custom-select-lg mb-3" style="width: 14.5rem; margin-left:125px">
-                          <option value="1" selected>Aluno Matriculado</option>
-                          <option value="2">Aluno Egresso</option>
-                          <option value="3">Aluno Especial</option>
-                          <option value="4">Aluno REMT - Regime Especial de Movimentação Temporária</option>
-                          <option value="5">Aluno Desistente</option>
-                          <option value="6">Aluno com matricula Trancada</option>
-                          <option value="7">Aluno em Intercambio</option>
+                          <option value="1" selected>Matriculado</option>
+                          <option value="2">Egresso</option>
+                          <option value="3">Especial</option>
+                          <option value="4">REMT - Regime Especial de Movimentação Temporária</option>
+                          <option value="5">Desistente</option>
+                          <option value="6">Matrícula Trancada</option>
+                          <option value="7">Intercâmbio</option>
                           @error('vinculo')
                           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                           <strong>{{ $message }}</strong>

@@ -107,7 +107,7 @@ class RegisterController extends Controller
               $situacao = "Trancado";
             }
             else if ($vinculo==="7"){
-              $situacao = "Intercambio";
+              $situacao = "Intercâmbio";
             }
         $perfil = Perfil::create([
                             'default' => $curso,

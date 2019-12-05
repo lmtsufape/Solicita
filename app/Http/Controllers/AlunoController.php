@@ -120,7 +120,7 @@ class AlunoController extends Controller
           $perfil->situacao = "Trancado";
         }
         else if ($vinculo==="7"){
-          $perfil->situacao = "Intercambio";
+          $perfil->situacao = "Intercâmbio";
         }
     $unidade = Unidade::where('id',$request->unidade)->first();
     //aluno_id

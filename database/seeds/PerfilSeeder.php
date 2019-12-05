@@ -12,7 +12,7 @@ class PerfilSeeder extends Seeder
     public function run()
     {
       $aluno_id = DB::table('alunos')->where('cpf','12345678900')->pluck('id');
-      $unidade_id = DB::table('unidades')->where('nome','UAG - Unidade Acadêmica de Garanhuns')->pluck('id');
+      $unidade_id = DB::table('unidades')->where('nome','Unidade Acadêmica de Garanhuns')->pluck('id');
       $curso_id = DB::table('cursos')->where('nome','Agronomia')->pluck('id');
       DB::table('perfils')->insert([
         'default'=>'Agronomia',
@@ -25,7 +25,7 @@ class PerfilSeeder extends Seeder
 
 
       $aluno_id = DB::table('alunos')->where('cpf','98765432100')->pluck('id');
-      $unidade_id = DB::table('unidades')->where('nome','UAG - Unidade Acadêmica de Garanhuns')->pluck('id');
+      $unidade_id = DB::table('unidades')->where('nome','Unidade Acadêmica de Garanhuns')->pluck('id');
       $curso_id = DB::table('cursos')->where('nome','Agronomia')->pluck('id');
       DB::table('perfils')->insert([
         'default'=>'Agronomia',

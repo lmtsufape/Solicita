@@ -23,8 +23,8 @@
             <label for="nome">E-mail</label>
             <h4>{{$user->email}}</h4>
           </div>
-          <a href="{{route('alterar-senha')}}" class="btn btn-secondary" style="margin-top: 50px;margin-left: 10px;float:right;">Editar Senha</a>
-          <a href="{{route('editar-info')}}" class="btn btn-primary" style="margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Editar Perfil</a>
+          <a href="{{route('alterar-senha')}}" class="btn btn-secondary" style="margin-top: 50px;margin-right: 10px;float:right;">Editar Senha</a>
+          <a href="{{route('editar-info')}}" class="btn btn-primary" style="margin-top: 50px; margin-right: 10px; float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Editar Perfil</a>
     </div>
   </div>
 </div>
@@ -58,13 +58,13 @@
           @endforeach
           <a id="submitRadio" href="{{route("excluir-perfil")}}" class="btn btn-primary"
             onclick="event.preventDefault();document.getElementById('formExcluirPerfil').submit();"
-            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Excluir Perfil
+            style="margin-top: 50px; margin-right: 10px; float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Excluir Perfil
           </a>
 
         </form>
         <form method="GET" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
-            style="margin-right: 10px; margin-top: 50px;float:right;background-color: #1B2E4F;border-color:#1B2E4F">Adicionar Perfil</a>
+            style="margin-top: 50px; margin-right: 10px; float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Adicionar Perfil</a>
         </form>
   </div>
           @foreach($perfisAluno as $pa)

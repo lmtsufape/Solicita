@@ -86,11 +86,11 @@
           outros++;
         }
       }
-      document.getElementById('quantidades1').innerHTML = 'Quantidade =' + vinculo;
-      document.getElementById('quantidades2').innerHTML = 'Quantidade =' + matricula;
-      document.getElementById('quantidades3').innerHTML = 'Quantidade =' + historico;
-      document.getElementById('quantidades4').innerHTML = 'Quantidade =' + programa;
-      document.getElementById('quantidades5').innerHTML = 'Quantidade =' + outros;
+      document.getElementById('quantidades1').innerHTML = 'Nº de Requisições: ' + vinculo;
+      document.getElementById('quantidades2').innerHTML = 'Nº de Requisições: ' + matricula;
+      document.getElementById('quantidades3').innerHTML = 'Nº de Requisições: ' + historico;
+      document.getElementById('quantidades4').innerHTML = 'Nº de Requisições: ' + programa;
+      document.getElementById('quantidades5').innerHTML = 'Nº de Requisições: ' + outros;
     }
 
     quantidades(document.getElementById('optionComOValor').value);
