@@ -32,23 +32,24 @@
               </br>
                 <label>Documentos</label>
                 </br>
-                <input type="checkbox" name="declaracaoVinculo"     value="Declaracao de Vinculo"
-                  id="declaracaoVinculo"> Declaração de Vínculo (Também disponível pelo link:
-                  </input>
-                    <a target="_blank" href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>)</br>
-                <input type="checkbox" name="comprovanteMatricula"  value="Comprovante de Matricula"  id="comprovanteMatricula">Comprovante de matricula</br>
-                  </input>
-                <input type="checkbox" name="historico"             value="Historico"                 id="historico">Histórico</br>
-                  </input>
+                <div>
+                  <input type="checkbox" name="declaracaoVinculo"     value="Declaracao de Vinculo"
+                    id="declaracaoVinculo"> Declaração de Vínculo (Também disponível pelo link:</input>
+                      <a target="_blank" href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>)</br>
+                </div>
+                <div>
+                  <input type="checkbox" name="comprovanteMatricula"  value="Comprovante de Matricula"  id="comprovanteMatricula"> Comprovante de matrícula</input></br>
+                </div>
+                <div>
+                  <input type="checkbox" name="historico"             value="Historico"                 id="historico"> Histórico</input></br>
+                </div>
                   <div>
                     <input type="checkbox" name="programaDisciplina"    value="Programa de Disciplina"    id="programaDisciplina"
-                      onclick="checaSelecaoProgramaDisciplina()">
-                      Programa de Disciplina(Detalhamento necessário)
-                        <span class="glyphicon glyphicon-question-sign" style="overflow: hidden; color:red"
+                      onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina(Detalhamento necessário)</input>
+                      <span class="glyphicon glyphicon-question-sign" style="overflow: hidden; color:red"
                         data-toggle="tooltip" data-placement="top"
                         title="Para o atendimento de sua solicitação, favor informar a(s) disciplina(s) e a finalidade da requisição.">
                         </span>
-                    </input>
                   </br>
                       <textarea class="form-control @error('programaDisciplina') is-invalid @enderror "
                                 form ="formRequisicao" style="display:none; margin-top:10px;" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"

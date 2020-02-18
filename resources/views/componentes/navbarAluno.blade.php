@@ -36,21 +36,16 @@
 
         </li> -->
 
-
-
-
-
       </ul>
-
     </div>
-
+    &nbsp
     <div class="nav navbar-nav navbar-right" >
       <ul class="nav navbar-nav">
           @if(Auth::check())
           <li>
           <a class="nav-link"  href="{{ route('home') }}"
              onclick="event.preventDefault();
-                           document.getElementById('usuario-form').submit();"style="color:white">
+                           document.getElementById('usuario-form').submit();" style="color:white ; margin-right:20px">
              {{Auth::user()->name}}
           </a>
           <form id="usuario-form" action="{{ route('home') }}" method="GET" style="display: none;">
@@ -59,12 +54,13 @@
         </li>
           @endif
       </ul>
+      &nbsp
       <ul class="nav navbar-nav navbar-right">
           @if(Auth::check())
             <li> <!--  logout   -->
                 <a class="nav-link"  href="{{ route('logout') }}"
                    onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();"style="color:white">
+                                 document.getElementById('logout-form').submit();"style="color:white; margin-right:20px" >
                    {{ __('Sair') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none; margin-right:20px">

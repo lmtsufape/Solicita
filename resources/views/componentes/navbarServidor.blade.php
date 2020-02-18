@@ -7,14 +7,6 @@
   </a>
     <div class="collapse navbar-collapse" >
       <ul class="navbar-nav mr-auto">
-
-<!--
-        <li class="nav-item">
-          <a class="nav-link" href="{{ route('home') }}" style="color:white">
-                          {{ __('Inicio') }}
-          </a>
-        </li> -->
-
       </ul>
     </div>
     <div class="nav navbar-nav navbar-right" >
@@ -22,12 +14,12 @@
                 @if(Auth::check())
                 <li>
                 <a class="nav-link"
-                   onclick="event.preventDefault();"style="color:white;">
+                   onclick="event.preventDefault();"style="color:white; margin-right:20px">
                    {{Auth::user()->name}}
                 </a>
-                <form id="usuario-form" action="{{ route('home') }}" method="GET" style="display: none;">
+                <!-- <form id="usuario-form" action="{{ route('home') }}" method="GET" style="display: none;">
                     @csrf
-                </form>
+                </form> -->
               </li>
                 @endif
             </ul>
@@ -38,10 +30,10 @@
           <a class="nav-link"  href="{{ route('alterar-senha-servidor') }}"
              onclick="event.preventDefault();
                            document.getElementById('usuario-form').submit();"style="color:white;" selection__placeholder="Alterar senha">
-          <img src="{{asset('images/senha.png')}}" height="20" class="d-inline-block align-top" alt="" style="color:white">
+          <!-- <img src="{{asset('images/senha.png')}}" height="20" class="d-inline-block align-top" alt="" style="color:white"> -->
           <label for="">Alterar senha</label>
           </a>
-          <form id="usuario-form" action="{{ route('alterar-senha-servidor') }}" method="GET" style="display: none;">
+          <form id="usuario-form" action="{{ route('alterar-senha-servidor') }}" method="GET" style="display: none; margin-right:20px">
               @csrf
           </form>
         </li>
@@ -65,5 +57,5 @@
       </ul>
     </div>
   </nav>
-<div>@include('componentes.mensagens')</div>
+
 @php($url = str_replace(URL::to('/'),'',URL::current()))

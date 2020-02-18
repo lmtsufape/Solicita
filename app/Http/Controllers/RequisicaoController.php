@@ -27,7 +27,6 @@ class RequisicaoController extends Controller
   public function getRequisicoes(Request $request){
     $documento = Documento::where('id',$request->titulo_id)->first();
     $curso = Curso::where('id',$request->curso_id)->first();
-    // dd($documento);
       //Verifica se o card clicado foi igual a "TODOS"
                       // ->withTrashed()
       if($request->titulo_id == 6){
@@ -56,9 +55,7 @@ class RequisicaoController extends Controller
       }
       $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
       $response = [];
-      // dd($listaRequisicao_documentos);
       foreach ($listaRequisicao_documentos as $key) {
-        // dd($key->requisicao->perfil);
         if($key->requisicao->perfil != null) {
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
@@ -93,7 +90,6 @@ class RequisicaoController extends Controller
       $checkBoxHistorico = $request->historico;
       $checkBoxProgramaDisciplina = $request->programaDisciplina;
       $checkBoxOutros = $request->outros;
-      // dd($request->default);
         $mensagens = [
         'requisicaoPrograma.required' => 'Preencha este campo com as informações relativas à disciplina e a finalidade do pedido',
         ];
@@ -210,13 +206,12 @@ class RequisicaoController extends Controller
                 'nome_documento' => $nome_documento,
                 'anotacoes' => $id_documento->anotacoes,
             );
-            // dd($id_documento);
             $id_documento->save();
             $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
             Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
                 $message->to($to_email)
                         ->subject($subject);
-                $message->from('noreply.solicita.lmts@gmail.com','Solicita - LMTS');
+                $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
             });
         return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
       }
@@ -247,7 +242,7 @@ class RequisicaoController extends Controller
               Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
                   $message->to($to_email)
                           ->subject($subject);
-                  $message->from('noreply.solicita.lmts@gmail.com','Solicita - LMTS');
+                  $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
               });
             }
           }

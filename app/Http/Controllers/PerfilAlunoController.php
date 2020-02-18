@@ -20,23 +20,12 @@ class PerfilAlunoController extends Controller
       $idUser = Auth::user()->id;
       $user = User::find($idUser); //Usuário Autenticado
       $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
-      // $temp = Perfil::where('user_id',$perfisAluno->aluno_id)->first();
-      // dd($temp);
-      // array_push($arrayPerfis, $temp);
+
       //PRIMEIRO PERFIL DO ALUNO
-      $perfil = Perfil::where('aluno_id',$aluno->id)->first();
-      // dd($perfil);
+      $perfil = Perfil::where([['aluno_id',$aluno->id], ['valor', true]])->first();
+
       //TODOS OS PERFIS VINCULADOS AO ALUNO
       $perfisAluno = Perfil::where('aluno_id',$aluno->id)->get();
-      // dd($perfisAluno);
-      // dd($perfil->aluno_id);
-      // $temp = Perfil::whereNotIn('aluno_id', $perfil->aluno_id)->get();
-      // dd($temp);
-      //
-      // $users = DB::table('users')
-      //                     ->whereNotIn('id', [1, 2, 3])
-      //                     ->get();
-      // $perfisAluno = Perfil::whereNotIn('aluno_id',$perfil->aluno_id)->get();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
       return view('telas_aluno.perfil_aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
@@ -51,7 +40,6 @@ class PerfilAlunoController extends Controller
     public function storeEditarInfo(Request $request){
       //atualização dos dados
       $user = Auth::user();
-      // dd($request->email);
       if($user->email!=$request->email){
         $request->validate([
           'email' => ['bail','required', 'string', 'email', 'max:255', 'unique:users'],
@@ -87,7 +75,6 @@ class PerfilAlunoController extends Controller
       $user = Auth::user();
       $user->password = Hash::make($request->password);
       $user->save();
-      //dados para ser exibido na view
       $cursos = Curso::all();
       $unidades = Unidade::all();
       $idUser = Auth::user()->id;
@@ -151,7 +138,7 @@ class PerfilAlunoController extends Controller
           $perfil->situacao = "Trancado";
         }
         else if ($vinculo==="7"){
-          $perfil->situacao = "Intercambio";
+          $perfil->situacao = "Intercâmbio";
         }
         $definicaoPadrao = $request->selecaoPadrao;
         if($definicaoPadrao=='true'){
@@ -167,7 +154,6 @@ class PerfilAlunoController extends Controller
       }
       $temp = $request->cursos;
       $curso = Curso::where('id',$request->curso)->first();
-      // dd($request->curso;
       $perfil->default = $curso->nome;
       $perfil->aluno()->associate($aluno);
       $perfil->save();
@@ -176,8 +162,9 @@ class PerfilAlunoController extends Controller
   return redirect()->route('perfil-aluno')->with('success', 'Perfil adicionado com sucesso!');
 }
 public function excluirPerfil(Request $request) {
-      // dd($request->idPerfil);
-
+      if($request->idPerfil==null){
+        return redirect()->back()->with('error', 'Selecione o perfil que deseja excluir');
+      }
       $usuario = User::find(Auth::user()->id);
       $aluno = $usuario->aluno;
       $perfis = Perfil::where('aluno_id',$aluno->id)->get();
@@ -185,14 +172,23 @@ public function excluirPerfil(Request $request) {
       if($quant===1){
         return redirect()->back()->with('error', 'Necessário haver ao menos um perfil vinculado ao aluno!');
       }
-      else if($quant>1){
+      else{
         $id = $request->idPerfil;
-        $perfil = Perfil::where('id', $id)->delete();
+        $isDefault = Perfil::where('id',$id)->first();
+        if ($isDefault->valor==true) {
+          $perfil = Perfil::where('id', $id)->delete();
+          $primeiro = Perfil::where('aluno_id', $aluno->id)->first();
+          $primeiro->valor=true;
+          $primeiro->save();
+          return redirect()->back()->with('success', 'Deletado com Sucesso!');
+        }
+        else{
+          $perfil = Perfil::where('id', $id)->delete();
+        }
         return redirect()->back()->with('success', 'Deletado com Sucesso!');
       }
 }
 public function definirPerfilDefault(Request $request){
-    // dd($request->idPerfil);
     $id = $request->idPerfil;
     $selecao = Perfil::where('id', $id)->first();
       $usuario = User::find(Auth::user()->id);

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Auth;
 use App\Curso;
@@ -16,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware(['auth'=>'verified']);
+        // $this->middleware(['auth', 'verified']);
         $this->middleware('auth');
     }
 
@@ -32,10 +32,30 @@ class HomeController extends Controller
           if(Auth::user()->tipo == 'servidor'){
             $cursos = Curso::all();
             $requisicoes = Requisicao_documento::all();
-            $cursos_json = json_encode($cursos);
-            $requisicoes_json = json_encode($requisicoes);
+            $requisicoes= DB::table('requisicao_documentos')
+                             ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
+                             ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
+                             ->join('cursos', 'perfils.curso_id', '=' ,'cursos.id')
+                             ->select ('requisicao_documentos.id')
+                             ->where([['status','Em andamento'], ['deleted_at', null]])
+                             // ->groupBy('curso_id')
+                             // ->select('curso_id', DB::raw('count(*) as total'))
+                             ->get();
+             $id = []; //array auxiliar que pega cada item do $id_documentos
+             foreach ($requisicoes as $key) {
+               array_push($id, $key->id); //passa o id de $id_documentos para o array auxiliar $id
+             }
+             $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
+             $response = [];
+             foreach ($listaRequisicao_documentos as $key) {
+                 array_push($response, ['id' => $key->id,
+                                        'curso' => $key->requisicao->perfil->curso->id,
+                                        'documento_id' => $key->documento_id,
+                                     ]);
+                                   }
+
             $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
-            return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, 'requisicoes'=>$requisicoes, 'cursos_json'=>$cursos_json, 'requisicoes_json'=>$requisicoes_json]);
+            return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, 'requisicoes'=>$response]);
           }
           else if (Auth::user()->tipo == 'aluno') {
           return view('autenticacao.home-aluno');
@@ -44,7 +64,6 @@ class HomeController extends Controller
           else if (Auth::user()->tipo == 'administrador') {
           return view('autenticacao.home-administrador');
           }
-
         }
       //
         return view('home');

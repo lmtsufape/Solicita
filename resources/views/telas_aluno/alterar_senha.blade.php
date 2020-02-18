@@ -4,7 +4,7 @@
 <div class="background">
     <div class="background" style="height: 840px">
         <div class="centro" style="height: 840px">
-          @include('componentes.mensagens')
+          <div>@include('componentes.mensagens')</div>
                 <h2 class="row d-flex justify-content-center" >Alterar Senha</h2>
 
                 <form action="{{  route('alterar-senha')  }}" method="POST">
@@ -18,14 +18,14 @@
 
                         <div class="col-md-9">
                             <label for="password" class="field a-field a-field_a3 page__field" >
-                            <input id="password-old" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
+                            <input id="password-old" type="password" class="form-control @error('password-old') is-invalid @enderror field__input a-field__input"
                             name="atual" required autocomplete="current-password" placeholder="Senha Antiga" >
 
                             <span class="a-field__label-wrap">
                                 <span class="a-field__label">Senha atual</span>
                             </span>
                             </label>
-                            @error('password')
+                            @error('password-old')
                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
                             <strong>{{ $message }}</strong>
                             </span>
@@ -66,7 +66,7 @@
                                 <span class="a-field__label">Confirmar Nova Senha</span>
                             </span>
                             </label>
-                            @error('password')
+                            @error('password-confirm')
                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
                             <strong>{{ $message }}</strong>
                             </span>
@@ -90,9 +90,6 @@
                         </div>
 
                     </div>
-
-
-
 
               </form>
           </div>

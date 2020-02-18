@@ -37,7 +37,7 @@ class StatusMail extends Mailable
     public function build()
     {
         $subject = 'Solicita - Status do documento';
-        return $this->from('noreply.solicita.lmts@gmail.com', 'Solicita - LMTS')
+        return $this->from('naoresponder.lmts@gmail.com', 'Solicita - LMTS')
                     ->subject($subject)
                     ->view('mails.status');
     }

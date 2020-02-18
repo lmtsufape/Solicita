@@ -79,10 +79,6 @@ class UsuarioController extends Controller
     $aluno->save();
 
     //PERFIL
-    //$ultimo_cpf = Aluno::where('cpf',$request->cpf)->first();
-    //dd($ultimo_cpf->cpf);
-    //dd($curso_id->id);
-
     //Default
     $curso = Curso::where('id',$request->cursos)->first();
     $perfil->default = $curso->nome; //Nome do Curso
@@ -106,7 +102,7 @@ class UsuarioController extends Controller
           $perfil->situacao = "Trancado";
         }
         else if ($vinculo==="7"){
-          $perfil->situacao = "Intercambio";
+          $perfil->situacao = "Intercâmbio";
         }
 
     $unidade = Unidade::where('id',$request->unidade)->first();
@@ -115,15 +111,8 @@ class UsuarioController extends Controller
     //unidade_id
     $perfil->unidade_id = $unidade->id;
     //curso_id
-
     $perfil->curso_id = $curso->id;
-    //dd($perfil);
-
     $perfil->save();
-
-
-
-
     return redirect('/')->with('jsAlert','Usuário Cadastrado com sucesso.');
   }
 }
