@@ -175,9 +175,9 @@
                     </div>
 
                     <!-- Botões -->
-                    <div class="form-group row justify-content-center ">
+                    <div class="form-group row justify-content-center" style="margin-top:60px">
                         <div class="col-sm-6">
-                            <a class="btn btn-light btn-cadastro-primary" href="\login" >Voltar</a>
+                        <a class="btn btn-light btn-cadastro-primary" href="/" >Voltar</a>
                         </div>
 
                         <div class="col-sm-6">

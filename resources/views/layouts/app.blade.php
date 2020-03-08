@@ -219,24 +219,24 @@
 <body>
 
   <div id="page-container">
-   <div id="content-wrap">
-      <!-- Barra Brasil -->
-      <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
-        <ul id="menu-barra-temp" style="list-style:none;">
-            <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-                <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
-            </li>
-            <li>
-            <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
-            </li>
-        </ul>
-      </div>
-
+    <!-- Barra Brasil -->
+    <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+      <ul id="menu-barra-temp" style="list-style:none;">
+          <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+              <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
+          </li>
+          <li>
+          <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
+          </li>
+      </ul>
+    </div>
+   {{-- <div id="content-wrap">
+    </div> --}}
       <!-- Barra de Logos -->
       <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
         <ul id="logos" style="list-style:none;">
             <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
-                <a href="{{ route('login') }}"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
+                <a href="/"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
 
                 <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70"  align = "right" ></a>
 
@@ -274,7 +274,7 @@
       <br>
       @endif
       @yield('conteudo')
-    </div>
+    
   </div>
 </body>
 <!-- jQuery library -->
