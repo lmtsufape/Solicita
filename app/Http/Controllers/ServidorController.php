@@ -46,7 +46,7 @@ class ServidorController extends Controller
     }
     public function homeServidor(){
     $unidades = Unidade::All();
-    $usuarios = User::All();
+    $users = User::All();
     return view('autenticacao.cadastro-servidor',compact('users','unidades'));
     }
 
