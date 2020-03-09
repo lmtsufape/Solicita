@@ -71,6 +71,7 @@ class RequisicaoController extends Controller
       }
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
       $listaRequisicao_documentos = $response;
+
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
   }
@@ -149,7 +150,7 @@ class RequisicaoController extends Controller
           $arrayAux = Documento::whereIn('id', $id)->get();
           // $documento = Documento::where('id',$request->titulo_id)->first();
           $curso = Curso::where('id',$request->curso_id)->first();
-          return view('autenticacao.confirmacao-requisicao', compact('documentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date', 'hour'));
+          return view('autenticacao.confirmacao-requisicao', compact('arrayDocumentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date', 'hour'));
     }
     public function requisitados(Requisicao $requisicao, $id, Perfil $perfil, $texto){
       date_default_timezone_set('America/Sao_Paulo');
