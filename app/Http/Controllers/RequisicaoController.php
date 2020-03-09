@@ -71,7 +71,7 @@ class RequisicaoController extends Controller
       }
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
       $listaRequisicao_documentos = $response;
-      
+
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
   }

@@ -19,7 +19,10 @@
           @csrf
           <!-- Checkbox que seleciona todos os outros -->
           <div class="form-check">
+            @if(!isset($listaRequisicao_documentos))
             <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
+            @endif
+
           </div>
         </th>
         <th scope="col" class="titleColumn" onclick="sortTable(0)" style="cursor:pointer">N°
@@ -80,8 +83,10 @@
               </tfoot> -->
           </form>
         </table>
-        <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
-        class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
+        @if(!isset($listaRequisicao_documentos))
+          <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
+          class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
+        @endif
     </div>
     @foreach($listaRequisicao_documentos as $requisicao_documento)
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
