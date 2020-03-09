@@ -18,7 +18,8 @@ class UsuarioSeeder extends Seeder
           'name'=>'Administrador',
           'email'=>'admin@ufrpe.br',
           'password'=>Hash::make('123456'),
-          'tipo'=>'administrador'
+          'tipo'=>'administrador',
+          'email_verified_at'=>'2020-01-01'
         ]);
 
 
