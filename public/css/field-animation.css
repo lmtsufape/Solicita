@@ -6,6 +6,7 @@ LEVEL 1. RESET STYLES
 
 .field{
     --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
+    width:100%;
   }
   
   .field__input{
