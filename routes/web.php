@@ -10,14 +10,17 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //----------------------------------------------USUARIO----------------------------------------------------------------
 Route::get('/', 'AlunoController@index')->name('login');
+Auth::routes(['verify' => true]);
+
 // ---------------------------------------------ALUNO-------------------------------------------------------------------
 Route::get('/cadastro','AlunoController@createAluno')->name('cadastro');
 Route::post('/cadastro','AlunoController@storeAluno')->name('cadastro');
 
 //----------------------------------------------ADMINISTRADOR-----------------------------------------------------------
-Route::group(['middleware'=> 'CheckAdministrador'], function(){
+Route::group(['middleware'=> ['CheckAdministrador', 'verified']], function(){
     Route::get('/home-administrador','AdministradorController@index')->name('home-administrador')->middleware('CheckAdministrador');
     Route::get('/cadastro-servidor','ServidorController@homeServidor')->name('cadastro-servidor')->middleware('CheckAdministrador');
     Route::post('/confirmacao-servidor','ServidorController@storeServidor')->name('confirmacao-servidor')->middleware('CheckAdministrador');
@@ -25,7 +28,7 @@ Route::group(['middleware'=> 'CheckAdministrador'], function(){
 });
 
 //----------------------------------------------SERVIDOR----------------------------------------------------------------
-Route::group(['middleware'=> 'CheckServidor'], function(){
+Route::group(['middleware'=> ['CheckServidor', 'verified']], function(){
 
   // Route::post('/filtrar-requisicoes/{curso_id?}','RequisicaoController@filtrarCurso')->name('filtrar-requisicoes-post')->middleware('CheckServidor');
 
@@ -67,9 +70,7 @@ Route::group(['middleware'=> 'CheckAluno'], function(){
   });
 // });
 // ---------------------------------------REQUISICAO------------------------------------------------------------------
-Auth::routes(['verify' => true]);
-// Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 // Route::get('/mail-send', 'MailController@send');
 
  // Route::get('/edita-perfil','PerfilController@editaPerfil')->name('edita-perfil');
