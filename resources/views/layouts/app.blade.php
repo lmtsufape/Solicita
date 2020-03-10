@@ -274,7 +274,7 @@
       <br>
       @endif
       @yield('conteudo')
-    
+
   </div>
 </body>
 <!-- jQuery library -->
