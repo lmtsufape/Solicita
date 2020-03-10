@@ -3,7 +3,7 @@
 
 @section('conteudo')
 
-<div class="container-fluid" style="background-color:#1b2e4f">
+<div class="container-fluid background-blue">
   <div class="row justify-content-center">
     <div class="col-sm-3">
       <div class="card card-cadastro">
