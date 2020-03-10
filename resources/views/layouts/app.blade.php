@@ -217,65 +217,64 @@
     </style>
 </head>
 <body>
+  <!-- Barra Brasil -->
+  <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+    <ul id="menu-barra-temp" style="list-style:none;">
+        <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
+            <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
+        </li>
+        <li>
+        <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
+        </li>
+    </ul>
+  </div>
+  {{-- <div id="content-wrap">
+  </div> --}}
+    <!-- Barra de Logos -->
+    <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
+      <ul id="logos" style="list-style:none;">
+          <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
+              <a href="/"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
 
-  <div id="page-container">
-    <!-- Barra Brasil -->
-    <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
-      <ul id="menu-barra-temp" style="list-style:none;">
-          <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED">
-              <a href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal do Governo Brasileiro</a>
-          </li>
-          <li>
-          <a style="font-family:sans,sans-serif; text-decoration:none; color:white;" href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a>
+              <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70"  align = "right" ></a>
+
+              <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
+              <a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 30px" height="70" width="50" align = "right" ></a>
+
+              <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
+              <a target="_blank" href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px; margin-top: 30px " height="70" width="50" align = "right"></a>
           </li>
       </ul>
     </div>
-   {{-- <div id="content-wrap">
-    </div> --}}
-      <!-- Barra de Logos -->
-      <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
-        <ul id="logos" style="list-style:none;">
-            <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
-                <a href="/"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
+    <!-- barra de menu -->
 
-                <a target="_blank" href="http://lmts.uag.ufrpe.br/"><img src="{{asset('images/lmts.jpg')}}" style = "margin-left: 8px; margin-top:30px " height="70"  align = "right" ></a>
+    <!-- se o usuário estiver logado -->
+    @if(Auth::check())
+        <!-- Se o usuário for um aluno -->
+        @if(Auth::user()->tipo == 'aluno')
+            <!-- carrega o componente contendo Navbar do aluno -->
+            @component('componentes.navbarAluno')
+            @endcomponent
+        @endif
 
-                <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
-                <a target="_blank" href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/uag.png')}}" style = "margin-left: 10px; margin-top: 30px" height="70" width="50" align = "right" ></a>
+        <!-- Se o usuário for um servidor -->
+        @if(Auth::user()->tipo == 'servidor')
+            <!-- Carrega component contendo navbar do servidor -->
+            @component('componentes.navbarServidor')
+            @endcomponent
+        @endif
 
-                <img src="{{asset('images/separador.png')}}" style = "margin-left: 15px; margin-top: 30px" height="70" align = "right" >
-                <a target="_blank" href="http://www.ufrpe.br/"><img src="{{asset('images/ufrpe.png')}}" style = "margin-left: 15px; margin-right: -10px; margin-top: 30px " height="70" width="50" align = "right"></a>
-            </li>
-        </ul>
-      </div>
-      <!-- barra de menu -->
+        @if(Auth::user()->tipo == 'administrador')
+            <!-- Carrega component contendo navbar do administrador -->
+            @component('componentes.navbarAdministrador')
+            @endcomponent
+        @endif
+    @endif
+    @yield('conteudo')
+  <!-- <div id="page-container">
 
-      <!-- se o usuário estiver logado -->
-      @if(Auth::check())
-          <!-- Se o usuário for um aluno -->
-          @if(Auth::user()->tipo == 'aluno')
-              <!-- carrega o componente contendo Navbar do aluno -->
-              @component('componentes.navbarAluno')
-              @endcomponent
-          @endif
 
-          <!-- Se o usuário for um servidor -->
-          @if(Auth::user()->tipo == 'servidor')
-              <!-- Carrega component contendo navbar do servidor -->
-              @component('componentes.navbarServidor')
-              @endcomponent
-          @endif
-
-          @if(Auth::user()->tipo == 'administrador')
-              <!-- Carrega component contendo navbar do administrador -->
-              @component('componentes.navbarAdministrador')
-              @endcomponent
-          @endif
-      <br>
-      @endif
-      @yield('conteudo')
-    
-  </div>
+  </div> -->
 </body>
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

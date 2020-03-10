@@ -20,7 +20,7 @@
                         <li>Acompanhe o status do seu requerimento;</li>
                         <li>Deslocamento até a faculdade apenas para o recebimento do documento(necessária a apresentação de documento oficial com foto).</li>
                     </ul>
-    
+
                     <h1>Quais documentos eu posso solicitar?</h1>
                     <ul style="margin-left:15px">
                         <li>Declaração de vínculo;</li>

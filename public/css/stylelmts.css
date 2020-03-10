@@ -4,7 +4,10 @@ body{
 
 }
 
-
+.background-blue{
+  background-color:#1b2e4f;
+  height:85vh;
+}
 .lmts-primary{
     background-color: #1B2E4F;
     color:white;
@@ -12,10 +15,10 @@ body{
 }
 .card-cadastro{
     margin:50px 0 50px 0;
-    
+
 }
 
-.lmts-primary:hover{
+.btn .lmts-primary:hover{
     background-color: darkblue;
 
 }

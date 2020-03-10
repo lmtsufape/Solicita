@@ -2,9 +2,9 @@
 
 
 @section('conteudo')
-<div class="container-fluid" style="background-color:#1b2e4f">
+<div class="container-fluid background-blue" style="">
     <div class="row justify-content-center">
-        <div class="col-sm-10">
+        <div class="col-sm-7">
 
             <div class="card card-cadastro">
                 <div class="card-body">
@@ -20,7 +20,7 @@
                                 <label for="name" class="field a-field a-field_a3 page__field ">
                                 <input id="name" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
                                 name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
-    
+
                                 <span class="a-field__label-wrap">
                                     <span class="a-field__label">Nome Completo</span>
                                 </span>
@@ -36,7 +36,7 @@
                                 <label for="name" class="field a-field a-field_a3 page__field ">
                                 <input id="cpf" type="name" class="form-control @error('name') is-invalid @enderror field__input a-field__input"
                                 name="cpf" value="{{ old('cpf') }}" required autocomplete="name" autofocus placeholder="CPF">
-      
+
                                 <span class="a-field__label-wrap">
                                     <span class="a-field__label">CPF</span>
                                 </span>
@@ -52,7 +52,7 @@
 
                         {{-- cpf --}}
                         <div class="form-group row justify-content-center">
-                            
+
                           </div>
 
                           <!-- Vínculo -->
@@ -114,12 +114,12 @@
 
                           <!-- Unidade Acadêmica-->
                           <div class="row justify-content-center">
-                              
+
                           </div>
-    
+
 
                           <div class="row justify-content-center">
-                              
+
                           </div>
 
                           <!-- Form E-mail -->
@@ -189,7 +189,7 @@
                     </div>
 
                     </form>
-                  
+
                 </div>
               </div>
         </div>

@@ -23,8 +23,8 @@
             <label for="nome">E-mail</label>
             <h4>{{$user->email}}</h4>
           </div>
-          <a href="{{route('alterar-senha')}}" class="btn btn-secondary" style="margin-top: 50px;margin-right: 10px;float:right;">Editar Senha</a>
-          <a href="{{route('editar-info')}}" class="btn btn-primary" style="margin-top: 50px; margin-right: 10px; float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Editar Perfil</a>
+          <a href="{{route('alterar-senha')}}" class="btn btn-primary" style="margin-top: 50px;margin-right: 10px;float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Editar Senha</a>
+          <a href="{{route('editar-info')}}" class="btn btn-primary" style="margin-top: 50px; margin-right: 10px; float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Editar Informações</a>
     </div>
   </div>
 </div>
@@ -56,9 +56,9 @@
               @endif
               <br>
           @endforeach
-          <a id="submitRadio" href="{{route("excluir-perfil")}}" class="btn btn-primary"
+          <a id="submitRadio" href="{{route("excluir-perfil")}}" class="btn btn-secondary"
             onclick="event.preventDefault();document.getElementById('formExcluirPerfil').submit();"
-            style="margin-top: 50px; margin-right: 10px; float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Excluir Perfil
+            style="margin-top: 50px; margin-right: 10px; float:right;">Excluir Perfil
           </a>
 
         </form>
