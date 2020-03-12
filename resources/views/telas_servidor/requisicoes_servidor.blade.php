@@ -19,8 +19,10 @@
           @csrf
           <!-- Checkbox que seleciona todos os outros -->
           <div class="form-check">
-            @if(!isset($listaRequisicao_documentos))
-            <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
+            @if(isset($listaRequisicao_documentos))
+              @if(sizeof($listaRequisicao_documentos) > 0)
+              <input class="checkboxLinha" type="checkbox" id="selectAll" value="">
+              @endif
             @endif
 
           </div>
@@ -83,9 +85,11 @@
               </tfoot> -->
           </form>
         </table>
-        @if(!isset($listaRequisicao_documentos))
-          <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
-          class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
+        @if(isset($listaRequisicao_documentos))
+          @if(sizeof($listaRequisicao_documentos) > 0)
+            <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
+            class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
+          @endif
         @endif
     </div>
     @foreach($listaRequisicao_documentos as $requisicao_documento)
