@@ -8,7 +8,7 @@
                 <h1>O que é o <strong> "Solicita"? </strong></h1>
                 <p style="margin-left:15px">
                     É uma ferramenta voltada para o atendimento das demandas de requisições de documentos no Setor de Escolaridade da
-                    Universidade Federal Rural de Pernambuco - Unidade Acadêmica de Garanhuns (UFRPE / UAG).
+                    Universidade Federal do Agreste de Pernambuco - UFAPE - SEDE (Unidade Acadêmica de Garanhuns) .
                 </p>
                 <h1>Benefícios de utilizar o <strong> "Solicita"? </strong></h1>
                 <ul style="margin-left:15px">
