@@ -60,7 +60,8 @@
                               <div class="col-sm-4">
                                 <label for="vinculo">Tipo de vínculo</label>
                                 <select name="vinculo" id="vinculo" class="browser-default custom-select custom-select-lg mb-3">
-                                    <option value="1" selected>Matriculado</option>
+                                    <option value="" disable selected hidden>-- Selecionar Vínculo --</option>
+                                    <option value="1" >Matriculado</option>
                                     <option value="2">Egresso</option>
                                     <option value="3">Especial</option>
                                     <option value="4">REMT - Regime Especial de Movimentação Temporária</option>
@@ -78,7 +79,7 @@
                               <div class="col-sm-4">
                                 <label for="unidade">Unidade Acadêmica</label>
                                 <select name="unidade" id="unidade"class="browser-default custom-select custom-select-lg mb-1">
-
+                                <option value="" disable selected hidden>-- Selecionar Unidade --</option>
                                 @foreach($unidades as $unidade)
                                 <option value="{{$unidade->id}}">{{$unidade->nome}}</option>
                                 @endforeach
@@ -96,8 +97,8 @@
                                 <!-- Cursos-->
                                 <label for="cursos">Curso</label>
                                 <select name="cursos" id="cursos" class="browser-default custom-select custom-select-lg mb-1">
-                                <option selected>Curso</option>
-
+                                
+                                    <option value="" disable selected hidden>-- Selecionar Curso --</option>
                                     @foreach($cursos as $curso)
                                     <option value="{{$curso->id}}">{{$curso->nome}}</option>
                                     @endforeach
