@@ -11,23 +11,25 @@
                 <div class="texto">
                     <h1>O que é o <strong> "Solicita"? </strong></h1>
                     <p style="margin-left:15px">
-                        É uma ferramenta voltada para o atendimento das demandas de requisições de documentos no Setor de Escolaridade da
-                        Universidade Federal do Agreste de Pernambuco - UFAPE - SEDE (Unidade Acadêmica de Garanhuns) .
+                        É uma ferramenta desenvolvida para o atendimento das solicitações de documentos no Setor de Escolaridade da Universidade Federal do Agreste de Pernambuco - UFAPE / Unidade Acadêmica de Garanhuns.
+
                     </p>
-                    <h1>Benefícios de utilizar o <strong> "Solicita"? </strong></h1>
+                    <h1>Quais os benefícios em utilizar o
+                        <strong> "Solicita"? </strong></h1>
                     <ul style="margin-left:15px">
-                        <li>Solicite seus documentos online;</li>
-                        <li>Acompanhe o status do seu requerimento;</li>
-                        <li>Deslocamento até a faculdade apenas para o recebimento do documento(necessária a apresentação de documento oficial com foto).</li>
+                        <li>Solicitar documentos de qualquer lugar e horário.</li>
+                        <li>Acompanhar a situação do seu pedido.</li>
+                        <li>Evitar deslocamento ao setor, antes da emissão do documento.</li>
                     </ul>
+
+                    <h3>Obs: Para o recebimento do documento é necessária a apresentação de documento oficial com foto.</h3>
 
                     <h1>Quais documentos eu posso solicitar?</h1>
                     <ul style="margin-left:15px">
-                        <li>Declaração de vínculo;</li>
-                        <li>Comprovante de matrícula;</li>
-                        <li>Histórico Escolar;</li>
-                        <li>Programa de Disciplinas e</li>
-                        <li>Outros.</li>
+                        <li>Declaração de vínculo.</li>
+                        <li>Comprovante de matrícula.</li>
+                        <li>Histórico Escolar.</li>
+                        <li>Programa de disciplinas e outros.</li>
                     </ul>
                 </div>
             </div>
@@ -99,7 +101,7 @@
 
                 <div class="form-group row justify-content-center ">
                     <div class="col-sm-6 ">
-                    <a class="btn btn-light btn-cadastro-primary" href="{{  route('cadastro')  }}">Cadastrar</a>
+                    <a class="btn btn-secondary btn-cadastro-primary" href="{{  route('cadastro')  }}">Cadastrar</a>
                     </div>
 
                     <div class="col-sm-6 " >
