@@ -92,9 +92,12 @@
                             </label>
                         </div>
                         @if (Route::has('password.request'))
-                        <a class="btn btn-link" href="{{ route('password.request') }}" style="color: #1B2E4F;">
-                            {{ __('Esqueceu sua senha?   ') }}
-                        </a>
+                        <div class="row justify-content-center" style="margin-top:50px">
+
+                            <a class="btn btn-link" href="{{ route('password.request') }}" style="color: #1B2E4F;">
+                                {{ __('Esqueceu sua senha?   ') }}
+                            </a>
+                        </div>
                         @endif
                     </div>
                 </div>

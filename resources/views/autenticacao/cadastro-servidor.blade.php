@@ -6,7 +6,7 @@
 <div class="container-fluid background-blue">
   <div class="row justify-content-center">
     <div class="col-sm-3">
-      <div class="card card-cadastro">
+      <div class="card card-cadastro-servidor">
         <div class="card-body">
 
           <div class="row justify-content-center">
@@ -107,7 +107,7 @@
             <!-- Botões -->
             <div class="form-group row justify-content-center" style="margin-top:60px">
                 <div class="col-sm-6">
-                <a class="btn btn-light btn-cadastro-primary" href="{{  route('home')}}" >Voltar</a>
+                <a class="btn btn-secondary btn-cadastro-primary" href="{{  route('home')}}" >Voltar</a>
                 </div>
 
                 <div class="col-sm-6">
