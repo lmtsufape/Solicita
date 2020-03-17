@@ -36,7 +36,7 @@ class ServidorController extends Controller
       $servidor->unidade_id = 1;
       $servidor->user_id = $usuario->id;
       $servidor->save();
-      return redirect()->route('home-administrador')->with('success', 'Servidor cadastrado com sucesso!');
+      return redirect()->route('home')->with('success', 'Servidor cadastrado com sucesso!');
     }
     public function listaServidores(){
           return view('/autenticacao.home-administrador'); //redireciona para view
