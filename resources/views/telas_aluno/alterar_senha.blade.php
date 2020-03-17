@@ -70,7 +70,7 @@
                 <!-- Botões -->
                 <div class="form-group row justify-content-center" style="margin-top:60px">
                     <div class="col-sm-6">
-                    <a class="btn btn-light btn-cadastro-primary" href="{{  route('perfil-aluno')}}" >Voltar</a>
+                    <a class="btn btn-secondary btn-cadastro-primary" href="{{  route('perfil-aluno')}}" >Voltar</a>
                     </div>
 
                     <div class="col-sm-6">

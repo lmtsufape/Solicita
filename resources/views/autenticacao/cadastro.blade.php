@@ -59,7 +59,7 @@
                           <div class="row justify-content-center">
                               <div class="col-sm-4">
                                 <label for="vinculo">Tipo de vínculo</label>
-                                <select name="vinculo" id="vinculo" class="browser-default custom-select custom-select-lg mb-3">
+                                <select name="vinculo" id="vinculo" class="browser-default custom-select">
                                     <option value="" disable selected hidden>-- Selecionar Vínculo --</option>
                                     <option value="1" >Matriculado</option>
                                     <option value="2">Egresso</option>
@@ -78,7 +78,7 @@
 
                               <div class="col-sm-4">
                                 <label for="unidade">Unidade Acadêmica</label>
-                                <select name="unidade" id="unidade"class="browser-default custom-select custom-select-lg mb-1">
+                                <select name="unidade" id="unidade"class="browser-default custom-select">
                                 <option value="" disable selected hidden>-- Selecionar Unidade --</option>
                                 @foreach($unidades as $unidade)
                                 <option value="{{$unidade->id}}">{{$unidade->nome}}</option>
@@ -96,7 +96,7 @@
                               <div class="col-sm-4">
                                 <!-- Cursos-->
                                 <label for="cursos">Curso</label>
-                                <select name="cursos" id="cursos" class="browser-default custom-select custom-select-lg mb-1">
+                                <select name="cursos" id="cursos" class="browser-default custom-select">
                                 
                                     <option value="" disable selected hidden>-- Selecionar Curso --</option>
                                     @foreach($cursos as $curso)
@@ -178,7 +178,7 @@
                     <!-- Botões -->
                     <div class="form-group row justify-content-center" style="margin-top:60px">
                         <div class="col-sm-6">
-                        <a class="btn btn-light btn-cadastro-primary" href="/" >Voltar</a>
+                        <a class="btn btn-secondary btn-cadastro-primary" href="/" >Voltar</a>
                         </div>
 
                         <div class="col-sm-6">
