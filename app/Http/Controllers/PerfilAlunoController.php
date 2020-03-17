@@ -190,16 +190,23 @@ public function excluirPerfil(Request $request) {
 }
 public function definirPerfilDefault(Request $request){
     $id = $request->idPerfil;
-    $selecao = Perfil::where('id', $id)->first();
-      $usuario = User::find(Auth::user()->id);
-      $aluno = $usuario->aluno;
-      $perfis = Perfil::where('aluno_id',$aluno->id)->get();
-      foreach ($perfis as $p) {
+    $selecao = Perfil::where('id', $id)->first(); //perfil que será selecionado como padrão
+    // dd($selecao);
+    $usuario = User::find(Auth::user()->id);
+
+    $aluno = $usuario->aluno;
+    $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+    // dd($perfis);
+    foreach ($perfis as $p) {
+      if($p->id == $selecao->id){
+        // dd("Achei");
+        $p->valor = true;
+        $p->save();
+      }else{
         $p->valor = false;
         $p->save();
       }
-      $selecao->valor = true;
-      $selecao->save();
-      return redirect()->back()->with('success', 'Definido com sucesso!');
+    }
+    return redirect()->back()->with('success', 'Definido com sucesso!');
   }
 }

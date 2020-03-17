@@ -18,7 +18,7 @@
                 <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 70%;">
                     @foreach($perfis as $perfil)
                     <!-- <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label> -->
-                    <option value="{{$perfil->id}}">{{$perfil->default}} - {{$perfil->situacao}}</option></br>
+                    <option @if($perfil->valor==true) selected @endif value="{{$perfil->id}}">{{$perfil->default}} - {{$perfil->situacao}}</option></br>
                     @endforeach
                 </select>
                 </br>
