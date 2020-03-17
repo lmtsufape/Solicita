@@ -16,8 +16,9 @@
               <div class="row justify-content-center">
                 <div class="col-sm-12">
                   <label for="vinculo">Tipo de vínculo</label>
-                  <select name="vinculo" id="vinculo" class="browser-default custom-select custom-select-lg mb-3">
-                    <option value="1" selected>Matriculado</option>
+                  <select name="vinculo" id="vinculo" class="browser-default custom-select">
+                    <option value="" disable selected hidden>-- Selecionar Vínculo --</option>
+                    <option value="1">Matriculado</option>
                     <option value="2">Egresso</option>
                     <option value="3">Especial</option>
                     <option value="4">REMT - Regime Especial de Movimentação Temporária</option>
@@ -37,7 +38,8 @@
                 <div class="col-sm-12">
                   <!-- Unidade Acadêmica-->
                   <label for="unidade">Unidade Acadêmica</label>
-                  <select name="unidade" id="unidade"class="browser-default custom-select custom-select-lg mb-1">
+                  <select name="unidade" id="unidade"class="browser-default custom-select">
+                    <option value="" disable selected hidden>-- Selecionar Unidade --</option>
                     @foreach($unidades as $unidade)
                     <option value="{{$unidade->id}}">{{$unidade->nome}}</option>
                     @endforeach
@@ -55,8 +57,8 @@
                 <div class="col-sm-12">
                   <!-- Cursos-->
                   <label for="cursos">Curso</label>
-                  <select name="curso" id="cursos" class="browser-default custom-select custom-select-lg mb-1">
-                    <options selected>Curso</option>
+                  <select name="curso" id="cursos" class="browser-default custom-select">
+                    <option value="" disable selected hidden>-- Selecionar Curso --</option>
                       @foreach($cursos as $curso)
                       <option value="{{$curso->id}}">{{$curso->nome}}</option>
                       @endforeach
@@ -75,7 +77,7 @@
               <!-- Botões -->
               <div class="form-group row justify-content-center" style="margin-top:60px">
                   <div class="col-sm-6">
-                  <a class="btn btn-light btn-cadastro-primary" href="{{  route('perfil-aluno')}}" >Voltar</a>
+                  <a class="btn btn-secondary btn-cadastro-primary" href="{{  route('perfil-aluno')}}" >Voltar</a>
                   </div>
 
                   <div class="col-sm-6">
