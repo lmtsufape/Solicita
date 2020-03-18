@@ -274,7 +274,7 @@
   </div> -->
   
 
-  <div class="footer">
+  {{-- <div class="footer">
 
     <div class="row justify-content-center">
       <div class="col-sm-3 coluna">
@@ -366,7 +366,7 @@
         </div>
       </div>
     </div>
-</div>
+</div> --}}
 
 
 </body>

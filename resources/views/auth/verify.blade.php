@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('conteudo')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container-fluid">
+    <div class="row justify-content-center" style="height:80vh">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="margin-top:50px">
                 <div class="card-header">{{ __('Verifique seu email') }}</div>
 
                 <div class="card-body">
