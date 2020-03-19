@@ -30,7 +30,7 @@
 </div>
 
 <!-- Perfil aluno -->
-<div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;">
+<div class="card mx-auto" style="margin-top: 20px;margin-left: 100px;margin-right: 100px;width:900px;margin-bottom:50px">
   <div class="card-body">
         @foreach($perfisAluno as $pa)
         <form method="POST" enctype="multipart/form-data" id="formExcluirPerfil" action="{{ route('excluir-perfil') }}">

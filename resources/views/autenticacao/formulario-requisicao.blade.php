@@ -4,9 +4,9 @@
 <!-- @section('navbar')
     Home
 @endsection -->
-<div class="container" >
+<div class="container" style="height:80vh" >
   <div class="col-md-8">
-      <div class="card" style="width: 100%; margin-left:20%; margin-right:20%">
+      <div class="card" style="width: 100%; margin-left:20%; margin-right:20%;">
           <h5 class="card-header" style="text-align:center">Solicitar Documentos</h5>
           <div class="card-body">
             <form method="POST" enctype="multipart/form-data" id="formRequisicao" action="{{ route('confirmacao-requisicao') }}">

@@ -171,10 +171,12 @@ select option{
 
 /* FOOTER */
 .footer{
-    background-color:black;
+    /* background-color:#454545; */
+    background-color:#1b2e4f;
     /* height: 90vh; */
     padding:100px;
     color: white;
+    border-top:1px solid white;
   }
   .footer .social{
     width: 30px;
