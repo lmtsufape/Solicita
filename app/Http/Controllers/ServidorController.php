@@ -20,7 +20,7 @@ class ServidorController extends Controller
     public function storeServidor(Request $request) {
       $request->validate([
         'name' => 'required|string|max:255',
-        'matricula' => 'required|unique:servidors|integer',
+        'matricula' => 'required|unique:servidors|numeric|digits_between:1,10',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:8|confirmed',
       ]);
