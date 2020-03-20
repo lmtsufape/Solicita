@@ -2,6 +2,7 @@
 @section('conteudo')
 
 @section('titulo','Home Aluno')
+
 @section('navbar')
     Home
 @endsection

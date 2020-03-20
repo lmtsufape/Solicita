@@ -15,7 +15,7 @@
                 <div class="form-group row justify-content-center"></div>
                 <b><label>Aluno:  </label>&nbsp{{Auth::user()->name}}</b></br>
                 <b><label>Perfil: </label></b>
-                <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 70%;">
+                <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 80%;font-size: 90%">
                     @foreach($perfis as $perfil)
                     <!-- <label for='perfil' style="width: 14.5rem; margin-left:25px"><b>Curso</b></label> -->
                     <option @if($perfil->valor==true) selected @endif value="{{$perfil->id}}">{{$perfil->default}} - {{$perfil->situacao}}</option></br>
@@ -35,23 +35,20 @@
                 <div>
                   <input type="checkbox" name="declaracaoVinculo"     value="Declaracao de Vinculo"
                     id="declaracaoVinculo"> Declaração de Vínculo (Também disponível pelo link:</input>
-                      <a target="_blank" href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>)</br>
+                      <a target="_blank" href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>).</br>
                 </div>
                 <div>
-                  <input type="checkbox" name="comprovanteMatricula"  value="Comprovante de Matricula"  id="comprovanteMatricula"> Comprovante de matrícula</input></br>
+                  <input type="checkbox" name="comprovanteMatricula"  value="Comprovante de Matricula"  id="comprovanteMatricula"> Comprovante de matrícula.</input></br>
                 </div>
                 <div>
-                  <input type="checkbox" name="historico"             value="Historico"                 id="historico"> Histórico</input></br>
+                  <input type="checkbox" name="historico"             value="Historico"                 id="historico"> Histórico Escolar.</input></br>
                 </div>
                   <div>
                     <input type="checkbox" name="programaDisciplina"    value="Programa de Disciplina"    id="programaDisciplina"
-                      onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina(Detalhamento necessário)</input>
-                      <span class="glyphicon glyphicon-question-sign" style="overflow: hidden; color:red"
-                        data-toggle="tooltip" data-placement="top"
-                        title="Para o atendimento de sua solicitação, favor informar a(s) disciplina(s) e a finalidade da requisição.">
-                        </span>
+                      onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina (informar abaixo o nome da disciplina e a finalidade).</input>
+
                   </br>
-                      <textarea class="form-control @error('programaDisciplina') is-invalid @enderror "
+                      <textarea maxlength="255" class="form-control @error('programaDisciplina') is-invalid @enderror "
                                 form ="formRequisicao" style="display:none; margin-top:10px;" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"
                                 required autocomplete="programaDisciplina"
                                 placeholder="Preencha este campo com o nome da(s) disciplina(s) e a finalidade da requisição."></textarea>
@@ -65,9 +62,9 @@
                     </div>
                     <div>
                     <input type="checkbox" name="outros"               value="Outros"                     id="outros"
-                      onclick="checaSelecaoOutros()"> Outros<br>
+                      onclick="checaSelecaoOutros()"> Outros (informar abaixo).<br>
                     </input>
-                    <textarea class="form-control @error('outrosDocumentos') is-invalid @enderror"
+                    <textarea maxlength="255" class="form-control @error('outrosDocumentos') is-invalid @enderror"
                                 form ="formRequisicao" style="display:none; margin-top:10px" name="requisicaoOutros"   cols="115" id="textareaOutrosDocumentos"
                                 required placeholder="O campo deve ser preenchido"></textarea>
                               @error('outrosDocumentos')
@@ -88,7 +85,7 @@
 
                               <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); validaCampos();"
                               href="{{ route('confirmacao-requisicao') }}" style="margin-right:10px">
-                              {{ ('Finalizar') }}
+                              {{ ('Solicitar') }}
                               </a>
                             </div>
                     </div>

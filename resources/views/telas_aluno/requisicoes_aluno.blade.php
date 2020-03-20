@@ -3,7 +3,7 @@
 @section('conteudo')
 <div>@include('componentes.mensagens')</div>
 <div class="container-fluid" style="min-height:100vh">
-  
+
   <div class="tabela-centro mx-auto table-striped">
     <p>
       <h3 align="center" style="color:red">Atenção</h3>
@@ -24,7 +24,7 @@
               <th scope="col">DATA DE REQUISIÇÃO</th>
               <th scope="col">PRAZO</th>
               <th scope="col">STATUS</th>
-              <th scope="col">ANOTACOES</th>
+              <th scope="col">ANOTAÇÕES</th>
               <th scope="col">DOCUMENTOS SOLICITADOS</th>
           </tr>
           </thead>
@@ -41,7 +41,7 @@
                     @endif
                   @endforeach
                 </td>
-                <td>{{$r->data_pedido}}</td>
+                <td>{{date_format(date_create($r->data_pedido), 'd/m/Y')}}</td>
                 <td>02 dias úteis</td>
                 <td align="cente">
                   <ol>
@@ -112,6 +112,14 @@
           @endforeach
           </tbody>
       </table>
+      <form method="GET" action="{{ route('home') }}">
+
+        <div class="col-md-8 offset-md-4">
+            <button type="submit"class="btn btn-primary btn-primary-lmts" align="center" style="margin-left:15%;margin-bottom:20px">
+            {{ __('Voltar para o Inicio') }}
+          </button>
+        </div>
+      </form>
 
   </div>
 </div>

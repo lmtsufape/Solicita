@@ -77,7 +77,7 @@
                               </div>
 
                               <div class="col-sm-4">
-                                <label for="unidade">Unidade Acadêmica</label>
+                                <label for="unidade">Instituição / Unidade Acadêmica</label>
                                 <select name="unidade" id="unidade"class="browser-default custom-select">
                                 <option value="" disable selected hidden>-- Selecionar Unidade --</option>
                                 @foreach($unidades as $unidade)
@@ -97,7 +97,7 @@
                                 <!-- Cursos-->
                                 <label for="cursos">Curso</label>
                                 <select name="cursos" id="cursos" class="browser-default custom-select">
-                                
+
                                     <option value="" disable selected hidden>-- Selecionar Curso --</option>
                                     @foreach($cursos as $curso)
                                     <option value="{{$curso->id}}">{{$curso->nome}}</option>
@@ -198,5 +198,10 @@
     </div>
 
 </div>
+<script type="text/javascript" >
+  $(document).ready(function($){
+    $('#cpf').mask('000.000.000-00');
 
+  });
+</script>
 @endsection
