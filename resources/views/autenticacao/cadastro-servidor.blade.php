@@ -35,7 +35,7 @@
             <div class="row justify-content-center">
               <div class="col-sm-12">
                 <label for="name" class="field a-field a-field_a3 page__field ">
-                <input id="matriculaServidor" type="name" class="form-control @error('matricula') is-invalid @enderror field__input a-field__input"
+                <input id="matriculaServidor" type="number" class="form-control @error('matricula') is-invalid @enderror field__input a-field__input"
                 name="matricula" value="{{ old('matricula') }}" required autocomplete="name" autofocus placeholder="Matricula">
 
                 <span class="a-field__label-wrap">
