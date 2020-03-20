@@ -7,11 +7,12 @@
 
     <title>Solicita</title>
 
+    <script src="{{ asset('js/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-mask-plugin.js')}}"></script>
     <link rel="stylesheet" href="{{ asset ('css/stylelmts.css') }}">
     <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style type="text/css">
 
         .bloco{
@@ -272,7 +273,7 @@
     @yield('conteudo')
   <!-- <div id="page-container">
   </div> -->
-  
+
 
   {{-- <div class="footer">
 
