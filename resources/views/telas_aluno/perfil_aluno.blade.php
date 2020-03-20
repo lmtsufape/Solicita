@@ -57,15 +57,15 @@
               <br>
           @endforeach
           <a id="submitRadio" href="{{route("excluir-perfil")}}" class="btn btn-secondary"
-            onclick="event.preventDefault();document.getElementById('formExcluirPerfil').submit();"
+            onclick="excluirPerfil()"
             style="margin-top: 50px; margin-right: 10px; float:right;">Excluir Perfil
           </a>
 
         </form>
-        <form method="GET" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}">
+        {{-- <form method="GET" enctype="multipart/form-data" id="formAdicionaPerfil" action="{{ route('adiciona-perfil') }}"> --}}
           <a href="{{route("adiciona-perfil")}}" class="btn btn-primary"
             style="margin-top: 50px; margin-right: 10px; float:right;background-color: #1B2E4F;border-color:#1B2E4F;color:white">Adicionar Perfil</a>
-        </form>
+        {{-- </form> --}}
   </div>
           @foreach($perfisAluno as $pa)
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -102,6 +102,15 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
 integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script>
+function excluirPerfil(){
+  confirma = confirm("Você tem certeza que deseja excluir este perfil?");
+  if(confirma){
+    event.preventDefault();
+    document.getElementById('formExcluirPerfil').submit();
+  }else{
+    event.preventDefault();
+  }
+}
 function confirma(){
     document.getElementById("formModal").submit();
 }
