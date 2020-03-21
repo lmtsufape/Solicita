@@ -9,7 +9,7 @@
       <h3 align="center" style="color:red">Atenção</h3>
       <h5 align="center" style="color:red">A entrega dos documentos solicitados está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
     </p>
-      <table class="table">
+      <table class="table" id="table">
         <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
             <h2 class="" style="padding-top:50px"> {{Auth::user()->name}} </h2>
@@ -18,22 +18,18 @@
           <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
           <tr>
               <th scope="col" align="center">#</th>
-              <th scope="col" align="center">CPF</th>
-              <th scope="col" align="center">NOME</th>
-              <th scope="col" align="center">CURSO</th>
-              <th scope="col" align="center">DATA E HORA DA REQUISIÇÃO</th>
-              <th scope="col" align="center">DOCUMENTOS SOLICITADOS</th>
-              <th scope="col" align="center">ANOTAÇÕES</th>
-              <th scope="col" align="center">STATUS</th>
-              <th scope="col" align="center">Ação</th>
+              <th scope="col" align="center" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">CURSO<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
+              <th scope="col" align="center" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA E HORA DA REQUISIÇÃO<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
+              <th scope="col" align="center" style="cursor:pointer">DOCUMENTOS SOLICITADOS</th>
+              <th scope="col" align="center" class="titleColumn" onclick="sortTable(4)" style="cursor:pointer">ANOTAÇÕES<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
+              <th scope="col" align="center" style="cursor:pointer">STATUS</th>
+              <th scope="col" align="center">AÇÃO</th>
           </tr>
           </thead>
           <tbody>
           @foreach($requisicoes as $r)
               <tr>
                 <th scope="row">{{$r->id}}</th>
-                <td>{{$aluno->cpf}}</td>
-                <td>{{Auth::user()->name}}</td>
                 <td>
                   @foreach($perfis as $p)
                     @if($p->id == $r->perfil_id)
@@ -138,6 +134,62 @@
           document.getElementById("formExcluirRequisicao").submit();
         }else{
           event.preventDefault();
+        }
+      }
+
+
+      function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("table");
+        switching = true;
+        // Set the sorting direction to ascending:
+        dir = "asc";
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+          // Start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /* Loop through all table rows (except the
+          first, which contains table headers): */
+          for (i = 1; i < (rows.length - 1); i++) {
+            // Start by saying there should be no switching:
+            shouldSwitch = false;
+            /* Get the two elements you want to compare,
+            one from current row and one from the next: */
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            /* Check if the two rows should switch place,
+            based on the direction, asc or desc: */
+            if (dir == "asc") {
+              if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                // If so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            } else if (dir == "desc") {
+              if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                // If so, mark as a switch and break the loop:
+                shouldSwitch = true;
+                break;
+              }
+            }
+          }
+          if (shouldSwitch) {
+            /* If a switch has been marked, make the switch
+            and mark that a switch has been done: */
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            // Each time a switch is done, increase this count by 1:
+            switchcount ++;
+          } else {
+            /* If no switching has been done AND the direction is "asc",
+            set the direction to "desc" and run the while loop again. */
+            if (switchcount == 0 && dir == "asc") {
+              dir = "desc";
+              switching = true;
+            }
+          }
         }
       }
     </script>
