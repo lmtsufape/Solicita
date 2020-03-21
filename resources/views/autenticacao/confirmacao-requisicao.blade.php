@@ -36,9 +36,9 @@
                           <b><h4><label><strong>Hora da requisição:</strong> </label>&nbsp{{$hour}}</h4></b>
 
                           <p>
-                            <h4 align="center" style="color:red">Prazo de Entrega do documento: <b>Até 02(dois) dias úteis</h4>
-                            <h4 align="center" style="color:red">Atenção</h4>
-                            <h4 align="center" style="color:red">A entrega dos documento(s) solicitado(s) está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h4>
+                            <strong><h4 align="center" style="">Atenção</h4></strong>
+                            <strong><h4 align="center" style="">Prazo de Entrega do documento: <b>Até 02(dois) dias úteis</h4></strong>
+                            <strong><h4 align="center" style="">A entrega dos documento(s) solicitado(s) está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h4></strong>
                           </p>
                       <!-- </label> -->
                           </div>
