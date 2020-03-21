@@ -31,7 +31,7 @@
                  <a href="{{ route("perfil-aluno") }}" style="text-decoration:none; color: inherit;">
                     <div class="card cartao text-center " style="border-radius: 30px">
                      <div class="card-body d-flex justify-content-center">
-                          <h2 style="padding-top:15px">Perfil</h2>
+                          <h2 style="padding-top:15px">Adicionar/ Editar Perfil</h2>
                        </div>
                     </div>
                  </a>
