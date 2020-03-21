@@ -26,6 +26,7 @@
               <th scope="col">STATUS</th>
               <th scope="col">ANOTAÇÕES</th>
               <th scope="col">DOCUMENTOS SOLICITADOS</th>
+              <th scope="col">Ação</th>
           </tr>
           </thead>
           <tbody>
@@ -108,6 +109,12 @@
               @endforeach
             </ol>
             </td>
+            <td align="center">
+              <form id="formExcluirRequisicao" onclick="confirmarExclusao()" action="{{route('excluir-requisicao',$r->id)}}" method="POST">
+                @csrf
+                <button class="btn" type="submit"><img src="{{asset('images/trash-solid.svg')}}" alt="" style="width:20px"></button>
+              </form>
+            </td>
             </tr>
           @endforeach
           </tbody>
@@ -125,4 +132,15 @@
 </div>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script>
+      function confirmarExclusao(){
+        confirma = confirm('Você tem certeza que deseja excluir esta requisicao?');
+        if(confirma){
+          document.getElementById("formExcluirRequisicao").submit();
+        }else{
+          event.preventDefault();
+        }
+      }
+    </script>
 @endsection

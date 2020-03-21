@@ -24,6 +24,15 @@ class RequisicaoController extends Controller
   {
     return view('autenticacao.formulario-requisicao');
   }
+
+  public function excluirRequisicao($id){
+    $requisicao = Requisicao::find($id);
+    // dd($requisicao->requisicao_documento());
+    $requisicao->requisicao_documento()->delete();
+    $requisicao->delete();
+    return redirect()->back();
+  }
+
   public function getRequisicoes(Request $request){
     $documento = Documento::where('id',$request->titulo_id)->first();
     $curso = Curso::where('id',$request->curso_id)->first();
