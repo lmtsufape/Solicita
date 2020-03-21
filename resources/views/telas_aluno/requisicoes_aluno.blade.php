@@ -17,16 +17,16 @@
         </div>
           <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
           <tr>
-              <th scope="col">#</th>
-              <th scope="col">CPF</th>
-              <th scope="col">NOME</th>
-              <th scope="col">CURSO</th>
-              <th scope="col">DATA DE REQUISIÇÃO</th>
-              <th scope="col">PRAZO</th>
-              <th scope="col">STATUS</th>
-              <th scope="col">ANOTAÇÕES</th>
-              <th scope="col">DOCUMENTOS SOLICITADOS</th>
-              <th scope="col">COMENTÁRIOS</th>
+              <th scope="col" align="center">#</th>
+              <th scope="col" align="center">CPF</th>
+              <th scope="col" align="center">NOME</th>
+              <th scope="col" align="center">CURSO</th>
+              <th scope="col" align="center">DATA DE REQUISIÇÃO</th>
+              <th scope="col" align="center">PRAZO</th>
+              <th scope="col" align="center">DOCUMENTOS SOLICITADOS</th>
+              <th scope="col" align="center">ANOTAÇÕES</th>
+              <th scope="col" align="center">STATUS</th>
+              <th scope="col" align="center">Ação</th>
           </tr>
           </thead>
           <tbody>
@@ -44,6 +44,35 @@
                 </td>
                 <td>{{date_format(date_create($r->data_pedido), 'd/m/Y')}}</td>
                 <td>02 dias úteis</td>
+                
+                <td>
+                  <ol>
+                    @foreach($requisicoes_documentos as $rd)
+                        @if($rd->requisicao_id == $r->id)
+                            <!-- Documentos Solicitados -->
+                              @foreach($documentos as $d)
+                                  @if($d->id == $rd->documento_id)
+                                    <li>
+                                      {{$d->tipo}}
+                                    </li>
+                                  @endif
+                              @endforeach
+                        @endif
+                    @endforeach
+                  </ol>
+                </td>
+                <td>
+                  <ol>
+                  @foreach($requisicoes_documentos as $rd)
+                    @if($rd->requisicao_id == $r->id)
+                    @if($rd->status=="Indeferido")
+                    Seu pedido foi Indeferido pelo(s) seguinte(s) motivo:
+                    @endif
+                          {{$rd->anotacoes}}
+                    @endif
+                  @endforeach
+                  </ol>
+                </td>
                 <td align="cente">
                   <ol>
                   @foreach($requisicoes_documentos as $rd)
@@ -80,44 +109,12 @@
                   @endforeach
                   </ol>
                 </td>
-                <td>
-                  @foreach($requisicoes_documentos as $rd)
-                    @if($rd->requisicao_id == $r->id)
-                    @if($rd->status=="Indeferido")
-                    Seu pedido foi Indeferido pelo(s) seguinte(s) motivo:
-                    @endif
-                          {{$rd->detalhes}}
-                    @endif
-                  @endforeach
+                <td align="center">
+                  <form id="formExcluirRequisicao" onclick="confirmarExclusao()" action="{{route('excluir-requisicao',$r->id)}}" method="POST">
+                    @csrf
+                    <button class="btn" type="submit"><img src="{{asset('images/trash-solid.svg')}}" alt="" style="width:20px"></button>
+                  </form>
                 </td>
-                <td>
-                  <ol>
-                    @foreach($requisicoes_documentos as $rd)
-                        @if($rd->requisicao_id == $r->id)
-                            <!-- Documentos Solicitados -->
-                              @foreach($documentos as $d)
-                                  @if($d->id == $rd->documento_id)
-                                    <li>
-                                      {{$d->tipo}}
-                                    </li>
-                                  @endif
-                              @endforeach
-                        @endif
-                    @endforeach
-                  </ol>
-                <td>
-                  <ol>
-                  @foreach($requisicoes_documentos as $rd)
-                    @if($rd->requisicao_id == $r->id)
-                    @if($rd->status=="Indeferido")
-                    Seu pedido foi Indeferido pelo(s) seguinte(s) motivo:
-                    @endif
-                          {{$rd->anotacoes}}
-                    @endif
-                  @endforeach
-                  </ol>
-                </td>
-            </td>
             </tr>
           @endforeach
           </tbody>
@@ -135,4 +132,15 @@
 </div>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script>
+      function confirmarExclusao(){
+        confirma = confirm('Você tem certeza que deseja excluir esta requisicao?');
+        if(confirma){
+          document.getElementById("formExcluirRequisicao").submit();
+        }else{
+          event.preventDefault();
+        }
+      }
+    </script>
 @endsection

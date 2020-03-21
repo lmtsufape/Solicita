@@ -51,6 +51,7 @@ Route::group(['middleware'=> 'CheckAluno'], function(){
     Route::post('/finaliza-requisicao', 'RequisicaoController@finalizaRequisicao')->name('finaliza-requisicao')->middleware('CheckAluno');
     Route::get('/cancela-requisicao', 'RequisicaoController@cancelaRequisicao')->name('cancela-requisicao')->middleware('CheckAluno');
     Route::get('/prepara-requisicao', 'RequisicaoController@preparaNovaRequisicao')->name('prepara-requisicao')->middleware('CheckAluno');
+    Route::post('/excluir-requisicao/{id}','RequisicaoController@excluirRequisicao')->name('excluir-requisicao');
     Route::get('/confirmacao-requisicao',function(){
       return view('autenticacao.confirmacao-requisicao');
     })->name('confirmacao-requisicao')->middleware('CheckAluno');

@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Requisicao_documento extends Model
 {
     //
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
     protected $fillable = ['anotacoes','status','status_data','detalhes'];
 
     public function requisicao(){

@@ -37,7 +37,8 @@ class HomeController extends Controller
                              ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                              ->join('cursos', 'perfils.curso_id', '=' ,'cursos.id')
                              ->select ('requisicao_documentos.id')
-                             ->where([['status','Em andamento'], ['deleted_at', null]])
+                            //  ->where([['status','Em andamento'], ['deleted_at', null]])
+                             ->where([['status','Em andamento']])
                              // ->groupBy('curso_id')
                              // ->select('curso_id', DB::raw('count(*) as total'))
                              ->get();
