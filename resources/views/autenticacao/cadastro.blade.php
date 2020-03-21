@@ -136,11 +136,11 @@
                             <label for="password" class="field a-field a-field_a3 page__field" >
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
                             name="password" required autocomplete="current-password" placeholder="Senha">
-
                             <span class="a-field__label-wrap">
                                 <span class="a-field__label">Senha</span>
                             </span>
                             </label>
+                            <span style="color:red">*Mínimo de 8 caracteres.</span>
                             @error('password')
                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
                             <strong>{{ $message }}</strong>
