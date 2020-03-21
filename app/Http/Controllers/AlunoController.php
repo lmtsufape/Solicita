@@ -35,7 +35,6 @@ class AlunoController extends Controller
     //ordena pela data e hora do pedido
     // $requisicoes = Requisicao::where('aluno_id',$aluno->id)->orderBy('data_pedido','desc')->orderBy('hora_pedido', 'desc')->get();
     $requisicoes = Requisicao::where('aluno_id',$aluno->id)->orderBy('id','desc')->get();
-
     $requisicoes_documentos = Requisicao_documento::where('aluno_id',$aluno->id)->get();
     $aluno= Aluno::where('user_id',$idUser)->first();
     $documentos = Documento::all();
