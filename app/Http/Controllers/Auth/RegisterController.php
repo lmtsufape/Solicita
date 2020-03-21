@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+// use Illuminate\Support\Facades\Mail;
+// use Illuminate\Support\Carbon;
+// use Illuminate\Support\Facades\Config;
+// use Illuminate\Support\Facades\URL;
+// use App\Mail\EmailVerification;
 
 class RegisterController extends Controller
 {
@@ -117,6 +122,22 @@ class RegisterController extends Controller
                             'curso_id' => $data['cursos'],
                             'unidade_id' => $data['unidade'],
                             ]);
+
+
+
+        //
+        // $verifyUrl = URL::temporarySignedRoute(
+        //   'verification.verify',
+        //   Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
+        //   [
+        //       'id' => $user->getKey(),
+        //       'hash' => sha1($user->getEmailForVerification()),
+        //   ]
+        // );
+        //
+        // $mail = new EmailVerification($verifyUrl, $user);
+        //
+        // Mail::to($user->email)->send($mail);
         return $user;
     }
 }

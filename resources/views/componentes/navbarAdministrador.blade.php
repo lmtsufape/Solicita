@@ -30,8 +30,8 @@
                            document.getElementById('usuario-form').submit();"style="color:white">
              {{Auth::user()->name}}
           </a>
-          <form id="usuario-form" action="{{ route('home-administrador') }}" method="GET" style="display: none;">
-              @csrf
+          <form id="usuario-form" action="{{ route('home') }}" method="GET" style="display: none;">
+
           </form>
         </li>
           @endif

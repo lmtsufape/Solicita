@@ -26,6 +26,7 @@
               <th scope="col">STATUS</th>
               <th scope="col">ANOTAÇÕES</th>
               <th scope="col">DOCUMENTOS SOLICITADOS</th>
+              <th scope="col">COMENTÁRIOS</th>
           </tr>
           </thead>
           <tbody>
@@ -79,7 +80,31 @@
                   @endforeach
                   </ol>
                 </td>
-
+                <td>
+                  @foreach($requisicoes_documentos as $rd)
+                    @if($rd->requisicao_id == $r->id)
+                    @if($rd->status=="Indeferido")
+                    Seu pedido foi Indeferido pelo(s) seguinte(s) motivo:
+                    @endif
+                          {{$rd->detalhes}}
+                    @endif
+                  @endforeach
+                </td>
+                <td>
+                  <ol>
+                    @foreach($requisicoes_documentos as $rd)
+                        @if($rd->requisicao_id == $r->id)
+                            <!-- Documentos Solicitados -->
+                              @foreach($documentos as $d)
+                                  @if($d->id == $rd->documento_id)
+                                    <li>
+                                      {{$d->tipo}}
+                                    </li>
+                                  @endif
+                              @endforeach
+                        @endif
+                    @endforeach
+                  </ol>
                 <td>
                   <ol>
                   @foreach($requisicoes_documentos as $rd)
@@ -92,21 +117,6 @@
                   @endforeach
                   </ol>
                 </td>
-                <td>
-                  <ol>
-              @foreach($requisicoes_documentos as $rd)
-                  @if($rd->requisicao_id == $r->id)
-                      <!-- Documentos Solicitados -->
-                        @foreach($documentos as $d)
-                            @if($d->id == $rd->documento_id)
-                              <li>
-                                {{$d->tipo}}
-                              </li>
-                            @endif
-                        @endforeach
-                  @endif
-              @endforeach
-            </ol>
             </td>
             </tr>
           @endforeach
