@@ -113,18 +113,8 @@
 
                           </div>
 
-                          <!-- Unidade Acadêmica-->
-                          <div class="row justify-content-center">
-
-                          </div>
-
-
-                          <div class="row justify-content-center">
-
-                          </div>
-
                           <!-- Form E-mail -->
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row justify-content-center" style="margin-top:20px">
 
                         <div class="col-md-4">
                             <label for="email" class="field a-field a-field_a3 page__field ">
@@ -146,11 +136,11 @@
                             <label for="password" class="field a-field a-field_a3 page__field" >
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror field__input a-field__input"
                             name="password" required autocomplete="current-password" placeholder="Senha">
-
                             <span class="a-field__label-wrap">
                                 <span class="a-field__label">Senha</span>
                             </span>
                             </label>
+                            <span style="color:red">*Mínimo de 8 caracteres.</span>
                             @error('password')
                             <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
                             <strong>{{ $message }}</strong>

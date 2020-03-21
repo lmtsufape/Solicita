@@ -21,8 +21,7 @@
               <th scope="col" align="center">CPF</th>
               <th scope="col" align="center">NOME</th>
               <th scope="col" align="center">CURSO</th>
-              <th scope="col" align="center">DATA DE REQUISIÇÃO</th>
-              <th scope="col" align="center">PRAZO</th>
+              <th scope="col" align="center">DATA E HORA DA REQUISIÇÃO</th>
               <th scope="col" align="center">DOCUMENTOS SOLICITADOS</th>
               <th scope="col" align="center">ANOTAÇÕES</th>
               <th scope="col" align="center">STATUS</th>
@@ -42,8 +41,7 @@
                     @endif
                   @endforeach
                 </td>
-                <td>{{date_format(date_create($r->data_pedido), 'd/m/Y')}}</td>
-                <td>02 dias úteis</td>
+                <td>{{date_format(date_create($r->data_pedido), 'd/m/Y')}}, {{$r->hora_pedido}}</td>
                 
                 <td>
                   <ol>

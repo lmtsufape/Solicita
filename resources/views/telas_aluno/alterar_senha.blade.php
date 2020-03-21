@@ -42,6 +42,7 @@
                         <span class="a-field__label">Nova Senha</span>
                     </span>
                     </label>
+                    <span style="color:red">*Mínimo de 8 caracteres.</span>
                     @error('password')
                     <span class="invalid-feedback" role="alert" style="overflow: visible; display:block;">
                     <strong>{{ $message }}</strong>
