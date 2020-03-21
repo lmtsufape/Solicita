@@ -113,18 +113,8 @@
 
                           </div>
 
-                          <!-- Unidade Acadêmica-->
-                          <div class="row justify-content-center">
-
-                          </div>
-
-
-                          <div class="row justify-content-center">
-
-                          </div>
-
                           <!-- Form E-mail -->
-                    <div class="form-group row justify-content-center">
+                    <div class="form-group row justify-content-center" style="margin-top:20px">
 
                         <div class="col-md-4">
                             <label for="email" class="field a-field a-field_a3 page__field ">
