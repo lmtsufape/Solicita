@@ -34,8 +34,8 @@
                 </br>
                 <div>
                   <input type="checkbox" name="declaracaoVinculo"     value="Declaracao de Vinculo"
-                    id="declaracaoVinculo"> Declaração de Vínculo (Também disponível pelo link:</input>
-                      <a target="_blank" href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>).</br>
+                    id="declaracaoVinculo"> Declaração de Vínculo Também disponível pelo link:</input>
+                      <a target="_blank" href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>.</br>
                 </div>
                 <div>
                   <input type="checkbox" name="comprovanteMatricula"  value="Comprovante de Matricula"  id="comprovanteMatricula"> Comprovante de matrícula.</input></br>
@@ -83,7 +83,7 @@
                                 {{ ('Cancelar') }}
                               </a>
 
-                              <a class="btn btn-primary btn-primary-lmts" onclick="event.preventDefault(); validaCampos();"
+                              <a class="btn btn-primary-lmts" onclick="event.preventDefault(); validaCampos();"
                               href="{{ route('confirmacao-requisicao') }}" style="margin-right:10px">
                               {{ ('Solicitar') }}
                               </a>
