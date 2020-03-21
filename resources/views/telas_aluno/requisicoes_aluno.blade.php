@@ -9,7 +9,7 @@
       <h3 align="center" style="color:red">Atenção</h3>
       <h5 align="center" style="color:red">A entrega dos documentos solicitados está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
     </p>
-      <table class="table">
+      <table class="table table-responsive">
         <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
             <h2 class="" style="padding-top:50px"> {{Auth::user()->name}} </h2>
@@ -17,16 +17,16 @@
         </div>
           <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
           <tr>
-              <th scope="col">#</th>
-              <th scope="col">CPF</th>
-              <th scope="col">NOME</th>
-              <th scope="col">CURSO</th>
-              <th scope="col">DATA DE REQUISIÇÃO</th>
-              <th scope="col">PRAZO</th>
-              <th scope="col">STATUS</th>
-              <th scope="col">ANOTAÇÕES</th>
-              <th scope="col">DOCUMENTOS SOLICITADOS</th>
-              <th scope="col">Ação</th>
+              <th scope="col" align="center">#</th>
+              <th scope="col" align="center">CPF</th>
+              <th scope="col" align="center">NOME</th>
+              <th scope="col" align="center">CURSO</th>
+              <th scope="col" align="center">DATA DE REQUISIÇÃO</th>
+              <th scope="col" align="center">PRAZO</th>
+              <th scope="col" align="center">DOCUMENTOS SOLICITADOS</th>
+              <th scope="col" align="center">ANOTAÇÕES</th>
+              <th scope="col" align="center">STATUS</th>
+              <th scope="col" align="center">Ação</th>
           </tr>
           </thead>
           <tbody>
@@ -44,6 +44,35 @@
                 </td>
                 <td>{{date_format(date_create($r->data_pedido), 'd/m/Y')}}</td>
                 <td>02 dias úteis</td>
+                
+                <td>
+                  <ol>
+                    @foreach($requisicoes_documentos as $rd)
+                        @if($rd->requisicao_id == $r->id)
+                            <!-- Documentos Solicitados -->
+                              @foreach($documentos as $d)
+                                  @if($d->id == $rd->documento_id)
+                                    <li>
+                                      {{$d->tipo}}
+                                    </li>
+                                  @endif
+                              @endforeach
+                        @endif
+                    @endforeach
+                  </ol>
+                </td>
+                <td>
+                  <ol>
+                  @foreach($requisicoes_documentos as $rd)
+                    @if($rd->requisicao_id == $r->id)
+                    @if($rd->status=="Indeferido")
+                    Seu pedido foi Indeferido pelo(s) seguinte(s) motivo:
+                    @endif
+                          {{$rd->anotacoes}}
+                    @endif
+                  @endforeach
+                  </ol>
+                </td>
                 <td align="cente">
                   <ol>
                   @foreach($requisicoes_documentos as $rd)
@@ -80,41 +109,12 @@
                   @endforeach
                   </ol>
                 </td>
-
-                <td>
-                  <ol>
-                  @foreach($requisicoes_documentos as $rd)
-                    @if($rd->requisicao_id == $r->id)
-                    @if($rd->status=="Indeferido")
-                    Seu pedido foi Indeferido pelo(s) seguinte(s) motivo:
-                    @endif
-                          {{$rd->anotacoes}}
-                    @endif
-                  @endforeach
-                  </ol>
+                <td align="center">
+                  <form id="formExcluirRequisicao" onclick="confirmarExclusao()" action="{{route('excluir-requisicao',$r->id)}}" method="POST">
+                    @csrf
+                    <button class="btn" type="submit"><img src="{{asset('images/trash-solid.svg')}}" alt="" style="width:20px"></button>
+                  </form>
                 </td>
-                <td>
-                  <ol>
-              @foreach($requisicoes_documentos as $rd)
-                  @if($rd->requisicao_id == $r->id)
-                      <!-- Documentos Solicitados -->
-                        @foreach($documentos as $d)
-                            @if($d->id == $rd->documento_id)
-                              <li>
-                                {{$d->tipo}}
-                              </li>
-                            @endif
-                        @endforeach
-                  @endif
-              @endforeach
-            </ol>
-            </td>
-            <td align="center">
-              <form id="formExcluirRequisicao" onclick="confirmarExclusao()" action="{{route('excluir-requisicao',$r->id)}}" method="POST">
-                @csrf
-                <button class="btn" type="submit"><img src="{{asset('images/trash-solid.svg')}}" alt="" style="width:20px"></button>
-              </form>
-            </td>
             </tr>
           @endforeach
           </tbody>
