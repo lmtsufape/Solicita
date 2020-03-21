@@ -21,6 +21,7 @@ class CreatePerfilsTable extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
     }
 
     /**
