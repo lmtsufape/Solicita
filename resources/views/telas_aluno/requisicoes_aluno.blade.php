@@ -9,7 +9,7 @@
       <h3 align="center" style="color:red">Atenção</h3>
       <h5 align="center" style="color:red">A entrega dos documentos solicitados está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h5>
     </p>
-      <table class="table table-responsive">
+      <table class="table">
         <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
             <h2 class="" style="padding-top:50px"> {{Auth::user()->name}} </h2>
