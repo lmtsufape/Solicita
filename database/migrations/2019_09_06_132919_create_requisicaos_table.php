@@ -24,6 +24,10 @@ class CreateRequisicaosTable extends Migration
             $table->time('hora_pedido');
             $table->timestamps();
         });
+
+        Schema::table('requisicaos', function ($table) {
+            $table->softDeletes();
+        });
     }
 
     /**

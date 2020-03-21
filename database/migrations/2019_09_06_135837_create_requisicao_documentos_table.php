@@ -19,6 +19,10 @@ class CreateRequisicaoDocumentosTable extends Migration
             $table->string('detalhes')->nullable();
             $table->timestamps();
         });
+
+        Schema::table('requisicao_documentos', function ($table) {
+            $table->softDeletes();
+        });
     }
     /**
      * Reverse the migrations.
