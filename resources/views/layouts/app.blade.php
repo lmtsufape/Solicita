@@ -279,7 +279,7 @@
 				<div class="col-sm-2">
 					<div class="row justify-content-center">
 						<div class="col-sm-12 styleRodape_Imagem_ufape">
-							<a href="http://ww3.uag.ufrpe.br/"><img src="icones/ufape_logo.png" alt="Logo" width="40px;" /></a>
+							<a href="http://ww3.uag.ufrpe.br/"><img src="{{asset('images/logoUfape.svg')}}" alt="Logo" width="40px;" /></a>
 						</div>
 						<div class="col-sm-12 styleRodape_Texto">
 							<label>Universidade Federal do Agreste de Pernambuco</label>
@@ -300,7 +300,8 @@
 					<div class="row" style="width: 90%">
 						<div class="styleRodape_linha_left">
 							<div class="col-sm-12 styleRodape_Texto_Titulo">Mapa do site</div>
-							<div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/content/apresenta%C3%A7%C3%A3o" style="color:white">Quem Somos</a></div>
+              <div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/content/apresenta%C3%A7%C3%A3o" style="color:white">Quem Somos</a></div>
+              <div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/content/solicita" style="color:white">O Solicita</a></div>
 							<div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/content/equipe" style="color:white">Equipe</a></div>
 							<div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/noticias" style="color:white">Notícia</a></div>
 							<div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/content/projetos" style="color:white">Projetos</a></div> 
@@ -348,7 +349,8 @@
 								</div>
 						</div>
 					</div>
-				</div>
+        </div>
+        
 				<div class="col-sm-2 ">
 					<div class="row">
 						<div class="styleRodape_linha_left">
@@ -356,7 +358,7 @@
 							<div class="col-sm-12">
 								<div class="row">
 									<div class="col-sm-12" style="padding-bottom: 1rem; padding-left: 10px;">
-										<a href="http://www.ufrpe.br/"><img src="{{asset('icones/logo-ufrpe-branca.png')}}" alt="Logo" width="90px;" /></a>
+										<a href="http://www.ufrpe.br/"><img src="{{asset('icones/logo-ufrpe-branca.png')}}" alt="Logo" height="115px;" /></a>
 									</div>
 									
 								</div>

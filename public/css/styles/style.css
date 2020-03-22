@@ -1,67 +1,8 @@
-/*-- MENU --*/
-.styleMenuPrincipal{
-	background-color: #2f306f;
-}
-.styleMenuPrincipal_titulo{
-	font-size: 23px;
-}
-.styleMenuPrincipal_input{
-	width: 100%; 
-	margin: 2px; 
-	font-style: italic;
-}
-.styleMenuPrincipal_button{
-	background-color: red;
-	padding-top: 10px;
-}
-/*--x MENU x--*/
 
-/*-- CONTEUDO --*/
-/*-- AVISO --*/
-.styleConteudo_aviso{
-	background-color: #f9e154;
-	width: 100%; 
-	height: 65px;
-}
-.svg{
-	filter: invert(.5) sepia(1) saturate(5);
-	/*fill:red;*/
-}
-.styleConteudo_mensagem{
-	padding-top: 1.2rem;
-	padding-left: 0.5rem;
-}
-/*--x AVISO x--*/
-/*-- CONTEUDO DO SITE --*/
-.styleCategoria_conteiner_button{
-	padding: 1rem;  
-	padding-left: 0rem;
-}
-
-.styleCategoria_button{
-	width: 130px; 
-	height: 130px; 
-	background-color: white; 
-	border-color: #d9d9d9;
-	border-radius: 25px;
-}
-.styleCategoria_button:hover{
-	width: 130px; 
-	height: 130px; 
-	background-color: white; 
-	border-color: red;
-	border-width: 3px;
-	border-radius: 25px;
-}
-.styleCategoria_imagem{
-	padding-top: 1rem;
-	padding-bottom: 0.5rem;
-}
-/*--x CONTEUDO DO SITE --*/
-/*--x CONTEUDO x--*/
 /*-- RODAPE --*/
 .styleRodape{
-	background-color: #2f306f;
+	/* background-color: rgb(70, 70, 70); */
+	background-color: #1b2e4f;
 }
 
 .styleRodape_Imagem_ufape{
@@ -91,6 +32,9 @@
 }
 .styleRodape_container{
 	/* padding-bottom: 0.1rem; */
+}
+.styleRodape_container .col{
+	margin-bottom:10px;
 }
 .styleRodape_Texto_Contato{
 	font-size: 14px; 
