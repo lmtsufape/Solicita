@@ -5,6 +5,7 @@
   <div class="row justify-content-center">
     <div>@include('componentes.mensagens')</div>
   </div>
+  
   <div class="row justify-content-center">
     <div class="col-sm-3">
       <div class="card card-cadastro">
@@ -69,15 +70,14 @@
                       @enderror
                   </select>
 
-                  <input style="margin-top:20px" type="checkbox" name="selecaoPadrao"  value="true">Definir como padrão
-                  </input>
+                  <input style="margin-top:20px" type="checkbox" name="selecaoPadrao"  value="true">Definir como padrão</input>
                 </div>
               </div>
 
               <!-- Botões -->
               <div class="form-group row justify-content-center" style="margin-top:60px">
                   <div class="col-sm-6">
-                  <a class="btn btn-secondary btn-cadastro-primary" href="{{  route('perfil-aluno')}}" >Voltar</a>
+                    <a class="btn btn-secondary btn-cadastro-primary" href="{{  route('perfil-aluno')}}" >Voltar</a>
                   </div>
 
                   <div class="col-sm-6">
@@ -95,5 +95,5 @@
 
     </div>
   </div>
-
+</div>
 @endsection

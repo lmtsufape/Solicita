@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset ('css/stylelmts.css') }}">
     <link rel="stylesheet" href="{{ asset ('css/app.css') }}">
     <link href="{{ asset('css/field-animation.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles/style.css') }}" rel="stylesheet">
 
     <style type="text/css">
 
@@ -232,7 +233,7 @@
   {{-- <div id="content-wrap">
   </div> --}}
     <!-- Barra de Logos -->
-    <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0">
+    <div id="barra-logos" lass-"container" style="background:#FFFFFF; margin-top: 1px; height: 150px; padding: 10px 0 10px 0;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
       <ul id="logos" style="list-style:none;">
           <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
               <a href="#"><img src="{{asset('images/logo.png')}}" style = "margin-left: 8px; margin-top:5px " height="120px" align = "left" ></a>
@@ -271,104 +272,106 @@
         @endif
     @endif
     @yield('conteudo')
-  <!-- <div id="page-container">
-  </div> -->
+  <!-- rodape -->
+	<div class="styleRodape">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-2">
+					<div class="row justify-content-center">
+						<div class="col-sm-12 styleRodape_Imagem_ufape">
+							<a href="http://ww3.uag.ufrpe.br/"><img src="icones/ufape_logo.png" alt="Logo" width="40px;" /></a>
+						</div>
+						<div class="col-sm-12 styleRodape_Texto">
+							<label>Universidade Federal do Agreste de Pernambuco</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="row justify-content-center">
+						<div class="col-sm-12 styleRodape_Imagem_lmts">
+							<a href="http://lmts.uag.ufrpe.br/"><img src="icones/lmts_logo.png" alt="Logo" width="125px;" /></a>
+						</div>
+						<div class="col-sm-12 styleRodape_Texto">
+							<label>Laboratório Multidisciplinar de Tecnologias Sociais</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2" >
+					<div class="row" style="width: 90%">
+						<div class="styleRodape_linha_left">
+							<div class="col-sm-12 styleRodape_Texto_Titulo">Mapa do site</div>
+							<div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/content/apresenta%C3%A7%C3%A3o" style="color:white">Quem Somos</a></div>
+							<div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/content/equipe" style="color:white">Equipe</a></div>
+							<div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/noticias" style="color:white">Notícia</a></div>
+							<div class="col-sm-12 styleRodape_Texto_Conteudo_MapaDoSite"><a href="http://lmts.uag.ufrpe.br/br/content/projetos" style="color:white">Projetos</a></div> 
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3" style="width: 110%;">
+					<div class="row">
+						<div class="styleRodape_linha_left">
+							<div class="col-sm-12 styleRodape_Texto_Titulo">Contato</div>
+								<div class="col-sm-12 styleRodape_container">
+									<div class="row">
+										<div class="col">
+											<img src="{{asset('icones/instagram_logo.svg')}}" alt="Logo" width="20px;" />
+											<a href="" class="styleRodape_Texto_Contato" style="color: white;">@lmts_ufape
 
-
-  {{-- <div class="footer">
-
-    <div class="row justify-content-center">
-      <div class="col-sm-3 coluna">
-        <div class="row justify-content-center">
-          <small>Desenvolvidor por:</small>
-        </div>
-        <div class="row justify-content-center">
-          <a href="http://www.lmts.uag.ufrpe.br/br" name="lmts">
-            <img src="{{asset('images/lmts.png')}}" style="margin:20px 0 20px 0">
-          </a>
-        </div>
-        <div class="row justify-content-center" style="text-align:center">
-          Laboratório Multidisciplinar de<br>
-          Tecnologias Sociais
-        </div>
-        <div class="row justify-content-center" style="margin-top:20px; text-align:center">
-          <small>
-            Avenida Bom Pastor, s/n.º<br>
-            Bairro Boa Vista - CEP:<br>
-            55292-270 - Garanhuns - PE
-          </small>
-        </div>
-
-      </div>
-      <div class="col-sm-3 coluna">
-        <div class="row justify-content-center">
-          <h3>LMTS</h3>
-        </div>
-        <div class="row sobre justify-content-center">
-          <a href="http://www.lmts.uag.ufrpe.br/br/content/apresenta%C3%A7%C3%A3o">Quem Somos</a>
-        </div>
-        <div class="row sobre justify-content-center">
-          <a href="http://www.lmts.uag.ufrpe.br/br/content/equipe">Equipe</a>
-        </div>
-        <div class="row sobre justify-content-center">
-          <a href="http://www.lmts.uag.ufrpe.br/br/noticias">Notícias</a>
-        </div>
-        <div class="row sobre justify-content-center">
-          <a href="http://www.lmts.uag.ufrpe.br/br/content/projetos">Projetos</a>
-        </div>
-        <div class="row social-network justify-content-center">
-          <h6>Siga-nos nas Redes Sociais</h6>
-        </div>
-        <div class="row justify-content-center">
-          <div class="social">
-            <a href="https://www.facebook.com/LMTSUFAPE/">
-              <img src="{{asset('images/facebook-square-brands.svg')}}" alt="">
-            </a>
-          </div>
-          <div class="social">
-            <a href="https://www.instagram.com/lmts_ufape/">
-              <img src="{{asset('images/instagram-brands.svg')}}" alt="">
-            </a>
-          </div>
-          <div class="social">
-            <a href="https://twitter.com/lmtsufape">
-              <img src="{{asset('images/twitter-brands.svg')}}" alt="">
-            </a>
-          </div>
-          <div class="social">
-            <a href="https://br.linkedin.com/in/lmts-ufrpe-0b25b9196?trk=people-guest_people_search-card">
-              <img src="{{asset('images/linkedin-brands.svg')}}" alt="">
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3 coluna">
-        <div class="row justify-content-center">
-          <h3>CONTATO</h3>
-        </div>
-        <div class="row justify-content-center">
-          <a href="mailto:lmts@ufrpe.br">lmts@ufrpe.br</a>
-        </div>
-      </div>
-      <div class="col-sm-3 coluna ">
-        <div class="row justify-content-center">
-          <h3>APOIO</h3>
-
-        </div>
-        <div class="row justify-content-center">
-
-          <a href="http://ww3.uag.ufrpe.br/">
-            <img style="width:77px" src="{{asset('images/logoUfape.svg')}}" alt="">
-          </a>
-        </div>
-        <div class="row justify-content-center">
-          Universidade Federal Rural<br>
-          do Agreste de Pernambuco
-        </div>
-      </div>
-    </div>
-</div> --}}
-
+                      </a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 styleRodape_container">
+									<div href="" class="row">
+										
+										<div class="col">
+											<img src="{{asset('icones/facebook_logo.svg')}}" alt="Logo" width="20px;" />
+											<a href="" class="styleRodape_Texto_Contato" style="color: white;">@lmtsufape</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 styleRodape_container">
+									<div class="row">
+										<div class="col">
+											<img src="{{asset('icones/twitter-brands.svg')}}" alt="Logo" width="20px;" />
+											<a href="https://twitter.com/lmtsufape" class="styleRodape_Texto_Contato" style="color: white;">@lmtsufape</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12 styleRodape_container">
+									<div class="row">
+										<div class="col">
+											<img src="{{asset('icones/linkedin-brands.svg')}}" alt="Logo" width="20px;" />
+											<a href="https://br.linkedin.com/in/lmts-ufrpe-0b25b9196?trk=people-guest_people_search-card" class="styleRodape_Texto_Contato" style="color: white;">LMTS</a>
+										</div>
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-2 ">
+					<div class="row">
+						<div class="styleRodape_linha_left">
+							<div class="col-sm-12 styleRodape_Texto_Titulo">Apoio</div>
+							<div class="col-sm-12">
+								<div class="row">
+									<div class="col-sm-12" style="padding-bottom: 1rem; padding-left: 10px;">
+										<a href="http://www.ufrpe.br/"><img src="{{asset('icones/logo-ufrpe-branca.png')}}" alt="Logo" width="90px;" /></a>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center styleRodape_container styleRodape_linha_top">
+				<img src="icones/local_logo.svg" alt="Logo" width="10px;" />
+				<a class="styleRodape_Texto" style="padding: 0.5rem; color: white;">Avenida Bom Pastor. s/nº Bairro Boa Vista - CEP 55292-270 - Garanhuns - PE</a>
+			</div>
+		</div>
+	</div>
+	<!--x rodape x-->
 
 </body>
 <!-- jQuery library -->
