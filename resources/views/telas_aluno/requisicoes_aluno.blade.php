@@ -21,7 +21,6 @@
               <th scope="col" align="center" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">CURSO<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
               <th scope="col" align="center" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA E HORA DA REQUISIÇÃO<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
               <th scope="col" align="center" style="cursor:pointer">DOCUMENTOS SOLICITADOS</th>
-              <th scope="col" align="center" class="titleColumn" onclick="sortTable(4)" style="cursor:pointer">ANOTAÇÕES<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
               <th scope="col" align="center" style="cursor:pointer">STATUS</th>
               <th scope="col" align="center">AÇÃO</th>
           </tr>
@@ -40,7 +39,7 @@
                 <td>{{date_format(date_create($r->data_pedido), 'd/m/Y')}}, {{$r->hora_pedido}}</td>
                 
                 <td>
-                  <ol>
+                  <ol style="margin-left:-30px">
                     @foreach($requisicoes_documentos as $rd)
                         @if($rd->requisicao_id == $r->id)
                             <!-- Documentos Solicitados -->
@@ -55,18 +54,7 @@
                     @endforeach
                   </ol>
                 </td>
-                <td>
-                  <ol>
-                  @foreach($requisicoes_documentos as $rd)
-                    @if($rd->requisicao_id == $r->id)
-                    @if($rd->status=="Indeferido")
-                    Seu pedido foi Indeferido pelo(s) seguinte(s) motivo:
-                    @endif
-                          {{$rd->anotacoes}}
-                    @endif
-                  @endforeach
-                  </ol>
-                </td>
+                
                 <td align="cente">
                   <ol>
                   @foreach($requisicoes_documentos as $rd)
@@ -90,13 +78,14 @@
                           </span>
                         </li>
                         @endif
+                        {{-- Status do indeferimento com imagem do olho --}}
                         @if($rd->status=="Indeferido")
                         <li style="color:red">
                           {{$rd->status}}
-                          <span class="glyphicon glyphicon-exclamation-sign" style="overflow: hidden; color:red"
-                          data-toggle="tooltip" data-placement="top"
-                          title="Requisição indeferida">
-                          </span>
+                        <a href="" data-toggle="tooltip" data-placement="left" title="Seu pedido foi Indeferido pelo(s) seguinte(s) motivo: {{$rd->anotacoes}}">
+                            <img src="{{asset('images/eye-regular.svg')}}" style="width:25px" alt="">
+                          </a>
+                          
                         </li>
                         @endif
                       @endif
