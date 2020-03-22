@@ -6,7 +6,7 @@
 <div class="container-fluid background-blue" style="min-height:110vh">
   <div class="row justify-content-center">
     <div class="col-sm-3">
-      <div class="card card-cadastro-servidor">
+      <div class="card card-cadastro card-cadastro-servidor">
         <div class="card-body">
 
           <div class="row justify-content-center">
