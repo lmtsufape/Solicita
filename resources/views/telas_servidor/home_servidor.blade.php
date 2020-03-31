@@ -23,6 +23,7 @@
               document.getElementById('cursoIdDeclaracao4').value = selectedValue;
               document.getElementById('cursoIdDeclaracao5').value = selectedValue;
               // document.getElementById('cursoIdDeclaracao6').value = selectedValue;
+
           }
       </script>
       <div class="card-deck d-flex justify-content-center">
@@ -52,13 +53,14 @@
       var selectedValue = document.getElementById("cursos").value;
       var selecionado = selectedValue;
       var array = @json($requisicoes);
+      
       var aux, i;
       tamanho = array.length;
       // document.reload();
       var vinculo = 0, matricula = 0, historico = 0 , programa = 0, outros = 0;
-      console.log(array);
+     
       for(i = 0; i < tamanho; i++){
-
+        console.log(array[i].documento_id, 1, array[i].curso, selecionado)
         if(array[i].documento_id == 1 && array[i].curso == selecionado){
           vinculo++;
         }
@@ -83,5 +85,17 @@
     }
 
     quantidades(document.getElementById('optionComOValor').value);
+
+    $('#cursos').on('change', function() {
+      quantidades(document.getElementById('optionComOValor').value);
+    })
+    
+    
+
+    $(function(){
+      getSelectValue();
+      
+    })
+
 </script>
 @endsection
