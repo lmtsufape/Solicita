@@ -38,11 +38,12 @@
         <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA DE REQUISIÇÃO
           <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
         <th scope="col" class="titleColumn">HORA DE REQUISIÇÃO</th>
-        <th scope="col" class="titleColumn" >AÇÃO</th>
-        <!-- <th scope="col" class="titleColumn" >STATUS</th> -->
         @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
             <th scope="col">INFORMAÇÕES</th>
         @endif
+        <th scope="col" class="titleColumn" >AÇÃO</th>
+        <!-- <th scope="col" class="titleColumn" >STATUS</th> -->
+        
         </tr>
         </thead>
           <tbody>
@@ -61,6 +62,16 @@
               <td>{{$requisicao_documento['vinculo']}}</td>
               <td>{{$requisicao_documento['status_data']}}</td>
               <td>{{$requisicao_documento['status_hora']}}</td>
+               @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
+                 <td class="td-align">                                 
+                    <a data-toggle="tooltip" data-placement="left" title="Informações:{{$requisicao_documento['detalhes']}} ">                    
+                        <span onclick="exibirAnotacoes()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$requisicao_documento['detalhes']])
+                        @endcomponent                             
+                    </a>
+                  </td>
+              @endif
+              
               <td>
                 <a id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true" onclick="mudarId({{$requisicao_documento['id']}});"
                       data-whatever="{{$requisicao_documento['nome']}}">
@@ -73,24 +84,34 @@
                       </span>
                 </a>
               </td>
+              
               </tr>
-                @endforeach
+              @endforeach
+
               <!-- </div> -->
           </tbody>
-            <!-- <tfoot>
-              <tr>
-              <td>
-                <td>
-                </tr>
-              </tfoot> -->
-          </form>
+          <tfoot>
+            <tr>
+              
+              
+            </tr>
+          </tfoot>
+            
+          {{-- </form> --}}
         </table>
-        @if(isset($listaRequisicao_documentos))
-          @if(sizeof($listaRequisicao_documentos) > 0)
-            <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
-            class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
-          @endif
-        @endif
+        <table style="width:100%">
+          <tr>
+            @if(isset($listaRequisicao_documentos))
+              @if(sizeof($listaRequisicao_documentos) > 0)
+                <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
+                class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
+              @endif
+            @endif
+          </tr>
+        </table>
+        
+
+        
     </div>
     @foreach($listaRequisicao_documentos as $requisicao_documento)
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -256,6 +277,12 @@ function sortTable(n) {
     }
   }
 }
+
+function exibirAnotacoes(anotacoes){        
+  $('#dlgAnotacoes').modal('show');
+
+}
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"

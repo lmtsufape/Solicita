@@ -46,7 +46,17 @@
                               @foreach($documentos as $d)
                                   @if($d->id == $rd->documento_id)
                                     <li>
-                                      {{$d->tipo}}
+                                      @if($d->tipo == "Programa de Disciplina" || $d->tipo == "Outros" )
+                                        {{$d->tipo}}
+                                        <a data-toggle="tooltip" data-placement="left" title="Informações:{{$rd['detalhes']}} ">
+                                          <span onclick="exibirAnotacoes()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 
+                                          @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$rd->detalhes])
+                                          @endcomponent                             
+                                        </a>
+                                      @else
+                                        {{$d->tipo}}
+                                        
+                                      @endif
                                     </li>
                                   @endif
                               @endforeach
@@ -83,9 +93,12 @@
                         <li style="color:red">
                           {{$rd->status}}
                           <a data-toggle="tooltip" data-placement="left" title="Seu pedido foi Indeferido pelo(s) seguinte(s) motivo: {{$rd->anotacoes}}">
-                              <img onclick="exibirAnotacoes()" src="{{asset('images/eye-regular.svg')}}" style="width:25px" alt="">
-                          </a>
+                              <span onclick="exibirAnotacoes()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 
+                              @component('componentes.popup', ["titulo"=>"Motivo do indeferimento:" ,"conteudo" => $rd->anotacoes ])
+                              @endcomponent                             
+                          </a>                          
                         </li>
+
                         @endif
                       @endif
                   @endforeach
@@ -112,7 +125,7 @@
 
   </div>
 
-    <div class="modal" tabindex="-1" role="dialog" id="dlgAnotacoes">
+    {{-- <div class="modal" tabindex="-1" role="dialog" id="dlgAnotacoes">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -129,7 +142,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> --}}
 
     
 
