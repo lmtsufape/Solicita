@@ -46,7 +46,17 @@
                               @foreach($documentos as $d)
                                   @if($d->id == $rd->documento_id)
                                     <li>
-                                      {{$d->tipo}}
+                                      @if($d->tipo == "Programa de Disciplina" || $d->tipo == "Outros" )
+                                        {{$d->tipo}}
+                                        <a data-toggle="tooltip" data-placement="left" title="Informações:{{$rd['detalhes']}} ">
+                                          <span onclick="exibirAnotacoes()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 
+                                          @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$rd->detalhes])
+                                          @endcomponent                             
+                                        </a>
+                                      @else
+                                        {{$d->tipo}}
+                                        
+                                      @endif
                                     </li>
                                   @endif
                               @endforeach
@@ -82,11 +92,13 @@
                         @if($rd->status=="Indeferido")
                         <li style="color:red">
                           {{$rd->status}}
-                        <a href="" data-toggle="tooltip" data-placement="left" title="Seu pedido foi Indeferido pelo(s) seguinte(s) motivo: {{$rd->anotacoes}}">
-                            <img src="{{asset('images/eye-regular.svg')}}" style="width:25px" alt="">
-                          </a>
-                          
+                          <a data-toggle="tooltip" data-placement="left" title="Seu pedido foi Indeferido pelo(s) seguinte(s) motivo: {{$rd->anotacoes}}">
+                              <span onclick="exibirAnotacoes()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 
+                              @component('componentes.popup', ["titulo"=>"Motivo do indeferimento:" ,"conteudo" => $rd->anotacoes ])
+                              @endcomponent                             
+                          </a>                          
                         </li>
+
                         @endif
                       @endif
                   @endforeach
@@ -112,6 +124,28 @@
       </form>
 
   </div>
+
+    {{-- <div class="modal" tabindex="-1" role="dialog" id="dlgAnotacoes">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"> <strong>Motivo do indeferimento:</strong> </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modalBody">
+            {{$rd->anotacoes}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div> --}}
+
+    
+
 </div>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -181,5 +215,15 @@
           }
         }
       }
+
+      function exibirAnotacoes(anotacoes){        
+        $('#dlgAnotacoes').modal('show');
+    
+      }
+
+      
+
     </script>
+
+
 @endsection

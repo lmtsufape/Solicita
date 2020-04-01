@@ -15,6 +15,12 @@
     <link href="{{ asset('css/styles/style.css') }}" rel="stylesheet">
 
     <style type="text/css">
+        
+
+        .td-align {
+           text-align: center;     /* alinhamento horizontal */
+           vertical-align: middle; /* alinhamento vertical */
+        }
 
         .bloco{
           background-color: #edf0f5;

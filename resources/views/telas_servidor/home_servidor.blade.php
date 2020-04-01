@@ -16,7 +16,6 @@
       <script>
           function getSelectValue(){
               var selectedValue = document.getElementById("cursos").value;
-              console.log(selectedValue);
               document.getElementById('cursoIdDeclaracao1').value = selectedValue;
               document.getElementById('cursoIdDeclaracao2').value = selectedValue;
               document.getElementById('cursoIdDeclaracao3').value = selectedValue;
@@ -60,7 +59,6 @@
       var vinculo = 0, matricula = 0, historico = 0 , programa = 0, outros = 0;
      
       for(i = 0; i < tamanho; i++){
-        console.log(array[i].documento_id, 1, array[i].curso, selecionado)
         if(array[i].documento_id == 1 && array[i].curso == selecionado){
           vinculo++;
         }
@@ -94,7 +92,7 @@
 
     $(function(){
       getSelectValue();
-      
+      quantidades(document.getElementById('optionComOValor').value);
     })
 
 </script>
