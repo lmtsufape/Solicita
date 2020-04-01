@@ -1,6 +1,6 @@
 
 
-<div class="modal" tabindex="-1" role="dialog" id="dlgAnotacoes" style="color:black">
+<div class="modal" tabindex="-1" role="dialog" id="{{$id}}" style="color:black">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">

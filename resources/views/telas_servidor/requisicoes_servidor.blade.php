@@ -66,8 +66,8 @@
                @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                  <td class="td-align">                                 
                     <a data-toggle="tooltip" data-placement="left" title="Informações:{{$requisicao_documento['detalhes']}} ">                    
-                        <span onclick="exibirAnotacoes()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                        @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$requisicao_documento['detalhes']])
+                        <span onclick="exibirAnotacoes({{$requisicao_documento['id']}})" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$requisicao_documento['detalhes'], "id"=>$requisicao_documento['id']])
                         @endcomponent                             
                     </a>
                   </td>
@@ -275,9 +275,11 @@ function sortTable(n) {
   }
 }
 
-function exibirAnotacoes(anotacoes){        
-  $('#dlgAnotacoes').modal('show');
-
+function exibirAnotacoes(id){ 
+    var s = '#'+id;
+    $(s).modal('show');
+    console.log(s) 
+    
 }
 
 </script>
