@@ -164,7 +164,7 @@
 
     <script>
       function confirmarExclusao(){
-        confirma = confirm('Você tem certeza que deseja excluir esta requisicao?');
+        confirma = confirm('Você tem certeza que deseja excluir esta requisição?');
         if(confirma){
           document.getElementById("formExcluirRequisicao").submit();
         }else{
