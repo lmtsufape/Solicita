@@ -46,14 +46,27 @@
                               @foreach($documentos as $d)
                                   @if($d->id == $rd->documento_id)
                                     <li>
-                                      @if($d->tipo == "Programa de Disciplina" || $d->tipo == "Outros" )
+                                      @if($d->tipo == "Programa de Disciplina")
                                         {{$d->tipo}}
                                         <a data-toggle="tooltip" data-placement="left" title="Informações:{{$rd['detalhes']}} ">
-                                          <span onclick="exibirAnotacoes()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 
-                                          @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$rd->detalhes])
+                                          {{-- Status do indeferimento com imagem do olho --}}
+                                          <span onclick="exibirAnotacoes('dlgPrograma')" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 
+                                          @component('componentes.popup', ["titulo"=>"Informações", "conteudo"=>$rd->detalhes,"id"=>"dlgPrograma"])
                                           @endcomponent                             
                                         </a>
+
+                                      @elseif($d->tipo == "Outros") 
+                                        {{$d->tipo}}
+                                        <a data-toggle="tooltip" data-placement="left" title="Informações:{{$rd['detalhes']}} ">
+                                          {{-- Status do indeferimento com imagem do olho --}}
+                                          <span onclick="exibirAnotacoes('dlgOutros')" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 
+                                          @component('componentes.popup', ["titulo"=>"Informações", "conteudo"=>$rd->detalhes, "id"=>"dlgOutros"])
+                                          @endcomponent                             
+                                        </a>
+    
+
                                       @else
+
                                         {{$d->tipo}}
                                         
                                       @endif
@@ -65,7 +78,7 @@
                   </ol>
                 </td>
                 
-                <td align="cente">
+                <td align="center">
                   <ol>
                   @foreach($requisicoes_documentos as $rd)
                     @if($rd->requisicao_id == $r->id)
@@ -89,16 +102,15 @@
                         </li>
                         @endif
                         {{-- Status do indeferimento com imagem do olho --}}
-                        @if($rd->status=="Indeferido")
-                        <li style="color:red">
-                          {{$rd->status}}
-                          <a data-toggle="tooltip" data-placement="left" title="Seu pedido foi Indeferido pelo(s) seguinte(s) motivo: {{$rd->anotacoes}}">
-                              <span onclick="exibirAnotacoes()" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 
-                              @component('componentes.popup', ["titulo"=>"Motivo do indeferimento:" ,"conteudo" => $rd->anotacoes ])
-                              @endcomponent                             
-                          </a>                          
-                        </li>
-
+                        @if($rd->status=="Indeferido")                          
+                            <li style="color:red">
+                              {{$rd->status}}
+                              <a data-toggle="tooltip" data-placement="left" title="Seu pedido foi Indeferido pelo(s) seguinte(s) motivo: {{$rd->anotacoes}}">
+                                  <span onclick="exibirAnotacoes({{$rd->id}})" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> 
+                                  @component('componentes.popup', ["titulo"=>"Seu pedido foi Indeferido pelo(s) seguinte(s) motivo:" ,"conteudo" => $rd->anotacoes, "id"=>$rd->id ])
+                                  @endcomponent                             
+                              </a>                          
+                            </li>
                         @endif
                       @endif
                   @endforeach
@@ -217,8 +229,10 @@
         }
       }
 
-      function exibirAnotacoes(anotacoes){        
-        $('#dlgAnotacoes').modal('show');
+      function exibirAnotacoes(id){ 
+        var s = '#'+id;
+        $(s).modal('show');
+        console.log(s) 
     
       }
 
