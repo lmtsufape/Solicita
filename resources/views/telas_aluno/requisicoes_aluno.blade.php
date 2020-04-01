@@ -18,8 +18,8 @@
           <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;">
           <tr>
               <th scope="col" align="center">#</th>
-              <th scope="col" align="center" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">CURSO<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
-              <th scope="col" align="center" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA E HORA DA REQUISIÇÃO<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
+              <th scope="col" align="center" class="titleColumn" onclick="sortTable(0)" style="cursor:pointer">CURSO<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
+              <th scope="col" align="center" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">DATA E HORA DA REQUISIÇÃO<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
               <th scope="col" align="center" style="cursor:pointer">DOCUMENTOS SOLICITADOS</th>
               <th scope="col" align="center" style="cursor:pointer">STATUS</th>
               <th scope="col" align="center">AÇÃO</th>
@@ -182,6 +182,7 @@
             one from current row and one from the next: */
             x = rows[i].getElementsByTagName("TD")[n];
             y = rows[i + 1].getElementsByTagName("TD")[n];
+            console.log(rows[i].getElementsByTagName("TD")[n], rows[i + 1].getElementsByTagName("TD")[n])
             /* Check if the two rows should switch place,
             based on the direction, asc or desc: */
             if (dir == "asc") {

@@ -62,6 +62,7 @@
               <td>{{$requisicao_documento['vinculo']}}</td>
               <td>{{$requisicao_documento['status_data']}}</td>
               <td>{{$requisicao_documento['status_hora']}}</td>
+
                @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                  <td class="td-align">                                 
                     <a data-toggle="tooltip" data-placement="left" title="Informações:{{$requisicao_documento['detalhes']}} ">                    
@@ -72,8 +73,8 @@
                   </td>
               @endif
               
-              <td>
-                <a id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true" onclick="mudarId({{$requisicao_documento['id']}});"
+              <td class="td-align">
+                <a href="" id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true" onclick="event.preventDefault();mudarId({{$requisicao_documento['id']}});"
                       data-whatever="{{$requisicao_documento['nome']}}">
                       <span class="glyphicon glyphicon-remove-circle" style="overflow: hidden; color:red"
                         title="Indeferir pedido." onclick="event.preventDefault()"
@@ -90,14 +91,9 @@
 
               <!-- </div> -->
           </tbody>
-          <tfoot>
-            <tr>
-              
-              
-            </tr>
-          </tfoot>
+          
             
-          {{-- </form> --}}
+          </form>
         </table>
         <table style="width:100%">
           <tr>
@@ -203,6 +199,7 @@ function confirmarRequisicao(){
 }
 function indeferirRequisicao(){
      if(confirm("Confirma o indeferimento desta requisição?")== true){
+       console.log("indeferir requisição")
        document.getElementById("formModal").submit();
      }
 }
