@@ -13,7 +13,7 @@
                 @csrf
                  <!-- COMPROVANTE DE MATRICULA / COMPROVANTE DE VINCULO / HISTORICO-->
                 <div class="form-group row justify-content-center"></div>
-                <b><label>Aluno:  </label>&nbsp{{Auth::user()->name}}</b></br>
+                <b><label>Aluno:  </label></b>&nbsp{{Auth::user()->name}}</br>
                 <b><label>Perfil: </label></b>
                 <select name="default" class="browser-default custom-select custom-select-lg mb-1" style="width: 80%;font-size: 90%">
                     @foreach($perfis as $perfil)
@@ -34,8 +34,8 @@
                 </br>
                 <div>
                   <input type="checkbox" name="declaracaoVinculo"     value="Declaracao de Vinculo"
-                    id="declaracaoVinculo"> Declaração de Vínculo Também disponível pelo link:</input>
-                      <a target="_blank" href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>.</br>
+                    id="declaracaoVinculo"> Declaração de vínculo (também disponível pelo link:</input>
+                      <a target="_blank" href = "http://www.drca.ufrpe.br/declaracao_vinculo/add">DRCA</a>).</br>
                 </div>
                 <div>
                   <input type="checkbox" name="comprovanteMatricula"  value="Comprovante de Matricula"  id="comprovanteMatricula"> Comprovante de matrícula.</input></br>
