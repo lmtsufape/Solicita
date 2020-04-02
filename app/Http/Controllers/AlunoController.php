@@ -20,7 +20,8 @@ use App\Requisicao_documento;
 class AlunoController extends Controller
 {
   // Redireciona para tela de login ao entrar no sistema
-  public function index(){
+  public function index()
+  {
     // return view('autenticacao.home-aluno');
     if(Auth::check()){
       return redirect()->route('home');
