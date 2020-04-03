@@ -295,7 +295,7 @@
 				<div class="col-sm-2">
 					<div class="row justify-content-center">
 						<div class="col-sm-12 styleRodape_Imagem_lmts">
-							<a href="http://lmts.uag.ufrpe.br/"><img src="icones/lmts_logo.png" alt="Logo" width="125px;" /></a>
+							<a href="http://lmts.uag.ufrpe.br/"><img src="{{asset('icones/lmts_logo.png')}}" alt="Logo" width="125px;" /></a>
 						</div>
 						<div class="col-sm-12 styleRodape_Texto">
 							<label>Laboratório Multidisciplinar de Tecnologias Sociais</label>
@@ -374,7 +374,7 @@
 				</div>
 			</div>
 			<div class="row justify-content-center styleRodape_container styleRodape_linha_top">
-				<img src="icones/local_logo.svg" alt="Logo" width="10px;" />
+				<img src="{{asset('icones/local_logo.svg')}}" alt="Logo" width="10px;" />
 				<a class="styleRodape_Texto" style="padding: 0.5rem; color: white;">Avenida Bom Pastor. s/nº Bairro Boa Vista - CEP 55292-270 - Garanhuns - PE</a>
 			</div>
 		</div>
