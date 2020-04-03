@@ -31,7 +31,7 @@
           <img src="{{asset('images/sort.png')}}" style="height:15px">
         </th>
         <th scope="col" class="titleColumn" >CPF</th>
-        <th scope="col" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">NOME
+        <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">NOME
           <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
         <th scope="col" class="titleColumn" >CURSO</th>
         <th scope="col" class="titleColumn">VÍNCULO</th>
