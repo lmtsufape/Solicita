@@ -34,8 +34,31 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth');//->except('verify');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
+    // public function verify(Request $request)
+    // {
+    //     if (! hash_equals((string) $request->route('id'), (string) $request->user()->getKey())) {
+    //         throw new AuthorizationException;
+    //     }
+
+    //     if (! hash_equals((string) $request->route('hash'), sha1($request->user()->getEmailForVerification()))) {
+    //         throw new AuthorizationException;
+    //     }
+
+    //     if ($request->user()->hasVerifiedEmail()) {
+    //         return redirect($this->redirectPath());
+    //     }
+
+    //     if ($request->user()->markEmailAsVerified()) {
+    //         event(new Verified($request->user()));
+    //     }
+
+    //     return redirect($this->redirectPath())->with('verified', true);
+    // }
+
+
 }

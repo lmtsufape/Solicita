@@ -13,7 +13,7 @@
   <div class="row justify-content-center" style="margin-top:50px">
       <div class="col-sm-12">
           <p><h3>Olá, <strong>{{$usuario->name}}!</strong></h3></p>
-          <p><h4>O documento solicitado <strong>"{{$nome_documento}}"</strong> foi <span style="color:red">INDEFERIDO</span></h4></p>
+          <p><h4>O documento solicitado <strong>"{{$nome_documento}}"</strong> foi <span style="color:red">INDEFERIDO.</span></h4></p>
           <p><h4>Motivo: <strong>{{$documento->anotacoes}}</strong></h4></p>
       </div>
   </div>

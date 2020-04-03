@@ -25,9 +25,7 @@
       <ul class="nav navbar-nav">
           @if(Auth::check())
           <li>
-          <a class="nav-link"  href="{{ route('home-administrador') }}"
-             onclick="event.preventDefault();
-                           document.getElementById('usuario-form').submit();"style="color:white">
+          <a href="{{ route('home-administrador') }}" onclick="event.preventDefault(); document.getElementById('usuario-form').submit();" class="nav-link" style="color:white">
              {{Auth::user()->name}}
           </a>
           <form id="usuario-form" action="{{ route('home') }}" method="GET" style="display: none;">

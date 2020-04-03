@@ -31,13 +31,13 @@
           <img src="{{asset('images/sort.png')}}" style="height:15px">
         </th>
         <th scope="col" class="titleColumn" >CPF</th>
-        <th scope="col" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">NOME
+        <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">NOME
           <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
         <th scope="col" class="titleColumn" >CURSO</th>
         <th scope="col" class="titleColumn">VÍNCULO</th>
-        <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">DATA DE REQUISIÇÃO
+        <th scope="col" class="titleColumn" onclick="sortTable(5)" style="cursor:pointer">DATA E HORA DE REQUISIÇÃO
           <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
-        <th scope="col" class="titleColumn">HORA DE REQUISIÇÃO</th>
+        {{-- <th scope="col" class="titleColumn">HORA DE REQUISIÇÃO</th> --}}
         @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
             <th scope="col">INFORMAÇÕES</th>
         @endif
@@ -60,8 +60,9 @@
               <td>{{$requisicao_documento['nome']}}</td>
               <td>{{$requisicao_documento['curso']}}</td>
               <td>{{$requisicao_documento['vinculo']}}</td>
-              <td>{{$requisicao_documento['status_data']}}</td>
-              <td>{{$requisicao_documento['status_hora']}}</td>
+              <td>{{date_format(date_create($requisicao_documento['status_data']), 'd/m/Y')}}, {{$requisicao_documento['status_hora']}}
+              {{-- <td>{{$requisicao_documento['status_data']}}</td>
+              <td>{{$requisicao_documento['status_hora']}}</td> --}}
 
                @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                  <td class="td-align">                                 
@@ -241,6 +242,7 @@ function sortTable(n) {
       one from current row and one from the next: */
       x = rows[i].getElementsByTagName("TD")[n];
       y = rows[i + 1].getElementsByTagName("TD")[n];
+      console.log(rows[i].getElementsByTagName("TD")[5],rows[i + 1].getElementsByTagName("TD")[5] )
       /* Check if the two rows should switch place,
       based on the direction, asc or desc: */
       if (dir == "asc") {

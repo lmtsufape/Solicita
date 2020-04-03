@@ -110,16 +110,25 @@ class RequisicaoController extends Controller
       $checkBoxOutros = $request->outros;
         $mensagens = [
         'requisicaoPrograma.required' => 'Preencha este campo com as informações relativas à disciplina e a finalidade do pedido',
+        'requisicaoPrograma.max' => 'O campo só pode ter no máximo 190 caracteres',
+        'requisicaoOutros.max' => 'O campo só pode ter no máximo 190 caracteres'
         ];
+        
         if($checkBoxProgramaDisciplina!=''){
-        $request->validate([
-          'requisicaoPrograma' => ['required'],
-        ]);
+          $request->validate([
+            'requisicaoPrograma' => ['required'],
+          ]);
+          $request->validate([
+            'requisicaoPrograma' => 'required|max:190'
+          ], $mensagens);
         }
         if($checkBoxOutros!=''){
           $request->validate([
             'requisicaoOutros' => ['required'],
           ]);
+          $request->validate([
+            'requisicaoOutros' => 'required|max:190'
+          ], $mensagens);
         }
         $requisicao = new Requisicao();
         $idUser = Auth::user()->id;

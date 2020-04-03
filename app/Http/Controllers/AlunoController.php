@@ -20,7 +20,8 @@ use App\Requisicao_documento;
 class AlunoController extends Controller
 {
   // Redireciona para tela de login ao entrar no sistema
-  public function index(){
+  public function index()
+  {
     // return view('autenticacao.home-aluno');
     if(Auth::check()){
       return redirect()->route('home');
@@ -57,7 +58,7 @@ class AlunoController extends Controller
     $regras = [
       'name' => 'required|string|max:255',
       'cpf' => ['required','integer','size:11','unique:alunos'],
-      'email' => 'required|string|email|max:255|unique:users',
+      'email' => ['required|string|email|max:255|unique:users', 'regex:/\S+@\S+\.\S+/'],
       'password' => 'required|string|min:8|confirmed',
       'vinculo' => ['required'],
       'unidade' => ['required'],
@@ -75,9 +76,9 @@ class AlunoController extends Controller
     ];
     //$request->validate([$regras,$mensagens]);
     $request->validate([
-      'name' => 'required|string|max:255',
+      'name' => 'required|string|max:3',
       'cpf' => 'bail|required|cpf|unique:alunos',
-      'email' => 'bail|required|string|email|max:255|unique:users',
+      'email' => ['bail|required|string|email|max:255|unique:users', 'regex:/\S+@\S+\.\S+/'],
       'password' => 'bail|required|string|min:8|confirmed',
       'vinculo' => ['required'],
       'unidade' => ['required'],
@@ -137,6 +138,6 @@ class AlunoController extends Controller
 
   }
   public function home(){
-  return view ('autenticacao.home-aluno');
+    return view ('autenticacao.home-aluno');
   }
 }

@@ -130,6 +130,7 @@
                             <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                            <p id='result'></p>
                         </div>
 
                         <div class="col-sm-4">
@@ -172,7 +173,7 @@
                         </div>
 
                         <div class="col-sm-6">
-                            <button type="submit" class="btn lmts-primary btn-cadastro-primary">
+                            <button id='validate' type="submit" class="btn lmts-primary btn-cadastro-primary">
                                 {{ __('Cadastrar') }}
                             </button>
                         </div>
@@ -193,5 +194,36 @@
     $('#cpf').mask('000.000.000-00');
 
   });
+
+  function validateEmail(email) 
+  {
+      var re = /\S+@\S+\.\S+/;
+      return re.test(email);
+  }
+    
+
+  function validate() {
+    var $result = $("#result");
+    var email = $("#email").val();
+    $result.text("");
+
+    if (validateEmail(email)) {
+      $result.text("Esse e-mail é valido");
+      $result.css("color", "green");
+      return true;
+    } else {
+      $result.text("Esse e-mail não é valido ");
+      $result.css("color", "red");
+      return false;
+    }
+    
+  }
+
+  $("#validate").on("click", validate);
+
+
+
+  
+
 </script>
 @endsection

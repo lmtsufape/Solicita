@@ -48,11 +48,18 @@
                       onclick="checaSelecaoProgramaDisciplina()"> Programa de Disciplina (informar abaixo o nome da disciplina e a finalidade).</input>
 
                   </br>
-                      <textarea maxlength="255" class="form-control @error('programaDisciplina') is-invalid @enderror "
+                      <textarea maxlength="255" class="form-control @error('programaDisciplina') is-invalid @enderror @error('requisicaoPrograma') is-invalid @enderror"
                                 form ="formRequisicao" style="display:none; margin-top:10px;" name="requisicaoPrograma" cols="115" id="textareaProgramaDisciplina"
                                 required autocomplete="programaDisciplina"
                                 placeholder="Preencha este campo com o nome da(s) disciplina(s) e a finalidade da requisição."></textarea>
                       @error('programaDisciplina')
+                        <span>
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                          <strong>{{ $message }}</strong>
+                          </span>
+                        </span>
+                      @enderror
+                      @error('requisicaoPrograma')
                         <span>
                           <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                           <strong>{{ $message }}</strong>
@@ -64,10 +71,10 @@
                     <input type="checkbox" name="outros"               value="Outros"                     id="outros"
                       onclick="checaSelecaoOutros()"> Outros (informar abaixo).<br>
                     </input>
-                    <textarea maxlength="255" class="form-control @error('outrosDocumentos') is-invalid @enderror"
+                    <textarea maxlength="255" class="form-control @error('requisicaoOutros') is-invalid @enderror"
                                 form ="formRequisicao" style="display:none; margin-top:10px" name="requisicaoOutros"   cols="115" id="textareaOutrosDocumentos"
                                 required placeholder="O campo deve ser preenchido"></textarea>
-                              @error('outrosDocumentos')
+                              @error('requisicaoOutros')
                                 <span>
                                   <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
                                   <strong>{{ $message }}</strong>
