@@ -18,6 +18,13 @@ select option{
 .lmts-primary{
     background-color: #1B2E4F;
     color:white;
+}
+.tituloTabela{
+    background-color:#1b2e4f;
+    color:white;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: -10px;
 
 }
 .card-cadastro{
