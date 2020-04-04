@@ -6,10 +6,10 @@
 @section('navbar')
     Home
 @endsection
-<div class="container" style="min-height:50vh">
+<div class="container" style="min-height:70vh">
    <div>@include('componentes.mensagens')</div>
 
-   <div class="row justify-content-center ">
+   <div class="row justify-content-center d-flex align-items-center">
       <div class="col-sm-4 d-flex justify-content-center">
          <a href="{{ route("prepara-requisicao")}}" style="text-decoration:none; color: inherit;">
             <div class="card cartao text-center " style="border-radius: 30px">
