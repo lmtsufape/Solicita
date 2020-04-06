@@ -69,7 +69,7 @@
       <div id="barra-logos" lass-"container">
           <ul id="logos" style="list-style:none;">
               <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
-                  <a href="#">
+                  {{-- <a href="#">
                       <img src="{{$message->embed(public_path() . '/images/logo.png')}}"  style = "margin-left: 8px; margin-top:5px " height="70px" >
                   </a>
                   <img src="{{$message->embed(public_path() . '/images/separador.png')}}"  height="70px">
@@ -84,7 +84,7 @@
                   <img src="{{$message->embed(public_path() . '/images/separador.png')}}"  height="70px" >
                   <a target="_blank" href="http://ww3.uag.ufrpe.br/">
                       <img src="{{$message->embed(public_path() . '/images/logoUfapeAzul.png')}}" height="70px" >
-                  </a>
+                  </a> --}}
               </li>
           </ul>
         </div>

@@ -42,7 +42,10 @@
                   <h5>
                     <ul>
                       @foreach ($arrayAux as $docSolicitado)
-                      <li value="Documentos solicitados">{{$docSolicitado->tipo}}</li>
+                        <li value="Documentos solicitados">
+                          @if($docSolicitado->id==3){{$docSolicitado->tipo}} Escolar @elseif($docSolicitado->id!=3) {{$docSolicitado->tipo}} @endif
+                        </li>
+                      
                         @if($docSolicitado->documento_id==4)
                           <h5>Descrição do documento solicitado {{$docSolicitado->detalhes}}</h5>
                         @endif
