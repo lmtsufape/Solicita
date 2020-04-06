@@ -3,7 +3,7 @@
 @section('conteudo')
 
 <div>@include('componentes.mensagens')</div>
-  <div class="tabela-centro mx-auto">
+  <div class="tabela-centro mx-auto" >
     <table class="table table-striped" id="table" >
       <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
@@ -34,6 +34,7 @@
         <th scope="col" class="titleColumn" onclick="sortTable(2)" style="cursor:pointer">NOME
           <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
         <th scope="col" class="titleColumn" >CURSO</th>
+        <th scope="col" class="titleColumn" >E-MAIL</th>
         <th scope="col" class="titleColumn">VÍNCULO</th>
         <th scope="col" class="titleColumn" onclick="sortTable(5)" style="cursor:pointer">DATA E HORA DE REQUISIÇÃO
           <img src="{{asset('images/sort.png')}}" style="height:15px"></th>
@@ -59,6 +60,7 @@
               <td>{{$requisicao_documento['cpf']}}</td>
               <td>{{$requisicao_documento['nome']}}</td>
               <td>{{$requisicao_documento['curso']}}</td>
+              <td>{{$requisicao_documento['email']}}</td>
               <td>{{$requisicao_documento['vinculo']}}</td>
               <td>{{date_format(date_create($requisicao_documento['status_data']), 'd/m/Y')}}, {{$requisicao_documento['status_hora']}}
               {{-- <td>{{$requisicao_documento['status_data']}}</td>
@@ -75,14 +77,20 @@
               @endif
               
               <td class="td-align">
+                 
+                 
+                
                 <a href="" id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true" onclick="event.preventDefault();mudarId({{$requisicao_documento['id']}});"
-                      data-whatever="{{$requisicao_documento['nome']}}">
+                      data-whatever="{{$requisicao_documento['nome']}}" 
+                      data-curso="{{$requisicao_documento['curso']}}"
+                      data-anotacoes="{{$requisicao_documento['detalhes']}}">
+                     
                       <span class="glyphicon glyphicon-remove-circle" style="overflow: hidden; color:red"
                         title="Indeferir pedido." onclick="event.preventDefault()"
                         data-toggle="tooltip; modal" data-placement="top"
                         data-id="{{$requisicao_documento['id']}}"
                         data-nome="{{$requisicao_documento['nome']}}"
-                        data-title="{{$requisicao_documento['id']}}">
+                        data-title="{{$requisicao_documento['curso']}}">
                       </span>
                 </a>
               </td>
@@ -119,10 +127,15 @@
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Justificativa: {{$requisicao_documento['id']}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <div class="col">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    <h5 class="modal-title" id="myModalLabel">Justificativa: {{$requisicao_documento['id']}}</h5>
+                    
+                    {{-- <h5 class="modal-title myModalLabelPerfil" id="myModalLabelPerfil"></h5>
+                    <h5 class="modal-title myModalLabelAnotacao" id="myModalLabelAnotacao"></h5>  --}}
+                </div>
               </div>
               <div class="modal-body">
                   <div class="form-group">
@@ -160,14 +173,23 @@ $('#myModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Botão que acionou o modal
     var recipient = button.data('whatever')
     var id = button.data('id')
+    var curso = button.data('curso')
+    var anotacoes = button.data('anotacoes')
     // var recipient = .data('whatever')
     // Extrai informação dos atributos data-*
     // Se necessário, você pode iniciar uma requisição AJAX aqui e, então, fazer a atualização em um callback.
     // Atualiza o conteúdo do modal. Nós vamos usar jQuery, aqui. No entanto, você poderia usar uma biblioteca de data binding ou outros métodos.
     var modal = $(this)
     modal.find('.modal-title').text('Nome do Aluno: ' + recipient)
+    //Exibir o curso e anotações no modal
+    // modal.find('.myModalLabelPerfil ').text('Curso: ' + curso)
+    // modal.find('.myModalLabelAnotacao').text("Anotação: " + anotacoes)
+    
     modal.find('.modal-body input').val(recipient)
   })
+  
+ 
+
 </script>
 <script>
 

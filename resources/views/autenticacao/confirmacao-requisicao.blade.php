@@ -42,7 +42,10 @@
                   <h5>
                     <ul>
                       @foreach ($arrayAux as $docSolicitado)
-                      <li value="Documentos solicitados">{{$docSolicitado->tipo}}</li>
+                        <li value="Documentos solicitados">
+                          @if($docSolicitado->id==3){{$docSolicitado->tipo}} Escolar @elseif($docSolicitado->id!=3) {{$docSolicitado->tipo}} @endif
+                        </li>
+                      
                         @if($docSolicitado->documento_id==4)
                           <h5>Descrição do documento solicitado {{$docSolicitado->detalhes}}</h5>
                         @endif
@@ -76,7 +79,7 @@
                   <div class="alert alert-danger">
                     <strong><h4 align="center" style="">Atenção</h4></strong>
                     <strong><h4 align="center" style="">Prazo de Entrega do documento: <b>Até 02(dois) dias úteis</h4></strong>
-                    <strong><h4 align="center" style="">A entrega dos documento(s) solicitado(s) está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h4></strong>
+                    {{-- <strong><h4 align="center" style="">A entrega dos documento(s) solicitado(s) está condicionada a apresentação de <b>Documento Oficial com foto</b>!</h4></strong> --}}
                   </div>
                   <p>
                     

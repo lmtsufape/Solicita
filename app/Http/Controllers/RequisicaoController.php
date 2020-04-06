@@ -77,6 +77,7 @@ class RequisicaoController extends Controller
                                'cpf' => $key->aluno->cpf,
                                'nome' => $key->aluno->user->name,
                                'curso' => $key->requisicao->perfil->curso->nome,
+                               'email' => $key->aluno->user->email,
                                'vinculo' => $key->requisicao->perfil->situacao,
                                'status_data' => $key->status_data,
                                'status_hora' => Requisicao::where('id',$key->requisicao_id)->get('hora_pedido')[0]->hora_pedido,

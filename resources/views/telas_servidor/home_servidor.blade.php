@@ -29,7 +29,7 @@
           <div class="conteudo-central d-flex justify-content-center">
             <!-- Para a retirada do card "TODOS", foi reduzido o offset do laço para 5, em vez de 6 -->
             @for($i = 1;$i <= 5; $i++)
-                <a href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault(); document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
+                <a id="click" href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault(); document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
                    <div class="card cartao text-center " style="border-radius: 20px">
                      <div class="card-body d-flex justify-content-center">
                        <h3 style="padding-top:20px">{{$tipoDocumento[$i-1]}}</h3>
@@ -95,5 +95,13 @@
       quantidades(document.getElementById('optionComOValor').value);
     })
 
+    //atualizar pagina
+    // var time = 60000; // 60s
+
+    // setTimeout(function(){ 
+    //    window.location.reload();
+    // }, time);
+
+    
 </script>
 @endsection

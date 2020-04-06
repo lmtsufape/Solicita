@@ -49,12 +49,12 @@
       </div>
   </div>
 
-  <div class="row justify-content-center" style="margin-top:20px" align="center">
+  {{-- <div class="row justify-content-center" style="margin-top:20px" align="center">
       <div class="col-sm-12">
           <p><h3>ATENÇÃO!</h3></p>
           <p><h4>A ENTREGA DO DOCUMENTO SOLICITADO ESTÁ CONDICIONADA À APRESENTAÇÃO DE DOCUMENTO OFICIAL COM FOTO!</h4></p>
       </div>
-  </div>
+  </div> --}}
 
   <div class="row justify-content-center" style="margin-top:20px">
       <div class="col-sm-12">
@@ -66,10 +66,10 @@
 @endif
 <div class="row justify-content-center" style="background-color:white" align="center">
   <div class="col-sm-12">
-      <div id="barra-logos" lass-"container">
+      <div id="barra-logos" class="container">
           <ul id="logos" style="list-style:none;">
               <li style="margin-right:140px; margin-left:110px; border-right:1px ;height: 120px">
-                  <a href="#">
+                  {{-- <a href="#">
                       <img src="{{$message->embed(public_path() . '/images/logo.png')}}"  style = "margin-left: 8px; margin-top:5px " height="70px" >
                   </a>
                   <img src="{{$message->embed(public_path() . '/images/separador.png')}}"  height="70px">
@@ -84,7 +84,7 @@
                   <img src="{{$message->embed(public_path() . '/images/separador.png')}}"  height="70px" >
                   <a target="_blank" href="http://ww3.uag.ufrpe.br/">
                       <img src="{{$message->embed(public_path() . '/images/logoUfapeAzul.png')}}" height="70px" >
-                  </a>
+                  </a> --}}
               </li>
           </ul>
         </div>
