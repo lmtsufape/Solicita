@@ -4,7 +4,7 @@
 <div>@include('componentes.mensagens')</div>
 <div class="container-fluid" style="min-height:100vh">
 
-  <div class="row jusify-content-center d-flex justify-content-center">
+  {{-- <div class="row jusify-content-center d-flex justify-content-center">
     <div class="col-sm-10">
       <div class="alert alert-danger" role="alert">
         <h3 align="center">Atenção</h3>
@@ -12,7 +12,7 @@
       </div>
     </div>
   </div>
-
+ --}}
   <div class="row justify-content-sm-center">
     <div class="col-sm-10">
       <h2 class="tituloTabela">{{Auth::user()->name}}</h2>
@@ -85,6 +85,10 @@
                 </td>
                 
                 <td align="center">
+                  @php
+                    $tudoAndamento = true
+                  @endphp
+                  
                   <ol>
                   @foreach($requisicoes_documentos as $rd)
                     @if($rd->requisicao_id == $r->id)
@@ -99,6 +103,9 @@
                         </li>
                         @endif
                         @if($rd->status=="Concluído - Disponível para retirada")
+                        @php
+                          $tudoAndamento = false
+                        @endphp
                         <li style="color:green">
                           {{$rd->status}}
                           <span class="glyphicon glyphicon-ok-sign" style="overflow: hidden; color:green"
@@ -108,7 +115,10 @@
                         </li>
                         @endif
                         {{-- Status do indeferimento com imagem do olho --}}
-                        @if($rd->status=="Indeferido")                          
+                        @if($rd->status=="Indeferido")
+                          @php
+                            $tudoAndamento = false
+                          @endphp
                             <li style="color:red">
                               {{$rd->status}}
                               <a data-toggle="tooltip" data-placement="left" title="Seu pedido foi Indeferido pelo(s) seguinte(s) motivo: {{$rd->anotacoes}}">
@@ -125,7 +135,12 @@
                 <td align="center">
                   <form id="formExcluirRequisicao" onclick="confirmarExclusao()" action="{{route('excluir-requisicao',$r->id)}}" method="POST">
                     @csrf
-                    <button class="btn" type="submit"><img src="{{asset('images/trash-solid.svg')}}" alt="" style="width:20px"></button>
+                    @if(!$tudoAndamento)
+                      
+                    @else
+                      <button class="btn " type="submit" ><img src="{{asset('images/trash-solid.svg')}}" alt="" style="width:20px"></button>
+                    @endif
+                    
                   </form>
                 </td>
             </tr>

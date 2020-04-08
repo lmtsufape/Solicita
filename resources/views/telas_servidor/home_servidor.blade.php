@@ -21,14 +21,14 @@
               document.getElementById('cursoIdDeclaracao3').value = selectedValue;
               document.getElementById('cursoIdDeclaracao4').value = selectedValue;
               document.getElementById('cursoIdDeclaracao5').value = selectedValue;
-              // document.getElementById('cursoIdDeclaracao6').value = selectedValue;
+              document.getElementById('cursoIdDeclaracao6').value = selectedValue;
 
           }
       </script>
       <div class="card-deck d-flex justify-content-center">
           <div class="conteudo-central d-flex justify-content-center">
             <!-- Para a retirada do card "TODOS", foi reduzido o offset do laço para 5, em vez de 6 -->
-            @for($i = 1;$i <= 5; $i++)
+            @for($i = 1;$i <= 6; $i++)
                 <a id="click" href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault(); document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
                    <div class="card cartao text-center " style="border-radius: 20px">
                      <div class="card-body d-flex justify-content-center">
@@ -56,30 +56,38 @@
       var aux, i;
       tamanho = array.length;
       // document.reload();
-      var vinculo = 0, matricula = 0, historico = 0 , programa = 0, outros = 0;
-     
+      var vinculo = 0, matricula = 0, historico = 0 , programa = 0, outros = 0, todos = 0;
+      
       for(i = 0; i < tamanho; i++){
-        if(array[i].documento_id == 1 && array[i].curso == selecionado){
+        //console.log(array[i].perfils[0].id)
+        
+        if(array[i].status == "Em andamento" && array[i].documento_id == 1 &&  array[i].curso == selecionado){
           vinculo++;
         }
-        if(array[i].documento_id == 2 && array[i].curso == selecionado){
+        if(array[i].status == "Em andamento" && array[i].documento_id == 2 && array[i].curso == selecionado){
           matricula++;
         }
-        if(array[i].documento_id == 3 && array[i].curso == selecionado){
+        if(array[i].status == "Em andamento" && array[i].documento_id == 3 && array[i].curso == selecionado){
           historico++;
         }
-        if(array[i].documento_id == 4 && array[i].curso == selecionado){
+        if(array[i].status == "Em andamento" && array[i].documento_id == 4 && array[i].curso == selecionado){
           programa++;
-        }
-        if(array[i].documento_id == 5 && array[i].curso == selecionado){
+        }        
+        if(array[i].status == "Em andamento" && array[i].documento_id == 5 && array[i].curso == selecionado){
           outros++;
         }
+        if(array[i].status != "Em andamento" &&  array[i].curso == selecionado){
+          console.log(array[i].status, "Em andamento", array[i].curso, selecionado)
+          todos++;        
+        }
+
       }
       document.getElementById('quantidades1').innerHTML = 'Nº de Requisições: ' + vinculo;
       document.getElementById('quantidades2').innerHTML = 'Nº de Requisições: ' + matricula;
       document.getElementById('quantidades3').innerHTML = 'Nº de Requisições: ' + historico;
       document.getElementById('quantidades4').innerHTML = 'Nº de Requisições: ' + programa;
       document.getElementById('quantidades5').innerHTML = 'Nº de Requisições: ' + outros;
+      document.getElementById('quantidades6').innerHTML = 'Nº de Requisições: ' + todos;
     }
 
     quantidades(document.getElementById('optionComOValor').value);

@@ -42,7 +42,12 @@
         @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
             <th scope="col">INFORMAÇÕES</th>
         @endif
-        <th scope="col" class="titleColumn" >AÇÃO</th>
+        @if($titulo=="Todos")
+            <th scope="col" >DOCUMENTOS SOLICITADOS</th>
+            <th scope="col" >STATUS</th>
+        @else
+            <th scope="col">AÇÃO</th>
+        @endif
         <!-- <th scope="col" class="titleColumn" >STATUS</th> -->
         
         </tr>
@@ -62,11 +67,11 @@
               <td>{{$requisicao_documento['curso']}}</td>
               <td>{{$requisicao_documento['email']}}</td>
               <td>{{$requisicao_documento['vinculo']}}</td>
-              <td>{{date_format(date_create($requisicao_documento['status_data']), 'd/m/Y')}}, {{$requisicao_documento['status_hora']}}
+              <td>{{date_format(date_create($requisicao_documento['status_data']), 'd/m/Y')}}, {{$requisicao_documento['status_hora']}}</td>
               {{-- <td>{{$requisicao_documento['status_data']}}</td>
               <td>{{$requisicao_documento['status_hora']}}</td> --}}
 
-               @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
+                @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
                  <td class="td-align">                                 
                     <a data-toggle="tooltip" data-placement="left" title="Informações:{{$requisicao_documento['detalhes']}} ">                    
                         <span onclick="exibirAnotacoes({{$requisicao_documento['id']}})" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
@@ -74,13 +79,96 @@
                         @endcomponent                             
                     </a>
                   </td>
-              @endif
-              
-              <td class="td-align">
-                 
-                 
-                
-                <a href="" id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true" onclick="event.preventDefault();mudarId({{$requisicao_documento['id']}});"
+                @endif
+              {{-- DOCUMENTOS SOLICITADOS E STATUS - INICIO --}}
+              @if($titulo=="Todos")
+                {{-- DOCUMENTOS INDEFERIDOS --}}
+                @if($requisicao_documento['status'] == 'Indeferido' )
+                    <td>                    
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 1)
+                        Declaração de Vínculo                          
+                     @endif
+
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 2)
+                        Comprovante de Matrícula
+                     @endif
+
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 3)
+                        Histórico Escolar                                                             
+                     @endif
+                      
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 4) 
+                          Programa de Disciplina
+                          <a data-toggle="tooltip" data-placement="left" title="Informações:{{$requisicao_documento['requisicoes_documentos']['detalhes']}} ">                  
+                              <span onclick="exibirAnotacoes({{$requisicao_documento['id']}})" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                              @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$requisicao_documento['requisicoes_documentos']['detalhes'], "id"=>$requisicao_documento['requisicoes_documentos']['id']])
+                              @endcomponent                             
+                          </a> 
+                     @endif
+
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 5)   
+                        Outros 
+                        <a data-toggle="tooltip" data-placement="left" title="Informações:{{$requisicao_documento['requisicoes_documentos']['detalhes']}} ">                    
+                        <span onclick="exibirAnotacoes({{$requisicao_documento['id']}})" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$requisicao_documento['requisicoes_documentos']['detalhes'], "id"=>$requisicao_documento['requisicoes_documentos']['id']])
+                        @endcomponent                             
+                    </a>      
+                     @endif 
+
+                    {{-- {{$requisicao_documento['requisicoes_documentos']['id']}} --}}
+                    
+                  </td>  
+                    
+                  <td class="text-danger">
+                    Requisição: {{$requisicao_documento['status']}}
+                    <a data-toggle="tooltip" data-placement="left" title="Motivo(s):{{$requisicao_documento['requisicoes_documentos']['anotacoes']}} ">                    
+                        <span onclick="exibirAnotacoes({{$requisicao_documento['requisicoes_documentos']['id']+1}})" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        @component('componentes.popup', ["titulo"=>"Motivo(s):", "conteudo"=>$requisicao_documento['requisicoes_documentos']['anotacoes'], "id"=>$requisicao_documento['requisicoes_documentos']['id']+1])
+                        @endcomponent                             
+                    </a>
+                  </td> 
+                @else
+                  {{-- DOCUMENTOS CONCLUIDOS --}}
+                  <td>
+                     <ol>
+                      @foreach($requisicao_documento['requisicoes_documentos'] as $requisicao)
+                       @if($requisicao['documento_id'] == 1)                          
+                            <li >Declaração de Vínculo</li>
+                       @endif
+
+                       @if($requisicao['documento_id'] == 2)                          
+                            <li >Comprovante de Matrícula</li>
+                       @endif
+
+                       @if($requisicao['documento_id'] == 3)                          
+                            <li >Histórico Escolar</li>                                              
+                       @endif
+
+                       @if($requisicao['documento_id'] == 4)                          
+                            <li >
+                              Programa de Disciplina
+                              
+                            </li>
+                       @endif
+
+                       @if($requisicao['documento_id'] == 5)                          
+                            <li >
+                              Outros
+                              
+                            </li>                                                 
+                       @endif
+                      @endforeach
+                    </ol>
+                  </td>
+
+                  <td class="text-success">
+                    Requisição: {{$requisicao_documento['status']}}
+                  </td> 
+                @endif
+                                
+              @else
+                <td class="td-align">
+                  <a href="" id="botao" data-toggle="modal" data-target="#myModal" aria-hidden="true" onclick="event.preventDefault();mudarId({{$requisicao_documento['id']}});"
                       data-whatever="{{$requisicao_documento['nome']}}" 
                       data-curso="{{$requisicao_documento['curso']}}"
                       data-anotacoes="{{$requisicao_documento['detalhes']}}">
@@ -92,8 +180,10 @@
                         data-nome="{{$requisicao_documento['nome']}}"
                         data-title="{{$requisicao_documento['curso']}}">
                       </span>
-                </a>
-              </td>
+                  </a>
+                </td>
+              @endif             
+              {{-- DOCUMENTOS SOLICITADOS E STATUS - FIM --}}
               
               </tr>
               @endforeach
@@ -107,7 +197,7 @@
         <table style="width:100%">
           <tr>
             @if(isset($listaRequisicao_documentos))
-              @if(sizeof($listaRequisicao_documentos) > 0)
+              @if(sizeof($listaRequisicao_documentos) > 0 && $titulo !="Todos")
                 <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
                 class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
               @endif
@@ -188,7 +278,12 @@ $('#myModal').on('show.bs.modal', function (event) {
     modal.find('.modal-body input').val(recipient)
   })
   
- 
+ function exibirAnotacoes(id){ 
+    var s = '#'+id;
+    $(s).modal('show');
+    console.log(s) 
+
+  }
 
 </script>
 <script>
