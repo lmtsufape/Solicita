@@ -23,7 +23,7 @@
                             <li>Evitar deslocamento ao setor, antes da emissão do documento.</li>
                         </ul>
     
-                        <p>Obs: Para o recebimento do documento é necessária a apresentação de documento oficial com foto.</p>
+                       {{--  <p>Obs: Para o recebimento do documento é necessária a apresentação de documento oficial com foto.</p> --}}
     
                         <h1>Quais documentos eu posso solicitar?</h1>
                         <ul style="margin-left:15px">

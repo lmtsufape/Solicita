@@ -53,8 +53,10 @@ class RequisicaoController extends Controller
                   ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                   ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                   ->select ('requisicao_documentos.id')
-                  ->where([['curso_id', $request->curso_id],['status','Em andamento']])
+                  ->where([['curso_id', $request->curso_id],['status','Concluído - Disponível para retirada']])
+                  ->orWhere([['curso_id', $request->curso_id],['status','Indeferido']])
                   ->get();
+
       }
       else {
          $titulo = $documento->tipo;
@@ -75,6 +77,7 @@ class RequisicaoController extends Controller
         if($key->requisicao->perfil != null) {
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
+                               'perfil'=> $key->aluno->perfil,
                                'nome' => $key->aluno->user->name,
                                'curso' => $key->requisicao->perfil->curso->nome,
                                'email' => $key->aluno->user->email,
@@ -83,6 +86,7 @@ class RequisicaoController extends Controller
                                'status_hora' => Requisicao::where('id',$key->requisicao_id)->get('hora_pedido')[0]->hora_pedido,
                                'status' => $key->status,
                                'detalhes' => $key->detalhes,
+                               'requisicoes_documentos'=> $key
                               ]);
                             }
       }
