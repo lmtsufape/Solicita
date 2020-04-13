@@ -47,15 +47,26 @@ class RequisicaoController extends Controller
       //Verifica se o card clicado foi igual a "TODOS"
                       // ->withTrashed()
       if($request->titulo_id == 6){
-          $titulo = 'Todos';
+          $titulo = 'Concluídos';
           //$id_documentos retorna um collection. É necessário transformar para array
           //pega todas as requisições com base no id do documento e no id do curso
           $id_documentos = DB::table('requisicao_documentos')
                   ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                   ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                   ->select ('requisicao_documentos.id')
-                  ->where([['curso_id', $request->curso_id],['status','Concluído - Disponível para retirada']])
-                  ->orWhere([['curso_id', $request->curso_id],['status','Indeferido']])
+                  ->where([['curso_id', $request->curso_id],['status','Concluído - Disponível para retirada']])                  
+                  ->get();
+
+      }
+      else if($request->titulo_id == 7){
+          $titulo = 'Indeferidos';
+          //$id_documentos retorna um collection. É necessário transformar para array
+          //pega todas as requisições com base no id do documento e no id do curso
+          $id_documentos = DB::table('requisicao_documentos')
+                  ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
+                  ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
+                  ->select ('requisicao_documentos.id')
+                  ->where([['curso_id', $request->curso_id],['status','Indeferido']])                 
                   ->get();
 
       }
@@ -93,9 +104,9 @@ class RequisicaoController extends Controller
       }
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
       $listaRequisicao_documentos = $response;
-
+      
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
-      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
+      return view('telas_servidor.requisicoes_servidor', compact('curso','titulo','listaRequisicao_documentos'));
   }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');

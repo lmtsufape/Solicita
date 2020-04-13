@@ -3,7 +3,7 @@
 
 <div class="tela-servidor ">
   <div>@include('componentes.mensagens')</div>
-  <div class="centro-cartao">
+  <div class="centro-cartao container">
       <label for="cursos" style="margin-left:275px; ">Selecionar Curso</label>
       <div class="justify-content-right" style="margin-left: 275px">
         <select name="cursos" id="cursos" onchange="getSelectValue();"
@@ -22,13 +22,15 @@
               document.getElementById('cursoIdDeclaracao4').value = selectedValue;
               document.getElementById('cursoIdDeclaracao5').value = selectedValue;
               document.getElementById('cursoIdDeclaracao6').value = selectedValue;
+              document.getElementById('cursoIdDeclaracao7').value = selectedValue;
 
           }
       </script>
+      
       <div class="card-deck d-flex justify-content-center">
-        <div class="conteudo-central d-flex justify-content-center">
+        <div class="conteudo-central d-flex  justify-content-center align-content-start flex-wrap">
           <!-- Para a retirada do card "TODOS", foi reduzido o offset do laço para 5, em vez de 6 -->
-          @for($i = 1;$i <= 6; $i++)
+          @for($i = 1;$i <= 7; $i++)
               <a id="click" href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault(); document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
                  <div class="card cartao text-center " style="border-radius: 20px">
                    <div class="card-body d-flex justify-content-center">
@@ -56,7 +58,7 @@
       var aux, i;
       tamanho = array.length;
       // document.reload();
-      var vinculo = 0, matricula = 0, historico = 0 , programa = 0, outros = 0, todos = 0;
+      var vinculo = 0, matricula = 0, historico = 0 , programa = 0, outros = 0,indeferidos = 0 ,concluidos = 0;
       
       for(i = 0; i < tamanho; i++){
         //console.log(array[i].perfils[0].id)
@@ -76,9 +78,11 @@
         if(array[i].status == "Em andamento" && array[i].documento_id == 5 && array[i].curso == selecionado){
           outros++;
         }
-        if(array[i].status != "Em andamento" &&  array[i].curso == selecionado){
-          console.log(array[i].status, "Em andamento", array[i].curso, selecionado)
-          todos++;        
+        if(array[i].status == "Concluído - Disponível para retirada" &&  array[i].curso == selecionado){         
+          concluidos++;        
+        }
+        if(array[i].status == "Indeferido" &&  array[i].curso == selecionado){          
+          indeferidos++;        
         }
 
       }
@@ -87,7 +91,8 @@
       document.getElementById('quantidades3').innerHTML = 'Nº de Requisições: ' + historico;
       document.getElementById('quantidades4').innerHTML = 'Nº de Requisições: ' + programa;
       document.getElementById('quantidades5').innerHTML = 'Nº de Requisições: ' + outros;
-      document.getElementById('quantidades6').innerHTML = 'Nº de Requisições: ' + todos;
+      document.getElementById('quantidades6').innerHTML = 'Nº de Requisições: ' + concluidos;
+      document.getElementById('quantidades7').innerHTML = 'Nº de Requisições: ' + indeferidos;
     }
 
     quantidades(document.getElementById('optionComOValor').value);
@@ -97,7 +102,6 @@
     })
     
     
-
     $(function(){
       getSelectValue();
       quantidades(document.getElementById('optionComOValor').value);
