@@ -26,23 +26,23 @@
           }
       </script>
       <div class="card-deck d-flex justify-content-center">
-          <div class="conteudo-central d-flex justify-content-center">
-            <!-- Para a retirada do card "TODOS", foi reduzido o offset do laço para 5, em vez de 6 -->
-            @for($i = 1;$i <= 6; $i++)
-                <a id="click" href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault(); document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
-                   <div class="card cartao text-center " style="border-radius: 20px">
-                     <div class="card-body d-flex justify-content-center">
-                       <h3 style="padding-top:20px">{{$tipoDocumento[$i-1]}}</h3>
-                     </div>
-                     <h5 id="quantidades{{$i}}"></h5>
+        <div class="conteudo-central d-flex justify-content-center">
+          <!-- Para a retirada do card "TODOS", foi reduzido o offset do laço para 5, em vez de 6 -->
+          @for($i = 1;$i <= 6; $i++)
+              <a id="click" href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault(); document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
+                 <div class="card cartao text-center " style="border-radius: 20px">
+                   <div class="card-body d-flex justify-content-center">
+                     <h3 style="padding-top:20px">{{$tipoDocumento[$i-1]}}</h3>
                    </div>
-                </a>
-                <form id="listar-requisicoes{{$i}}-form" action="{{ route('listar-requisicoes') }}" method="GET" style="display: none;">
-                  <input id="cursoIdDeclaracao{{$i}}" type="hidden" name="curso_id" value="1">
-                  <input  type="hidden" name="titulo_id" value="{{$i}}">
-                </form>
-            @endfor
-          </div>
+                   <h5 id="quantidades{{$i}}"></h5>
+                 </div>
+              </a>
+              <form id="listar-requisicoes{{$i}}-form" action="{{ route('listar-requisicoes') }}" method="GET" style="display: none;">
+                <input id="cursoIdDeclaracao{{$i}}" type="hidden" name="curso_id" value="1">
+                <input  type="hidden" name="titulo_id" value="{{$i}}">
+              </form>
+          @endfor
+        </div>
       </div>
   </div>
 </div>
@@ -113,3 +113,32 @@
     
 </script>
 @endsection
+
+
+{{--  --}}
+
+{{-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-xl-12">
+      <div class="card-deck">
+        <div class="">
+            
+            @for($i = 1;$i <= 6; $i++)
+                <a id="click" href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault(); document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
+                   <div class="card cartao text-center " style="border-radius: 20px">
+                     <div class="card-body d-flex justify-content-center">
+                       <h3 style="padding-top:20px">{{$tipoDocumento[$i-1]}}</h3>
+                     </div>
+                     <h5 id="quantidades{{$i}}"></h5>
+                   </div>
+                </a>
+                <form id="listar-requisicoes{{$i}}-form" action="{{ route('listar-requisicoes') }}" method="GET" style="display: none;">
+                  <input id="cursoIdDeclaracao{{$i}}" type="hidden" name="curso_id" value="1">
+                  <input  type="hidden" name="titulo_id" value="{{$i}}">
+                </form>
+            @endfor
+          </div>
+      </div>
+    </div>        
+  </div>        
+</div> --}}
