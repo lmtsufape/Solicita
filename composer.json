@@ -9,13 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "barryvdh/laravel-cors": "^1.0",
         "components/jquery": "1.9.*",
         "fideloper/proxy": "^4.0",
         "geekcom/validator-docs": "^2.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "predis/predis": "^1.1",
-        "twbs/bootstrap": "4.3.1"
+        "twbs/bootstrap": "4.3.1",
+        "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

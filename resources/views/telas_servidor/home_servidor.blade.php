@@ -9,7 +9,7 @@
         <select name="cursos" id="cursos" onchange="getSelectValue();"
         class="browser-default custom-select custom-select-lg mb-1" style="width: 400px">
           @foreach($cursos as $curso)
-          <option id="optionComOValor" value="{{$curso->id}}" onclick="quantidades({{$curso->id}})">{{$curso->nome}}</option>
+              <option id="optionComOValor" value="{{$curso->id}}" onclick="quantidades({{$curso->id}})">{{$curso->nome}}</option>
           @endforeach
         </select>
       </div>

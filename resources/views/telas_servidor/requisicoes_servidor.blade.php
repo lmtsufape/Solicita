@@ -203,7 +203,7 @@
         <table style="width:100%">
           <tr>
             @if(isset($listaRequisicao_documentos))
-              @if(sizeof($listaRequisicao_documentos) > 0 && $titulo !="Todos")
+              @if(sizeof($listaRequisicao_documentos) > 0 && $titulo != "Concluídos" && $titulo != "Indeferidos")
                 <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
                 class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
               @endif
