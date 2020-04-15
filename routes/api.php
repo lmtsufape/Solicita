@@ -25,6 +25,8 @@ Route::namespace('Api')->group(function(){
 	Route::post('/login', 'AuthController@login');
 	Route::post('/logout', 'AuthController@logout');
 
+	
+
 	Route::prefix('cursos')->group(function(){
 		Route::get('/', 'CursoController@index');
 	});
