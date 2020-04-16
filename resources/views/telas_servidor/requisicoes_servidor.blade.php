@@ -7,7 +7,8 @@
     <table class="table table-striped" id="table" >
       <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
-          <h2 class="" style="padding-top:50px"> {{$titulo}} </h2>
+          <h2 class="mb-0" style="padding-top:10px">{{$curso->nome}} - </h2>
+          <h2 class="mt-1" > {{$titulo}}</h2>
         </div>
       </div>
       <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;" >

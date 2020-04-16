@@ -91,7 +91,7 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = $response;
 
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
-      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos'));
+      return view('telas_servidor.requisicoes_servidor', compact('curso','titulo','listaRequisicao_documentos'));
   }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
