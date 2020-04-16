@@ -17,7 +17,7 @@ class StatusMail extends Mailable
      *
      * @var Demo
      */
-    public $id_documento;
+    //public $id_documento;
 
     /**
      * Create a new message instance.
@@ -26,7 +26,7 @@ class StatusMail extends Mailable
      */
     public function __construct($id_documento)
     {
-        $this->requisicao = $id_documento;
+        //$this->requisicao = $id_documento;
     }
 
     /**
