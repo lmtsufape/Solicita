@@ -15,7 +15,7 @@
   </div>
   
   
-
+  <div>@include('componentes.mensagens')</div>
   <form id="listar-requisicoes-form" action="{{ route('listar-requisicoes') }}" method="GET" style="display: none;">
     <input id="cursoIdDeclaracao" type="hidden" name="curso_id" value="">
     <input  type="hidden" name="titulo_id" value="{{$idDoc}}">
