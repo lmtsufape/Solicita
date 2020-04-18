@@ -1,8 +1,26 @@
 @extends('layouts.app')
 
 @section('conteudo')
+  
+  
+  <label for="cursos" style="margin-left:275px; ">Selecionar Curso</label>
+  <div class="justify-content-right" style="margin-left: 275px">
+    <select name="cursos" id="cursos" onchange=" selectClicado();getSelectValue();"
+    class="form-control mb-0" style="width: 400px">
+      <option  value="" onclick="">Selecione um curso</option>
+      @foreach($cursos as $curso)
+        <option id="optionComOValor" value="{{$curso->id}}" onclick="">{{$curso->nome}}</option>
+      @endforeach
+    </select>
+  </div>
+  
+  
 
-<div>@include('componentes.mensagens')</div>
+  <form id="listar-requisicoes-form" action="{{ route('listar-requisicoes') }}" method="GET" style="display: none;">
+    <input id="cursoIdDeclaracao" type="hidden" name="curso_id" value="">
+    <input  type="hidden" name="titulo_id" value="{{$idDoc}}">
+  </form>
+
   <div class="tabela-centro mx-auto" >
     <table class="table table-striped" id="table" >
       <div class="lmts-primary">
@@ -166,6 +184,12 @@
 function mudarId(id){
   document.getElementById('id_documento').value = id;
 }
+function selectClicado(){
+  var selectedValue = document.getElementById("cursos").value;
+  document.getElementById('cursoIdDeclaracao').value = selectedValue;
+  document.getElementById('listar-requisicoes-form').submit();
+
+}
 </script>
 
 <script>
@@ -305,6 +329,13 @@ function exibirAnotacoes(id){
     console.log(s) 
     
 }
+//atualizar pagina
+// var time = 1; // 60s
+
+// atualizarPagina(){
+//   window.location.reload();
+// };
+
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
