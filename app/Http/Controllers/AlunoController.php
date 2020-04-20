@@ -23,7 +23,7 @@ class AlunoController extends Controller
   public function index()
   {
     // return view('autenticacao.home-aluno');
-    if(Auth::check()){
+    if(Auth::user()){
       return redirect()->route('home');
     }
     return view('autenticacao.login');

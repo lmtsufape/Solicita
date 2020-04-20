@@ -4,7 +4,25 @@
 <div class="container" style="background-color:white">
     
   {{-- Indeferimento --}}
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" style="margin-top:100px">
+    <div class="col-sm-12" align="center">
+        <a target="_blank" href="http://ww3.uag.ufrpe.br/">
+            <img src="{{$message->embed(public_path() . '/images/logoUfapeAzul.png')}}" height="80px" >
+        </a>
+    </div>
+  </div>
+    {{-- DEFERIMENTO --}}
+    <p><font face="Times New Roman" font size="4" color="black">Olá, {{$usuario->name}}! </font></p>
+    
+    <p><font face="Times New Roman" font size="4" color="black">A emissão do documento "{{$nome_documento}}" foi indeferida pelo seguinte motivo: <strong>{{$documento->anotacoes}}</strong> </font></p>
+
+    <p><font face="Times New Roman" font size="4" color="black">Caso necessite de outras informações, entrar em contato com a escolaridade através do e-mail: setor.escolar.uag@ufrpe.br.</font></p>
+    <p></p>
+    <p align="center" ><font face="Times New Roman" font size="4" color="black">Atenciosamente, </font></p>
+    
+    <p align="center" style=""><font face="Times New Roman" font size="4" color="black"> <strong> Universidade Federal do Agreste de Pernambuco<br>
+     Setor Escolaridade</strong></font></p>
+  {{-- <div class="row justify-content-center">
       <div class="col-sm-12" align="center">
           <h1><strong>INDEFERIMENTO DE DOCUMENTO SOLICITADO!</strong> </h1>
       </div>
@@ -20,7 +38,7 @@
 
   <div class="row justify-content-center" style="margin-top:20px">
       <div class="col-sm-12">
-          <p><h4>Para maiores esclarecimentos, favor entrar em contato com o setor de <strong>Escolaridade</strong>.</h4></p>
+          <p><h4>Para outros esclarecimentos, entrar em contato com a escolaridade através do email: setor.escolar.uag@ufrpe.br</h4></p>
       </div>
   </div>
 
@@ -28,39 +46,32 @@
       <div class="col-sm-12">
           <p><h3>Atenciosamente, <strong>Setor de Escolaridade</strong>.</h3></p>
       </div>
-  </div>
+  </div> --}}
 
   
 @endif
 @if($documento->status=="Concluído - Disponível para retirada")
 <div class="container" style="background-color:white" >
-    
-  {{-- DEFERIMENTO --}}
-  <div class="row justify-content-center" style="margin-top:100px">
+    <div class="row justify-content-center" style="margin-top:100px">
       <div class="col-sm-12" align="center">
-          <h1><strong>DOCUMENTO DISPONÍVEL PARA RETIRADA!</strong> </h1>
+          <a target="_blank" href="http://ww3.uag.ufrpe.br/">
+              <img src="{{$message->embed(public_path() . '/images/logoUfapeAzul.png')}}" height="80px" >
+          </a>
       </div>
-  </div>
+    </div>
+      {{-- DEFERIMENTO --}}
+      <p><font face="Times New Roman" font size="4" color="black">Olá, {{$usuario->name}}! </font></p>
+      
+      <p><font face="Times New Roman" font size="4" color="black">O documento solicitado "{{$nome_documento}}" <strong>ESTÁ DISPONÍVEL PARA RETIRADA! </strong> </font></p>
 
-  <div class="row justify-content-center" style="margin-top:50px">
-      <div class="col-sm-12">
-          <p><h3>Olá, <strong>{{$usuario->name}}!</strong></h3></p>
-          <p><h4>O documento solicitado <strong>"{{$nome_documento}}"</strong> está <span style="color:green"><strong>DISPONÍVEL PARA RETIRADA</strong></span></h4></p>
-      </div>
-  </div>
+      <p><font face="Times New Roman" font size="4" color="black">Caso necessite de outras informações, entrar em contato com a escolaridade através do e-mail: setor.escolar.uag@ufrpe.br.</font></p>
+      <p></p>
+      <p align="center" ><font face="Times New Roman" font size="4" color="black">Atenciosamente, </font></p>
+      
+      <p align="center" style=""><font face="Times New Roman" font size="4" color="black"> <strong> Universidade Federal do Agreste de Pernambuco<br>
+       Setor Escolaridade</strong></font></p>
 
-  {{-- <div class="row justify-content-center" style="margin-top:20px" align="center">
-      <div class="col-sm-12">
-          <p><h3>ATENÇÃO!</h3></p>
-          <p><h4>A ENTREGA DO DOCUMENTO SOLICITADO ESTÁ CONDICIONADA À APRESENTAÇÃO DE DOCUMENTO OFICIAL COM FOTO!</h4></p>
-      </div>
-  </div> --}}
-
-  <div class="row justify-content-center" style="margin-top:20px">
-      <div class="col-sm-12">
-          <p><h3>Atenciosamente, <strong>Setor de Escolaridade</strong>.</h3></p>
-      </div>
-  </div>
+  
 </div>
 
 @endif

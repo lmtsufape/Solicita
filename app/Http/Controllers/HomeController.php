@@ -39,6 +39,8 @@ class HomeController extends Controller
                              ->select ('requisicao_documentos.id')
                             //  ->where([['status','Em andamento'], ['deleted_at', null]])
                              ->where([['status','Em andamento']])
+                             ->orWhere('status', 'Indeferido')
+                             ->orWhere('status', 'Concluído - Disponível para retirada')
                              // ->groupBy('curso_id')
                              // ->select('curso_id', DB::raw('count(*) as total'))
                              ->get();
@@ -52,10 +54,12 @@ class HomeController extends Controller
                  array_push($response, ['id' => $key->id,
                                         'curso' => $key->requisicao->perfil->curso->id,
                                         'documento_id' => $key->documento_id,
+                                        'status' =>$key->status,
+                                        'perfils'=>$key->aluno->perfil
                                      ]);
                                    }
 
-            $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
+            $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Emitidos / Indeferidos'];
             return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, 'requisicoes'=>$response]);
           }
           else if (Auth::user()->tipo == 'aluno') {

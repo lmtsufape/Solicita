@@ -17,6 +17,7 @@ use App\User;
 use Carbon\Carbon;
 use App\Servidor;
 use App\Unidade;
+use App\Jobs\SendEmail;
 
 class RequisicaoController extends Controller
 {
@@ -55,8 +56,10 @@ class RequisicaoController extends Controller
                   ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                   ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                   ->select ('requisicao_documentos.id')
-                  ->where([['curso_id', $request->curso_id],['status','Em andamento']])
+                  ->where([['curso_id', $request->curso_id],['status','Concluído - Disponível para retirada']])
+                  ->orWhere([['curso_id', $request->curso_id],['status','Indeferido']])
                   ->get();
+
       }
       else {
          $titulo = $documento->tipo;
@@ -77,6 +80,7 @@ class RequisicaoController extends Controller
         if($key->requisicao->perfil != null) {
         array_push($response, ['id' => $key->id,
                                'cpf' => $key->aluno->cpf,
+                               'perfil'=> $key->aluno->perfil,
                                'nome' => $key->aluno->user->name,
                                'curso' => $key->requisicao->perfil->curso->nome,
                                'email' => $key->aluno->user->email,
@@ -85,6 +89,7 @@ class RequisicaoController extends Controller
                                'status_hora' => Requisicao::where('id',$key->requisicao_id)->get('hora_pedido')[0]->hora_pedido,
                                'status' => $key->status,
                                'detalhes' => $key->detalhes,
+                               'requisicoes_documentos'=> $key
                               ]);
                             }
       }
@@ -92,7 +97,9 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = $response;
 
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
+
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'cursos', 'idDoc'));
+
   }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
@@ -238,11 +245,10 @@ class RequisicaoController extends Controller
             );
             $id_documento->save();
             $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
-            Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
-                $message->to($to_email)
-                        ->subject($subject);
-                $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
-            });
+            
+            $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
+
+            SendEmail::dispatch($details);
         return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
       }
       public function concluirRequisicao(Request $request){
@@ -269,11 +275,10 @@ class RequisicaoController extends Controller
               );
               $id_documento->save();
               $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
-              Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
-                  $message->to($to_email)
-                          ->subject($subject);
-                  $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
-              });
+              
+              $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
+
+              SendEmail::dispatch($details);
             }
           }
           return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
