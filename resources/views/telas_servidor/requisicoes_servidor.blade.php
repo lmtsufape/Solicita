@@ -25,7 +25,7 @@
     <table class="table table-striped" id="table" >
       <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
-          <h2 class="mb-0" style="padding-top:10px">{{$curso->nome}} - </h2>
+          <h2 id="idCursoTitulo" class="mb-0" style="padding-top:10px">{{$cursoTabela->nome}} - </h2>
           <h2 class="mt-1" > {{$titulo}}</h2>
         </div>
       </div>
@@ -278,6 +278,7 @@ function mudarId(id){
 function selectClicado(){
   var selectedValue = document.getElementById("cursos").value;
   document.getElementById('cursoIdDeclaracao').value = selectedValue;
+  //document.getElementById('idCursoTitulo').value = selectedValue;
   document.getElementById('listar-requisicoes-form').submit();
 
 }

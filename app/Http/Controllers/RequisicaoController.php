@@ -45,6 +45,7 @@ class RequisicaoController extends Controller
     $documento = Documento::where('id',$request->titulo_id)->first();
     $idDoc = $documento->id;
     $curso = Curso::where('id',$request->curso_id)->first();
+    $cursoTabela = Curso::where('id',$request->curso_id)->first();
     $cursos = Curso::all();
       //Verifica se o card clicado foi igual a "TODOS"
                       // ->withTrashed()
@@ -98,7 +99,7 @@ class RequisicaoController extends Controller
 
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
 
-      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'cursos', 'idDoc'));
+      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'cursos','cursoTabela' , 'idDoc'));
 
   }
     public function storeRequisicao(Request $request){
