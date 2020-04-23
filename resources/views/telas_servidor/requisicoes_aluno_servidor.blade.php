@@ -28,7 +28,7 @@
                     <th scope="col" align="center" class="titleColumn" onclick="sortTable(1)" style="cursor:pointer">DATA E HORA DA REQUISIÇÃO<img src="{{asset('images/sort.png')}}" style="height:15px"></th>
                     <th scope="col" align="center" style="cursor:pointer">DOCUMENTOS SOLICITADOS</th>
                     <th scope="col" align="center" style="cursor:pointer">STATUS</th>
-                    <th scope="col" align="center">AÇÃO</th>
+                    
                 </tr>
           </thead>
           <tbody>
@@ -132,17 +132,7 @@
                   @endforeach
                   </ol>
                 </td>
-                <td align="center">
-                  <form id="formExcluirRequisicao" onclick="confirmarExclusao()" action="{{route('excluir-requisicao',$r->id)}}" method="POST">
-                    @csrf
-                    @if(!$tudoAndamento)
-                      
-                    @else
-                      <button class="btn " type="submit" ><img src="{{asset('images/trash-solid.svg')}}" alt="" style="width:20px"></button>
-                    @endif
-                    
-                  </form>
-                </td>
+                
             </tr>
           @endforeach
           </tbody>
@@ -152,7 +142,7 @@
 
   <div class="row justify-content-center" align="center">
     <div class="col-sm-12">
-      <form method="GET" action="{{ route('home-aluno') }}">
+      <form method="GET" action="{{ url()->previous() }}">
   
         <button type="submit"class="btn btn-primary btn-primary-lmts" align="center" style="margin-bottom:20px">
         {{ __('Voltar para o Inicio') }}

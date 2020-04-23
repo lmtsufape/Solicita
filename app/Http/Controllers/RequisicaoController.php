@@ -289,7 +289,7 @@ class RequisicaoController extends Controller
         return view('telas_servidor.relatorio_servidor');
       }
 
-      public function pesquisar(Request $request){
+      public function gerarRelatorio(Request $request){
 
         $mensagens = [
         'dataInicio.date' => 'Preencha este campo com as informações relativas à disciplina e a finalidade do pedido',
@@ -355,6 +355,33 @@ class RequisicaoController extends Controller
                     'contadorOutros',
                     'total'
                   ));
+      }
+      public function exibirPesquisa(){
+        return view('telas_servidor.pesquisa_servidor');
+      }
+
+      public function pesquisarAluno(Request $request){
+        $RequestNome = $request->input('formNome') . '%';
+        $RequestCPF = $request->input('formCPF');
+        $alunos = [];
+        
+        if($request->input('formNome') != ''){
+          $alunos = DB::table('users')
+                ->join('alunos', 'alunos.user_id', '=', 'users.id')
+                ->select ('users.name', 'users.email','alunos.cpf', 'users.id' )
+                ->where('name','like', $RequestNome)
+                ->get();
+        }else if($request->input('formCPF') != '' ){
+          $alunos = DB::table('users')
+                ->join('alunos', 'alunos.user_id', '=', 'users.id')
+                ->select ('users.name', 'users.email','alunos.cpf', 'users.id' )
+                ->where('cpf','like', $RequestCPF)
+                ->get();
+        }
+
+      
+        return view('telas_servidor.pesquisa_servidor', compact('alunos'));
+
       }
 
 }
