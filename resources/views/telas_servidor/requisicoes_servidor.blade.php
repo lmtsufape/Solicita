@@ -1,53 +1,52 @@
 @extends('layouts.app')
 
 @section('conteudo')
-    <script type="text/javascript">
-      
-      
-    </script>
   
+    
+
+  <div class="tabela-centro mx-auto" >
     <form action="{{  route('listar-requisicoes')  }}" method="GET">
-      @csrf
-      <div class="container">
-         <div class="form-row " >
-          <div class="form-group col">
-            
-            <label for="cursos" style="margin-left:275px; ">Selecionar Curso</label>
-            <div class="justify-content-right" style="margin-left: 275px">
-              <select name="curso_id" id="cursos" onchange=""
-              class="form-control mb-0" style="width: 400px">
+        @csrf
+        <div class="container">
+           <div class="form-row " >
+            <div class="form-group col-md-6">
+              
+              <label for="cursos" >Selecionar Curso</label>
+              <div class="justify-content-right" >
+                <select name="curso_id" id="cursos" onchange=""
+                class="form-control mb-0" style="width: 300px">
+                  
+                  @foreach($cursos as $curso)
+                    <option id="nomeCurso" value="{{$curso->id}}" onclick="">{{$curso->nome}}</option>
+                  @endforeach
+                </select>
+              </div>
+
+            </div>
+            <div class="form-group col-md-6">
+              
+              
+            <label for="documentos" >Selecionar Documento</label>
+            <div class="justify-content-right" >
+              <select name="titulo_id" id="documentos" onchange=""
+              class="form-control mb-0" style="width: 300px">
                 
-                @foreach($cursos as $curso)
-                  <option id="nomeCurso" value="{{$curso->id}}" onclick="">{{$curso->nome}}</option>
+                @foreach($documentos as $documento)
+                  <option id="tipoDocumento" value="{{$documento->id}}" onclick="">{{$documento->tipo}}</option>
                 @endforeach
               </select>
             </div>
-
-          </div>
-          <div class="form-group col">
-            
-            
-          <label for="documentos" style="margin-left:275px; ">Selecionar Documento</label>
-          <div class="justify-content-right" style="margin-left: 275px">
-            <select name="titulo_id" id="documentos" onchange=""
-            class="form-control mb-0" style="width: 400px">
+         
               
-              @foreach($documentos as $documento)
-                <option id="tipoDocumento" value="{{$documento->id}}" onclick="">{{$documento->tipo}}</option>
-              @endforeach
-            </select>
+            </div>
           </div>
-       
-            <button type="submit" class="btn btn-primary mt-3" style="margin-left:275px; ">Atualizar</button>
-          </div>
+          <button type="submit" class="btn btn-primary mt-3" >Atualizar</button>
+         
         </div>
-        
        
-      </div>
-     
-  </form>
+    </form>
 
-  <div class="tabela-centro mx-auto" >
+
     <table class="table table-striped" id="table" >
       <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
