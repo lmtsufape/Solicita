@@ -17,7 +17,7 @@ class StatusMail extends Mailable
      *
      * @var Demo
      */
-    public $id_documento;
+    //public $id_documento;
 
     /**
      * Create a new message instance.

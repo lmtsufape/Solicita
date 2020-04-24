@@ -1,16 +1,35 @@
 @extends('layouts.app')
 
 @section('conteudo')
+  
+  
+  <label for="cursos" style="margin-left:275px; ">Selecionar Curso</label>
+  <div class="justify-content-right" style="margin-left: 275px">
+    <select name="cursos" id="cursos" onchange=" selectClicado();getSelectValue();"
+    class="form-control mb-0" style="width: 400px">
+      <option  value="" onclick="">Selecione um curso</option>
+      @foreach($cursos as $curso)
+        <option id="optionComOValor" value="{{$curso->id}}" onclick="">{{$curso->nome}}</option>
+      @endforeach
+    </select>
+  </div>
+  
+  
+  <div>@include('componentes.mensagens')</div>
+  <form id="listar-requisicoes-form" action="{{ route('listar-requisicoes') }}" method="GET" style="display: none;">
+    <input id="cursoIdDeclaracao" type="hidden" name="curso_id" value="">
+    <input  type="hidden" name="titulo_id" value="{{$idDoc}}">
+  </form>
 
-<div>@include('componentes.mensagens')</div>
   <div class="tabela-centro mx-auto" >
      
     <h3 class="text-center mt-0"></h3>
     <table class="table table-striped" id="table" >
       <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
-          <h2 class="" style="padding-top:40px">{{$curso->nome}} - {{$titulo}}</h2>
-          {{-- <h2 class="mt-4" > </h2> --}}
+
+          <h2 class="mb-0" style="padding-top:10px">{{$curso->nome}} - </h2>
+          <h2 class="mt-1" > {{$titulo}}</h2>
         </div>
       </div>
       <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;" >
@@ -262,6 +281,12 @@
 function mudarId(id){
   document.getElementById('id_documento').value = id;
 }
+function selectClicado(){
+  var selectedValue = document.getElementById("cursos").value;
+  document.getElementById('cursoIdDeclaracao').value = selectedValue;
+  document.getElementById('listar-requisicoes-form').submit();
+
+}
 </script>
 
 <script>
@@ -406,6 +431,13 @@ function exibirAnotacoes(id){
     console.log(s) 
     
 }
+//atualizar pagina
+// var time = 1; // 60s
+
+// atualizarPagina(){
+//   window.location.reload();
+// };
+
 
 function retornarCurso(id){
   if(id == 1){
