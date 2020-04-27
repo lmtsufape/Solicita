@@ -267,24 +267,11 @@ class RequisicaoController extends Controller
             );
             $id_documento->save();
             $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
-<<<<<<< HEAD
+
             
             $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
 
             SendEmail::dispatch($details);
-=======
-            //$details = ['email' => 'recipient@example.com'];
-            
-            
-            $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
-            
-            SendEmail::dispatch($details);
-            // Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
-            //     $message->to($to_email)
-            //             ->subject($subject);
-            //     $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
-            // });
->>>>>>> api
         return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
       }
       public function concluirRequisicao(Request $request){
@@ -311,23 +298,12 @@ class RequisicaoController extends Controller
               );
               $id_documento->save();
               $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
-<<<<<<< HEAD
+
               
               $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
 
               SendEmail::dispatch($details);
-=======
-              $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
-            
-              SendEmail::dispatch($details);
 
-
-              // Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
-              //     $message->to($to_email)
-              //             ->subject($subject);
-              //     $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
-              // });
->>>>>>> api
             }
           }
           return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
