@@ -24,7 +24,7 @@ class StatusMail extends Mailable
      *
      * @return void
      */
-    public function __construct($id_documento)
+    public function __construct()
     {
         //$this->requisicao = $id_documento;
     }
