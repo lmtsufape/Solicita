@@ -53,7 +53,10 @@
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
           <h2 id="idCursoTitulo" class="mb-0" style="padding-top:10px">{{$cursoSelecionado->nome}} - </h2>
 
+
           <h2 class="mt-1" > {{$titulo}}</h2>
+
+
         </div>
       </div>
       <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;" >

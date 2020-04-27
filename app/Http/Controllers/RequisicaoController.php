@@ -111,6 +111,7 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = $response;
       
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
+
       return view('telas_servidor.requisicoes_servidor',
              compact('titulo',
                      'listaRequisicao_documentos',
@@ -265,6 +266,7 @@ class RequisicaoController extends Controller
             $id_documento->save();
             $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
 
+
             $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
 
             SendEmail::dispatch($details);
@@ -294,7 +296,7 @@ class RequisicaoController extends Controller
               );
               $id_documento->save();
               $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
-    
+
               $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
 
               SendEmail::dispatch($details);
