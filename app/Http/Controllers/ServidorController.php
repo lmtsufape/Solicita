@@ -20,7 +20,7 @@ class ServidorController extends Controller
     {
     public function index(){
         $cursos = Curso::all();
-        $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Todos'];
+        $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Concluidos', 'Indeferidos'];
         return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento]);
     }
     public function listarRequisicoes($id){
