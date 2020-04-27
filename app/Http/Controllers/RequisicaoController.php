@@ -120,8 +120,6 @@ class RequisicaoController extends Controller
                      'documentoSelecionado',
                      'documentos'));
 
-
-
   }
     public function storeRequisicao(Request $request){
       return redirect('confirmacao-requisicao');
