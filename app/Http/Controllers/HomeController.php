@@ -59,7 +59,7 @@ class HomeController extends Controller
                                      ]);
                                    }
 
-            $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Emitidos / Indeferidos'];
+            $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Emitidos', 'Indeferidos'];
             return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento, 'requisicoes'=>$response]);
           }
           else if (Auth::user()->tipo == 'aluno') {
