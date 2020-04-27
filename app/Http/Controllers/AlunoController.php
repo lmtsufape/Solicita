@@ -30,8 +30,8 @@ class AlunoController extends Controller
   }
   //redireciona para a lista de requisições do aluno
   //devolve para a view a lista de requisicoes que o aluno fez
-  public function listarRequisicoes(){
-    $idUser=Auth::user()->id;
+  public function listarRequisicoes(){    
+    $idUser=Auth::user()->id;        
     $aluno = Aluno::where('user_id',$idUser)->first();
     //ordena pela data e hora do pedido
     // $requisicoes = Requisicao::where('aluno_id',$aluno->id)->orderBy('data_pedido','desc')->orderBy('hora_pedido', 'desc')->get();

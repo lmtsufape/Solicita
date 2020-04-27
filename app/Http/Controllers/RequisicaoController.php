@@ -42,11 +42,13 @@ class RequisicaoController extends Controller
   }
 
   public function getRequisicoes(Request $request){
-    $documento = Documento::where('id',$request->titulo_id)->first();
-    $idDoc = $documento->id;
+    //$documento = Documento::where('id',$request->documento_id)->first();
+    $documento = Documento::where('id',$request->titulo_id)->first();    
     $curso = Curso::where('id',$request->curso_id)->first();
-    $cursoTabela = Curso::where('id',$request->curso_id)->first();
+    $cursoSelecionado = Curso::where('id',$request->curso_id)->first();
+    $documentoSelecionado = Documento::where('id',$request->titulo_id)->first();
     $cursos = Curso::all();
+    $documentos = Documento::all();
       //Verifica se o card clicado foi igual a "TODOS"
                       // ->withTrashed()
       if($request->titulo_id == 6){
@@ -110,8 +112,14 @@ class RequisicaoController extends Controller
       
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
 
+      return view('telas_servidor.requisicoes_servidor',
+             compact('titulo',
+                     'listaRequisicao_documentos',
+                     'cursos',
+                     'cursoSelecionado',
+                     'documentoSelecionado',
+                     'documentos'));
 
-      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'cursos','cursoTabela' , 'idDoc'));
 
 
   }
@@ -329,7 +337,7 @@ class RequisicaoController extends Controller
         return view('telas_servidor.relatorio_servidor');
       }
 
-      public function pesquisar(Request $request){
+      public function gerarRelatorio(Request $request){
 
         $mensagens = [
         'dataInicio.date' => 'Preencha este campo com as informações relativas à disciplina e a finalidade do pedido',
@@ -395,6 +403,33 @@ class RequisicaoController extends Controller
                     'contadorOutros',
                     'total'
                   ));
+      }
+      public function exibirPesquisa(){
+        return view('telas_servidor.pesquisa_servidor');
+      }
+
+      public function pesquisarAluno(Request $request){
+        $RequestNome = $request->input('formNome') . '%';
+        $RequestCPF = $request->input('formCPF');
+        $alunos = [];
+        
+        if($request->input('formNome') != ''){
+          $alunos = DB::table('users')
+                ->join('alunos', 'alunos.user_id', '=', 'users.id')
+                ->select ('users.name', 'users.email','alunos.cpf', 'users.id' )
+                ->where('name','like', $RequestNome)
+                ->get();
+        }else if($request->input('formCPF') != '' ){
+          $alunos = DB::table('users')
+                ->join('alunos', 'alunos.user_id', '=', 'users.id')
+                ->select ('users.name', 'users.email','alunos.cpf', 'users.id' )
+                ->where('cpf','like', $RequestCPF)
+                ->get();
+        }
+
+      
+        return view('telas_servidor.pesquisa_servidor', compact('alunos'));
+
       }
 
 }
