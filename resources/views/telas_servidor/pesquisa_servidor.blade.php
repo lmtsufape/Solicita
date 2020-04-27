@@ -42,7 +42,9 @@
 @if(isset($alunos))
   @foreach($alunos as $aluno)
             <tr>
-            <td>{{$aluno->id}}</td>  
+
+            <td>{{$aluno->name}}</td>  
+
               <td>{{$aluno->cpf}}</td>
               <td>{{$aluno->email}}</td>
               <td>
