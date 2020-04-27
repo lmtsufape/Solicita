@@ -8,6 +8,12 @@ use App\Curso;
 use App\User;
 use App\Servidor;
 use App\Unidade;
+
+use App\Aluno;
+use App\Perfil;
+use App\Requisicao;
+use App\Documento;
+use App\Requisicao_documento;
 use Auth;
 
 class ServidorController extends Controller
@@ -17,6 +23,20 @@ class ServidorController extends Controller
         $tipoDocumento = ['Declaração de Vínculo','Comprovante de Matrícula','Histórico','Programa de Disciplina','Outros','Concluidos', 'Indeferidos'];
         return view('telas_servidor.home_servidor', ['cursos'=>$cursos,'tipoDocumento'=>$tipoDocumento]);
     }
+    public function listarRequisicoes($id){
+      $idUser=$id;      
+      $aluno = Aluno::where('user_id',$idUser)->first();
+      //ordena pela data e hora do pedido
+      // $requisicoes = Requisicao::where('aluno_id',$aluno->id)->orderBy('data_pedido','desc')->orderBy('hora_pedido', 'desc')->get();
+      $requisicoes = Requisicao::where('aluno_id',$aluno->id)->orderBy('id','desc')->get();
+      $requisicoes_documentos = Requisicao_documento::where('aluno_id',$aluno->id)->get();
+      $aluno= Aluno::where('user_id',$idUser)->first();
+      $documentos = Documento::all();
+      $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+      return view('telas_servidor.requisicoes_aluno_servidor',compact('requisicoes','requisicoes_documentos','aluno','documentos','perfis'));
+    }
+
+
     public function storeServidor(Request $request) {
       $request->validate([
         'name' => 'required|string|max:255',

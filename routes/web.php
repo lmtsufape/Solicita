@@ -34,6 +34,11 @@ Route::group(['middleware'=> ['CheckServidor', 'verified']], function(){
 
   Route::post('/indefere-requisicoes/{requisicao_id?}','RequisicaoController@indeferirRequisicao')->name('indefere-requisicoes-post')->middleware('CheckServidor');
   Route::get('/listar-requisicoes','RequisicaoController@getRequisicoes')->name('listar-requisicoes')->middleware('CheckServidor');
+  Route::get('/relatorio-requisicoes','RequisicaoController@exibirBusca')->name('relatorio-requisicoes')->middleware('CheckServidor');
+  Route::get('/listar-requisicoes-aluno-servidor/{id}','ServidorController@listarRequisicoes')->name('listar-requisicoes-servidor')->middleware('CheckServidor');
+  Route::post('/relatorio-requisicoes','RequisicaoController@gerarRelatorio')->name('listar-relatorio-post')->middleware('CheckServidor');
+  Route::get('/pesquisar-aluno','RequisicaoController@exibirPesquisa')->name('pesquisar-aluno')->middleware('CheckServidor');
+  Route::post('/pesquisar-aluno','RequisicaoController@pesquisarAluno')->name('pesquisar-aluno-post')->middleware('CheckServidor');
   Route::post('/listar-requisicoes','RequisicaoController@concluirRequisicao')->name('listar-requisicoes-post')->middleware('CheckServidor');
   Route::get('/home-servidor','ServidorController@index')->name('home_servidor')->middleware('CheckServidor');
   Route::get('/home-servidor','ServidorController@index')->name('cadastro-servidor')->middleware('CheckServidor');
@@ -42,6 +47,7 @@ Route::group(['middleware'=> ['CheckServidor', 'verified']], function(){
   Route::post('/alterar-senha-servidor','ServidorController@storeAlterarSenhaServidor')->name('alterar-senha-servidor')->middleware('CheckServidor');
   Route::get('/home-servidor','ServidorController@index')->name('home_servidor')->middleware('CheckServidor');
 });
+//----------------------------------------------ALUNO---------------------------------------------------
 // Route::group(['middleware'=> 'verified'], function(){
 Route::group(['middleware'=> 'CheckAluno'], function(){
     Route::get('/home-aluno', 'AlunoController@index')->name('home-aluno')->middleware('CheckAluno');

@@ -2,33 +2,57 @@
 
 @section('conteudo')
   
-  
-  <label for="cursos" style="margin-left:275px; ">Selecionar Curso</label>
-  <div class="justify-content-right" style="margin-left: 275px">
-    <select name="cursos" id="cursos" onchange=" selectClicado();getSelectValue();"
-    class="form-control mb-0" style="width: 400px">
-      <option  value="" onclick="">Selecione um curso</option>
-      @foreach($cursos as $curso)
-        <option id="optionComOValor" value="{{$curso->id}}" onclick="">{{$curso->nome}}</option>
-      @endforeach
-    </select>
-  </div>
-  
-  
-  <div>@include('componentes.mensagens')</div>
-  <form id="listar-requisicoes-form" action="{{ route('listar-requisicoes') }}" method="GET" style="display: none;">
-    <input id="cursoIdDeclaracao" type="hidden" name="curso_id" value="">
-    <input  type="hidden" name="titulo_id" value="{{$idDoc}}">
-  </form>
+    
 
   <div class="tabela-centro mx-auto" >
-     
-    <h3 class="text-center mt-0"></h3>
+
+    <form action="{{  route('listar-requisicoes')  }}" method="GET">
+        @csrf
+        <div class="container">
+           <div class="form-row " >
+            <div class="form-group col-md-6">
+              
+              <label for="cursos" >Selecionar Curso</label>
+              <div class="justify-content-right" >
+                <select name="curso_id" id="cursos" onchange=""
+                class="form-control mb-0" style="width: 300px">
+                  
+                  @foreach($cursos as $curso)
+                    <option id="nomeCurso" value="{{$curso->id}}" onclick="">{{$curso->nome}}</option>
+                  @endforeach
+                </select>
+              </div>
+
+            </div>
+            <div class="form-group col-md-6">
+              
+              
+            <label for="documentos" >Selecionar Documento</label>
+            <div class="justify-content-right" >
+              <select name="titulo_id" id="documentos" onchange=""
+              class="form-control mb-0" style="width: 300px">
+                
+                @foreach($documentos as $documento)
+                  <option id="tipoDocumento" value="{{$documento->id}}" onclick="">{{$documento->tipo}}</option>
+                @endforeach
+              </select>
+            </div>
+         
+              
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3" >Atualizar</button>
+         
+        </div>
+       
+    </form>
+
+
     <table class="table table-striped" id="table" >
       <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
+          <h2 id="idCursoTitulo" class="mb-0" style="padding-top:10px">{{$cursoSelecionado->nome}} - </h2>
 
-          <h2 class="mb-0" style="padding-top:10px">{{$curso->nome}} - </h2>
           <h2 class="mt-1" > {{$titulo}}</h2>
         </div>
       </div>
@@ -232,7 +256,7 @@
         
 
         
-    </div>
+  </div>
     @foreach($listaRequisicao_documentos as $requisicao_documento)
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
@@ -287,6 +311,15 @@ function selectClicado(){
   document.getElementById('listar-requisicoes-form').submit();
 
 }
+$(function(){
+  var nomeCurso = {!! json_encode($cursoSelecionado->toArray()) !!};
+  var nomeDocumento = {!! json_encode($documentoSelecionado->toArray()) !!}; 
+  document.getElementById('cursos').value = nomeCurso['id'];
+  document.getElementById('documentos').value = nomeDocumento['id'];
+  console.log(nomeDocumento['id']);        
+});
+
+
 </script>
 
 <script>
@@ -333,7 +366,7 @@ document.getElementById("selectAll").addEventListener("click", function(){
   //getLinhas();
 });
 
-console.log(checkBoxs);
+//console.log(checkBoxs);
 
 function confirmarRequisicao(){
   var ids = getLinhas(); // retorna o newArray contendo todos os ids dos checkboxs selecionados
@@ -431,6 +464,9 @@ function exibirAnotacoes(id){
     console.log(s) 
     
 }
+
+
+
 //atualizar pagina
 // var time = 1; // 60s
 

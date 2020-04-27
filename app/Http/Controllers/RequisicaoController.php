@@ -42,10 +42,13 @@ class RequisicaoController extends Controller
   }
 
   public function getRequisicoes(Request $request){
-    $documento = Documento::where('id',$request->titulo_id)->first();
-    $idDoc = $documento->id;
+    //$documento = Documento::where('id',$request->documento_id)->first();
+    $documento = Documento::where('id',$request->titulo_id)->first();    
     $curso = Curso::where('id',$request->curso_id)->first();
+    $cursoSelecionado = Curso::where('id',$request->curso_id)->first();
+    $documentoSelecionado = Documento::where('id',$request->titulo_id)->first();
     $cursos = Curso::all();
+    $documentos = Documento::all();
       //Verifica se o card clicado foi igual a "TODOS"
                       // ->withTrashed()
       if($request->titulo_id == 6){
@@ -108,8 +111,13 @@ class RequisicaoController extends Controller
       $listaRequisicao_documentos = $response;
       
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
-
-      return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'cursos', 'idDoc'));
+      return view('telas_servidor.requisicoes_servidor',
+             compact('titulo',
+                     'listaRequisicao_documentos',
+                     'cursos',
+                     'cursoSelecionado',
+                     'documentoSelecionado',
+                     'documentos'));
 
   }
     public function storeRequisicao(Request $request){
@@ -294,5 +302,120 @@ class RequisicaoController extends Controller
             }
           }
           return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url
+      }
+
+      public function exibirBusca(){
+        return view('telas_servidor.relatorio_servidor');
+      }
+
+      public function gerarRelatorio(Request $request){
+
+        $mensagens = [
+        'dataInicio.date' => 'Preencha este campo com as informações relativas à disciplina e a finalidade do pedido',
+        'dataFim.after_or_equal' => 'A data final deve ser uma data posterior ou igual a data de inicio',
+        'dataInicio.before_or_equal' => 'A data de inicio deve ser uma data antes ou igual a hoje.'
+        ];
+        
+        $request->validate([
+          'dataInicio'       => 'date |before_or_equal:today',
+          'dataFim'          => 'date|after_or_equal:dataInicio',
+        ], $mensagens);
+
+        $id_documentos = DB::table('requisicao_documentos')
+                ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
+                ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
+                ->select ('requisicao_documentos.id')
+                ->whereDate('status_data', '>=', $request->dataInicio)
+                ->whereDate('status_data', '<=', $request->dataFim)
+                ->get();
+
+
+        //var_dump($id_documentos);
+        $id = []; //array auxiliar que pega cada item do $id_documentos
+        foreach ($id_documentos as $id_documento) {
+          array_push($id, $id_documento->id); //passa o id de $id_documentos para o array auxiliar $id
         }
+        $listaRequisicao_documentos = Requisicao_documento::whereIn('id', $id)->get(); //Pega as requisições que possuem o id do curso
+        
+        $contadorDeclaracaoVinculo = 0;
+        $contadorComprovanteMatricula = 0;
+        $contadorHistorico  = 0;
+        $contadorProgramaDisciplina = 0;
+        $contadorOutros = 0;
+
+        foreach($listaRequisicao_documentos as $key){
+          if($key->documento_id == 1){
+            $contadorDeclaracaoVinculo++;
+          }
+          if($key->documento_id == 2){
+            $contadorComprovanteMatricula++;
+          }
+          if($key->documento_id == 3){
+            $contadorHistorico++;
+          }
+          if($key->documento_id == 4){
+            $contadorProgramaDisciplina++;
+          }
+          if($key->documento_id == 5){
+            $contadorOutros++;
+          }
+        }
+        
+        $total = $contadorDeclaracaoVinculo +
+                 $contadorComprovanteMatricula +
+                 $contadorHistorico +
+                 $contadorProgramaDisciplina +
+                 $contadorOutros;
+        return view('telas_servidor.relatorio_servidor'
+          ,compact( 'contadorDeclaracaoVinculo',
+                    'contadorComprovanteMatricula',
+                    'contadorHistorico',
+                    'contadorProgramaDisciplina',
+                    'contadorOutros',
+                    'total'
+                  ));
+      }
+      public function exibirPesquisa(){
+        return view('telas_servidor.pesquisa_servidor');
+      }
+
+      public function pesquisarAluno(Request $request){
+        $RequestNome = $request->input('formNome') . '%';
+        $RequestCPF = $request->input('formCPF');
+        $alunos = [];
+        
+        if($request->input('formNome') != ''){
+          $alunos = DB::table('users')
+                ->join('alunos', 'alunos.user_id', '=', 'users.id')
+                ->select ('users.name', 'users.email','alunos.cpf', 'users.id' )
+                ->where('name','like', $RequestNome)
+                ->get();
+        }else if($request->input('formCPF') != '' ){
+          $alunos = DB::table('users')
+                ->join('alunos', 'alunos.user_id', '=', 'users.id')
+                ->select ('users.name', 'users.email','alunos.cpf', 'users.id' )
+                ->where('cpf','like', $RequestCPF)
+                ->get();
+        }
+
+      
+        return view('telas_servidor.pesquisa_servidor', compact('alunos'));
+
+      }
+
 }
+
+
+      //   $documento = Documento::where('id',$request->tipoDocumento_id)->first();
+      //   $qtdDeclaracaoVinculo = DB::table('requisicao_documentos')
+      //           ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
+      //           ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
+      //           ->select ('requisicao_documentos.id')
+      //           ->where([['requisicao_documentos.documento_id','1']])
+      //           ->get();
+
+      //   $id_documentos = $id_documentos->count();
+        
+
+      //   return view('telas_servidor.relatorio_servidor',compact('qtdDeclaracaoVinculo'));
+      // }
