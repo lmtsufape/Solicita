@@ -50,15 +50,26 @@ class RequisicaoController extends Controller
       //Verifica se o card clicado foi igual a "TODOS"
                       // ->withTrashed()
       if($request->titulo_id == 6){
-          $titulo = 'Todos';
+          $titulo = 'Concluídos';
           //$id_documentos retorna um collection. É necessário transformar para array
           //pega todas as requisições com base no id do documento e no id do curso
           $id_documentos = DB::table('requisicao_documentos')
                   ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                   ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                   ->select ('requisicao_documentos.id')
-                  ->where([['curso_id', $request->curso_id],['status','Concluído - Disponível para retirada']])
-                  ->orWhere([['curso_id', $request->curso_id],['status','Indeferido']])
+                  ->where([['curso_id', $request->curso_id],['status','Concluído - Disponível para retirada']])                  
+                  ->get();
+
+      }
+      else if($request->titulo_id == 7){
+          $titulo = 'Indeferidos';
+          //$id_documentos retorna um collection. É necessário transformar para array
+          //pega todas as requisições com base no id do documento e no id do curso
+          $id_documentos = DB::table('requisicao_documentos')
+                  ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
+                  ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
+                  ->select ('requisicao_documentos.id')
+                  ->where([['curso_id', $request->curso_id],['status','Indeferido']])                 
                   ->get();
 
       }
@@ -96,10 +107,12 @@ class RequisicaoController extends Controller
       }
       usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
       $listaRequisicao_documentos = $response;
-
+      
       // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
 
+
       return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'cursos','cursoTabela' , 'idDoc'));
+
 
   }
     public function storeRequisicao(Request $request){
@@ -246,10 +259,24 @@ class RequisicaoController extends Controller
             );
             $id_documento->save();
             $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
+<<<<<<< HEAD
             
             $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
 
             SendEmail::dispatch($details);
+=======
+            //$details = ['email' => 'recipient@example.com'];
+            
+            
+            $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
+            
+            SendEmail::dispatch($details);
+            // Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
+            //     $message->to($to_email)
+            //             ->subject($subject);
+            //     $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
+            // });
+>>>>>>> api
         return redirect()->back()->with('success', 'Documento(s) Indeferidos(s) com Sucesso!'); //volta pra mesma url
       }
       public function concluirRequisicao(Request $request){
@@ -276,10 +303,23 @@ class RequisicaoController extends Controller
               );
               $id_documento->save();
               $subject = 'Solicita - Status da Requisicao: '.$id_documento->status;
+<<<<<<< HEAD
               
               $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
 
               SendEmail::dispatch($details);
+=======
+              $details = ['data'=>$data, 'cabecalho'=>'naoresponder.lmts@gmail.com', 'titulo'=>'Solicita - LMTS', 'toEmail'=>$to_email, 'subject'=>$subject];
+            
+              SendEmail::dispatch($details);
+
+
+              // Mail::send('mails.status', $data, function($message) use ($to_email, $subject) {
+              //     $message->to($to_email)
+              //             ->subject($subject);
+              //     $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
+              // });
+>>>>>>> api
             }
           }
           return redirect()->back()->with('success', 'Documento(s) Concluido(s) com Sucesso!'); //volta pra mesma url

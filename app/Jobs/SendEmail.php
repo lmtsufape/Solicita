@@ -42,4 +42,6 @@ class SendEmail implements ShouldQueue
               $message->from('naoresponder.lmts@gmail.com','Solicita - LMTS');
             });
     }
+
 }
+

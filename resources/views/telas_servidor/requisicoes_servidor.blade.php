@@ -22,11 +22,15 @@
   </form>
 
   <div class="tabela-centro mx-auto" >
+     
+    <h3 class="text-center mt-0"></h3>
     <table class="table table-striped" id="table" >
       <div class="lmts-primary">
         <div class="nome-documento lmts-primary mx-auto " style="height:100px">
+
           <h2 id="idCursoTitulo" class="mb-0" style="padding-top:10px">{{$cursoTabela->nome}} - </h2>
           <h2 class="mt-1" > {{$titulo}}</h2>
+
         </div>
       </div>
       <thead class="lmts-primary table-borderless" style="border-color:#1B2E4F;" >
@@ -61,8 +65,8 @@
         @if($titulo=="Outros" | $titulo=="Programa de Disciplina")
             <th scope="col">INFORMAÇÕES</th>
         @endif
-        @if($titulo=="Todos")
-            <th scope="col" >DOCUMENTOS SOLICITADOS</th>
+        @if($titulo=="Concluídos" || $titulo == "Indeferidos" )
+            <th scope="col" >DOCUMENTO SOLICITADO</th>
             <th scope="col" >STATUS</th>
         @else
             <th scope="col">AÇÃO</th>
@@ -100,7 +104,7 @@
                   </td>
                 @endif
               {{-- DOCUMENTOS SOLICITADOS E STATUS - INICIO --}}
-              @if($titulo=="Todos")
+              @if($titulo=="Indeferidos" || $titulo == "Concluídos" )
                 {{-- DOCUMENTOS INDEFERIDOS --}}
                 @if($requisicao_documento['status'] == 'Indeferido' )
                     <td>                    
@@ -146,39 +150,42 @@
                         @endcomponent                             
                     </a>
                   </td> 
-                @else
+                @elseif($titulo=="Concluídos")
                   {{-- DOCUMENTOS CONCLUIDOS --}}
-                  <td>
-                     <ol>
-                      @foreach($requisicao_documento['requisicoes_documentos'] as $requisicao)
-                       @if($requisicao['documento_id'] == 1)                          
-                            <li >Declaração de Vínculo</li>
-                       @endif
+                  <td>                    
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 1)
+                        Declaração de Vínculo                          
+                     @endif
 
-                       @if($requisicao['documento_id'] == 2)                          
-                            <li >Comprovante de Matrícula</li>
-                       @endif
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 2)
+                        Comprovante de Matrícula
+                     @endif
 
-                       @if($requisicao['documento_id'] == 3)                          
-                            <li >Histórico Escolar</li>                                              
-                       @endif
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 3)
+                        Histórico Escolar                                                             
+                     @endif
+                      
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 4) 
+                          Programa de Disciplina
+                          <a data-toggle="tooltip" data-placement="left" title="Informações:{{$requisicao_documento['requisicoes_documentos']['detalhes']}} ">                  
+                              <span onclick="exibirAnotacoes({{$requisicao_documento['id']}})" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                              @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$requisicao_documento['requisicoes_documentos']['detalhes'], "id"=>$requisicao_documento['requisicoes_documentos']['id']])
+                              @endcomponent                             
+                          </a> 
+                     @endif
 
-                       @if($requisicao['documento_id'] == 4)                          
-                            <li >
-                              Programa de Disciplina
-                              
-                            </li>
-                       @endif
+                     @if($requisicao_documento['requisicoes_documentos']['documento_id'] == 5)   
+                        Outros 
+                        <a data-toggle="tooltip" data-placement="left" title="Informações:{{$requisicao_documento['requisicoes_documentos']['detalhes']}} ">                    
+                        <span onclick="exibirAnotacoes({{$requisicao_documento['id']}})" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        @component('componentes.popup', ["titulo"=>"Informações:", "conteudo"=>$requisicao_documento['requisicoes_documentos']['detalhes'], "id"=>$requisicao_documento['requisicoes_documentos']['id']])
+                        @endcomponent                             
+                    </a>      
+                     @endif 
 
-                       @if($requisicao['documento_id'] == 5)                          
-                            <li >
-                              Outros
-                              
-                            </li>                                                 
-                       @endif
-                      @endforeach
-                    </ol>
-                  </td>
+                    {{-- {{$requisicao_documento['requisicoes_documentos']['id']}} --}}
+                    
+                  </td>                     
 
                   <td class="text-success">
                     Requisição: {{$requisicao_documento['status']}}
@@ -216,7 +223,7 @@
         <table style="width:100%">
           <tr>
             @if(isset($listaRequisicao_documentos))
-              @if(sizeof($listaRequisicao_documentos) > 0 && $titulo !="Todos")
+              @if(sizeof($listaRequisicao_documentos) > 0 && $titulo != "Concluídos" && $titulo != "Indeferidos")
                 <button id="btnFinalizar" onclick="event.preventDefault();confirmarRequisicao()"
                 class="btn btn-primary-lmts" style="margin-bottom: 40px; float:left; margin-top: 20px; margin-left:20px">Concluir Requisição</button>
               @endif
@@ -433,6 +440,25 @@ function exibirAnotacoes(id){
 //   window.location.reload();
 // };
 
+
+function retornarCurso(id){
+  if(id == 1){
+        return 'Agronomia';
+      }else if(id == 2){
+        return 'Bacharelado em Ciência da Computação';
+      }
+      else if(id == 3){
+        return 'Engenharia de Alimentos';
+      }else if(id == 4){
+        return 'Licenciatura em Letras';
+      }else if(id == 5){
+        return 'Licenciatura em Pedagogia';
+      }else if(id == 6){
+        return 'Medicina Veterinária';
+      }else if(id == 7){
+        return 'Zootecnia';
+      }
+}
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

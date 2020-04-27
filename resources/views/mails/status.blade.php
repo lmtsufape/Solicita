@@ -11,7 +11,7 @@
         </a>
     </div>
   </div>
-    {{-- DEFERIMENTO --}}
+  
     <p><font face="Times New Roman" font size="4" color="black">Olá, {{$usuario->name}}! </font></p>
     
     <p><font face="Times New Roman" font size="4" color="black">A emissão do documento "{{$nome_documento}}" foi indeferida pelo seguinte motivo: <strong>{{$documento->anotacoes}}</strong> </font></p>
