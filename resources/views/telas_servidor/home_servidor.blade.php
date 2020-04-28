@@ -91,8 +91,8 @@
       document.getElementById('quantidades3').innerHTML = 'Nº de Requisições: ' + historico;
       document.getElementById('quantidades4').innerHTML = 'Nº de Requisições: ' + programa;
       document.getElementById('quantidades5').innerHTML = 'Nº de Requisições: ' + outros;
-      document.getElementById('quantidades6').innerHTML = 'Nº de Requisições: ' + concluidos;
-      document.getElementById('quantidades7').innerHTML = 'Nº de Requisições: ' + indeferidos;
+      //document.getElementById('quantidades6').innerHTML = 'Nº de Requisições: ' + concluidos;
+      //document.getElementById('quantidades7').innerHTML = 'Nº de Requisições: ' + indeferidos;
     }
 
     quantidades(document.getElementById('optionComOValor').value);
