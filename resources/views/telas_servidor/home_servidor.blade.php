@@ -3,7 +3,7 @@
 
 <div class="tela-servidor ">
   <div>@include('componentes.mensagens')</div>
-  <div class="centro-cartao container">
+  <div class="centro-cartao">
       <label for="cursos" style="margin-left:275px; ">Selecionar Curso</label>
       <div class="justify-content-right" style="margin-left: 275px">
         <select name="cursos" id="cursos" onchange="getSelectValue();"
@@ -30,7 +30,7 @@
       <div class="card-deck d-flex justify-content-center">
         <div class="conteudo-central d-flex  justify-content-center align-content-start flex-wrap">
           <!-- Para a retirada do card "TODOS", foi reduzido o offset do laço para 5, em vez de 6 -->
-          @for($i = 1;$i <= 7; $i++)
+          @for($i = 1;$i <= 5; $i++)
               <a id="click" href="{{ route('listar-requisicoes') }}" onclick="event.preventDefault(); document.getElementById('listar-requisicoes{{$i}}-form').submit();" style="text-decoration:none; color: inherit;">
                  <div class="card cartao text-center " style="border-radius: 20px">
                    <div class="card-body d-flex justify-content-center">
