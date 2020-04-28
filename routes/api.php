@@ -25,18 +25,20 @@ Route::namespace('Api')->group(function(){
 	Route::post('/login', 'AuthController@login');
 	Route::post('/logout', 'AuthController@logout');
 
-	Route::prefix('requisicaos')->group(function(){
-			Route::get('/', 'RequisicaoController@index');
-			Route::get('/nova/{id_doc}/{id_curso}', 'RequisicaoController@getRequisicoes');
-			Route::get('/preparaNovaRequisicao/{id_aluno}', 'RequisicaoController@preparaNovaRequisicao');
-
-		});
+	
 
 	Route::group(['middleware'=>['jwt.auth']], function(){
 		Route::prefix('cursos')->group(function(){
 			Route::get('/', 'CursoController@index');
 		});
 
+		Route::prefix('requisicaos')->group(function(){
+			Route::get('/', 'RequisicaoController@index');
+			Route::post('/listarRequisicoes', 'RequisicaoController@getRequisicoes');
+			Route::post('/preparaNovaRequisicao', 'RequisicaoController@preparaNovaRequisicao');
+			Route::post('/novaRequisicao', 'RequisicaoController@novaRequisicao');
+
+		});
 		Route::prefix('documentos')->group(function(){
 			Route::get('/', 'DocumentoController@index');
 		});

@@ -79,13 +79,13 @@ class RequisicaoController extends Controller
         //
     }
 
-    public function getRequisicoes(Request $request, $id_doc, $id_curso){
+    public function getRequisicoes(Request $request){
 
         //no resquest vem informações do documento selecionado ($request->titulo_id) e o 
         //o curso($request->curso_id)
 
-        $documento = Documento::where('id',$id_doc)->first();
-        $curso = Curso::where('id',$id_curso)->first();
+        $documento = Documento::where('id',$request->titulo_id)->first();
+        $curso = Curso::where('id',$request->curso_id)->first();
           //Verifica se o card clicado foi igual a "TODOS"
                           // ->withTrashed()
           if($request->titulo_id == 6){
@@ -96,7 +96,7 @@ class RequisicaoController extends Controller
                       ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                       ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                       ->select ('requisicao_documentos.id')
-                      ->where([['curso_id', $id_curso],['status','Concluído - Disponível para retirada']])                  
+                      ->where([['curso_id', $request->titulo_id],['status','Concluído - Disponível para retirada']])                  
                       ->get();
 
           }
@@ -108,7 +108,7 @@ class RequisicaoController extends Controller
                       ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                       ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                       ->select ('requisicao_documentos.id')
-                      ->where([['curso_id', $id_curso],['status','Indeferido']])                 
+                      ->where([['curso_id', $request->curso_id],['status','Indeferido']])                 
                       ->get();
 
           }
@@ -118,7 +118,7 @@ class RequisicaoController extends Controller
                     ->join('requisicaos', 'requisicaos.id', '=', 'requisicao_documentos.requisicao_id')
                     ->join('perfils', 'requisicaos.perfil_id', '=', 'perfils.id')
                     ->select ('requisicao_documentos.id')
-                    ->where([['documento_id',$id_doc],['curso_id', $id_curso],['status','Em andamento']])
+                    ->where([['documento_id',$request->titulo_id],['curso_id', $request->curso_id],['status','Em andamento']])
                     ->get();
           }
           $id = []; //array auxiliar que pega cada item do $id_documentos
@@ -147,19 +147,19 @@ class RequisicaoController extends Controller
           usort($response, function($a, $b){ return $a['nome'] >= $b['nome']; });
           $listaRequisicao_documentos = $response;
           
-          // return view('telas_servidor.requisicoes_servidor', compact('titulo','listaRequisicao_documentos', 'quantidades'));
-          return response()->json( [$listaRequisicao_documentos, $curso, $documento]);
-          // return view('telas_servidor.requisicoes_servidor', compact('curso','titulo','listaRequisicao_documentos'));
-
+          
+          //return response()->json( [$listaRequisicao_documentos, $curso, $documento]);
+          return response()->json( Auth::user()->id);
+          
           //no response a informações do das de cada requisição(cada requisicao pode ter um ou mais documentos solicitados) com as informações visto no ultimo foreach
 
     }
 
-    public function preparaNovaRequisicao(Request $request, $id_aluno){
+    public function preparaNovaRequisicao(Request $request){
           $unidades = Unidade::All();
           $usuarios = User::All();
           $alunos = Aluno::All();
-          $perfis = Perfil::where('aluno_id', $id_aluno)->get();
+          $perfis = Perfil::where('aluno_id', Auth::user()->aluno->id)->get();
           return response()->json( [$usuarios,$unidades, $perfis, $alunos]);
         }
     public function novaRequisicao(Request $request){
@@ -235,7 +235,10 @@ class RequisicaoController extends Controller
           $arrayAux = Documento::whereIn('id', $id)->get();
           // $documento = Documento::where('id',$request->titulo_id)->first();
           $curso = Curso::where('id',$request->curso_id)->first();
-          return view('autenticacao.confirmacao-requisicao', compact('arrayDocumentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date', 'hour'));
+          // return view('autenticacao.confirmacao-requisicao', compact('arrayDocumentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date', 'hour'));
+
+          return response()->json([ $arrayDocumentos, $requisicao, $arrayAux, $size, $ano, $date, $hour ]);
+
     }
 
 
