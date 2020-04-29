@@ -148,8 +148,8 @@ class RequisicaoController extends Controller
           $listaRequisicao_documentos = $response;
           
           
-          //return response()->json( [$listaRequisicao_documentos, $curso, $documento]);
-          return response()->json( Auth::user()->id);
+          return response()->json( [$listaRequisicao_documentos, $curso, $documento]);
+          //return response()->json( listaRequisicao_documentos);
           
           //no response a informações do das de cada requisição(cada requisicao pode ter um ou mais documentos solicitados) com as informações visto no ultimo foreach
 
