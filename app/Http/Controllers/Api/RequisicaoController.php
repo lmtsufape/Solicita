@@ -155,12 +155,10 @@ class RequisicaoController extends Controller
 
     }
 
-    public function preparaNovaRequisicao(Request $request){
-          $unidades = Unidade::All();
-          $usuarios = User::All();
-          $alunos = Aluno::All();
+    public function preparaNovaRequisicao(Request $request){          
           $perfis = Perfil::where('aluno_id', Auth::user()->aluno->id)->get();
-          return response()->json( [$usuarios,$unidades, $perfis, $alunos]);
+          $nome =  Auth::user()->name;
+          return response()->json( [$nome, $perfis]);
         }
     public function novaRequisicao(Request $request){
       $checkBoxDeclaracaoVinculo = $request->declaracaoVinculo;
