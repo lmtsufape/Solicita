@@ -157,8 +157,8 @@ class RequisicaoController extends Controller
 
     public function preparaNovaRequisicao(Request $request){          
           $perfis = Perfil::where('aluno_id', Auth::user()->aluno->id)->get();
-          $nome =  Auth::user()->name;
-          return response()->json( [$nome, $perfis]);
+          $usuario =  Auth::user();
+          return response()->json( [$usuario, $perfis]);
         }
     public function novaRequisicao(Request $request){
       $checkBoxDeclaracaoVinculo = $request->declaracaoVinculo;
