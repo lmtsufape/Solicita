@@ -52,7 +52,7 @@ Route::namespace('Api')->group(function(){
 
 		Route::prefix('requisicaos')->group(function(){
 			Route::get('/', 'RequisicaoController@index');
-			Route::post('/listarRequisicoes', 'RequisicaoController@getRequisicoes');
+			Route::post('/listarRequisicoes', 'RequisicaoController@listarRequisicoes');
 			Route::post('/preparaNovaRequisicao', 'RequisicaoController@preparaNovaRequisicao');
 			Route::post('/novaRequisicao', 'RequisicaoController@novaRequisicao');
 
