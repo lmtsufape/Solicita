@@ -235,7 +235,7 @@ class RequisicaoController extends Controller
           $arrayAux = Documento::whereIn('id', $id)->get();
           // $documento = Documento::where('id',$request->titulo_id)->first();
           $curso = Curso::where('id',$request->curso_id)->first();
-          return view('autenticacao.confirmacao-requisicao', compact('arrayDocumentos', 'requisicao', 'arrayAux', 'size', 'ano', 'date', 'hour'));
+          return response()->json( [$arrayDocumentos,$requisicao, $arrayAux, $size, $ano,$requisicao, $date, $hour]);
     }
 
 
