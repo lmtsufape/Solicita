@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use App\Requisicao;
 use Mail;
@@ -23,6 +24,15 @@ use App\Jobs\SendEmail;
 
 class RequisicaoController extends Controller
 {
+
+    use RegistersUsers;
+
+    /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/home';
     /**
      * Display a listing of the resource.
      *
@@ -164,16 +174,14 @@ class RequisicaoController extends Controller
       $ano = date('Y');
       $size = count($arrayDocumentos);
       $requisicao->requisicao_documento()->saveMany($arrayDocumentos);
-          $id = [];
-          foreach ($arrayDocumentos as $key) {
-            array_push($id, $key->documento_id);
-          }
-          $arrayAux = Documento::whereIn('id', $id)->get();
-          $curso = Curso::where('id',$request->curso_id)->first();
+      $id = [];
+      foreach ($arrayDocumentos as $key) {
+        array_push($id, $key->documento_id);
+      }
+      $arrayAux = Documento::whereIn('id', $id)->get();
+      $curso = Curso::where('id',$request->curso_id)->first();
 
-          
-
-          return response()->json([ $arrayDocumentos, $requisicao, $arrayAux, $size, $ano, $date, $hour ]);
+      return response()->json([ $arrayDocumentos, $requisicao, $arrayAux, $size, $ano, $date, $hour ]);
 
 
     }
