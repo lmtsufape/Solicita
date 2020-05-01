@@ -21,9 +21,27 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('Api')->group(function(){
 
 
-	Route::post('/register', 'AuthController@register');
-	Route::post('/login', 'AuthController@login');
-	Route::post('/logout', 'AuthController@logout');
+	Route::get('email/verify/{id}', 'VerificationApiController@verify')->name('verificationapi.verify');
+	Route::get('email/resend', 'VerificationApiController@resend')->name('verificationapi.resend');
+
+	Route::post('login', 'UsersApiController@login');
+	Route::post('register', 'UsersApiController@register');
+	Route::post('logout', 'UsersApiController@logout');
+	
+	Route::group(['middleware' => 'auth:api'], function(){
+		Route::post('details', 'UsersApiController@details')->middleware('verified');
+	}); // will work only when user has verified the email
+
+	// Route::post('/register', 'AuthController@register');
+	// Route::post('/login', 'AuthController@login');
+	// Route::post('/logout', 'AuthController@logout');
+
+	Route::prefix('requisicaos')->group(function(){
+			Route::get('/', 'RequisicaoController@index');
+			Route::get('/nova/{id_doc}/{id_curso}', 'RequisicaoController@getRequisicoes');
+			Route::get('/preparaNovaRequisicao/{id_aluno}', 'RequisicaoController@preparaNovaRequisicao');
+
+		});
 
 	
 
@@ -52,7 +70,7 @@ Route::namespace('Api')->group(function(){
 		});
 
 		Route::prefix('perfils')->group(function(){
-			Route::get('/', 'PerfilController@index');
+			Route::get('/', 'PerfilAlunoController@index');
 		});
 
 		Route::prefix('instituicaos')->group(function(){
