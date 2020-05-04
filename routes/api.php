@@ -44,7 +44,7 @@ Route::namespace('Api')->group(function(){
 		});
 
 	
-
+	// will work only when user has token was send
 	Route::group(['middleware'=>['jwt.auth']], function(){
 		Route::prefix('cursos')->group(function(){
 			Route::get('/', 'CursoController@index');
