@@ -211,9 +211,13 @@ class RequisicaoController extends Controller
       return view('/home-aluno')->with($requisicao);
     }
     public function indeferirRequisicao(Request $request){
-        $request->validate([
-          'anotacoes' => ['required'],
-        ]);
+        $mensagens = [
+          'anotacoes.max' => 'O campo só pode ter no máximo 190 caracteres',
+          'anotacoes.required' => 'Por favor preencha o campo.',
+        ];
+         $request->validate([
+          'anotacoes' => 'required|max:190',
+        ],$mensagens);
         $id = $request->idDocumento;
         $servidorLogado = Auth::user();
         $servidor = Servidor::where('user_id', $servidorLogado->id)->first();

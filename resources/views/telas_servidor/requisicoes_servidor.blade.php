@@ -141,6 +141,13 @@
                   <div class="form-group">
                     <label for="message-text" class="col-form-label">Mensagem:</label>
                     <textarea class="form-control" id="anotacoes" name="anotacoes" required></textarea>
+                    @error('anotacoes')
+                        <span>
+                          <span class="invalid-feedback" role="alert" style="overflow: visible; display:block">
+                          <strong>{{ $message }}</strong>
+                          </span>
+                        </span>
+                      @enderror
                   </div>
               </div>
               <div class="modal-footer">
