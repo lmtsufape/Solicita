@@ -98,7 +98,7 @@ class PerfilAlunoController extends Controller
         $message = 'Senha atual esta incorreta';
         return response()->json([$message]);
       }
-      if($request->input('password_confirmation') == $request->atual){
+      if($request->input('password_confirmation') == $request->password){
         $message = 'senhas nao coincidem';
         return response()->json([$message]);
       }
