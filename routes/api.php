@@ -72,6 +72,7 @@ Route::namespace('Api')->group(function(){
 		Route::prefix('perfils')->group(function(){
 			Route::post('/', 'PerfilAlunoController@index');
 			Route::post('/editarInfo', 'PerfilAlunoController@editarInfo');
+			Route::post('/storeEditarInfo', 'PerfilAlunoController@storeEditarInfo');
 			Route::post('/storeAlterarSenha', 'PerfilAlunoController@storeAlterarSenha');
 			Route::post('/adicionaPerfil', 'PerfilAlunoController@adicionaPerfil');
 			Route::post('/salvaPerfil', 'PerfilAlunoController@salvaPerfil');
