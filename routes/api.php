@@ -70,7 +70,13 @@ Route::namespace('Api')->group(function(){
 		});
 
 		Route::prefix('perfils')->group(function(){
-			Route::get('/', 'PerfilAlunoController@index');
+			Route::post('/', 'PerfilAlunoController@index');
+			Route::post('/editarInfo', 'PerfilAlunoController@editarInfo');
+			Route::post('/storeAlterarSenha', 'PerfilAlunoController@storeAlterarSenha');
+			Route::post('/adicionaPerfil', 'PerfilAlunoController@adicionaPerfil');
+			Route::post('/salvaPerfil', 'PerfilAlunoController@salvaPerfil');
+			Route::post('/excluirPerfil', 'PerfilAlunoController@excluirPerfil');
+			Route::post('/definirPerfilDefault', 'PerfilAlunoController@definirPerfilDefault');
 		});
 
 		Route::prefix('instituicaos')->group(function(){
