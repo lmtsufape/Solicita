@@ -79,9 +79,18 @@ class PerfilAlunoController extends Controller
       $perfil = Perfil::where('aluno_id',$aluno->id)->first();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-      return redirect()->route('home-aluno',['cursos'=>$cursos,'unidades'=>$unidades,'user'=>$user,
-                                              'aluno'=>$aluno,'perfil'=>$perfil,'unidadeAluno'=>$unidadeAluno->nome,'cursoAluno'=>$cursoAluno])
-                                              ->with('success', 'Seus dados foram atualizados!');
+      $perfisAluno = Perfil::where('aluno_id',$aluno->id)->get();
+      $message = 'Seus dados foram atualizados!';
+      return response()->json([$cursos,
+                                  $unidades,
+                                  $user, 
+                                  $aluno, 
+                                  $perfil,
+                                  $unidadeAluno->nome,
+                                  $cursoAluno,
+                                  $perfisAluno,
+                                  $message
+                                ]);
     }
     public function storeAlterarSenha(Request $request){
       
