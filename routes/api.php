@@ -55,6 +55,7 @@ Route::namespace('Api')->group(function(){
 			Route::post('/listarRequisicoes', 'RequisicaoController@listarRequisicoes');
 			Route::post('/preparaNovaRequisicao', 'RequisicaoController@preparaNovaRequisicao');
 			Route::post('/novaRequisicao', 'RequisicaoController@novaRequisicao');
+			Route::post('/excluirRequisicao', 'RequisicaoController@excluirRequisicao');
 
 		});
 		Route::prefix('documentos')->group(function(){
