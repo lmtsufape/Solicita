@@ -193,7 +193,7 @@ class RequisicaoController extends Controller
       foreach ($documentos as $doc) {
         # code...
         if($doc->status != 'Em andamento'){
-          return redirect()->back()->with('error', 'Você não pode excluir esta requisição, pois a mesma possui documentos que já foram processados.');
+          return response()->json(['Você não pode excluir esta requisição, pois a mesma possui documentos que já foram processados.']);
         }
       }
       $requisicao->requisicao_documento()->delete();
