@@ -46,9 +46,9 @@ class ForgotPasswordController extends Controller
                     ? $this->sendResetLinkResponse($request, $response)
                     : $this->sendResetLinkFailedResponse($request, $response);
         if('passwords.user' == $response){
-            return response()->json(['Email nao existe']);
+            return response()->json(['Nao encontramos nenhum usuario com esse endereco de e-mail.']);
         }else{
-            return response()->json(['Email existe']);
+            return response()->json(['Email enviado.']);
         }
         // dd($response);
     }
