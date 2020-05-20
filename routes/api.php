@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::namespace('Auth')->group(function(){
-	Route::post('requisicaos/esqueciSenha', 'ForgotPasswordController@sendResetLinkEmail');
+	Route::post('requisicaos/esqueciSenha', 'ForgotPasswordController@sendResetLinkEmailApi');
 });
 
 Route::namespace('Api')->group(function(){
