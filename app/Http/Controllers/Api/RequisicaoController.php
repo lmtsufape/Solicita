@@ -143,7 +143,7 @@ class RequisicaoController extends Controller
         $perfil = Perfil::where('id',$request->default)->first();
         $arrayDocumentos = [];//Array Temporário
         date_default_timezone_set('America/Sao_Paulo');
-        $date = date('d/m/Y');
+        $date = date('Y-m-d');
         $hour =  date('H:i');
         $requisicao->data_pedido = $date;
         $requisicao->hora_pedido = $hour;
@@ -184,6 +184,25 @@ class RequisicaoController extends Controller
       return response()->json([ $arrayDocumentos, $requisicao, $arrayAux, $size, $ano, $date, $hour ]);
 
 
+    }
+    public function requisitados(Requisicao $requisicao, $id, Perfil $perfil, $texto){
+      date_default_timezone_set('America/Sao_Paulo');
+      $date = date('Y-m-d');
+      $hour =  date('H:i');
+      $documentosRequisitados = new Requisicao_documento();
+      $documentosRequisitados->status_data = $date;
+      $documentosRequisitados->requisicao_id = $requisicao->id;
+      $documentosRequisitados->aluno_id = $perfil->aluno_id;
+      $documentosRequisitados->status = 'Em andamento';
+      if($id === 4){
+          $documentosRequisitados->detalhes = $texto;
+      }
+      if($id===5){
+          $documentosRequisitados->detalhes =  $texto;
+      }
+      $documentosRequisitados->documento_id = $id;
+      $documentosRequisitados->detalhes =  $texto;
+      return $documentosRequisitados;
     }
 
     public function excluirRequisicao(Request $request){
