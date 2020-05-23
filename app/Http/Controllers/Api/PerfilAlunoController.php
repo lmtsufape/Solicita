@@ -32,10 +32,10 @@ class PerfilAlunoController extends Controller
         $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
 
         //PRIMEIRO PERFIL DO ALUNO
-        $perfil = Perfil::where([['aluno_id',$aluno->id], ['valor', true]])->first();
+        $perfil = Perfil::where([['aluno_id',$aluno->id], ['valor', true]])->with('curso')->first();
 
         //TODOS OS PERFIS VINCULADOS AO ALUNO
-        $perfisAluno = Perfil::where('aluno_id',$aluno->id)->get();
+        $perfisAluno = Perfil::where('aluno_id',$aluno->id)->with('curso')->get();
         $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
         $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
         return response()->json([$cursos,
@@ -76,10 +76,10 @@ class PerfilAlunoController extends Controller
       $idUser = Auth::user()->id;
       $user = User::find($idUser); //Usuário Autenticado
       $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
-      $perfil = Perfil::where('aluno_id',$aluno->id)->first();
+      $perfil = Perfil::where('aluno_id',$aluno->id)->with('curso')->first();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-      $perfisAluno = Perfil::where('aluno_id',$aluno->id)->get();
+      $perfisAluno = Perfil::where('aluno_id',$aluno->id)->with('curso')->get();
       $message = 'Seus dados foram atualizados!';
       return response()->json([$cursos,
                                   $unidades,
@@ -123,8 +123,8 @@ class PerfilAlunoController extends Controller
       $idUser = Auth::user()->id;
       $user = User::find($idUser); //Usuário Autenticado
       $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
-      $perfil = Perfil::where('aluno_id',$aluno->id)->first();
-      $perfisAluno = Perfil::where('aluno_id',$aluno->id)->get();
+      $perfil = Perfil::where('aluno_id',$aluno->id)->with('curso')->first();
+      $perfisAluno = Perfil::where('aluno_id',$aluno->id)->with('curso')->get();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
       $message = 'Senha alterada com sucesso!';
@@ -146,10 +146,10 @@ class PerfilAlunoController extends Controller
       $idUser = Auth::user()->id;
       $user = User::find($idUser); //Usuário Autenticado
       $aluno = Aluno::where('user_id',$idUser)->first(); //Aluno autenticado
-      $perfil = Perfil::where('aluno_id',$aluno->id)->first();
+      $perfil = Perfil::where('aluno_id',$aluno->id)->with('curso')->first();
       $unidadeAluno = Unidade::where('id',$perfil->unidade_id)->first();
       $cursoAluno = Curso::where('id',$perfil->curso_id)->first();
-      $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+      $perfis = Perfil::where('aluno_id',$aluno->id)->with('curso')->get();
       $id = [];
       foreach ($perfis as $perfil) {
         array_push($id, $perfil->curso_id);
@@ -204,7 +204,7 @@ class PerfilAlunoController extends Controller
             }
             $definicaoPadrao = $request->selecaoPadrao;
             if($definicaoPadrao=='true'){
-              $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+              $perfis = Perfil::where('aluno_id',$aluno->id)->with('curso')->get();
               foreach ($perfis as $p) {
                 $p->valor = false;
                 $p->save();
@@ -232,7 +232,7 @@ class PerfilAlunoController extends Controller
       }
       $usuario = User::find(Auth::user()->id);
       $aluno = $usuario->aluno;
-      $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+      $perfis = Perfil::where('aluno_id',$aluno->id)->with('curso')->get();
       
 
       $quant = count($perfis);
@@ -256,7 +256,7 @@ class PerfilAlunoController extends Controller
         }
 
         $id = $request->idPerfil;
-        $isDefault = Perfil::where('id',$id)->first();
+        $isDefault = Perfil::where('id',$id)->with('curso')->first();
         // Perfil Default
         if ($isDefault->valor==true) {
           // $perfil = Perfil::where('id', $id)->delete();
@@ -273,7 +273,7 @@ class PerfilAlunoController extends Controller
           }
           $perfil->delete();
           // dd($perfil);
-          $primeiro = Perfil::where('aluno_id', $aluno->id)->first();
+          $primeiro = Perfil::where('aluno_id', $aluno->id)->with('curso')->first();
           $primeiro->valor=true;
           $primeiro->save();
           $message = 'Deletado com Sucesso!';
@@ -305,12 +305,12 @@ class PerfilAlunoController extends Controller
   }
   public function definirPerfilDefault(Request $request){
       $id = $request->idPerfil;
-      $selecao = Perfil::where('id', $id)->first(); //perfil que será selecionado como padrão
+      $selecao = Perfil::where('id', $id)->with('curso')->first(); //perfil que será selecionado como padrão
       // dd($selecao);
       $usuario = User::find(Auth::user()->id);
 
       $aluno = $usuario->aluno;
-      $perfis = Perfil::where('aluno_id',$aluno->id)->get();
+      $perfis = Perfil::where('aluno_id',$aluno->id)->with('curso')->get();
       // dd($perfis);
       foreach ($perfis as $p) {
         if($p->id == $selecao->id){
