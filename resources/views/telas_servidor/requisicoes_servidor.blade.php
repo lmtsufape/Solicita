@@ -15,7 +15,7 @@
               <label for="cursos" >Selecionar Curso</label>
               <div class="justify-content-right" >
                 <select name="curso_id" id="cursos" onchange=""
-                class="form-control mb-0" style="width: 300px">
+                class="form-control mb-0" style="width: 500px">
                   
                   @foreach($cursos as $curso)
                     <option id="nomeCurso" value="{{$curso->id}}" onclick="">{{$curso->nome}}</option>
@@ -30,7 +30,7 @@
             <label for="documentos" >Selecionar Documento</label>
             <div class="justify-content-right" >
               <select name="titulo_id" id="documentos" onchange=""
-              class="form-control mb-0" style="width: 300px">
+              class="form-control mb-0" style="width: 500px">
                 
                 @foreach($documentos as $documento)
                   <option id="tipoDocumento" value="{{$documento->id}}" onclick="">{{$documento->tipo}}</option>
