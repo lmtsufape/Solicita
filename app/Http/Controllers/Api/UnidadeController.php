@@ -14,7 +14,12 @@ class UnidadeController extends Controller
      */
     public function index()
     {
-        //
+         $unidade = Unidade::all();
+
+        // return response()->json($cursos);
+        return response()->json([
+            'unidade' =>
+                ($unidade)]);
     }
 
     /**
