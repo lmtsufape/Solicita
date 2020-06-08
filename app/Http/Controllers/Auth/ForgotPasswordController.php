@@ -41,14 +41,14 @@ class ForgotPasswordController extends Controller
         $response = $this->broker()->sendResetLink(
             $this->credentials($request)
         );
-        
+
         $response == Password::RESET_LINK_SENT
-                    ? $this->sendResetLinkResponse($request, $response)
-                    : $this->sendResetLinkFailedResponse($request, $response);
+            ? $this->sendResetLinkResponse($request, $response)
+            : $this->sendResetLinkFailedResponse($request, $response);
         if('passwords.user' == $response){
-            return response()->json(['Nao encontramos nenhum usuario com esse endereco de e-mail.']);
+            return response()->json(['message' => 'Não foi encontrado nenhum usuário com este endereço de e-mail.']);
         }else{
-            return response()->json(['Email enviado.']);
+            return response()->json(['message' => 'O link para redefinição de senha foi enviado para o seu e-mail!'], 201);
         }
         // dd($response);
     }

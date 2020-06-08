@@ -88,6 +88,23 @@ class RequisicaoController extends Controller
     {
         //
     }
+    public function excluirRequisicao(Request $request){
+        $id = $request->idRequisicao;
+        $requisicao = Requisicao::find($id);
+        $documentos = $requisicao->requisicao_documento()->get();
+
+        foreach ($documentos as $doc) {
+            # code...
+            if($doc->status != 'Em andamento'){
+                $message = 'Você não pode excluir esta requisição, pois a mesma possui documentos que já foram processados.';
+                return response()->json(['message'=>$message]);
+            }
+        }
+        $requisicao->requisicao_documento()->delete();
+        $requisicao->delete();
+                $message = 'Requisição excluída com sucesso!';
+                return response()->json(['message'=>$message]);
+    }
 
     public function listarRequisicoes(){    
       $idUser=Auth::user()->id;        
@@ -98,16 +115,26 @@ class RequisicaoController extends Controller
       $requisicoes_documentos = Requisicao_documento::where('aluno_id',$aluno->id)->get();
       $aluno= Aluno::where('user_id',$idUser)->first();
       $documentos = Documento::all();
+      $cursos = Curso::all();
       $perfis = Perfil::where('aluno_id',$aluno->id)->get();
-      return response()->json( [$requisicoes, $requisicoes_documentos, $aluno, $documentos, $perfis]);
+      return response()->json([
+          'requisicoes'=> $requisicoes,
+          'solicitados'=>$requisicoes_documentos,
+         // 'aluno'=>$aluno,
+          'cursos'=>$cursos,
+          'documentos'=>$documentos,
+          'perfil'=>$perfis]);
     }
 
     public function preparaNovaRequisicao(Request $request){          
           $perfis = Perfil::where('aluno_id', Auth::user()->aluno->id)->get();
           $usuario =  Auth::user();
-          return response()->json( [$usuario, $perfis]);
+          return response()->json( [
+              'usuario'=>$usuario,
+              'perfil'=>$perfis]);
 
         }
+
     public function novaRequisicao(Request $request){
       $checkBoxDeclaracaoVinculo = $request->declaracaoVinculo;
       $checkBoxComprovanteMatricula = $request->comprovanteMatricula;
@@ -143,11 +170,11 @@ class RequisicaoController extends Controller
         $perfil = Perfil::where('id',$request->default)->first();
         $arrayDocumentos = [];//Array Temporário
         date_default_timezone_set('America/Sao_Paulo');
-        $date = date('Y-m-d');
+        $date = date('Y/m/d');
         $hour =  date('H:i');
         $requisicao->data_pedido = $date;
         $requisicao->hora_pedido = $hour;
-        $requisicao->perfil_id = $perfil->id;
+        $requisicao->perfil_id = $perfil->id;//erroooooooooooooo
         $requisicao->aluno_id = $aluno->id; //necessária adequação com o código de autenticação do usuário do perfil aluno
         $requisicao->save();
       if($checkBoxDeclaracaoVinculo){
@@ -181,45 +208,37 @@ class RequisicaoController extends Controller
       $arrayAux = Documento::whereIn('id', $id)->get();
       $curso = Curso::where('id',$request->curso_id)->first();
 
-      return response()->json([ $arrayDocumentos, $requisicao, $arrayAux, $size, $ano, $date, $hour ]);
+     // return response()->json([ $arrayDocumentos, $requisicao, $arrayAux, $size, $ano, $date, $hour ]);
+      return response()->json([
+          'perfil' => $perfil,
+         // 'requisicao_documentos' => $arrayDocumentos,
+         //  $arrayDocumentos,
+          'requisicao' => $requisicao,
+         // $requisicao,
+          'solicitados' => $arrayAux]);
 
 
     }
+
     public function requisitados(Requisicao $requisicao, $id, Perfil $perfil, $texto){
-      date_default_timezone_set('America/Sao_Paulo');
-      $date = date('Y-m-d');
-      $hour =  date('H:i');
-      $documentosRequisitados = new Requisicao_documento();
-      $documentosRequisitados->status_data = $date;
-      $documentosRequisitados->requisicao_id = $requisicao->id;
-      $documentosRequisitados->aluno_id = $perfil->aluno_id;
-      $documentosRequisitados->status = 'Em andamento';
-      if($id === 4){
-          $documentosRequisitados->detalhes = $texto;
-      }
-      if($id===5){
-          $documentosRequisitados->detalhes =  $texto;
-      }
-      $documentosRequisitados->documento_id = $id;
-      $documentosRequisitados->detalhes =  $texto;
-      return $documentosRequisitados;
-    }
-
-    public function excluirRequisicao(Request $request){
-      $requisicao = Requisicao::find($request->id);
-      $documentos = $requisicao->requisicao_documento()->get();
-      
-      foreach ($documentos as $doc) {
-        # code...
-        if($doc->status != 'Em andamento'){
-          return response()->json(['Você não pode excluir esta requisição, pois a mesma possui documentos que já foram processados.']);
+        date_default_timezone_set('America/Sao_Paulo');
+        $date = date('Y/m/d');
+        $hour =  date('H:i');
+        $documentosRequisitados = new Requisicao_documento();
+        $documentosRequisitados->status_data = $date;
+        $documentosRequisitados->requisicao_id = $requisicao->id;
+        $documentosRequisitados->aluno_id = $perfil->aluno_id;
+        $documentosRequisitados->status = 'Em andamento';
+        if($id === 4){
+            $documentosRequisitados->detalhes = $texto;
         }
-      }
-      $requisicao->requisicao_documento()->delete();
-      $requisicao->delete();
-      return response()->json(['Requisição excluída com sucesso!']);
-
-  }
+        if($id===5){
+            $documentosRequisitados->detalhes =  $texto;
+        }
+        $documentosRequisitados->documento_id = $id;
+        $documentosRequisitados->detalhes =  $texto;
+        return $documentosRequisitados;
+    }
 
 
 }

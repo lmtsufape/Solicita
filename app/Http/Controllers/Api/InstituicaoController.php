@@ -16,7 +16,8 @@ class InstituicaoController extends Controller
     public function index()
     {
         $instituicaos = Instituicao::all();
-        return response()->json($instituicaos);
+        return response()->json([
+            'instituicaos'=>$instituicaos]);
     }
 
     /**
