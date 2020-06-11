@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Unidade;
 use Illuminate\Http\Request;
 
 class UnidadeController extends Controller
