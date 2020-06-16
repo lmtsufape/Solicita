@@ -46,6 +46,7 @@ class UsersApiController extends Controller
 		        return response()->json([
                     'token' => $token,
                     'token_type' => 'bearer',
+                   // 'expires_in' => auth('api')->factory()->getTTL() * 60,
                     'expires_in' => auth('api')->factory()->getTTL() * 60,
                     'user' => auth('api')->user(),
                     'message'=> $success
@@ -80,6 +81,15 @@ class UsersApiController extends Controller
         $usuario = new User();
         $aluno = new Aluno();
         $perfil = new Perfil();
+
+        if (Aluno::where('cpf', $request->input('cpf'))->count()!=0){
+            return response()->json(['error'=> 'O CPF informado já foi cadastrado.']);
+        }
+
+        if (User::where('email', $request->input('email'))->count()!=0){
+            return response()->json(['error'=> 'O e-mail informado já foi cadastrado.']);
+        }
+
         //USER
         $usuario->name = $request->input('name');
         $usuario->email = $request->input('email');
