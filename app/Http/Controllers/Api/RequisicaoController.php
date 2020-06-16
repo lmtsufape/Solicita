@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -21,6 +20,7 @@ use Carbon\Carbon;
 use App\Servidor;
 use App\Unidade;
 use App\Jobs\SendEmail;
+use Illuminate\Support\Facades\Validator;
 
 class RequisicaoController extends Controller
 {
@@ -103,7 +103,7 @@ class RequisicaoController extends Controller
         $requisicao->requisicao_documento()->delete();
         $requisicao->delete();
                 $message = 'Requisição excluída com sucesso!';
-                return response()->json(['message'=>$message]);
+                return response()->json(['message'=>$message], 201);
     }
 
     public function listarRequisicoes(){    
@@ -154,7 +154,9 @@ class RequisicaoController extends Controller
           $request->validate([
             'requisicaoPrograma' => 'required|max:190'
           ], $mensagens);
+            return response()->json(['error'=> $mensagens]);
         }
+
         if($checkBoxOutros!=''){
           $request->validate([
             'requisicaoOutros' => ['required'],
@@ -163,6 +165,7 @@ class RequisicaoController extends Controller
             'requisicaoOutros' => 'required|max:190'
           ], $mensagens);
         }
+
         $requisicao = new Requisicao();
         $idUser = Auth::user()->id;
         $user = User::find($idUser); //Usuário Autenticado
@@ -216,8 +219,6 @@ class RequisicaoController extends Controller
           'requisicao' => $requisicao,
          // $requisicao,
           'solicitados' => $arrayAux]);
-
-
     }
 
     public function requisitados(Requisicao $requisicao, $id, Perfil $perfil, $texto){
