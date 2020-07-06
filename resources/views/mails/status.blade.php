@@ -16,7 +16,7 @@
     
     <p><font face="Times New Roman" font size="4" color="black">A emissão do documento "{{$nome_documento}}" foi indeferida pelo seguinte motivo: <strong>{{$documento->anotacoes}}</strong> </font></p>
 
-    <p><font face="Times New Roman" font size="4" color="black">Caso necessite de outras informações, entrar em contato com a escolaridade através do e-mail: setor.escolar.uag@ufrpe.br.</font></p>
+    <p><font face="Times New Roman" font size="4" color="black">Caso necessite de outras informações, entrar em contato com a escolaridade através do e-mail: escolaridade@ufape.edu.br.</font></p>
     <p></p>
     <p align="center" ><font face="Times New Roman" font size="4" color="black">Atenciosamente, </font></p>
     
@@ -64,7 +64,7 @@
       
       <p><font face="Times New Roman" font size="4" color="black">O documento solicitado "{{$nome_documento}}" <strong>ESTÁ DISPONÍVEL PARA RETIRADA! </strong> </font></p>
 
-      <p><font face="Times New Roman" font size="4" color="black">Caso necessite de outras informações, entrar em contato com a escolaridade através do e-mail: setor.escolar.uag@ufrpe.br.</font></p>
+      <p><font face="Times New Roman" font size="4" color="black">Caso necessite de outras informações, entrar em contato com a escolaridade através do e-mail: escolaridade@ufape.edu.br.</font></p>
       <p></p>
       <p align="center" ><font face="Times New Roman" font size="4" color="black">Atenciosamente, </font></p>
       
