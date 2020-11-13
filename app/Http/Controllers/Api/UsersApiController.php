@@ -35,26 +35,30 @@ class UsersApiController extends Controller
 		if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
 			$user = Auth::user();
 			if($user->email_verified_at !== NULL){
-				$success['message'] = "Login successfull";
+				$success = "Login realizado com sucesso!";
 				$credentials = request(['email', 'password']);
 
 		        if (! $token = auth('api')->attempt($credentials)) {
-		            return response()->json(['error' => 'Unauthorized'], 401);
+		        //    return response()->json(['error' => 'Unauthorized'], 401);
+		            return response()->json(['message' => 'Acesso não autorizado.']);
 		        }
 
 		        return response()->json([
-		            'access_token' => $token,
-		            'token_type'   => 'bearer',
-		            'expires_in'   => auth('api')->factory()->getTTL() * 60,
-		            'success' => $success,
-		        ], $this->successStatus);
+                    'token' => $token,
+                    'token_type' => 'bearer',
+                   // 'expires_in' => auth('api')->factory()->getTTL() * 60,
+                    'expires_in' => auth('api')->factory()->getTTL() * 60,
+                    'user' => auth('api')->user(),
+                    'message'=> $success
+                ], 201);
 				//return response()->json(['success' => $success], $this->successStatus);
 			}else{
-				return response()->json(['error'=>'Please Verify Email'], 401);
+			//	return response()->json(['error'=>'Please Verify Email'], 401);
+				return response()->json(['message'=>'E-mail não verificado.']);
 			}
 		}
 		else{
-			return response()->json(['error'=>'Unauthorised'], 401);
+			return response()->json(['message'=>'Acesso não autorizado.']);
 		}
 	}
 	/**
@@ -77,6 +81,15 @@ class UsersApiController extends Controller
         $usuario = new User();
         $aluno = new Aluno();
         $perfil = new Perfil();
+
+        if (Aluno::where('cpf', $request->input('cpf'))->count()!=0){
+            return response()->json(['error'=> 'O CPF informado já foi cadastrado.']);
+        }
+
+        if (User::where('email', $request->input('email'))->count()!=0){
+            return response()->json(['error'=> 'O e-mail informado já foi cadastrado.']);
+        }
+
         //USER
         $usuario->name = $request->input('name');
         $usuario->email = $request->input('email');
@@ -139,13 +152,10 @@ class UsersApiController extends Controller
 		// $input['password'] = Hash::make($input['password']);
 		// $user = User::create($input);
 		$usuario->sendApiEmailVerificationNotification();
-		$success['message'] = 'Please confirm yourself by clicking on verify user button sent to you on your email';
+		$success = 'Cadastro realizado com sucesso! Confirme seu cadastro clicando no botão de confirmação enviado para o seu e-mail.';
 		return response()->json([
-            'access_token' => $token,
-            'token_type'   => 'bearer',
-            'expires_in'   => auth('api')->factory()->getTTL() * 60,
-            'success'=>$success,
-        ], $this->successStatus);
+            'message'=>$success,
+        ], 201);
 		//return response()->json(['success'=>$success], $this->successStatus);
 	}
 	/**
@@ -158,10 +168,11 @@ class UsersApiController extends Controller
 		$user = Auth::user();
 		return response()->json(['success' => $user], $this->successStatus);
 	}
+
 	public function logout()
     {
         auth('api')->logout();
 
-        return response()->json(['message' => 'Successfully logged out']);
+        return response()->json(['message' => 'Logout realizado com sucesso!']);
     }
 }

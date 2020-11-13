@@ -13,8 +13,8 @@ class CursoSeeder extends Seeder
     {
       $cursos = ['Agronomia','Bacharelado em Ciência da Computação','Engenharia de Alimentos','Licenciatura em Letras',
                   'Licenciatura em Pedagogia', 'Medicina Veterinária', 'Zootecnia'];
-      $abreviatura = ['AGR','BCC','ENG','LET',
-                  'PED', 'VET', 'ZOO'];
+      $abreviatura = ['AG','BCC','EA','LL',
+                  'LP', 'MV', 'BZ'];
 
       $unidade_id = DB::table('unidades')->where('nome','UFAPE - SEDE (Unidade Acadêmica de Garanhuns)')->pluck('id');
       for ($i=0; $i < sizeof($cursos); $i++) {
